@@ -1,1 +1,177 @@
-<!doctype html><meta charset="utf-8"><h1>solary</h1>
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ceny na dzień 2025-11-09</title>
+<style>
+  :root {
+    --a: #1b5e20; --b:#8BC34A; --c:#FFC107; --d:#E53935;
+    --bg:#ffffff; --text:#0b1220; --muted:#475569; --border:#e2e8f0;
+    --tbl-w: 420px;  /* SZEROKOŚĆ TABELI — możesz zmienić np. na 380px */
+  }
+  body {
+    margin: 12px;
+    font: 13px/1.12 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    color: var(--text); background: var(--bg);
+  }
+  h1 { margin: 0 0 6px 0; font-weight: 700; }
+  .legend {
+    display:flex; flex-wrap:wrap; gap:8px 12px; margin: 2px 0 8px 0; font-size:12px; color: var(--muted);
+  }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:2px 6px; border-radius:6px;
+          border:1px solid var(--border); background:#f8fafc; }
+  .box { width:14px; height:14px; border-radius:4px; }
+  .chip-a .box { background:var(--a); } .chip-b .box { background:var(--b); }
+  .chip-c .box { background:var(--c); } .chip-d .box { background:var(--d); }
+  .chip-a .label { color:#ffffff; background:var(--a); padding:0 4px; border-radius:4px; }
+
+  .wrap { width: var(--tbl-w); max-width:100%; }
+  table.prices {
+    width: 100%; table-layout: fixed; border-collapse:separate; border-spacing:0;
+    border:1px solid var(--border); border-radius:8px; overflow:hidden;
+  }
+  /* Procentowe rozbicie kolumn w ramach stałej szerokości tabeli */
+  col.col-start { width:24%; }
+  col.col-end   { width:24%; }
+  col.col-price { width:36%; }
+  col.col-cat   { width:16%; }
+
+  thead th {
+    padding:3px 4px; font-weight:700; background:#f8fafc; border-bottom:1px solid var(--border);
+    text-align:center; vertical-align:middle;
+  }
+  tbody td {
+    padding:1px 4px; border-bottom:1px solid var(--border);
+    text-align:center; vertical-align:middle;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  /* Intensywne kolory rzędów */
+  tbody tr.cat-a { background: var(--a); color:#ffffff; }
+  tbody tr.cat-b { background: var(--b); }
+  tbody tr.cat-c { background: var(--c); }
+  tbody tr.cat-d { background: var(--d); }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0b1220; --text:#e6edf5; --muted:#9fb0c3; --border:#1f2937; }
+    thead th { background:#0f172a; }
+    .chip { background:#0f172a; border-color:#1f2937; }
+  }
+</style>
+<body>
+  <h1>Ceny na dzień 2025-11-09</h1>
+  <div class="legend">
+    <span class="chip chip-a"><span class="box"></span><span class="label">a</span>&nbsp;średnia: 0,627 PLN/kWh</span>
+    <span class="chip chip-b"><span class="box"></span><strong>b</strong>&nbsp;średnia: 0,636 PLN/kWh</span>
+    <span class="chip chip-c"><span class="box"></span><strong>c</strong>&nbsp;średnia: 0,706 PLN/kWh</span>
+    <span class="chip chip-d"><span class="box"></span><strong>d</strong>&nbsp;średnia: 0,934 PLN/kWh</span>
+  </div>
+  <div class="wrap">
+  <table class="prices">
+    <colgroup>
+      <col class="col-start"><col class="col-end"><col class="col-price"><col class="col-cat">
+    </colgroup>
+    <thead><tr><th>Start</th><th>Koniec</th><th>Cena</th><th>Wsk.</th></tr></thead>
+    <tbody>
+      <tr class="cat-a"><td>00:00</td><td>00:15</td><td>0,629</td><td>a</td></tr>
+      <tr class="cat-a"><td>00:15</td><td>00:30</td><td>0,627</td><td>a</td></tr>
+      <tr class="cat-a"><td>00:30</td><td>00:45</td><td>0,625</td><td>a</td></tr>
+      <tr class="cat-a"><td>00:45</td><td>01:00</td><td>0,618</td><td>a</td></tr>
+      <tr class="cat-a"><td>01:00</td><td>01:15</td><td>0,632</td><td>a</td></tr>
+      <tr class="cat-a"><td>01:15</td><td>01:30</td><td>0,632</td><td>a</td></tr>
+      <tr class="cat-a"><td>01:30</td><td>01:45</td><td>0,63</td><td>a</td></tr>
+      <tr class="cat-a"><td>01:45</td><td>02:00</td><td>0,624</td><td>a</td></tr>
+      <tr class="cat-c"><td>02:00</td><td>02:15</td><td>0,63</td><td>c</td></tr>
+      <tr class="cat-c"><td>02:15</td><td>02:30</td><td>0,629</td><td>c</td></tr>
+      <tr class="cat-c"><td>02:30</td><td>02:45</td><td>0,627</td><td>c</td></tr>
+      <tr class="cat-c"><td>02:45</td><td>03:00</td><td>0,629</td><td>c</td></tr>
+      <tr class="cat-c"><td>03:00</td><td>03:15</td><td>0,638</td><td>c</td></tr>
+      <tr class="cat-c"><td>03:15</td><td>03:30</td><td>0,638</td><td>c</td></tr>
+      <tr class="cat-c"><td>03:30</td><td>03:45</td><td>0,638</td><td>c</td></tr>
+      <tr class="cat-c"><td>03:45</td><td>04:00</td><td>0,638</td><td>c</td></tr>
+      <tr class="cat-c"><td>04:00</td><td>04:15</td><td>0,641</td><td>c</td></tr>
+      <tr class="cat-c"><td>04:15</td><td>04:30</td><td>0,641</td><td>c</td></tr>
+      <tr class="cat-c"><td>04:30</td><td>04:45</td><td>0,643</td><td>c</td></tr>
+      <tr class="cat-c"><td>04:45</td><td>05:00</td><td>0,643</td><td>c</td></tr>
+      <tr class="cat-c"><td>05:00</td><td>05:15</td><td>0,648</td><td>c</td></tr>
+      <tr class="cat-c"><td>05:15</td><td>05:30</td><td>0,652</td><td>c</td></tr>
+      <tr class="cat-c"><td>05:30</td><td>05:45</td><td>0,665</td><td>c</td></tr>
+      <tr class="cat-c"><td>05:45</td><td>06:00</td><td>0,646</td><td>c</td></tr>
+      <tr class="cat-c"><td>06:00</td><td>06:15</td><td>0,656</td><td>c</td></tr>
+      <tr class="cat-c"><td>06:15</td><td>06:30</td><td>0,656</td><td>c</td></tr>
+      <tr class="cat-c"><td>06:30</td><td>06:45</td><td>0,655</td><td>c</td></tr>
+      <tr class="cat-c"><td>06:45</td><td>07:00</td><td>0,655</td><td>c</td></tr>
+      <tr class="cat-c"><td>07:00</td><td>07:15</td><td>0,675</td><td>c</td></tr>
+      <tr class="cat-c"><td>07:15</td><td>07:30</td><td>0,677</td><td>c</td></tr>
+      <tr class="cat-c"><td>07:30</td><td>07:45</td><td>0,684</td><td>c</td></tr>
+      <tr class="cat-c"><td>07:45</td><td>08:00</td><td>0,679</td><td>c</td></tr>
+      <tr class="cat-c"><td>08:00</td><td>08:15</td><td>0,687</td><td>c</td></tr>
+      <tr class="cat-c"><td>08:15</td><td>08:30</td><td>0,681</td><td>c</td></tr>
+      <tr class="cat-c"><td>08:30</td><td>08:45</td><td>0,673</td><td>c</td></tr>
+      <tr class="cat-c"><td>08:45</td><td>09:00</td><td>0,668</td><td>c</td></tr>
+      <tr class="cat-c"><td>09:00</td><td>09:15</td><td>0,659</td><td>c</td></tr>
+      <tr class="cat-c"><td>09:15</td><td>09:30</td><td>0,649</td><td>c</td></tr>
+      <tr class="cat-c"><td>09:30</td><td>09:45</td><td>0,646</td><td>c</td></tr>
+      <tr class="cat-b"><td>09:45</td><td>10:00</td><td>0,64</td><td>b</td></tr>
+      <tr class="cat-b"><td>10:00</td><td>10:15</td><td>0,643</td><td>b</td></tr>
+      <tr class="cat-b"><td>10:15</td><td>10:30</td><td>0,641</td><td>b</td></tr>
+      <tr class="cat-b"><td>10:30</td><td>10:45</td><td>0,64</td><td>b</td></tr>
+      <tr class="cat-b"><td>10:45</td><td>11:00</td><td>0,63</td><td>b</td></tr>
+      <tr class="cat-b"><td>11:00</td><td>11:15</td><td>0,629</td><td>b</td></tr>
+      <tr class="cat-b"><td>11:15</td><td>11:30</td><td>0,63</td><td>b</td></tr>
+      <tr class="cat-b"><td>11:30</td><td>11:45</td><td>0,627</td><td>b</td></tr>
+      <tr class="cat-b"><td>11:45</td><td>12:00</td><td>0,624</td><td>b</td></tr>
+      <tr class="cat-b"><td>12:00</td><td>12:15</td><td>0,638</td><td>b</td></tr>
+      <tr class="cat-b"><td>12:15</td><td>12:30</td><td>0,643</td><td>b</td></tr>
+      <tr class="cat-b"><td>12:30</td><td>12:45</td><td>0,644</td><td>b</td></tr>
+      <tr class="cat-c"><td>12:45</td><td>13:00</td><td>0,644</td><td>c</td></tr>
+      <tr class="cat-c"><td>13:00</td><td>13:15</td><td>0,644</td><td>c</td></tr>
+      <tr class="cat-c"><td>13:15</td><td>13:30</td><td>0,651</td><td>c</td></tr>
+      <tr class="cat-c"><td>13:30</td><td>13:45</td><td>0,659</td><td>c</td></tr>
+      <tr class="cat-c"><td>13:45</td><td>14:00</td><td>0,668</td><td>c</td></tr>
+      <tr class="cat-c"><td>14:00</td><td>14:15</td><td>0,775</td><td>c</td></tr>
+      <tr class="cat-c"><td>14:15</td><td>14:30</td><td>0,767</td><td>c</td></tr>
+      <tr class="cat-c"><td>14:30</td><td>14:45</td><td>0,713</td><td>c</td></tr>
+      <tr class="cat-c"><td>14:45</td><td>15:00</td><td>0,73</td><td>c</td></tr>
+      <tr class="cat-c"><td>15:00</td><td>15:15</td><td>0,769</td><td>c</td></tr>
+      <tr class="cat-c"><td>15:15</td><td>15:30</td><td>0,778</td><td>c</td></tr>
+      <tr class="cat-c"><td>15:30</td><td>15:45</td><td>0,821</td><td>c</td></tr>
+      <tr class="cat-c"><td>15:45</td><td>16:00</td><td>0,848</td><td>c</td></tr>
+      <tr class="cat-c"><td>16:00</td><td>16:15</td><td>0,876</td><td>c</td></tr>
+      <tr class="cat-d"><td>16:15</td><td>16:30</td><td>0,898</td><td>d</td></tr>
+      <tr class="cat-d"><td>16:30</td><td>16:45</td><td>0,934</td><td>d</td></tr>
+      <tr class="cat-d"><td>16:45</td><td>17:00</td><td>0,973</td><td>d</td></tr>
+      <tr class="cat-d"><td>17:00</td><td>17:15</td><td>0,918</td><td>d</td></tr>
+      <tr class="cat-d"><td>17:15</td><td>17:30</td><td>0,95</td><td>d</td></tr>
+      <tr class="cat-d"><td>17:30</td><td>17:45</td><td>0,953</td><td>d</td></tr>
+      <tr class="cat-d"><td>17:45</td><td>18:00</td><td>0,959</td><td>d</td></tr>
+      <tr class="cat-d"><td>18:00</td><td>18:15</td><td>0,887</td><td>d</td></tr>
+      <tr class="cat-c"><td>18:15</td><td>18:30</td><td>0,885</td><td>c</td></tr>
+      <tr class="cat-c"><td>18:30</td><td>18:45</td><td>0,887</td><td>c</td></tr>
+      <tr class="cat-c"><td>18:45</td><td>19:00</td><td>0,885</td><td>c</td></tr>
+      <tr class="cat-c"><td>19:00</td><td>19:15</td><td>0,868</td><td>c</td></tr>
+      <tr class="cat-c"><td>19:15</td><td>19:30</td><td>0,86</td><td>c</td></tr>
+      <tr class="cat-c"><td>19:30</td><td>19:45</td><td>0,849</td><td>c</td></tr>
+      <tr class="cat-c"><td>19:45</td><td>20:00</td><td>0,837</td><td>c</td></tr>
+      <tr class="cat-c"><td>20:00</td><td>20:15</td><td>0,814</td><td>c</td></tr>
+      <tr class="cat-c"><td>20:15</td><td>20:30</td><td>0,795</td><td>c</td></tr>
+      <tr class="cat-c"><td>20:30</td><td>20:45</td><td>0,784</td><td>c</td></tr>
+      <tr class="cat-c"><td>20:45</td><td>21:00</td><td>0,757</td><td>c</td></tr>
+      <tr class="cat-c"><td>21:00</td><td>21:15</td><td>0,74</td><td>c</td></tr>
+      <tr class="cat-c"><td>21:15</td><td>21:30</td><td>0,732</td><td>c</td></tr>
+      <tr class="cat-c"><td>21:30</td><td>21:45</td><td>0,703</td><td>c</td></tr>
+      <tr class="cat-c"><td>21:45</td><td>22:00</td><td>0,687</td><td>c</td></tr>
+      <tr class="cat-c"><td>22:00</td><td>22:15</td><td>0,697</td><td>c</td></tr>
+      <tr class="cat-c"><td>22:15</td><td>22:30</td><td>0,684</td><td>c</td></tr>
+      <tr class="cat-c"><td>22:30</td><td>22:45</td><td>0,678</td><td>c</td></tr>
+      <tr class="cat-c"><td>22:45</td><td>23:00</td><td>0,666</td><td>c</td></tr>
+      <tr class="cat-c"><td>23:00</td><td>23:15</td><td>0,654</td><td>c</td></tr>
+      <tr class="cat-c"><td>23:15</td><td>23:30</td><td>0,644</td><td>c</td></tr>
+      <tr class="cat-c"><td>23:30</td><td>23:45</td><td>0,645</td><td>c</td></tr>
+      <tr class="cat-c"><td>23:45</td><td>00:00</td><td>0,644</td><td>c</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="margin:6px 0 0 0; color:#64748b; font-size:12px">Źródło: total_PLN_kWh i wskaźniki a/b/c/d z najnowszego pliku <em>ceny_06_preferowane_uzywanie_YYMMDD.csv</em>.</p>
+</body>
+</html>
