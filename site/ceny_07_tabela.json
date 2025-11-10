@@ -1,0 +1,594 @@
+{
+  "title": "Ceny na dzień 2025-11-09",
+  "date": "2025-11-09",
+  "averages_PLN_kWh": {
+    "a": 0.627125,
+    "b": 0.63575,
+    "c": 0.705647,
+    "d": 0.934
+  },
+  "colors": {
+    "a": "#1b5e20",
+    "b": "#8BC34A",
+    "c": "#FFC107",
+    "d": "#E53935"
+  },
+  "rows": [
+    {
+      "start": "00:00",
+      "end": "00:15",
+      "total_PLN_kWh": "0,629",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "00:15",
+      "end": "00:30",
+      "total_PLN_kWh": "0,627",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "00:30",
+      "end": "00:45",
+      "total_PLN_kWh": "0,625",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "00:45",
+      "end": "01:00",
+      "total_PLN_kWh": "0,618",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "01:00",
+      "end": "01:15",
+      "total_PLN_kWh": "0,632",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "01:15",
+      "end": "01:30",
+      "total_PLN_kWh": "0,632",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "01:30",
+      "end": "01:45",
+      "total_PLN_kWh": "0,63",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "01:45",
+      "end": "02:00",
+      "total_PLN_kWh": "0,624",
+      "preferowane_uzywanie": "a"
+    },
+    {
+      "start": "02:00",
+      "end": "02:15",
+      "total_PLN_kWh": "0,63",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "02:15",
+      "end": "02:30",
+      "total_PLN_kWh": "0,629",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "02:30",
+      "end": "02:45",
+      "total_PLN_kWh": "0,627",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "02:45",
+      "end": "03:00",
+      "total_PLN_kWh": "0,629",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "03:00",
+      "end": "03:15",
+      "total_PLN_kWh": "0,638",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "03:15",
+      "end": "03:30",
+      "total_PLN_kWh": "0,638",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "03:30",
+      "end": "03:45",
+      "total_PLN_kWh": "0,638",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "03:45",
+      "end": "04:00",
+      "total_PLN_kWh": "0,638",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "04:00",
+      "end": "04:15",
+      "total_PLN_kWh": "0,641",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "04:15",
+      "end": "04:30",
+      "total_PLN_kWh": "0,641",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "04:30",
+      "end": "04:45",
+      "total_PLN_kWh": "0,643",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "04:45",
+      "end": "05:00",
+      "total_PLN_kWh": "0,643",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "05:00",
+      "end": "05:15",
+      "total_PLN_kWh": "0,648",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "05:15",
+      "end": "05:30",
+      "total_PLN_kWh": "0,652",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "05:30",
+      "end": "05:45",
+      "total_PLN_kWh": "0,665",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "05:45",
+      "end": "06:00",
+      "total_PLN_kWh": "0,646",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "06:00",
+      "end": "06:15",
+      "total_PLN_kWh": "0,656",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "06:15",
+      "end": "06:30",
+      "total_PLN_kWh": "0,656",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "06:30",
+      "end": "06:45",
+      "total_PLN_kWh": "0,655",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "06:45",
+      "end": "07:00",
+      "total_PLN_kWh": "0,655",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "07:00",
+      "end": "07:15",
+      "total_PLN_kWh": "0,675",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "07:15",
+      "end": "07:30",
+      "total_PLN_kWh": "0,677",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "07:30",
+      "end": "07:45",
+      "total_PLN_kWh": "0,684",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "07:45",
+      "end": "08:00",
+      "total_PLN_kWh": "0,679",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "08:00",
+      "end": "08:15",
+      "total_PLN_kWh": "0,687",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "08:15",
+      "end": "08:30",
+      "total_PLN_kWh": "0,681",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "08:30",
+      "end": "08:45",
+      "total_PLN_kWh": "0,673",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "08:45",
+      "end": "09:00",
+      "total_PLN_kWh": "0,668",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "09:00",
+      "end": "09:15",
+      "total_PLN_kWh": "0,659",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "09:15",
+      "end": "09:30",
+      "total_PLN_kWh": "0,649",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "09:30",
+      "end": "09:45",
+      "total_PLN_kWh": "0,646",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "09:45",
+      "end": "10:00",
+      "total_PLN_kWh": "0,64",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "10:00",
+      "end": "10:15",
+      "total_PLN_kWh": "0,643",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "10:15",
+      "end": "10:30",
+      "total_PLN_kWh": "0,641",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "10:30",
+      "end": "10:45",
+      "total_PLN_kWh": "0,64",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "10:45",
+      "end": "11:00",
+      "total_PLN_kWh": "0,63",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "11:00",
+      "end": "11:15",
+      "total_PLN_kWh": "0,629",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "11:15",
+      "end": "11:30",
+      "total_PLN_kWh": "0,63",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "11:30",
+      "end": "11:45",
+      "total_PLN_kWh": "0,627",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "11:45",
+      "end": "12:00",
+      "total_PLN_kWh": "0,624",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "12:00",
+      "end": "12:15",
+      "total_PLN_kWh": "0,638",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "12:15",
+      "end": "12:30",
+      "total_PLN_kWh": "0,643",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "12:30",
+      "end": "12:45",
+      "total_PLN_kWh": "0,644",
+      "preferowane_uzywanie": "b"
+    },
+    {
+      "start": "12:45",
+      "end": "13:00",
+      "total_PLN_kWh": "0,644",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "13:00",
+      "end": "13:15",
+      "total_PLN_kWh": "0,644",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "13:15",
+      "end": "13:30",
+      "total_PLN_kWh": "0,651",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "13:30",
+      "end": "13:45",
+      "total_PLN_kWh": "0,659",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "13:45",
+      "end": "14:00",
+      "total_PLN_kWh": "0,668",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "14:00",
+      "end": "14:15",
+      "total_PLN_kWh": "0,775",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "14:15",
+      "end": "14:30",
+      "total_PLN_kWh": "0,767",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "14:30",
+      "end": "14:45",
+      "total_PLN_kWh": "0,713",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "14:45",
+      "end": "15:00",
+      "total_PLN_kWh": "0,73",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "15:00",
+      "end": "15:15",
+      "total_PLN_kWh": "0,769",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "15:15",
+      "end": "15:30",
+      "total_PLN_kWh": "0,778",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "15:30",
+      "end": "15:45",
+      "total_PLN_kWh": "0,821",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "15:45",
+      "end": "16:00",
+      "total_PLN_kWh": "0,848",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "16:00",
+      "end": "16:15",
+      "total_PLN_kWh": "0,876",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "16:15",
+      "end": "16:30",
+      "total_PLN_kWh": "0,898",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "16:30",
+      "end": "16:45",
+      "total_PLN_kWh": "0,934",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "16:45",
+      "end": "17:00",
+      "total_PLN_kWh": "0,973",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "17:00",
+      "end": "17:15",
+      "total_PLN_kWh": "0,918",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "17:15",
+      "end": "17:30",
+      "total_PLN_kWh": "0,95",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "17:30",
+      "end": "17:45",
+      "total_PLN_kWh": "0,953",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "17:45",
+      "end": "18:00",
+      "total_PLN_kWh": "0,959",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "18:00",
+      "end": "18:15",
+      "total_PLN_kWh": "0,887",
+      "preferowane_uzywanie": "d"
+    },
+    {
+      "start": "18:15",
+      "end": "18:30",
+      "total_PLN_kWh": "0,885",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "18:30",
+      "end": "18:45",
+      "total_PLN_kWh": "0,887",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "18:45",
+      "end": "19:00",
+      "total_PLN_kWh": "0,885",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "19:00",
+      "end": "19:15",
+      "total_PLN_kWh": "0,868",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "19:15",
+      "end": "19:30",
+      "total_PLN_kWh": "0,86",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "19:30",
+      "end": "19:45",
+      "total_PLN_kWh": "0,849",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "19:45",
+      "end": "20:00",
+      "total_PLN_kWh": "0,837",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "20:00",
+      "end": "20:15",
+      "total_PLN_kWh": "0,814",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "20:15",
+      "end": "20:30",
+      "total_PLN_kWh": "0,795",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "20:30",
+      "end": "20:45",
+      "total_PLN_kWh": "0,784",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "20:45",
+      "end": "21:00",
+      "total_PLN_kWh": "0,757",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "21:00",
+      "end": "21:15",
+      "total_PLN_kWh": "0,74",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "21:15",
+      "end": "21:30",
+      "total_PLN_kWh": "0,732",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "21:30",
+      "end": "21:45",
+      "total_PLN_kWh": "0,703",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "21:45",
+      "end": "22:00",
+      "total_PLN_kWh": "0,687",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "22:00",
+      "end": "22:15",
+      "total_PLN_kWh": "0,697",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "22:15",
+      "end": "22:30",
+      "total_PLN_kWh": "0,684",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "22:30",
+      "end": "22:45",
+      "total_PLN_kWh": "0,678",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "22:45",
+      "end": "23:00",
+      "total_PLN_kWh": "0,666",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "23:00",
+      "end": "23:15",
+      "total_PLN_kWh": "0,654",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "23:15",
+      "end": "23:30",
+      "total_PLN_kWh": "0,644",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "23:30",
+      "end": "23:45",
+      "total_PLN_kWh": "0,645",
+      "preferowane_uzywanie": "c"
+    },
+    {
+      "start": "23:45",
+      "end": "00:00",
+      "total_PLN_kWh": "0,644",
+      "preferowane_uzywanie": "c"
+    }
+  ]
+}
