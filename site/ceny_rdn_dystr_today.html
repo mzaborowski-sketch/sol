@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Raporty</title>
+  <meta name="theme-color" content="#0ea5e9">
+  <link rel="stylesheet" href="assets/css/metro.css">
+  <style>
+    :root {
+      --a:#1b5e20; --b:#8BC34A; --c:#FFC107; --d:#E53935;
+      --border:#e2e8f0; --muted:#64748b;
+      --tbl-w: 360px; /* <<< ustaw szerokość tabeli tutaj (było 520px) */
+    }
+    /* węższa, skondensowana tabela */
+    .table-wrap { margin:8px auto; width:min(var(--tbl-w),100%); }
+    table.prices {
+      width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0;
+      border:1px solid var(--border); border-radius:10px; overflow:hidden;
+      font-variant-numeric:tabular-nums; font-size:10px; line-height:1.05;
+    }
+    thead th { padding:2px 3px; text-align:center; border-bottom:1px solid var(--border); }
+    tbody td { padding:0 3px; text-align:center; border-bottom:1px solid var(--border);
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    /* delikatnie przealokowane procenty kolumn pod 360px */
+    col.col-start { width:26%; }
+    col.col-end   { width:26%; }
+    col.col-price { width:34%; }
+    col.col-cat   { width:14%; }
+    tbody tr.cat-a{background:var(--a);color:#fff}
+    tbody tr.cat-b{background:var(--b)}
+    tbody tr.cat-c{background:var(--c)}
+    tbody tr.cat-d{background:var(--d)}
+    .legend{display:flex;flex-wrap:wrap;gap:6px 8px;margin:2px 0 0 0;color:var(--muted); font-size:10px; }
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:0 6px;border-radius:6px;border:1px solid var(--border)}
+    .box{width:11px;height:11px;border-radius:3px;display:inline-block}
+    .box.a{background:#1b5e20}.box.b{background:#8BC34A}.box.c{background:#FFC107}.box.d{background:#E53935}
+    /* wykresy mniejsze (~40%) */
+    .chart{margin:10px 0}
+    .chart img.small{width:60%; max-width:60%; height:auto; display:block; margin:6px auto;}
+    .muted{color:var(--muted);font-size:11px}
+  </style>
+</head>
+<body class="accent-cyan has-floating">
+<main class="container tight">
+
+<div class="floating-menu"><a href="index.html" title="Powrót do menu"><span class="label">MENU</span><span class="emoji">🏠</span></a></div>
+
+<section class="hero"><div class="kicker">Dane</div><h1>Raporty</h1></section>
+
+<section class="content">
+  <h2>2025-11-11 — Sumaryczne ceny energii brutto (energia+dystrybucja)</h2>
+
+  <div class="legend">
+    <span class="chip"><span class="box a"></span>&nbsp;<strong>a</strong> avg: 0,635 PLN/kWh</span>
+    <span class="chip"><span class="box b"></span>&nbsp;<strong>b</strong> avg: 0,649 PLN/kWh</span>
+    <span class="chip"><span class="box c"></span>&nbsp;<strong>c</strong> avg: 0,698 PLN/kWh</span>
+    <span class="chip"><span class="box d"></span>&nbsp;<strong>d</strong> avg: 0,810 PLN/kWh</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="prices">
+      <colgroup><col class="col-start"><col class="col-end"><col class="col-price"><col class="col-cat"></colgroup>
+      <thead><tr><th>Start</th><th>Koniec</th><th>Cena [PLN/kWh]</th><th>Wsk.</th></tr></thead>
+      <tbody>
+          <tr class="cat-a"><td>00:00</td><td>00:15</td><td>0,643</td><td>a</td></tr>
+          <tr class="cat-a"><td>00:15</td><td>00:30</td><td>0,643</td><td>a</td></tr>
+          <tr class="cat-b"><td>00:30</td><td>00:45</td><td>0,643</td><td>b</td></tr>
+          <tr class="cat-b"><td>00:45</td><td>01:00</td><td>0,654</td><td>b</td></tr>
+          <tr class="cat-b"><td>01:00</td><td>01:15</td><td>0,650</td><td>b</td></tr>
+          <tr class="cat-b"><td>01:15</td><td>01:30</td><td>0,656</td><td>b</td></tr>
+          <tr class="cat-c"><td>01:30</td><td>01:45</td><td>0,663</td><td>c</td></tr>
+          <tr class="cat-c"><td>01:45</td><td>02:00</td><td>0,657</td><td>c</td></tr>
+          <tr class="cat-b"><td>02:00</td><td>02:15</td><td>0,643</td><td>b</td></tr>
+          <tr class="cat-b"><td>02:15</td><td>02:30</td><td>0,643</td><td>b</td></tr>
+          <tr class="cat-b"><td>02:30</td><td>02:45</td><td>0,643</td><td>b</td></tr>
+          <tr class="cat-b"><td>02:45</td><td>03:00</td><td>0,643</td><td>b</td></tr>
+          <tr class="cat-a"><td>03:00</td><td>03:15</td><td>0,641</td><td>a</td></tr>
+          <tr class="cat-a"><td>03:15</td><td>03:30</td><td>0,641</td><td>a</td></tr>
+          <tr class="cat-a"><td>03:30</td><td>03:45</td><td>0,641</td><td>a</td></tr>
+          <tr class="cat-a"><td>03:45</td><td>04:00</td><td>0,641</td><td>a</td></tr>
+          <tr class="cat-a"><td>04:00</td><td>04:15</td><td>0,640</td><td>a</td></tr>
+          <tr class="cat-a"><td>04:15</td><td>04:30</td><td>0,640</td><td>a</td></tr>
+          <tr class="cat-a"><td>04:30</td><td>04:45</td><td>0,640</td><td>a</td></tr>
+          <tr class="cat-a"><td>04:45</td><td>05:00</td><td>0,640</td><td>a</td></tr>
+          <tr class="cat-b"><td>05:00</td><td>05:15</td><td>0,644</td><td>b</td></tr>
+          <tr class="cat-b"><td>05:15</td><td>05:30</td><td>0,644</td><td>b</td></tr>
+          <tr class="cat-b"><td>05:30</td><td>05:45</td><td>0,651</td><td>b</td></tr>
+          <tr class="cat-b"><td>05:45</td><td>06:00</td><td>0,648</td><td>b</td></tr>
+          <tr class="cat-b"><td>06:00</td><td>06:15</td><td>0,654</td><td>b</td></tr>
+          <tr class="cat-b"><td>06:15</td><td>06:30</td><td>0,654</td><td>b</td></tr>
+          <tr class="cat-c"><td>06:30</td><td>06:45</td><td>0,670</td><td>c</td></tr>
+          <tr class="cat-c"><td>06:45</td><td>07:00</td><td>0,670</td><td>c</td></tr>
+          <tr class="cat-c"><td>07:00</td><td>07:15</td><td>0,681</td><td>c</td></tr>
+          <tr class="cat-c"><td>07:15</td><td>07:30</td><td>0,697</td><td>c</td></tr>
+          <tr class="cat-c"><td>07:30</td><td>07:45</td><td>0,700</td><td>c</td></tr>
+          <tr class="cat-c"><td>07:45</td><td>08:00</td><td>0,708</td><td>c</td></tr>
+          <tr class="cat-c"><td>08:00</td><td>08:15</td><td>0,718</td><td>c</td></tr>
+          <tr class="cat-c"><td>08:15</td><td>08:30</td><td>0,715</td><td>c</td></tr>
+          <tr class="cat-c"><td>08:30</td><td>08:45</td><td>0,714</td><td>c</td></tr>
+          <tr class="cat-c"><td>08:45</td><td>09:00</td><td>0,702</td><td>c</td></tr>
+          <tr class="cat-c"><td>09:00</td><td>09:15</td><td>0,714</td><td>c</td></tr>
+          <tr class="cat-c"><td>09:15</td><td>09:30</td><td>0,688</td><td>c</td></tr>
+          <tr class="cat-c"><td>09:30</td><td>09:45</td><td>0,682</td><td>c</td></tr>
+          <tr class="cat-b"><td>09:45</td><td>10:00</td><td>0,656</td><td>b</td></tr>
+          <tr class="cat-c"><td>10:00</td><td>10:15</td><td>0,684</td><td>c</td></tr>
+          <tr class="cat-c"><td>10:15</td><td>10:30</td><td>0,670</td><td>c</td></tr>
+          <tr class="cat-c"><td>10:30</td><td>10:45</td><td>0,671</td><td>c</td></tr>
+          <tr class="cat-c"><td>10:45</td><td>11:00</td><td>0,681</td><td>c</td></tr>
+          <tr class="cat-c"><td>11:00</td><td>11:15</td><td>0,681</td><td>c</td></tr>
+          <tr class="cat-c"><td>11:15</td><td>11:30</td><td>0,682</td><td>c</td></tr>
+          <tr class="cat-c"><td>11:30</td><td>11:45</td><td>0,692</td><td>c</td></tr>
+          <tr class="cat-c"><td>11:45</td><td>12:00</td><td>0,697</td><td>c</td></tr>
+          <tr class="cat-c"><td>12:00</td><td>12:15</td><td>0,694</td><td>c</td></tr>
+          <tr class="cat-c"><td>12:15</td><td>12:30</td><td>0,694</td><td>c</td></tr>
+          <tr class="cat-c"><td>12:30</td><td>12:45</td><td>0,693</td><td>c</td></tr>
+          <tr class="cat-c"><td>12:45</td><td>13:00</td><td>0,693</td><td>c</td></tr>
+          <tr class="cat-c"><td>13:00</td><td>13:15</td><td>0,711</td><td>c</td></tr>
+          <tr class="cat-c"><td>13:15</td><td>13:30</td><td>0,699</td><td>c</td></tr>
+          <tr class="cat-c"><td>13:30</td><td>13:45</td><td>0,699</td><td>c</td></tr>
+          <tr class="cat-c"><td>13:45</td><td>14:00</td><td>0,691</td><td>c</td></tr>
+          <tr class="cat-c"><td>14:00</td><td>14:15</td><td>0,694</td><td>c</td></tr>
+          <tr class="cat-c"><td>14:15</td><td>14:30</td><td>0,692</td><td>c</td></tr>
+          <tr class="cat-c"><td>14:30</td><td>14:45</td><td>0,715</td><td>c</td></tr>
+          <tr class="cat-c"><td>14:45</td><td>15:00</td><td>0,748</td><td>c</td></tr>
+          <tr class="cat-c"><td>15:00</td><td>15:15</td><td>0,721</td><td>c</td></tr>
+          <tr class="cat-d"><td>15:15</td><td>15:30</td><td>0,762</td><td>d</td></tr>
+          <tr class="cat-d"><td>15:30</td><td>15:45</td><td>0,799</td><td>d</td></tr>
+          <tr class="cat-d"><td>15:45</td><td>16:00</td><td>0,818</td><td>d</td></tr>
+          <tr class="cat-d"><td>16:00</td><td>16:15</td><td>0,816</td><td>d</td></tr>
+          <tr class="cat-d"><td>16:15</td><td>16:30</td><td>0,841</td><td>d</td></tr>
+          <tr class="cat-d"><td>16:30</td><td>16:45</td><td>0,854</td><td>d</td></tr>
+          <tr class="cat-d"><td>16:45</td><td>17:00</td><td>0,866</td><td>d</td></tr>
+          <tr class="cat-d"><td>17:00</td><td>17:15</td><td>0,844</td><td>d</td></tr>
+          <tr class="cat-d"><td>17:15</td><td>17:30</td><td>0,847</td><td>d</td></tr>
+          <tr class="cat-d"><td>17:30</td><td>17:45</td><td>0,836</td><td>d</td></tr>
+          <tr class="cat-d"><td>17:45</td><td>18:00</td><td>0,818</td><td>d</td></tr>
+          <tr class="cat-d"><td>18:00</td><td>18:15</td><td>0,805</td><td>d</td></tr>
+          <tr class="cat-d"><td>18:15</td><td>18:30</td><td>0,780</td><td>d</td></tr>
+          <tr class="cat-d"><td>18:30</td><td>18:45</td><td>0,768</td><td>d</td></tr>
+          <tr class="cat-d"><td>18:45</td><td>19:00</td><td>0,763</td><td>d</td></tr>
+          <tr class="cat-c"><td>19:00</td><td>19:15</td><td>0,748</td><td>c</td></tr>
+          <tr class="cat-d"><td>19:15</td><td>19:30</td><td>0,748</td><td>d</td></tr>
+          <tr class="cat-c"><td>19:30</td><td>19:45</td><td>0,740</td><td>c</td></tr>
+          <tr class="cat-c"><td>19:45</td><td>20:00</td><td>0,739</td><td>c</td></tr>
+          <tr class="cat-c"><td>20:00</td><td>20:15</td><td>0,736</td><td>c</td></tr>
+          <tr class="cat-c"><td>20:15</td><td>20:30</td><td>0,731</td><td>c</td></tr>
+          <tr class="cat-c"><td>20:30</td><td>20:45</td><td>0,715</td><td>c</td></tr>
+          <tr class="cat-c"><td>20:45</td><td>21:00</td><td>0,692</td><td>c</td></tr>
+          <tr class="cat-c"><td>21:00</td><td>21:15</td><td>0,700</td><td>c</td></tr>
+          <tr class="cat-c"><td>21:15</td><td>21:30</td><td>0,692</td><td>c</td></tr>
+          <tr class="cat-c"><td>21:30</td><td>21:45</td><td>0,672</td><td>c</td></tr>
+          <tr class="cat-b"><td>21:45</td><td>22:00</td><td>0,650</td><td>b</td></tr>
+          <tr class="cat-c"><td>22:00</td><td>22:15</td><td>0,702</td><td>c</td></tr>
+          <tr class="cat-c"><td>22:15</td><td>22:30</td><td>0,657</td><td>c</td></tr>
+          <tr class="cat-a"><td>22:30</td><td>22:45</td><td>0,633</td><td>a</td></tr>
+          <tr class="cat-a"><td>22:45</td><td>23:00</td><td>0,614</td><td>a</td></tr>
+          <tr class="cat-a"><td>23:00</td><td>23:15</td><td>0,633</td><td>a</td></tr>
+          <tr class="cat-a"><td>23:15</td><td>23:30</td><td>0,619</td><td>a</td></tr>
+          <tr class="cat-a"><td>23:30</td><td>23:45</td><td>0,629</td><td>a</td></tr>
+          <tr class="cat-a"><td>23:45</td><td>00:00</td><td>0,630</td><td>a</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="muted">Źródło tabeli: <code>total_PLN_kWh</code> i wskaźniki a/b/c/d z najnowszego pliku <em>ceny_06_preferowane_uzywanie_YYMMDD.csv</em>.</p>
+
+  <h2>Ceny energii elektrycznej netto (bez dystrybucji i bez VAT) — dzień 2025-11-11</h2>
+  <div class="chart"><img class="small" src="assets/img/rce_plot_2025-11-11_today.png" alt="RCE today — 2025-11-11"><p class="muted">Wykres: assets/img/rce_plot_2025-11-11_today.png</p></div>
+
+  <h2>Ceny energii elektrycznej netto (bez dystrybucji i bez VAT) — dzień 2025-11-12</h2>
+  <div class="chart"><img class="small" src="assets/img/rce_plot_2025-11-12_tomorrow.png" alt="RCE tomorrow — 2025-11-12"><p class="muted">Wykres: assets/img/rce_plot_2025-11-12_tomorrow.png</p></div>
+
+  <h2>Kompas energetyczny PSE</h2>
+  <div class="chart"><img src="assets/img/kompas_today.png" alt="Kompas energetyczny PSE — today"><p class="muted">Obraz: assets/img/kompas_today.png</p></div>
+</section>
+
+</main>
+<script src="assets/js/metro.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Środowisko Docker dla skryptów „Solary” — instalacja, uruchamianie, troubleshooting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#0f172a; --panel:#111827; --muted:#94a3b8; --accent:#22d3ee; --ok:#10b981; --warn:#f59e0b; --err:#ef4444;
+    --code:#0b1220; --border:#1f2937;
+  }
+  html,body{margin:0;padding:0;background:#0b1020;color:#e5e7eb;font:16px/1.5 system-ui,Segoe UI,Roboto,Inter,Arial}
+  .wrap{max-width:1100px;margin:40px auto;padding:0 20px}
+  h1{font-size:34px;margin:.2em 0 .6em 0;line-height:1.2}
+  h2{font-size:24px;margin:1.6em 0 .6em 0;border-left:4px solid var(--accent);padding-left:.5em}
+  h3{font-size:19px;margin:1.4em 0 .4em 0}
+  p,li{color:#d1d5db}
+  .note{border:1px solid var(--border);padding:14px;border-radius:10px;background:#0f172a}
+  .grid{display:grid;gap:16px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  code,pre{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+  pre{background:var(--code);border:1px solid var(--border);border-radius:10px;padding:14px;overflow:auto}
+  code.inline{background:var(--code);padding:.1em .35em;border-radius:6px;border:1px solid var(--border)}
+  .kbd{border:1px solid var(--border);padding:.1em .35em;border-radius:6px;background:#0f172a}
+  .tag{display:inline-block;padding:.2em .55em;border-radius:999px;font-size:12px;margin-left:.4em;color:#0e7490;background:#083344;border:1px solid #164e63}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .err{color:var(--err)}
+  a{color:#7dd3fc;text-decoration:none} a:hover{text-decoration:underline}
+  .small{font-size:13px;color:#9ca3af}
+  .file{background:#0c1222;border:1px dashed #1f2937;padding:10px 12px;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Środowisko Docker dla skryptów „Solary”<span class="tag">Playwright + PNG + crop + publikacja</span></h1>
+  <p>Ta instrukcja tworzy kompletne środowisko w <b>Dockerze</b> na QNAP (Container Station) do uruchamiania Twoich skryptów
+    (<code class="inline">01 → 09</code>, wariant <b>IMG‑ONLY</b> dla kroków 03, kadrowanie, oraz publikacja <code class="inline">10</code>).
+    Zawiera <b>setup</b>, gotowe <b>skrypty startowe</b> i <b>troubleshooting</b>.</p>
+
+  <div class="note">
+    <b>Założenia:</b> udział NAS z kodem to <code class="inline">/share/Public/python/work</code> (montowany w kontenerze jako <code class="inline">/work</code>),
+    Docker na QNAP jest dostępny pod <code class="inline">/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker</code>. Jeśli masz inaczej — podmień w skryptach.
+  </div>
+
+  <h2>0) Dwa warianty środowiska</h2>
+  <div class="grid cols-2">
+    <div class="note">
+      <h3>STABLE (polecany) ✅</h3>
+      <ul>
+        <li>Obraz: <code class="inline">mcr.microsoft.com/playwright/python:v1.49.0-jammy</code> (Python 3.10)</li>
+        <li>Przeglądarki i zależności systemowe wbudowane</li>
+        <li>Brak konfliktów z <code class="inline">greenlet</code></li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>EDGE (najnowszy Python) ⚠️</h3>
+      <ul>
+        <li>Obraz: <code class="inline">python:3.12-slim</code> + instalacja Playwrighta i deps</li>
+        <li>Więcej pobierania, większa zmienność, ale najnowszy Python</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>1) Setup — utwórz kontener i zainstaluj wszystko</h2>
+  <p>Zapisz poniższy skrypt jako <code class="inline">/share/Public/python/work/setup_solary_container.sh</code> i uruchom przez SSH.</p>
+  <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+# ======= USTAWIENIA =======
+WORK_DIR="/share/Public/python/work"
+IMAGE="${1:-stable}"                 # użycie: ./setup_solary_container.sh  [stable|edge]
+CONTAINER="playwright"               # nazwa kontenera
+DOCKER_BIN="/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker"
+export DOCKER_CONFIG=""              # wycisza permission denied na QNAP
+# ===========================
+
+mkdir -p "$WORK_DIR"
+
+# Wybór obrazu
+if [[ "$IMAGE" == "edge" ]]; then
+  BASE_IMAGE="python:3.12-slim"
+else
+  BASE_IMAGE="mcr.microsoft.com/playwright/python:v1.49.0-jammy"
+fi
+
+# Usuń poprzedni kontener (jeśli był)
+$DOCKER_BIN stop "$CONTAINER" &gt;/dev/null 2&gt;&amp;1 || true
+$DOCKER_BIN rm   "$CONTAINER" &gt;/dev/null 2&gt;&amp;1 || true
+
+# Uruchom kontener w tle z montowaniem /work
+$DOCKER_BIN run -d --name "$CONTAINER" \
+  -v "$WORK_DIR":/work \
+  -e HOME=/work \
+  --entrypoint bash \
+  "$BASE_IMAGE" -lc 'sleep infinity'
+
+echo "[i] Kontener: $CONTAINER  (image=$BASE_IMAGE)"
+echo "[i] Montowanie: $WORK_DIR --&gt; /work"
+
+# Instalacje wewnątrz kontenera
+if [[ "$IMAGE" == "edge" ]]; then
+  # EDGE: Playwright + system deps
+  $DOCKER_BIN exec -i "$CONTAINER" bash -lc '
+    set -e
+    apt-get update
+    apt-get install -y --no-install-recommends git curl wget ca-certificates fonts-liberation \
+      libglib2.0-0 libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 \
+      libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libasound2 \
+      libx11-6 libx11-xcb1 libxcb1 libxext6 libxrender1 libxi6 libgbm1
+    pip install --upgrade pip setuptools wheel
+    pip install "playwright&quot;==1.49.0" "greenlet==3.1.1" requests beautifulsoup4 lxml pandas numpy matplotlib pillow
+    python -m playwright install --with-deps chromium
+  '
+else
+  # STABLE: tylko Python deps (przeglądarki już są)
+  $DOCKER_BIN exec -i "$CONTAINER" bash -lc '
+    set -e
+    pip install --upgrade pip setuptools wheel
+    pip install "greenlet==3.1.1" requests beautifulsoup4 lxml pandas numpy matplotlib pillow
+    # playwright jest w obrazie; zainstaluj silnik przeglądarki
+    python -m playwright install chromium
+  '
+fi
+
+# Sanity check: import + screenshot
+$DOCKER_BIN exec -i -w /work "$CONTAINER" bash -lc '
+  set -e; unset PYTHONPATH
+  python - &lt;&lt; "PY"
+from playwright.sync_api import sync_playwright
+print("Playwright import OK")
+with sync_playwright() as pw:
+    b=pw.chromium.launch(); b.close()
+print("Chromium launch OK")
+PY
+  python - &lt;&lt; "PY"
+from playwright.sync_api import sync_playwright
+URL="https://www.energetycznykompas.pl/"
+OUT="auxiliary/kompas_full_today.png"
+import os; os.makedirs("auxiliary", exist_ok=True)
+with sync_playwright() as pw:
+    b=pw.chromium.launch()
+    p=b.new_page(); p.goto(URL, timeout=90000, wait_until="domcontentloaded")
+    try:
+        for sel in ["text=/Akceptuj|Akceptuję|Zgadzam|Accept/i","button:has-text(\\"Akcept\\")","[id*=consent] button"]:
+            p.locator(sel).first.click(timeout=1200); break
+    except Exception: pass
+    p.screenshot(path=OUT, full_page=True); b.close()
+print("[OK] Screenshot -&gt;", OUT)
+PY
+'
+echo "[OK] Setup zakończony. Gotowe do pracy."
+</code></pre>
+
+  <p><b>Uruchomienie (STABLE):</b></p>
+  <pre><code>ssh admin@NAS 'bash /share/Public/python/work/setup_solary_container.sh stable'</code></pre>
+  <p><b>Uruchomienie (EDGE):</b></p>
+  <pre><code>ssh admin@NAS 'bash /share/Public/python/work/setup_solary_container.sh edge'</code></pre>
+
+  <h2>2) Skrypty uruchomieniowe</h2>
+  <p>Umieść te pliki w <code class="inline">/share/Public/python/work</code> (albo skopiuj treści do już istniejących plików).</p>
+
+  <h3>2.1 run_one.sh — uruchom dowolny skrypt wewnątrz kontenera</h3>
+  <div class="file">/share/Public/python/work/run_one.sh</div>
+  <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+DOCKER_BIN="/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker"
+CONTAINER="playwright"
+export DOCKER_CONFIG=""
+if [[ $# -lt 1 ]]; then
+  echo "Użycie: $0 NAZWA_SKRYPTU.py [argumenty]"; exit 1
+fi
+SCRIPT="$1"; shift || true
+$DOCKER_BIN exec -i -w /work "$CONTAINER" bash -lc "unset PYTHONPATH; python -u ./'$SCRIPT' $*"
+</code></pre>
+
+  <h3>2.2 run_all.sh — pipeline 01→09 (IMG‑ONLY dla 03), publikację zostawiamy osobno</h3>
+  <div class="file">/share/Public/python/work/run_all.sh</div>
+  <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+DOCKER_BIN="/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker"
+CONTAINER="playwright"
+export DOCKER_CONFIG=""
+$DOCKER_BIN exec -i -w /work "$CONTAINER" bash -lc '
+set -e; unset PYTHONPATH
+python -u ./ceny_01_import_pse_HA.py
+python -u ./ceny_02_rce_z_vat.py
+# IMG-ONLY scraper (wersja z cropem i trim czerwonej ramki)
+python -u ./ceny_03_compas_scraper_imgonly_01_today.py || true
+python -u ./ceny_04_kompas_g14_ceny_dystrybucja_brutto_01_today.py
+python -u ./ceny_05_kompas_g14_ceny_dystr_rce_brutto_01_today.py
+IN=$(ls -1 wyniki/*g14*_today.csv 2>/dev/null | head -n1); [ -z "$IN" ] && IN=wyniki/kompas_g14_ceny_dystr_rce_brutto_01_today.csv
+python -u ./ceny_06_preferowane_uzywanie.py --in-file "$IN" --out-dir wyniki
+python -u ./ceny_07_html_tabela_today.py
+python -u ./build_static_solary.py --src ./wyniki --dest ./www/solary
+python -u ./ceny_09_plot_rce.py
+'
+echo "[OK] run_all skończony."
+</code></pre>
+
+  <h3>2.3 publish.sh — publikacja GitHub Pages (wczytuje <code class="inline">utilities/config_strona.env</code>)</h3>
+  <div class="file">/share/Public/python/work/publish.sh</div>
+  <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+DOCKER_BIN="/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker"
+CONTAINER="playwright"
+export DOCKER_CONFIG=""
+$DOCKER_BIN exec -i -w /work "$CONTAINER" bash -lc '
+  unset PYTHONPATH
+  test -f utilities/config_strona.env || { echo "[FATAL] brak utilities/config_strona.env"; exit 1; }
+  sed -i "s/\r$//" utilities/config_strona.env
+  set -a; . utilities/config_strona.env; set +a
+  command -v git >/dev/null || (apt-get update && apt-get install -y git)
+  python -u ./pages_10_publish_to_git.py --src /work/www/solary
+'
+echo "[OK] Publikacja zakończona."
+</code></pre>
+
+  <h2>3) Szybki start — najczęstsze komendy</h2>
+  <pre><code># 1) pipeline 01→09
+bash /share/Public/python/work/run_all.sh
+
+# 2) publikacja (10) – po udanym buildzie
+bash /share/Public/python/work/publish.sh
+
+# 3) pojedynczy skrypt
+bash /share/Public/python/work/run_one.sh ceny_07_html_tabela_today.py</code></pre>
+
+  <h2>4) Windows: jeden wiersz (bez .bat)</h2>
+  <p>Wklej w PowerShell / CMD (podmień IP/NAS jeśli trzeba):</p>
+  <pre><code>ssh admin@192.168.1.105 "/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker exec -i -w /work playwright bash -lc 'unset PYTHONPATH; python -u ./ceny_03_compas_scraper_imgonly_01_today.py'"</code></pre>
+
+  <h2>5) Troubleshooting</h2>
+  <h3>„ModuleNotFoundError: greenlet…greenlet / konflikt wersji”</h3>
+  <p>Użyj obrazu STABLE lub zainstaluj dokładnie <code class="inline">greenlet==3.1.1</code>. W razie artefaktów z poprzednich instalacji usuń lokalne pakiety:</p>
+  <pre><code>/share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker exec -i -w /work playwright bash -lc 'rm -rf /work/.local'</code></pre>
+
+  <h3>„WARNING: Error loading config file: …/.docker/config.json: permission denied”</h3>
+  <p>Nieszkodliwe ostrzeżenie dockera na QNAP. Możesz wyciszyć ustawiając <code class="inline">DOCKER_CONFIG=""</code> (skrypty już to robią).</p>
+
+  <h3>„input device is not a TTY”</h3>
+  <p>Używaj <code class="inline">docker exec -i</code> (bez <code class="inline">-t</code>). Skrypty już używają <code class="inline">-i</code>.</p>
+
+  <h3>„No such file or directory” (na skrypty)</h3>
+  <p>Upewnij się, że pliki są w <code class="inline">/share/Public/python/work</code> i kontener ma montowanie: <code class="inline">-v /share/Public/python/work:/work</code>.</p>
+
+  <h3>Scraper 03 nie widzi kafelków</h3>
+  <ul>
+    <li>W IMG‑ONLY i tak decyzja idzie z obrazu — sprawdź, czy powstało <code class="inline">auxiliary/kompas_full_today.png</code> i <code class="inline">auxiliary/kompas_tiles_today.png</code>.</li>
+    <li>Jeśli strona zmieni kolory, progi HSV są w jednym miejscu w skrypcie — łatwo je podkręcić.</li>
+  </ul>
+
+  <h2>6) Załączniki / pliki pomocnicze</h2>
+  <ul>
+    <li>Twoja ściąga CRON / harmonogram — patrz: <i>instrukcja_cron_v2.html</i></li>
+    <li>Opis strony/wyników — patrz: <i>instrukcja_strona.html</i></li>
+  </ul>
+  <p class="small">Wersja instrukcji: 2025‑11‑11</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cron na QNAP (BusyBox) — pełna ściąga z przykładami</title>
+  <meta name="theme-color" content="#111827" />
+  <link rel="stylesheet" href="assets/css/metro.css" />
+  <style>
+    body.accent-black { --accent:#111827; }
+    body.accent-black .floating-menu a { background:#111827; }
+    code,kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .kbd { background:#11182708; border:1px solid #11182722; border-radius:6px; padding:.05em .35em; }
+    .muted { opacity:.75; }
+    .note { background:#11182708; border-left:4px solid var(--accent); padding:.6rem .9rem; border-radius:.25rem; }
+    .ex-grid { display:grid; grid-template-columns: 1fr; gap: .75rem; }
+    @media (min-width: 900px){ .ex-grid { grid-template-columns: 1fr 1fr; } }
+    .card { border:1px solid #11182722; border-radius: .75rem; padding: .9rem 1rem; background:white; }
+    .ok { color: #065f46; }
+    .bad { color: #991b1b; }
+    .table th, .table td { white-space: nowrap; }
+  </style>
+</head>
+<body class="accent-black has-floating">
+<main class="container tight">
+
+  <!-- MENU -->
+  <div class="floating-menu">
+    <a href="index.html" title="Powrót do menu">
+      <span class="label">MENU</span>
+      <span class="emoji">🏠</span>
+    </a>
+  </div>
+
+  <section class="hero">
+    <div class="kicker">QNAP • BusyBox crond</div>
+    <h1>Cron — jak czytać i pisać harmonogramy (ze szczególnym naciskiem na <code>*</code>)</h1>
+    <p>Ta strona tłumaczy dokładnie <strong>gwiazdki</strong>, operatory <code>, - /</code>, kolejność pól, logikę
+       <em>DOM vs DOW</em> oraz zawiera gotowe przykłady (w tym „2:30 pm”).</p>
+  </section>
+
+  <section class="content">
+    <h2>0) Gdzie edytować crona na QNAP-ie?</h2>
+    <p>Plik: <code>/etc/config/crontab</code>. Po edycji <em>załaduj i zrestartuj</em> usługę:</p>
+<pre><code>crontab /etc/config/crontab
+/etc/init.d/crond.sh restart || /etc/init.d/crond restart</code></pre>
+    <p class="muted">Edytuj jako <strong>admin</strong>. Nagłówek środowiska na górze pliku:</p>
+<pre><code>SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+TZ=Europe/Warsaw
+MAILTO=""</code></pre>
+
+    <h2>1) Składnia jednego wpisu</h2>
+<pre><code>MIN   HOUR   DOM   MON   DOW    polecenie
+0-59  0-23   1-31  1-12  0-7    (0 lub 7 = niedziela)</code></pre>
+
+    <div class="note">
+      <p><strong>DOM vs DOW:</strong> w BusyBox crond (QNAP) jeśli <em>oba</em> pola są zawężone (różne od <code>*</code>),
+         zadanie wykona się, gdy spełniony jest <strong>którykolwiek</strong> z warunków (logiczne <strong>OR</strong>), a nie AND.</p>
+    </div>
+
+    <h2>2) Najważniejsze: jak działa <code>*</code> (gwiazdka)</h2>
+    <ul>
+      <li><strong>Znaczenie podstawowe:</strong> „<em>dowolna wartość</em> w tym polu”. Nie ogranicza harmonogramu.</li>
+      <li><strong>Kiedy jest sama:</strong> <code>*</code> w MIN oznacza „każda minuta”, w HOUR „każda godzina” itd.</li>
+      <li><strong>Ze „skokiem” (<code>*/n</code>):</strong> „co <em>n</em> jednostek <u>od zera</u>”.
+        <br>Przykład: <code>*/15</code> w MIN → minuty <code>0,15,30,45</code>. <code>*/2</code> w HOUR → godziny <code>0,2,4,...,22</code>.</li>
+      <li><strong>Ze „skokiem” od przesunięcia:</strong> użyj zakresu z krokiem: <code>5-59/5</code> w MIN →
+        minuty <code>5,10,15,...,55</code> (czyli „co 5 minut, ale zaczynaj od 5”).</li>
+      <li><strong>Listy i zakresy:</strong> gwiazdki możesz łączyć z listami i zakresami w innych polach (patrz niżej).</li>
+    </ul>
+
+    <h2>3) Operatory czasu</h2>
+    <table class="table">
+      <thead><tr><th>Operator</th><th>Przykład</th><th>Znaczenie</th></tr></thead>
+      <tbody>
+        <tr><td><code>*</code></td><td><code>* * * * *</code></td><td>każda minuta każdej godziny — „ciągle”</td></tr>
+        <tr><td><code>,</code></td><td><code>0,30 * * * *</code></td><td>o pełnej i w pół</td></tr>
+        <tr><td><code>-</code></td><td><code>9-17 * * * 1-5</code></td><td>od 9 do 17 w dni 1–5 (pon–pt)</td></tr>
+        <tr><td><code>/</code></td><td><code>*/10 * * * *</code></td><td>co 10 minut (0,10,20,30,40,50)</td></tr>
+        <tr><td><code>zakres/step</code></td><td><code>5-55/10 * * * *</code></td><td>5,15,25,35,45,55</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Nazwy <em>mon, tue, jan</em> itp. — <strong>nie</strong> używaj na QNAP (BusyBox). Zawsze liczby.</p>
+
+    <h2>4) Przykłady z tłumaczeniem „na polski”</h2>
+    <div class="ex-grid">
+      <div class="card">
+        <h3>A. Codziennie o <strong>14:30</strong> (czyli „2:30 pm”)</h3>
+<pre><code>30 14 * * * polecenie</code></pre>
+        <p><span class="ok">Czytamy:</span> „<em>minuta 30</em>, <em>godzina 14</em>, dowolny dzień miesiąca, dowolny miesiąc, dowolny dzień tygodnia”.</p>
+      </div>
+      <div class="card">
+        <h3>B. Co <strong>15 minut</strong></h3>
+<pre><code>*/15 * * * * polecenie</code></pre>
+        <p><span class="ok">Czytamy:</span> „każda godzina, <em>minuty 0/15/30/45</em>”. Gwiazdka z <code>/15</code> startuje od <strong>0</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>C. Co <strong>5 minut, ale od 5</strong> (5,10,15,…55)</h3>
+<pre><code>5-59/5 * * * * polecenie</code></pre>
+        <p>Użyliśmy zakresu z krokiem — to „przesunięta” gwiazdka.</p>
+      </div>
+      <div class="card">
+        <h3>D. Wtorki i piątki o 06:30</h3>
+<pre><code>30 6 * * 2,5 polecenie</code></pre>
+        <p><code>DOW 2,5</code> → wtorek (2) i piątek (5).</p>
+      </div>
+      <div class="card">
+        <h3>E. Dni robocze 08:00–18:00 co 30 min</h3>
+<pre><code>*/30 8-18 * * 1-5 polecenie</code></pre>
+        <p>Pon–pt (1–5), każda godzina 8–18, co 30 minut.</p>
+      </div>
+      <div class="card">
+        <h3>F. 1. dzień miesiąca o 01:00</h3>
+<pre><code>0 1 1 * * polecenie</code></pre>
+        <p><code>DOM=1</code> — bez znaczenia, który to dzień tygodnia.</p>
+      </div>
+      <div class="card">
+        <h3>G. Co 2 godziny o xx:30</h3>
+<pre><code>30 */2 * * * polecenie</code></pre>
+        <p>Godziny 0,2,4,…,22 — zawsze o minucie 30.</p>
+      </div>
+      <div class="card">
+        <h3>H. Każdą sobotę o 23:45</h3>
+<pre><code>45 23 * * 6 polecenie</code></pre>
+        <p><code>DOW 6</code> → sobota.</p>
+      </div>
+      <div class="card">
+        <h3>I. Dwa konkretne czasy dziennie</h3>
+<pre><code>0 7,19 * * * polecenie</code></pre>
+        <p>O 07:00 i 19:00.</p>
+      </div>
+      <div class="card">
+        <h3>J. Każdy 10. dzień miesiąca o 00:05</h3>
+<pre><code>5 0 10 * * polecenie</code></pre>
+      </div>
+    </div>
+
+    <h2>5) Tłumaczenie czasów „ludzkich” → cron</h2>
+    <table class="table">
+      <thead><tr><th>Opis</th><th>Harmonogram</th></tr></thead>
+      <tbody>
+        <tr><td>„Codziennie o 2:30 pm”</td><td><code>30 14 * * * polecenie</code></td></tr>
+        <tr><td>„W każdy wtorek 06:30”</td><td><code>30 6 * * 2 polecenie</code></td></tr>
+        <tr><td>„Co 15 minut”</td><td><code>*/15 * * * * polecenie</code></td></tr>
+        <tr><td>„Co godzinę o xx:07”</td><td><code>7 * * * * polecenie</code></td></tr>
+        <tr><td>„W dni robocze o 08:00”</td><td><code>0 8 * * 1-5 polecenie</code></td></tr>
+        <tr><td>„Pierwszy dzień miesiąca 01:00”</td><td><code>0 1 1 * * polecenie</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>6) Tipy i pułapki</h2>
+    <ul>
+      <li><strong>Gwiazdka nie „respektuje” przesunięcia</strong> — <code>*/n</code> zawsze liczy od 0. Jeśli chcesz start od 5, stosuj <code>5-59/5</code>.</li>
+      <li><strong>DOM vs DOW = OR</strong> (BusyBox). Jeśli ustawisz jednocześnie <code>DOM</code> i <code>DOW</code>, zadanie uruchomi się gdy spełniony będzie którekolwiek z nich.</li>
+      <li><strong>Brak rozszerzeń</strong>: zapomnij o <em>L</em>, <em>W</em>, <em>H</em> — nie działa w BusyBox crond.</li>
+      <li><strong>Strefa czasu</strong>: dodaj <code>TZ=Europe/Warsaw</code> na górze pliku, aby uniknąć rozjazdów.</li>
+      <li><strong>Środowisko</strong>: polecenia w cronie mają krótszy <code>PATH</code>. Używaj pełnych ścieżek i loguj wyjście: 
+        <code>&gt;&gt; /ścieżka/do/logu 2&gt;&amp;1</code>.</li>
+      <li><strong>Blokowanie równoległych startów bez flock</strong>: zrób to w wrapperze (atomowe <code>mkdir /tmp/lock</code> + <code>trap</code>).</li>
+    </ul>
+
+    <h2>7) Przykład pełnej linijki dla wrappera</h2>
+<pre><code>30 14 * * * /share/Public/python/work/cron/ceny_07.sh >> /share/Public/python/work/logs/ceny_07_cron.log 2>&1</code></pre>
+
+    <hr />
+    <p class="muted">Wersja 2.0 • Ta strona używa motywu „Metro”.</p>
+  </section>
+</main>
+<script src="assets/js/metro.js"></script>
+</body>
+</html>

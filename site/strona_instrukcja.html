@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instrukcja techniczna — Metro v6</title>
+  <meta name="theme-color" content="#111827" />
+  <!-- korzysta z istniejącego motywu -->
+  <link rel="stylesheet" href="assets/css/metro.css" />
+  <style>
+    /* Akcent: czarny (tylko na tej stronie) */
+    body.accent-black { --accent:#111827; }
+    /* MENU na tej stronie też „technicznie” czarny */
+    body.accent-black .floating-menu a { background:#111827; }
+  </style>
+</head>
+<body class="accent-black has-floating">
+<main class="container tight">
+
+  <!-- Pływający kafelek MENU -->
+  <div class="floating-menu">
+    <a href="index.html" title="Powrót do menu">
+      <span class="label">MENU</span>
+      <span class="emoji">🏠</span>
+    </a>
+  </div>
+
+  <section class="hero">
+    <div class="kicker">Dokument techniczny</div>
+    <h1>Instrukcja obsługi strony „Metro” (v6)</h1>
+    <p>Ten dokument opisuje strukturę, sposób edycji i najczęstsze modyfikacje. Strona ma układ:
+      <strong>index = menu (kafelki)</strong>, podstrony z pływającym kafelkiem <em>MENU</em> w prawym górnym rogu.
+    </p>
+  </section>
+
+  <section class="content">
+    <h2>1) Struktura katalogów</h2>
+<pre><code>metro_site_light_v6/
+├─ index.html                ← Strona główna (kafelki + ramka z osadzoną stroną)
+├─ o-mnie.html               ← Podstrony (z pływającym kafelkiem MENU)
+├─ raporty.html
+├─ kontakt.html
+├─ archiwum.html
+├─ dashboard.html
+├─ ustawienia.html
+└─ assets/
+   ├─ css/
+   │  └─ metro.css          ← Wygląd (motyw, layout, kolory)
+   ├─ js/
+   │  └─ metro.js           ← Klikalność kafelków, drobne zachowania
+   └─ img/
+      └─ bg_pv_diagram.png  ← Delikatne tło (rysunek PV – bardzo blade)
+</code></pre>
+
+    <h2>2) Strona główna (<code>index.html</code>)</h2>
+    <h3>2.1. Kafelki (menu)</h3>
+<pre><code>&lt;div class="tile tile-cyan" data-href="raporty.html"&gt;
+  &lt;div class="icon"&gt;📈&lt;/div&gt;
+  &lt;h3&gt;Raporty&lt;/h3&gt;
+  &lt;p&gt;Wykresy • Tabele • CSV → HTML&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+    <ul>
+      <li><code>tile tile-…</code> – kolor kafelka: <code>tile-cyan</code>, <code>tile-green</code>, <code>tile-orange</code>, <code>tile-purple</code>, <code>tile-red</code>, <code>tile-yellow</code>.</li>
+      <li><code>data-href="…"</code> – dokąd prowadzi kliknięcie.</li>
+      <li>Wewnątrz: emoji/ikona, tytuł <code>&lt;h3&gt;</code>, opis <code>&lt;p&gt;</code>.</li>
+      <li>Aby dodać nowy kafelek – skopiuj blok, zmień kolor/teksty i <code>data-href</code>.</li>
+    </ul>
+
+    <h3>2.2. Ramka z osadzoną stroną</h3>
+<pre><code>&lt;section class="framebox"&gt;
+  &lt;div class="framebox-header"&gt;
+    &lt;span&gt;Word of the Day (Merriam-Webster)&lt;/span&gt;
+    &lt;a class="btn" href="https://www.merriam-webster.com/word-of-the-day"
+       target="_blank" rel="noopener"&gt;Otwórz w nowej karcie&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;iframe src="https://www.merriam-webster.com/word-of-the-day"
+          loading="lazy" referrerpolicy="no-referrer"&gt;&lt;/iframe&gt;
+&lt;/section&gt;
+</code></pre>
+    <ul>
+      <li>Aby zmienić źródło – podmień adres w <code>iframe src="…"</code>.</li>
+      <li>Jeśli zewnętrzny serwis nie pozwala na osadzenie (nagłówki <em>X-Frame-Options/CSP</em>), ramka może pozostać pusta – zostaje przycisk „Otwórz w nowej karcie” albo podmień na <strong>lokalny</strong> plik HTML.</li>
+      <li>Wysokość ramki edytujesz w <code>assets/css/metro.css</code>:
+<pre><code>.framebox iframe { height: min(70vh, 560px); min-height: 360px; }</code></pre>
+      </li>
+    </ul>
+
+    <h2>3) Podstrony (np. <code>raporty.html</code>)</h2>
+    <h3>3.1. Pływający kafelek MENU</h3>
+<pre><code>&lt;div class="floating-menu"&gt;
+  &lt;a href="index.html" title="Powrót do menu"&gt;
+    &lt;span class="label"&gt;MENU&lt;/span&gt;
+    &lt;span class="emoji"&gt;🏠&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+    <ul>
+      <li>Emoji i napis zmieniasz w HTML; kolor kafelka w CSS (selektor <code>.floating-menu a</code>).</li>
+    </ul>
+
+    <h3>3.2. Kolor akcentu nagłówków</h3>
+<pre><code>&lt;body class="accent-green has-floating"&gt;</code></pre>
+    <p>Dostępne klasy: <code>accent-cyan</code>, <code>accent-green</code>, <code>accent-orange</code>, <code>accent-purple</code>, <code>accent-red</code>, <code>accent-yellow</code>.  
+    Na tej stronie używamy <code>accent-black</code> (definicja w nagłówku strony).</p>
+
+    <h3>3.3. Treść</h3>
+<pre><code>&lt;section class="hero"&gt; … &lt;/section&gt;
+&lt;section class="content"&gt; … &lt;/section&gt;
+</code></pre>
+    <p>Obrazki/raporty wrzucaj do <code>assets/…</code> i linkuj względnie:
+      <code>&lt;img src="assets/raporty/wynik.png" alt=""&gt;</code>.
+    </p>
+
+    <h2>4) Tło z rysunkiem PV</h2>
+    <p>Plik: <code>assets/img/bg_pv_diagram.png</code>. Definicja w <code>assets/css/metro.css</code> (pseudoelement <code>body::before</code>):</p>
+<pre><code>body::before{
+  background: url("../img/bg_pv_diagram.png") no-repeat center 96px / min(1100px, 90vw) auto;
+  opacity: .05;  /* siła widoczności tła */
+  filter: grayscale(1) contrast(.9) brightness(1.9);
+}
+</code></pre>
+    <ul>
+      <li>Nie widać tła? Sprawdź ścieżkę i nazwę pliku, ewentualnie zwiększ <code>opacity</code> (np. do <code>.07</code>).</li>
+      <li>Zmień pozycję/rozmiar edytując wartości po <code>no-repeat</code>.</li>
+    </ul>
+
+    <h2>5) Kolory</h2>
+    <ul>
+      <li><strong>Kafelki</strong>: w <code>metro.css</code> sekcje <code>.tile-cyan/.tile-green/…</code>. Możesz podmienić kody kolorów.</li>
+      <li>Globalne przyciemnienie kafelków daje filtr w <code>.tile</code>:
+<pre><code>filter: saturate(.88) brightness(.96);</code></pre>
+      </li>
+      <li><strong>Akcent podstrony</strong> bierze się z klasy <code>accent-…</code> na <code>&lt;body&gt;</code>.</li>
+    </ul>
+
+    <h2>6) Dodawanie nowej strony</h2>
+    <ol>
+      <li>Skopiuj istniejącą podstronę (np. <code>raporty.html</code>) pod nową nazwą.</li>
+      <li>Na górze zmień <code>&lt;title&gt;</code>, <code>&lt;h1&gt;</code> i klasę akcentu na <code>&lt;body&gt;</code>.</li>
+      <li>Jeśli ma być widoczna, dodaj kafelek do <code>index.html</code>:
+<pre><code>&lt;div class="tile tile-purple" data-href="nowa.html"&gt;
+  &lt;div class="icon"&gt;🛰️&lt;/div&gt;
+  &lt;h3&gt;Nowa strona&lt;/h3&gt;
+  &lt;p&gt;Krótki opis&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+      </li>
+    </ol>
+
+    <h2>7) Wgrywanie i podgląd</h2>
+    <ul>
+      <li><strong>Lokalnie:</strong> otwórz <code>index.html</code> (lub uruchom: <code>python -m http.server 8000</code> → <code>http://localhost:8000</code>).</li>
+      <li><strong>GitHub Pages:</strong> włącz w ustawieniach repo (Branch: <code>main</code>, katalog <code>/root</code>).</li>
+    </ul>
+
+    <h2>8) Najczęstsze problemy</h2>
+    <details>
+      <summary>Ramka (iframe) jest pusta</summary>
+      <p>Prawdopodobnie zewnętrzny serwis blokuje osadzanie (nagłówki X-Frame-Options/CSP). Rozwiązanie:
+        zostaw przycisk „Otwórz w nowej karcie” lub osadź <strong>lokalny</strong> plik HTML.</p>
+    </details>
+    <details>
+      <summary>Tła nie widać</summary>
+      <p>Sprawdź plik <code>assets/img/bg_pv_diagram.png</code> i zmień <code>opacity</code> w <code>body::before</code>.</p>
+    </details>
+    <details>
+      <summary>Kafelki na telefonie</summary>
+      <p>Siatka skaluje się automatycznie: 3 → 2 → 1 kolumnę. Jeśli MENU nachodzi na treść, zwiększ
+        <code>padding-top</code> w <code>.container.tight</code>.</p>
+    </details>
+
+    <hr />
+    <p class="muted">Wersja dokumentu: 1.0 — przeznaczony do wewnętrznego użytku (kolor akcentu: czarny).</p>
+  </section>
+</main>
+<script src="assets/js/metro.js"></script>
+</body>
+</html>
