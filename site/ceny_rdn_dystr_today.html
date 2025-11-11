@@ -9,8 +9,16 @@
     :root {
       --a:#1b5e20; --b:#8BC34A; --c:#FFC107; --d:#E53935;
       --border:#e2e8f0; --muted:#64748b;
-      --tbl-w: 360px; /* <<< ustaw szerokość tabeli tutaj (było 520px) */
+      --tbl-w: 360px;
     }
+    /* fallback dla pływającego kafelka MENU (gdyby style z metro.css nie zadziałały) */
+    .floating-menu { position: fixed; right: 16px; bottom: 16px; z-index: 1000; }
+    .floating-menu a { display:flex; align-items:center; gap:8px; padding:10px 12px;
+                        background:#0ea5e9; color:#fff; text-decoration:none;
+                        border-radius:12px; box-shadow: 0 8px 22px rgba(0,0,0,.18); font-weight:600; }
+    .floating-menu .emoji { line-height: 1; font-size: 18px; }
+    .floating-menu .label { letter-spacing:.04em; }
+
     /* węższa, skondensowana tabela */
     .table-wrap { margin:8px auto; width:min(var(--tbl-w),100%); }
     table.prices {
@@ -21,11 +29,8 @@
     thead th { padding:2px 3px; text-align:center; border-bottom:1px solid var(--border); }
     tbody td { padding:0 3px; text-align:center; border-bottom:1px solid var(--border);
                white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    /* delikatnie przealokowane procenty kolumn pod 360px */
-    col.col-start { width:26%; }
-    col.col-end   { width:26%; }
-    col.col-price { width:34%; }
-    col.col-cat   { width:14%; }
+    col.col-start { width:26%; } col.col-end { width:26%; }
+    col.col-price { width:34%; } col.col-cat { width:14%; }
     tbody tr.cat-a{background:var(--a);color:#fff}
     tbody tr.cat-b{background:var(--b)}
     tbody tr.cat-c{background:var(--c)}
@@ -34,7 +39,6 @@
     .chip{display:inline-flex;align-items:center;gap:6px;padding:0 6px;border-radius:6px;border:1px solid var(--border)}
     .box{width:11px;height:11px;border-radius:3px;display:inline-block}
     .box.a{background:#1b5e20}.box.b{background:#8BC34A}.box.c{background:#FFC107}.box.d{background:#E53935}
-    /* wykresy mniejsze (~40%) */
     .chart{margin:10px 0}
     .chart img.small{width:60%; max-width:60%; height:auto; display:block; margin:6px auto;}
     .muted{color:var(--muted);font-size:11px}
@@ -43,7 +47,12 @@
 <body class="accent-cyan has-floating">
 <main class="container tight">
 
-<div class="floating-menu"><a href="index.html" title="Powrót do menu"><span class="label">MENU</span><span class="emoji">🏠</span></a></div>
+<div class="floating-menu">
+  <a href="index.html" title="Powrót do menu">
+    <span class="label">MENU</span>
+    <span class="emoji">🏠</span>
+  </a>
+</div>
 
 <section class="hero"><div class="kicker">Dane</div><h1>Raporty</h1></section>
 
