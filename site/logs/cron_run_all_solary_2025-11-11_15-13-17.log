@@ -1,3 +1,0 @@
-./cron_run_all_solary.sh: line 1: ﻿#!/usr/bin/env: No such file or directory
-./cron_run_all_solary.sh: line 29: /share/CACHEDEV1_DATA/.qpkg/container-station/bin/docker: No such file or directory
-[2025-11-11 15:13:17] [FATAL] Kontener 'playwright' nie działa / nie istnieje.
