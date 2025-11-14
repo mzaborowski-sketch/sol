@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Start</title>
   <meta name="theme-color" content="#0ea5e9">
-
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
-
   <link rel="stylesheet" href="assets/css/metro.css">
 </head>
 <body class="">
@@ -49,7 +45,7 @@
 
 <section class="framebox" aria-label="Osadzona strona">
   <div class="framebox-header">
-    <span>Word of the Day (Merriam-Webster)</span>
+    <span>Word of the Day (Merriam‑Webster)</span>
     <a class="btn" href="https://www.merriam-webster.com/word-of-the-day" target="_blank" rel="noopener">Otwórz w nowej karcie</a>
   </div>
   <iframe src="https://www.merriam-webster.com/word-of-the-day" loading="lazy" referrerpolicy="no-referrer"></iframe>
@@ -57,18 +53,5 @@
 
 </main>
 <script src="assets/js/metro.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js')
-        .then(function (reg) {
-          console.log('Service worker registered', reg.scope);
-        })
-        .catch(function (err) {
-          console.log('Service worker registration failed', err);
-        });
-    });
-  }
-</script>
 </body>
 </html>
