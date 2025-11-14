@@ -1,6 +1,6 @@
 {
   "name": "Schoborn 2025",
-  "Schoborn",
+  "short_name": "Schoborn 2025",
   "lang": "pl-PL",
   "start_url": "./index.html",
   "scope": "./",
