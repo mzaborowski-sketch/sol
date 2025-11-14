@@ -84,3 +84,62 @@ body.has-floating .container.tight{ padding-top: 84px; }
 .framebox iframe{ display:block; width:100%; height:min(70vh, 560px); min-height:360px; border:0; background:#fff; }
 .framebox .btn{ display:inline-block; padding:.42rem .7rem; border-radius:9px; font-weight:600; font-size:.9rem; text-decoration:none; color:#0b5; background:rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.25); }
 .framebox .btn:hover{ background:rgba(16,185,129,.18); }
+/* --- Positive News block ------------------------------------------------- */
+
+.good-news-block {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: #ffffff;
+  box-shadow: var(--tile-shadow);
+  color: var(--fg);
+}
+
+.good-news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.good-news-item + .good-news-item {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.good-news-title {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.good-news-title:hover,
+.good-news-title:focus {
+  text-decoration: underline;
+}
+
+.good-news-desc {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.good-news-desc p {
+  margin: 0.2rem 0 0;
+}
+
+/* polskie tłumaczenie pod spodem */
+.good-news-desc-local {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+}
+
+.good-news-desc p {
+  margin: 0.2rem 0 0;
+}
+
