@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabela test — dziś</title>
+  <style>
+    :root {
+      --outer: #93c5fd;
+      --grid:  #bfdbfe;
+      --a: #1b5e20;
+      --b: #8BC34A;
+      --c: #FFC107;
+      --d: #E53935;
+      --left1: #ffffff;
+      --left2: #f8fafc;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 18px auto;
+      padding: 0 12px 24px 12px;
+    }
+
+    h2 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .muted {
+      color: #64748b;
+      font-size: 12px;
+      margin: 2px 0;
+      text-align: center;
+    }
+
+    .notice {
+      margin: 10px auto;
+      padding: 10px 12px;
+      border: 2px solid var(--outer);
+      border-radius: 12px;
+      background: #fefce8;
+      font-size: 12px;
+      max-width: 720px;
+    }
+
+    .table-wrap {
+      margin-top: 10px;
+      border: 3px solid var(--outer);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 3px 5px;
+      line-height: 1.0;
+      text-align: center;
+      border-right: 1px solid var(--grid);
+      border-bottom: 1px solid var(--grid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+
+    thead th {
+      font-weight: 700;
+      background: #ffffff;
+    }
+
+    td:nth-child(1) { background: var(--left1); font-weight: 600; }
+    td:nth-child(2) { background: var(--left2); font-weight: 600; }
+
+    .cat-a { background: var(--a); color: #ffffff; }
+    .cat-b { background: var(--b); color: #0f172a; }
+    .cat-c { background: var(--c); color: #0f172a; }
+    .cat-d { background: var(--d); color: #ffffff; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h2>Tabela test — dziś</h2>
+    <p class="muted">Generated: 2025-12-13 20:51:56 | CSV date: 13.12.2025</p>
+    
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2"></th>
+            <th colspan="2">Sprzedaż energii netto</th>
+            <th colspan="2">Zakup energii brutto</th>
+          </tr>
+          <tr>
+            <th>Start</th>
+            <th>Koniec</th>
+            <th>Cena</th>
+            <th>Wsk.</th>
+            <th>Cena</th>
+            <th>Wsk.</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td>00:00</td>
+          <td>00:15</td>
+          <td class="cat-d">0,467</td>
+          <td class="cat-d">d</td>
+          <td class="cat-c">0,577</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>00:15</td>
+          <td>00:30</td>
+          <td class="cat-d">0,468</td>
+          <td class="cat-d">d</td>
+          <td class="cat-c">0,578</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>00:30</td>
+          <td>00:45</td>
+          <td class="cat-c">0,467</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,577</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>00:45</td>
+          <td>01:00</td>
+          <td class="cat-c">0,467</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,577</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>01:00</td>
+          <td>01:15</td>
+          <td class="cat-d">0,445</td>
+          <td class="cat-d">d</td>
+          <td class="cat-c">0,555</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>01:15</td>
+          <td>01:30</td>
+          <td class="cat-c">0,452</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,562</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>01:30</td>
+          <td>01:45</td>
+          <td class="cat-c">0,452</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,562</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>01:45</td>
+          <td>02:00</td>
+          <td class="cat-a">0,452</td>
+          <td class="cat-a">a</td>
+          <td class="cat-c">0,562</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>02:00</td>
+          <td>02:15</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>02:15</td>
+          <td>02:30</td>
+          <td class="cat-a">0,454</td>
+          <td class="cat-a">a</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>02:30</td>
+          <td>02:45</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>02:45</td>
+          <td>03:00</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>03:00</td>
+          <td>03:15</td>
+          <td class="cat-c">0,45</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,56</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>03:15</td>
+          <td>03:30</td>
+          <td class="cat-c">0,45</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,56</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>03:30</td>
+          <td>03:45</td>
+          <td class="cat-c">0,449</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,559</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>03:45</td>
+          <td>04:00</td>
+          <td class="cat-c">0,45</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,56</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>04:00</td>
+          <td>04:15</td>
+          <td class="cat-c">0,447</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,557</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>04:15</td>
+          <td>04:30</td>
+          <td class="cat-c">0,446</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,556</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>04:30</td>
+          <td>04:45</td>
+          <td class="cat-b">0,438</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,548</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>04:45</td>
+          <td>05:00</td>
+          <td class="cat-b">0,438</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,548</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>05:00</td>
+          <td>05:15</td>
+          <td class="cat-c">0,44</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,55</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>05:15</td>
+          <td>05:30</td>
+          <td class="cat-c">0,44</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,55</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>05:30</td>
+          <td>05:45</td>
+          <td class="cat-b">0,438</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,548</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>05:45</td>
+          <td>06:00</td>
+          <td class="cat-b">0,438</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,548</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>06:00</td>
+          <td>06:15</td>
+          <td class="cat-c">0,444</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,554</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>06:15</td>
+          <td>06:30</td>
+          <td class="cat-c">0,447</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,557</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>06:30</td>
+          <td>06:45</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>06:45</td>
+          <td>07:00</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>07:00</td>
+          <td>07:15</td>
+          <td class="cat-c">0,465</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,575</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>07:15</td>
+          <td>07:30</td>
+          <td class="cat-c">0,474</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,584</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>07:30</td>
+          <td>07:45</td>
+          <td class="cat-c">0,476</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,586</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>07:45</td>
+          <td>08:00</td>
+          <td class="cat-c">0,475</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,585</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>08:00</td>
+          <td>08:15</td>
+          <td class="cat-d">0,506</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,616</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>08:15</td>
+          <td>08:30</td>
+          <td class="cat-c">0,483</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,593</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>08:30</td>
+          <td>08:45</td>
+          <td class="cat-c">0,486</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,596</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>08:45</td>
+          <td>09:00</td>
+          <td class="cat-c">0,483</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,593</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>09:00</td>
+          <td>09:15</td>
+          <td class="cat-c">0,483</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,593</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>09:15</td>
+          <td>09:30</td>
+          <td class="cat-c">0,482</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,592</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>09:30</td>
+          <td>09:45</td>
+          <td class="cat-c">0,475</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,585</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>09:45</td>
+          <td>10:00</td>
+          <td class="cat-c">0,471</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,581</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>10:00</td>
+          <td>10:15</td>
+          <td class="cat-c">0,463</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,573</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>10:15</td>
+          <td>10:30</td>
+          <td class="cat-c">0,458</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,568</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>10:30</td>
+          <td>10:45</td>
+          <td class="cat-c">0,451</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,561</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>10:45</td>
+          <td>11:00</td>
+          <td class="cat-c">0,45</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,56</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>11:00</td>
+          <td>11:15</td>
+          <td class="cat-b">0,438</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,548</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>11:15</td>
+          <td>11:30</td>
+          <td class="cat-b">0,435</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,545</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>11:30</td>
+          <td>11:45</td>
+          <td class="cat-b">0,437</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,547</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>11:45</td>
+          <td>12:00</td>
+          <td class="cat-b">0,437</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,547</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>12:00</td>
+          <td>12:15</td>
+          <td class="cat-b">0,431</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,541</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>12:15</td>
+          <td>12:30</td>
+          <td class="cat-b">0,429</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,539</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>12:30</td>
+          <td>12:45</td>
+          <td class="cat-b">0,43</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,54</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>12:45</td>
+          <td>13:00</td>
+          <td class="cat-b">0,431</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,541</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>13:00</td>
+          <td>13:15</td>
+          <td class="cat-b">0,439</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,549</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>13:15</td>
+          <td>13:30</td>
+          <td class="cat-c">0,444</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,554</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>13:30</td>
+          <td>13:45</td>
+          <td class="cat-c">0,447</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,557</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>13:45</td>
+          <td>14:00</td>
+          <td class="cat-c">0,451</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,561</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>14:00</td>
+          <td>14:15</td>
+          <td class="cat-c">0,454</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,564</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>14:15</td>
+          <td>14:30</td>
+          <td class="cat-c">0,463</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,573</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>14:30</td>
+          <td>14:45</td>
+          <td class="cat-c">0,471</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,581</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>14:45</td>
+          <td>15:00</td>
+          <td class="cat-c">0,472</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,582</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>15:00</td>
+          <td>15:15</td>
+          <td class="cat-c">0,478</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,588</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>15:15</td>
+          <td>15:30</td>
+          <td class="cat-c">0,485</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,595</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>15:30</td>
+          <td>15:45</td>
+          <td class="cat-d">0,492</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,602</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>15:45</td>
+          <td>16:00</td>
+          <td class="cat-d">0,498</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,608</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>16:00</td>
+          <td>16:15</td>
+          <td class="cat-c">0,481</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,591</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>16:15</td>
+          <td>16:30</td>
+          <td class="cat-c">0,488</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,598</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>16:30</td>
+          <td>16:45</td>
+          <td class="cat-d">0,495</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,605</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>16:45</td>
+          <td>17:00</td>
+          <td class="cat-d">0,5</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,61</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>17:00</td>
+          <td>17:15</td>
+          <td class="cat-d">0,49</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,6</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>17:15</td>
+          <td>17:30</td>
+          <td class="cat-d">0,492</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,602</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>17:30</td>
+          <td>17:45</td>
+          <td class="cat-d">0,489</td>
+          <td class="cat-d">d</td>
+          <td class="cat-d">0,599</td>
+          <td class="cat-d">d</td>
+        </tr>
+        <tr>
+          <td>17:45</td>
+          <td>18:00</td>
+          <td class="cat-c">0,486</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,596</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>18:00</td>
+          <td>18:15</td>
+          <td class="cat-c">0,469</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,579</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>18:15</td>
+          <td>18:30</td>
+          <td class="cat-c">0,465</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,575</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>18:30</td>
+          <td>18:45</td>
+          <td class="cat-c">0,466</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,576</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>18:45</td>
+          <td>19:00</td>
+          <td class="cat-c">0,458</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,568</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>19:00</td>
+          <td>19:15</td>
+          <td class="cat-c">0,453</td>
+          <td class="cat-c">c</td>
+          <td class="cat-c">0,563</td>
+          <td class="cat-c">c</td>
+        </tr>
+        <tr>
+          <td>19:15</td>
+          <td>19:30</td>
+          <td class="cat-b">0,437</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,547</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>19:30</td>
+          <td>19:45</td>
+          <td class="cat-b">0,428</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,538</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>19:45</td>
+          <td>20:00</td>
+          <td class="cat-a">0,423</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,533</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>20:00</td>
+          <td>20:15</td>
+          <td class="cat-b">0,424</td>
+          <td class="cat-b">b</td>
+          <td class="cat-b">0,534</td>
+          <td class="cat-b">b</td>
+        </tr>
+        <tr>
+          <td>20:15</td>
+          <td>20:30</td>
+          <td class="cat-a">0,414</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,524</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>20:30</td>
+          <td>20:45</td>
+          <td class="cat-a">0,413</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,523</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>20:45</td>
+          <td>21:00</td>
+          <td class="cat-a">0,413</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,523</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>21:00</td>
+          <td>21:15</td>
+          <td class="cat-a">0,414</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,524</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>21:15</td>
+          <td>21:30</td>
+          <td class="cat-a">0,411</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,521</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>21:30</td>
+          <td>21:45</td>
+          <td class="cat-a">0,411</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,521</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>21:45</td>
+          <td>22:00</td>
+          <td class="cat-a">0,408</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,518</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>22:00</td>
+          <td>22:15</td>
+          <td class="cat-a">0,402</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,512</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>22:15</td>
+          <td>22:30</td>
+          <td class="cat-a">0,397</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,507</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>22:30</td>
+          <td>22:45</td>
+          <td class="cat-a">0,389</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,499</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>22:45</td>
+          <td>23:00</td>
+          <td class="cat-a">0,379</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,489</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>23:00</td>
+          <td>23:15</td>
+          <td class="cat-a">0,365</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,475</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>23:15</td>
+          <td>23:30</td>
+          <td class="cat-a">0,358</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,468</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>23:30</td>
+          <td>23:45</td>
+          <td class="cat-a">0,346</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,456</td>
+          <td class="cat-a">a</td>
+        </tr>
+        <tr>
+          <td>23:45</td>
+          <td>00:00</td>
+          <td class="cat-a">0,332</td>
+          <td class="cat-a">a</td>
+          <td class="cat-a">0,442</td>
+          <td class="cat-a">a</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted">INI: /work/utilities/html_01_tabele_wykresy_g14_today_tomorrow.ini</p>
+    <p class="muted">CSV: /work/wyniki/ceny/ceny_08_g13_g14_sprzedaz_zakup_ceny_labels_today.csv</p>
+    <p class="muted">OUT: /work/www/tabela_test.html</p>
+  </div>
+</body>
+</html>

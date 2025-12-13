@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabela test — jutro</title>
+  <style>
+    :root {
+      --outer: #93c5fd;
+      --grid:  #bfdbfe;
+      --a: #1b5e20;
+      --b: #8BC34A;
+      --c: #FFC107;
+      --d: #E53935;
+      --left1: #ffffff;
+      --left2: #f8fafc;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 18px auto;
+      padding: 0 12px 24px 12px;
+    }
+
+    h2 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .muted {
+      color: #64748b;
+      font-size: 12px;
+      margin: 2px 0;
+      text-align: center;
+    }
+
+    .notice {
+      margin: 10px auto;
+      padding: 10px 12px;
+      border: 2px solid var(--outer);
+      border-radius: 12px;
+      background: #fefce8;
+      font-size: 12px;
+      max-width: 720px;
+    }
+
+    .table-wrap {
+      margin-top: 10px;
+      border: 3px solid var(--outer);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 3px 5px;
+      line-height: 1.0;
+      text-align: center;
+      border-right: 1px solid var(--grid);
+      border-bottom: 1px solid var(--grid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+
+    thead th {
+      font-weight: 700;
+      background: #ffffff;
+    }
+
+    td:nth-child(1) { background: var(--left1); font-weight: 600; }
+    td:nth-child(2) { background: var(--left2); font-weight: 600; }
+
+    .cat-a { background: var(--a); color: #ffffff; }
+    .cat-b { background: var(--b); color: #0f172a; }
+    .cat-c { background: var(--c); color: #0f172a; }
+    .cat-d { background: var(--d); color: #ffffff; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h2>Tabela test — jutro</h2>
+    <p class="muted">Generated: 2025-12-13 20:57:57 | CSV date: (unknown date)</p>
+    <p class='notice'>No rows loaded (unexpected format or missing time column).</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2"></th>
+            <th colspan="2">Sprzedaż energii netto</th>
+            <th colspan="2">Zakup energii brutto</th>
+          </tr>
+          <tr>
+            <th>Start</th>
+            <th>Koniec</th>
+            <th>Cena</th>
+            <th>Wsk.</th>
+            <th>Cena</th>
+            <th>Wsk.</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted">INI: /work/utilities/html_01_tabele_wykresy_g14_today_tomorrow.ini</p>
+    <p class="muted">CSV: /work/wyniki/ceny/ceny_08_g13_g14_sprzedaz_zakup_ceny_labels_tomorrow.csv</p>
+    <p class="muted">OUT: /work/www/tabela_test_tomorrow.html</p>
+  </div>
+</body>
+</html>
