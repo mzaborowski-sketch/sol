@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabela test — dziś</title>
+
+  <style>
+    :root {
+      --outer:#93c5fd;   /* stronger blue for outer border */
+      --grid:#bfdbfe;    /* light blue inner grid */
+      --muted:#64748b;
+
+      --a:#1b5e20;
+      --b:#8BC34A;
+      --c:#FFC107;
+      --d:#E53935;
+
+      --leftcol:#ffffff;   /* white */
+      --leftcol2:#f8fafc;  /* very light gray */
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+    .wrap {
+      max-width: 560px;
+      margin: 18px auto;
+      padding: 0 12px 24px 12px;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0 0 6px 0;
+      text-align: center;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 2px 0;
+      text-align: center;
+    }
+
+    .notice {
+      margin: 10px 0;
+      padding: 10px;
+      border: 2px solid var(--outer);
+      border-radius: 12px;
+      background: #fefce8;
+      font-size: 12px;
+    }
+
+    .table-wrap {
+      margin-top: 10px;
+      border: 3px solid var(--outer);      /* thicker outer border */
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      line-height: 1.15;
+    }
+
+    col.col-start { width: 26%; }
+    col.col-end   { width: 26%; }
+    col.col-price { width: 34%; }
+    col.col-cat   { width: 14%; }
+
+    thead th {
+      padding: 6px 6px;
+      text-align: center;
+      background: #ffffff;
+      font-weight: 700;
+      border-bottom: 2px solid var(--grid);
+    }
+
+    thead tr.group th {
+      font-size: 11px;
+      padding: 6px 6px;
+      border-bottom: 2px solid var(--grid);
+    }
+
+    /* Inner grid lines (light blue) */
+    tbody td {
+      padding: 4px 6px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      border-bottom: 1px solid var(--grid);
+      border-right: 1px solid var(--grid);
+    }
+    tbody td:last-child {
+      border-right: none;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* First two columns subtle light background (and keep them readable) */
+    tbody td:nth-child(1) {
+      background: var(--leftcol);
+      color: #0f172a;
+      font-weight: 600;
+    }
+    tbody td:nth-child(2) {
+      background: var(--leftcol2);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* Apply category colors ONLY to price+label columns */
+    tbody tr.cat-a td:nth-child(3),
+    tbody tr.cat-a td:nth-child(4) { background: var(--a); color:#fff; }
+
+    tbody tr.cat-b td:nth-child(3),
+    tbody tr.cat-b td:nth-child(4) { background: var(--b); color:#0f172a; }
+
+    tbody tr.cat-c td:nth-child(3),
+    tbody tr.cat-c td:nth-child(4) { background: var(--c); color:#0f172a; }
+
+    tbody tr.cat-d td:nth-child(3),
+    tbody tr.cat-d td:nth-child(4) { background: var(--d); color:#fff; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>Tabela test — dziś</h1>
+    <p class="muted">Generated: 2025-12-13 18:43:56</p>
+    <p class="muted">Day in CSV: 2025-12-13</p>
+
+    <p class='notice'>Price column NOT detected — prices will be empty.</p><p class='muted'>Detected columns: start=start, end=end, price=None, label=preferowane_uzywanie, date=date</p><p class='muted'>CSV headers: date, start, end, energy_PLN_kWh, distribution_PLN_kWh, total_PLN_kWh, preferowane_uzywanie_sprzedaz, preferowane_uzywanie</p>
+
+    <div class="table-wrap">
+      <table>
+        <colgroup>
+          <col class="col-start">
+          <col class="col-end">
+          <col class="col-price">
+          <col class="col-cat">
+        </colgroup>
+
+        <thead>
+          <tr class="group">
+            <th colspan="2"></th>
+            <th colspan="2">Zakup energii brutto</th>
+          </tr>
+          <tr>
+            <th>Start</th>
+            <th>Koniec</th>
+            <th>Cena&nbsp;[PLN/kWh]</th>
+            <th>Wsk.</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <tr class="cat-c"><td>00:00</td><td>00:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>00:15</td><td>00:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>00:30</td><td>00:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>00:45</td><td>01:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>01:00</td><td>01:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>01:15</td><td>01:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>01:30</td><td>01:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>01:45</td><td>02:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>02:00</td><td>02:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>02:15</td><td>02:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>02:30</td><td>02:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>02:45</td><td>03:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>03:00</td><td>03:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>03:15</td><td>03:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>03:30</td><td>03:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>03:45</td><td>04:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>04:00</td><td>04:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>04:15</td><td>04:30</td><td></td><td>c</td></tr>
+        <tr class="cat-b"><td>04:30</td><td>04:45</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>04:45</td><td>05:00</td><td></td><td>b</td></tr>
+        <tr class="cat-c"><td>05:00</td><td>05:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>05:15</td><td>05:30</td><td></td><td>c</td></tr>
+        <tr class="cat-b"><td>05:30</td><td>05:45</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>05:45</td><td>06:00</td><td></td><td>b</td></tr>
+        <tr class="cat-c"><td>06:00</td><td>06:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>06:15</td><td>06:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>06:30</td><td>06:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>06:45</td><td>07:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>07:00</td><td>07:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>07:15</td><td>07:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>07:30</td><td>07:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>07:45</td><td>08:00</td><td></td><td>c</td></tr>
+        <tr class="cat-d"><td>08:00</td><td>08:15</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>08:15</td><td>08:30</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>08:30</td><td>08:45</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>08:45</td><td>09:00</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>09:00</td><td>09:15</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>09:15</td><td>09:30</td><td></td><td>d</td></tr>
+        <tr class="cat-c"><td>09:30</td><td>09:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>09:45</td><td>10:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>10:00</td><td>10:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>10:15</td><td>10:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>10:30</td><td>10:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>10:45</td><td>11:00</td><td></td><td>c</td></tr>
+        <tr class="cat-b"><td>11:00</td><td>11:15</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>11:15</td><td>11:30</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>11:30</td><td>11:45</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>11:45</td><td>12:00</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>12:00</td><td>12:15</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>12:15</td><td>12:30</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>12:30</td><td>12:45</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>12:45</td><td>13:00</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>13:00</td><td>13:15</td><td></td><td>b</td></tr>
+        <tr class="cat-c"><td>13:15</td><td>13:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>13:30</td><td>13:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>13:45</td><td>14:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>14:00</td><td>14:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>14:15</td><td>14:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>14:30</td><td>14:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>14:45</td><td>15:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>15:00</td><td>15:15</td><td></td><td>c</td></tr>
+        <tr class="cat-d"><td>15:15</td><td>15:30</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>15:30</td><td>15:45</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>15:45</td><td>16:00</td><td></td><td>d</td></tr>
+        <tr class="cat-c"><td>16:00</td><td>16:15</td><td></td><td>c</td></tr>
+        <tr class="cat-d"><td>16:15</td><td>16:30</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>16:30</td><td>16:45</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>16:45</td><td>17:00</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>17:00</td><td>17:15</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>17:15</td><td>17:30</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>17:30</td><td>17:45</td><td></td><td>d</td></tr>
+        <tr class="cat-d"><td>17:45</td><td>18:00</td><td></td><td>d</td></tr>
+        <tr class="cat-c"><td>18:00</td><td>18:15</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>18:15</td><td>18:30</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>18:30</td><td>18:45</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>18:45</td><td>19:00</td><td></td><td>c</td></tr>
+        <tr class="cat-c"><td>19:00</td><td>19:15</td><td></td><td>c</td></tr>
+        <tr class="cat-b"><td>19:15</td><td>19:30</td><td></td><td>b</td></tr>
+        <tr class="cat-b"><td>19:30</td><td>19:45</td><td></td><td>b</td></tr>
+        <tr class="cat-a"><td>19:45</td><td>20:00</td><td></td><td>a</td></tr>
+        <tr class="cat-b"><td>20:00</td><td>20:15</td><td></td><td>b</td></tr>
+        <tr class="cat-a"><td>20:15</td><td>20:30</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>20:30</td><td>20:45</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>20:45</td><td>21:00</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>21:00</td><td>21:15</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>21:15</td><td>21:30</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>21:30</td><td>21:45</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>21:45</td><td>22:00</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>22:00</td><td>22:15</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>22:15</td><td>22:30</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>22:30</td><td>22:45</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>22:45</td><td>23:00</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>23:00</td><td>23:15</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>23:15</td><td>23:30</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>23:30</td><td>23:45</td><td></td><td>a</td></tr>
+        <tr class="cat-a"><td>23:45</td><td>00:00</td><td></td><td>a</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted">Detected columns: start=start, end=end, price=None, label=preferowane_uzywanie, date=date</p>
+    <p class="muted">Source CSV: /work/wyniki/ceny/ceny_06_g14_sena_sumaryczna_labels_today.csv</p>
+    <p class="muted">Output HTML: /work/www/tabela_test.html</p>
+  </div>
+</body>
+</html>
