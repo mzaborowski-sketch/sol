@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instrukcja – konfigurator trybów baterii G13/G14</title>
+  <meta name="theme-color" content="#0ea5e9">
+  <link rel="stylesheet" href="assets/css/metro.css">
+</head>
+<body class="accent-green has-floating">
+<main class="container tight">
+
+  <div class="floating-menu">
+    <a href="index.html" title="Powrót do menu">
+      <span class="label">MENU</span>
+      <span class="emoji">🏠</span>
+    </a>
+  </div>
+
+  <section class="hero">
+    <div class="kicker">Instrukcja</div>
+    <h1>Konfigurator trybów pracy baterii (G13/G14)</h1>
+    <p>
+      Ten dokument opisuje działanie graficznego edytora
+      <code>battery_modes_g14_gui.py</code>, który służy do ustawiania
+      parametrów pracy instalacji PV z magazynem energii i inwerterem Solax.
+      Program edytuje plik INI, z którego później korzysta skrypt
+      <code>utility_03_set_up_solax_g14.py</code>, wybierając tryb pracy
+      (normalny, arbitrażowy, ładowanie) i budując komendy wysyłane do inwertera.
+    </p>
+  </section>
+
+  <section class="content">
+    <h2>1. Co robi ten program?</h2>
+    <p>
+      Graficzny konfigurator:
+    </p>
+    <ul>
+      <li>otwiera i edytuje plik INI z ustawieniami logiki sterowania baterią,</li>
+      <li>umożliwia wybór aktywnej taryfy (<code>g13</code> / <code>g14</code>),</li>
+      <li>pozwala zdefiniować trzy tryby pracy:
+        <strong>NORMAL</strong>, <strong>ARBITRAŻ</strong>, <strong>ŁADOWANIE</strong>,</li>
+      <li>ustawia progi cenowe i zasady przełączania między trybami,</li>
+      <li>włącza / wyłącza automatyczne wysyłanie komend do Solaxa (<code>send_to_solax</code>).</li>
+    </ul>
+    <p>
+      Sam program <strong>nie wysyła</strong> jeszcze komend do inwertera. Robi to
+      dopiero skrypt automatyzujący (<code>utility_03_set_up_solax_g14.py</code>),
+      który:
+    </p>
+    <ol>
+      <li>czyta ceny energii z pliku CSV (G13 / G14),</li>
+      <li>na podstawie INI wybiera, który tryb ma obowiązywać w aktualnym slocie czasowym,</li>
+      <li>buduje listę rejestrów <code>reg=val</code>,</li>
+      <li>zapisuje te komendy do CSV i do <code>odczyty.csv</code>,</li>
+      <li>opcjonalnie wysyła je do chmury Solax (jeśli <code>send_to_solax = true</code>).</li>
+    </ol>
+
+    <h2>2. Gdzie jest plik INI i jak uruchomić GUI?</h2>
+    <p>
+      Domyślnie plik konfiguracyjny znajduje się na NAS-ie:
+    </p>
+    <pre><code>\\nas\Public\python\work\utilities\utility_03_set_up_solax_g14.ini</code></pre>
+    <p>
+      Na komputerze z Windows warto mieć ten katalog zamapowany jako dysk
+      sieciowy lub dostępny przez UNC. Typowy sposób uruchomienia:
+    </p>
+    <pre><code>cd C:\qsync\pv_system\skrypty
+py -3 battery_modes_g14_gui.py</code></pre>
+    <p>
+      Po uruchomieniu:
+    </p>
+    <ul>
+      <li>program wczyta istniejący INI (jeśli jest),</li>
+      <li>wartości z INI trafią do odpowiednich pól i przełączników,</li>
+      <li>przycisk „Save INI” zapisze wszystkie aktualne ustawienia do pliku.</li>
+    </ul>
+
+    <h2>3. Struktura zakładek w GUI</h2>
+    <p>
+      GUI jest podzielone na kilka zakładek (notebook):
+    </p>
+    <ul>
+      <li><strong>OGÓLNE / LOGIKA</strong> – ustawienia globalne i logika przełączania,</li>
+      <li><strong>NORMAL</strong> – tryb codziennego, „zdroworozsądkowego” użycia baterii,</li>
+      <li><strong>ARBITRAŻ</strong> – tryb sprzedawania energii, gdy jest bardzo droga,</li>
+      <li><strong>ŁADOWANIE</strong> – tryb ładowania baterii z sieci, gdy ceny są niskie.</li>
+    </ul>
+    <p>
+      Wszystkie te zakładki opisują ten sam plik INI, tylko różne jego sekcje.
+    </p>
+
+    <h2>4. Sekcja OGÓLNE – [general]</h2>
+    <p>
+      Ta sekcja zawiera ustawienia, które dotyczą całego systemu, niezależnie
+      od aktualnego trybu:
+    </p>
+    <ul>
+      <li>
+        <code>season_mode</code><br>
+        Sposób uwzględniania pory roku:
+        <ul>
+          <li><code>auto</code> – logika może uwzględniać porę roku (w przyszłości),</li>
+          <li><code>lato</code> – wymuszenie trybu „letniego”,</li>
+          <li><code>zima</code> – wymuszenie trybu „zimowego”.</li>
+        </ul>
+        Na razie jest to bardziej parametr „na przyszłość”, ale warto go ustawić
+        sensownie.
+      </li>
+      <li>
+        <code>active_tariff</code><br>
+        Aktywna taryfa zakupu energii:
+        <ul>
+          <li><code>g13</code> – taryfa dzienna z trzema strefami czasowymi,</li>
+          <li><code>g14</code> – taryfa godzinowa / dynamiczna (np. RCE).</li>
+        </ul>
+        Skrypt cenowy wybiera odpowiednie kolumny z pliku cenowego na podstawie
+        tej wartości.
+      </li>
+      <li>
+        <code>hi_is</code><br>
+        Sposób kodowania czasu w rejestrach:
+        <ul>
+          <li><code>min</code> – standardowe kodowanie Solax (minuty w bajcie „high”),</li>
+          <li><code>hour</code> – alternatywne (raczej nie używane w tej konfiguracji).</li>
+        </ul>
+        Dla bezpieczeństwa zalecane jest <strong>min</strong>.
+      </li>
+      <li>
+        <code>debug</code><br>
+        Flaga włączająca tryb bardziej „gadatliwych” logów. Po ustawieniu na
+        <code>true</code> skrypty wypisują więcej informacji pomocnych przy
+        diagnostyce.
+      </li>
+      <li>
+        <code>send_to_solax</code><br>
+        Główna flaga bezpieczeństwa:
+        <ul>
+          <li><code>false</code> – skrypt <code>utility_03_set_up_solax_g14.py</code>
+            <strong>tylko liczy i zapisuje</strong> komendy do plików CSV,</li>
+          <li><code>true</code> – skrypt <strong>wysyła komendy</strong> do chmury Solax
+            (po wcześniejszym odczytaniu danych z <code>dane.txt</code>).</li>
+        </ul>
+        W praktyce zaleca się:
+        <ul>
+          <li>na etapie testów – <code>false</code>,</li>
+          <li>po sprawdzeniu logiki – ostrożnie przełączyć na <code>true</code>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>5. Tryby pracy – NORMAL, ARBITRAŻ, ŁADOWANIE</h2>
+    <p>
+      Każda z trzech zakładek odpowiada jednej sekcji INI:
+    </p>
+    <ul>
+      <li><strong>NORMAL</strong> → <code>[mode_normal]</code></li>
+      <li><strong>ARBITRAŻ</strong> → <code>[mode_arbitrage]</code></li>
+      <li><strong>ŁADOWANIE</strong> → <code>[mode_charge]</code></li>
+    </ul>
+    <p>
+      Pola w tych zakładkach są identyczne z punktu widzenia struktury —
+      różni się tylko to, kiedy dany zestaw parametrów jest używany.
+    </p>
+
+    <h3>5.1. Ustawienia wspólne dla wszystkich trybów</h3>
+    <ul>
+      <li>
+        <code>work_mode</code><br>
+        Ogólny tryb pracy inwertera:
+        <ul>
+          <li><code>self_use</code> – maksymalizacja autokonsumpcji, standardowy tryb,</li>
+          <li><code>feed_in</code> – nastawienie na oddawanie energii do sieci,</li>
+          <li><code>force_charge</code> – wymuszone ładowanie,</li>
+          <li><code>force_discharge</code> – wymuszone rozładowywanie,</li>
+          <li><code>peak_shaving</code> – tryb ograniczania mocy pobieranej z sieci.</li>
+        </ul>
+      </li>
+      <li>
+        <code>selling_first</code><br>
+        Jeśli <code>true</code> – instalacja „preferuje” sprzedaż do sieci
+        (tam, gdzie Solax to rozumie). Ustawienie typowe dla trybu ARBITRAŻ.
+      </li>
+      <li>
+        <code>charge_from_grid</code><br>
+        Jeśli <code>true</code> – pozwala na <strong>ładowanie baterii z sieci</strong>.
+        W praktyce:
+        <ul>
+          <li>w NORMAL – zwykle <code>false</code>,</li>
+          <li>w ARBITRAŻ – zwykle <code>false</code>,</li>
+          <li>w ŁADOWANIE – zwykle <code>true</code>.</li>
+        </ul>
+      </li>
+      <li>
+        <code>force_mode</code><br>
+        Dodatkowy „łom” do wymuszenia zachowania:
+        <ul>
+          <li><code>none</code> – brak wymuszenia,</li>
+          <li><code>force_charge</code> – wymuszone ładowanie (reg 143),</li>
+          <li><code>force_discharge</code> – wymuszone rozładowywanie.</li>
+        </ul>
+        Używać ostrożnie – ten parametr bywa silniejszy niż sam <code>work_mode</code>.
+      </li>
+      <li>
+        <code>soc_min</code><br>
+        Minimalny akceptowany poziom naładowania baterii dla danego trybu.
+        To jest jednocześnie:
+        <ul>
+          <li>wartość wysyłana do Solaxa (rejestr 141),</li>
+          <li>próg, poniżej którego bateria nie powinna być rozładowywana.</li>
+        </ul>
+      </li>
+      <li>
+        <code>soc_target</code><br>
+        Docelowy poziom naładowania baterii w danym trybie (rejestr 144).
+        W trybie ŁADOWANIE zwykle wysoki (np. 90–95%), w NORMAL niższy.
+      </li>
+      <li>
+        <code>discharge_start_hhmm</code>, <code>discharge_end_hhmm</code>,
+        <code>discharge_enable</code><br>
+        Okno czasowe, w którym dozwolone jest rozładowywanie baterii.
+        Jeśli <code>discharge_enable = false</code>, inwerter nie powinien
+        rozładowywać baterii w tym trybie (poza sytuacjami awaryjnymi).
+      </li>
+      <li>
+        <code>charge_start_hhmm</code>, <code>charge_end_hhmm</code>,
+        <code>charge_enable</code><br>
+        Okno czasowe wymuszonego ładowania (Force Charge Period 1).
+        Jeśli pola czasu są puste, ten okres jest pomijany.
+      </li>
+    </ul>
+
+    <h3>5.2. Logika użycia poszczególnych trybów</h3>
+    <ul>
+      <li>
+        <strong>NORMAL</strong> – „codzienny” tryb pracy:
+        <ul>
+          <li>typowo <code>work_mode = self_use</code>,</li>
+          <li>nastawienie na autokonsumpcję,</li>
+          <li>bez ładowania z sieci (<code>charge_from_grid = false</code>).</li>
+        </ul>
+      </li>
+      <li>
+        <strong>ARBITRAŻ</strong> – sprzedaż, gdy drogo:
+        <ul>
+          <li>typowo <code>work_mode = feed_in</code>,</li>
+          <li><code>selling_first = true</code>,</li>
+          <li>wykorzystywany, gdy ceny sprzedaży przekraczają określony próg (patrz
+            sekcja <code>[logic_arbitrage]</code>).</li>
+        </ul>
+      </li>
+      <li>
+        <strong>ŁADOWANIE</strong> – ładowanie z sieci, gdy tanio:
+        <ul>
+          <li>typowo <code>charge_from_grid = true</code>,</li>
+          <li>używany, gdy ceny zakupu spadają poniżej ustawionego progu
+            (patrz sekcja <code>[logic_charge]</code>).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>6. Logika arbitrażu – [logic_arbitrage]</h2>
+    <p>
+      Ta sekcja opisuje, kiedy system ma wejść w tryb ARBITRAŻ na podstawie
+      cen sprzedaży energii.
+    </p>
+    <ul>
+      <li>
+        <code>bands_for_arbitrage</code><br>
+        Lista etykiet cenowych (np. <code>a,b,c,d</code>), które są traktowane
+        jako „wystarczająco drogie”, by rozważyć arbitraż. Typowo:
+        <ul>
+          <li><code>d</code> – tylko najwyższa banda cenowa,</li>
+          <li><code>c,d</code> – dwie najwyższe, jeśli chcemy częściej sprzedawać.</li>
+        </ul>
+      </li>
+      <li>
+        <code>ref_source</code><br>
+        Źródło ceny referencyjnej (np. <code>avg_a</code>). W uproszczonej logice
+        jest mniej krytyczne, ale zostaje jako potencjał do dalszego rozwoju
+        algorytmu.
+      </li>
+      <li>
+        <code>min_total_price_for_arbitrage</code><br>
+        Minimalna cena sprzedaży (w zł/kWh), powyżej której tryb ARBITRAŻ
+        jest w ogóle rozważany. Przykład:
+        <ul>
+          <li>0.80 – wchodzimy w arbitraż tylko, gdy cena ≥ 0,80 zł/kWh,</li>
+          <li>puste pole – arbitraż zależy tylko od bandy (np. tylko „d”).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>7. Logika ładowania – [logic_charge]</h2>
+    <p>
+      Sekcja opisuje, kiedy warto wejść w tryb ŁADOWANIE, czyli ładować baterię
+      z sieci, gdy jest tanio.
+    </p>
+    <ul>
+      <li>
+        <code>bands_for_charge</code><br>
+        Lista etykiet cenowych, które traktujemy jako „tanie”.
+        Typowo:
+        <ul>
+          <li><code>a</code> – tylko najtańsza banda,</li>
+          <li><code>a,b</code> – dwie najtańsze.</li>
+        </ul>
+      </li>
+      <li>
+        <code>max_total_price_for_charge</code><br>
+        Maksymalna cena zakupu (w zł/kWh), przy której jeszcze opłaca się
+        ładować baterię z sieci. Jeśli puste – decyzja opiera się tylko
+        na bandach.
+      </li>
+      <li>
+        <code>soc_target_charge</code><br>
+        Docelowy poziom naładowania baterii w trybie ŁADOWANIE
+        (np. 90–95%). Może być wykorzystany do tego, żeby nie przeładowywać
+        baterii ponad zdrowy poziom.
+      </li>
+      <li>
+        <code>soc_critical_low</code><br>
+        Krytycznie niski poziom SoC, poniżej którego ładowanie z sieci
+        może być wymuszone lub nie należy dopuszczać do dalszego rozładowania.
+      </li>
+    </ul>
+
+    <h2>8. Logika awaryjna – [logic_fallback]</h2>
+    <p>
+      Ta sekcja odpowiada za zachowanie systemu, gdy ceny nie spełniają
+      kryteriów arbitrażu ani ładowania:
+    </p>
+    <ul>
+      <li>
+        <code>fallback_to_normal_if_no_match</code><br>
+        Jeśli <code>true</code> – gdy żaden tryb (ARBITRAŻ ani ŁADOWANIE)
+        nie został wybrany, system wraca do trybu NORMAL.
+      </li>
+      <li>
+        <code>soc_fallback_from_arbitrage</code><br>
+        Poziom SoC, poniżej którego nie ma sensu utrzymywać trybu ARBITRAŻ
+        i lepiej wrócić do NORMAL. Chroni to baterię przed nadmiernym
+        rozładowaniem tylko dlatego, że cena jest wysoka.
+      </li>
+    </ul>
+
+    <h2>9. Typowy scenariusz użycia</h2>
+    <ol>
+      <li>Uruchom <code>battery_modes_g14_gui.py</code> na komputerze z dostępem do NAS.</li>
+      <li>Na zakładce OGÓLNE ustaw:
+        <ul>
+          <li>aktywną taryfę (<code>g13</code> lub <code>g14</code>),</li>
+          <li>włącz / wyłącz <code>send_to_solax</code>,</li>
+          <li>ewentualnie <code>debug</code> oraz <code>season_mode</code>.</li>
+        </ul>
+      </li>
+      <li>Na zakładkach NORMAL, ARBITRAŻ, ŁADOWANIE ustaw:
+        <ul>
+          <li><code>soc_min</code> i <code>soc_target</code>,</li>
+          <li>okna czasowe rozładowywania / ładowania,</li>
+          <li>flagi <code>selling_first</code> i <code>charge_from_grid</code>.</li>
+        </ul>
+      </li>
+      <li>Na zakładce LOGIKA dopasuj:
+        <ul>
+          <li>bande cenowe i progi dla arbitrażu,</li>
+          <li>bande cenowe i progi dla ładowania,</li>
+          <li>parametry fallbacku.</li>
+        </ul>
+      </li>
+      <li>Naciśnij „Save INI”.</li>
+      <li>Uruchom harmonogram / skrypt
+        <code>utility_03_set_up_solax_g14.py</code>, który na podstawie cen
+        wybierze odpowiedni tryb i (jeśli to włączone) wyśle komendy do Solaxa.</li>
+    </ol>
+
+    <h2>10. Uwaga bezpieczeństwa</h2>
+    <p>
+      Zanim ustawisz <code>send_to_solax = true</code>:
+    </p>
+    <ul>
+      <li>przetestuj logikę przy <code>send_to_solax = false</code>,</li>
+      <li>sprawdź w plikach CSV, jakie komendy są generowane
+        (szczególnie rejestry SoC i tryby pracy),</li>
+      <li>zaczynaj od ostrożnych wartości <code>soc_min</code> i
+        <code>soc_critical_low</code>, aby nie rozładować baterii zbyt głęboko.</li>
+    </ul>
+    <p>
+      Ten konfigurator daje dużą elastyczność – co jest zaletą, ale wymaga też
+      świadomego użycia. Jeśli zmieniasz więcej niż jeden parametr naraz,
+      rób to etapami i obserwuj zachowanie instalacji.
+    </p>
+  </section>
+
+</main>
+<script src="assets/js/metro.js"></script>
+</body>
+</html>
