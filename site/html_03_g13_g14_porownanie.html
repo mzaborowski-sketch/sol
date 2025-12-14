@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Koszt energii</title>
+  <title>Ceny energii i SolaX</title>
   <meta name="theme-color" content="#0ea5e9">
   <link rel="stylesheet" href="assets/css/metro.css">
 </head>
@@ -18,8 +18,8 @@
   </div>
 
   <section class="hero">
-    <div class="kicker">Porównanie kosztów w taryfach G13 i G14, ostatni pomiar dla 15 min. 4 s wykonano 2025-12-14 20:00:26</div>
-    <h1>Koszt energii</h1>
+    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2025-12-14 20:15:02, strona wygenerowana 2025-12-14 20:15:16)</div>
+    <h1>Ceny energii i tryb SolaX</h1>
     <p>
       Taryfy Tauron:
       <a href="https://akademia-fotowoltaiki.pl/tauron/#:~:text=Taryfa%20G13%20%E2%80%93%20taryfa%20przedpo%C5%82udniowa%20(%C5%9Brednia%20cena),oraz%2021.00%20%E2%80%93%207.00%2C%20a%20tak%C5%BCe%20weekendy."
@@ -30,52 +30,64 @@
   </section>
 
   <section class="content">
-  <h2>Porównanie kosztów w taryfach G13 i G14</h2>
-  <p>
-    Poniższa tabelka pokazuje porównanie cen energii i całkowitych koszt&oacute;w
-    w taryfach <strong>G13</strong> i <strong>G14</strong> na podstawie
-    ostatnich obliczeń oraz cen jednostkowych dla bieżącego kwadransa.
-  </p>
 
-  <p><strong>W ciągu ostatnich piętnastu minut pobrałeś z sieci <strong>1,000 kWh</strong>.</strong></p>
-
+  <h2>Ceny energii (ostatni odczyt)</h2>
+  <p>Poniższa tabelka pokazuje cenę sprzedaży energii oraz ceny zakupu w taryfach <strong>G13</strong> i <strong>G14</strong> dla ostatniego wiersza pliku <code>odczyty.csv</code>.</p>
   <div class="table-wrapper">
     <table class="table" style="text-align:center;">
       <thead>
         <tr>
-          <th style="width:60%;"></th>
-          <th>Taryfa G13</th>
-          <th>Taryfa G14</th>
+          <th style="width:50%;">Parametr</th>
+          <th>Cena [PLN/kWh]</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="width:60%;">Cena brutto [PLN/kWh]</td>
-          <td title="Cena brutto taryfa G13">0,690</td>
-          <td title="Cena brutto taryfa G14">0,546</td>
+          <td>Cena sprzedaży energii (SELL)</td>
+          <td></td>
         </tr>
         <tr>
-          <td style="width:60%;">Koszt energii [PLN]</td>
-          <td title="Koszt energii w taryfie G13">0,069</td>
-          <td title="Koszt energii taryfa G14">0,055</td>
+          <td>Cena zakupu energii w taryfie G13</td>
+          <td></td>
         </tr>
         <tr>
-          <td colspan="3">
-            R&oacute;żnica pomiędzy kosztem w taryfie G14 a taryfie G13
-            (G14 − G13):
-            <strong>-0,014 PLN</strong>
-          </td>
+          <td>Cena zakupu energii w taryfie G14</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <p style="margin-top:1rem; font-size:0.9rem;">
-    Zobacz:
-    <a href="https://akademia-fotowoltaiki.pl/tauron/#:~:text=Taryfa%20G13%20%E2%80%93%20taryfa%20przedpo%C5%82udniowa%20(%C5%9Brednia%20cena),oraz%2021.00%20%E2%80%93%207.00%2C%20a%20tak%C5%BCe%20weekendy" target="_blank" rel="noopener">
-      Taryfy Tauron 2025
-    </a>
+  <hr style="margin:2rem 0;"/>
+
+
+  <h2>Parametry sterujące falownikiem SolaX</h2>
+  <p>
+    Aktualny tryb/etykieta:
+    <strong>(brak danych)</strong><br/>
+    Ostatni zestaw komend (surowy):<br/>
+    <code>(brak komend)</code>
   </p>
+
+  <div class="table-wrapper">
+    <table class="table" style="text-align:center;">
+      <thead>
+        <tr>
+          <th>Rejestr</th>
+          <th>Nazwa parametru</th>
+          <th>Wartość surowa</th>
+          <th>Wartość zdekodowana</th>
+          <th>Opis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5">Brak zdekodowanych parametrów (ciąg komend pusty lub nieczytelny).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </section>
 
 </main>
