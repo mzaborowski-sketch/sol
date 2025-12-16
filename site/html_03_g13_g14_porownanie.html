@@ -18,7 +18,7 @@
   </div>
 
   <section class="hero">
-    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2025-12-16 16:45:16, strona wygenerowana 2025-12-16 16:45:47)</div>
+    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2025-12-16 17:00:16, strona wygenerowana 2025-12-16 17:01:05)</div>
     <h1>Ceny energii i tryb SolaX</h1>
     <p>
       Taryfy Tauron:
@@ -44,7 +44,7 @@
       <tbody>
         <tr>
           <td>Cena sprzedaży energii (SELL)</td>
-          <td>0,834</td>
+          <td>0,741</td>
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G13</td>
@@ -52,7 +52,7 @@
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G14</td>
-          <td>0,944</td>
+          <td>0,851</td>
         </tr>
       </tbody>
     </table>
@@ -64,9 +64,9 @@
   <h2>Parametry sterujące falownikiem SolaX</h2>
   <p>
     Aktualny tryb/etykieta:
-    <strong>arbitrage/c/g13</strong><br/>
+    <strong>normal/c/g13</strong><br/>
     Ostatni zestaw komend (surowy):<br/>
-    <code>141=10;144=10;152=0;153=15127;154=161;71=161;342=161;343=160;143=162</code>
+    <code>141=10;144=91;152=0;153=15127;154=161;143=160;71=160;342=160;343=160;143=160</code>
   </p>
 
   <div class="table-wrapper">
@@ -84,8 +84,8 @@
         <tr>
           <td>71</td>
           <td>work_mode</td>
-          <td>161</td>
-          <td>tryb arbitrażowy / taryfowy</td>
+          <td>160</td>
+          <td>tryb normalny / autokonsumpcja</td>
           <td>Tryb pracy falownika</td>
         </tr>
         <tr>
@@ -98,15 +98,15 @@
         <tr>
           <td>143</td>
           <td>force_mode / charge_enable</td>
-          <td>162</td>
-          <td>2 / AUTO</td>
+          <td>160</td>
+          <td>0 / OFF</td>
           <td>Wymuszone ładowanie / tryb force (160=OFF, 161=ON, 162=AUTO)</td>
         </tr>
         <tr>
           <td>144</td>
           <td>soc_target</td>
-          <td>10</td>
-          <td>10 %</td>
+          <td>91</td>
+          <td>91 %</td>
           <td>Docelowy poziom naładowania baterii [%]</td>
         </tr>
         <tr>
@@ -133,8 +133,8 @@
         <tr>
           <td>342</td>
           <td>selling_first</td>
-          <td>161</td>
-          <td>1 / ON</td>
+          <td>160</td>
+          <td>0 / OFF</td>
           <td>Priorytet sprzedaży energii (160=OFF, 161=ON)</td>
         </tr>
         <tr>
