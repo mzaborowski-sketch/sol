@@ -18,7 +18,7 @@
   </div>
 
   <section class="hero">
-    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2025-12-17 20:45:02, strona wygenerowana 2025-12-17 20:45:34)</div>
+    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2025-12-17 21:00:04, strona wygenerowana 2025-12-17 21:00:37)</div>
     <h1>Ceny energii i tryb SolaX</h1>
     <p>
       Taryfy Tauron:
@@ -44,15 +44,15 @@
       <tbody>
         <tr>
           <td>Cena sprzedaży energii (SELL)</td>
-          <td>0,476</td>
+          <td>0,469</td>
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G13</td>
-          <td>1,080</td>
+          <td>0,690</td>
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G14</td>
-          <td>0,586</td>
+          <td>0,579</td>
         </tr>
       </tbody>
     </table>
@@ -64,9 +64,9 @@
   <h2>Parametry sterujące falownikiem SolaX</h2>
   <p>
     Aktualny tryb/etykieta:
-    <strong>normal/c/g13</strong><br/>
+    <strong>charge/a/g13</strong><br/>
     Ostatni zestaw komend (surowy):<br/>
-    <code>141=10;144=91;152=0;153=15127;154=161;143=160;71=160;342=160;343=160;143=160</code>
+    <code>141=10;144=90;154=160;150=0;151=15127;143=161;71=162;342=160;343=161;143=161</code>
   </p>
 
   <div class="table-wrapper">
@@ -84,8 +84,8 @@
         <tr>
           <td>71</td>
           <td>work_mode</td>
-          <td>160</td>
-          <td>tryb normalny / autokonsumpcja</td>
+          <td>162</td>
+          <td>tryb ładowania</td>
           <td>Tryb pracy falownika</td>
         </tr>
         <tr>
@@ -98,36 +98,36 @@
         <tr>
           <td>143</td>
           <td>force_mode / charge_enable</td>
-          <td>160</td>
-          <td>0 / OFF</td>
+          <td>161</td>
+          <td>1 / ON (force)</td>
           <td>Wymuszone ładowanie / tryb force (160=OFF, 161=ON, 162=AUTO)</td>
         </tr>
         <tr>
           <td>144</td>
           <td>soc_target</td>
-          <td>91</td>
-          <td>91 %</td>
+          <td>90</td>
+          <td>90 %</td>
           <td>Docelowy poziom naładowania baterii [%]</td>
         </tr>
         <tr>
-          <td>152</td>
-          <td>discharge_start_hhmm</td>
+          <td>150</td>
+          <td>charge_start_hhmm</td>
           <td>0</td>
           <td>00:00</td>
-          <td>Start okna rozładowania (HH:MM)</td>
+          <td>Start okna wymuszonego ładowania (HH:MM)</td>
         </tr>
         <tr>
-          <td>153</td>
-          <td>discharge_end_hhmm</td>
+          <td>151</td>
+          <td>charge_end_hhmm</td>
           <td>15127</td>
           <td>kod 15127</td>
-          <td>Koniec okna rozładowania (HH:MM)</td>
+          <td>Koniec okna wymuszonego ładowania (HH:MM)</td>
         </tr>
         <tr>
           <td>154</td>
           <td>discharge_enable</td>
-          <td>161</td>
-          <td>1 / ON</td>
+          <td>160</td>
+          <td>0 / OFF</td>
           <td>Zezwolenie na rozładowanie (160=OFF, 161=ON)</td>
         </tr>
         <tr>
@@ -140,8 +140,8 @@
         <tr>
           <td>343</td>
           <td>charge_from_grid</td>
-          <td>160</td>
-          <td>0 / OFF</td>
+          <td>161</td>
+          <td>1 / ON</td>
           <td>Ładowanie z sieci (160=OFF, 161=ON)</td>
         </tr>
       </tbody>
