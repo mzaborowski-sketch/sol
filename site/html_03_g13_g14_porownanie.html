@@ -18,7 +18,7 @@
   </div>
 
   <section class="hero">
-    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2026-01-02 12:45:00, strona wygenerowana 2026-01-02 12:45:28)</div>
+    <div class="kicker">Ceny sprzedaży i zakupu energii oraz tryb SolaX (ostatni odczyt: 2026-01-02 13:00:00, strona wygenerowana 2026-01-02 13:00:44)</div>
     <h1>Ceny energii i tryb SolaX</h1>
     <p>
       Taryfy Tauron:
@@ -44,15 +44,15 @@
       <tbody>
         <tr>
           <td>Cena sprzedaży energii (SELL)</td>
-          <td>0,474</td>
+          <td>0,485</td>
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G13</td>
-          <td>0,900</td>
+          <td>0,690</td>
         </tr>
         <tr>
           <td>Cena zakupu energii w taryfie G14</td>
-          <td>0,534</td>
+          <td>0,545</td>
         </tr>
       </tbody>
     </table>
@@ -64,9 +64,9 @@
   <h2>Parametry sterujące falownikiem SolaX</h2>
   <p>
     Aktualny tryb/etykieta:
-    <strong>normal/b/g13</strong><br/>
+    <strong>charge/a/g13</strong><br/>
     Ostatni zestaw komend (surowy):<br/>
-    <code>141=10;144=90;71=160;342=160;150=2;151=258;152=0;153=15127;154=161</code>
+    <code>141=11;144=91;71=160;342=160;150=0;151=15127;152=2;153=258;154=161</code>
   </p>
 
   <div class="table-wrapper">
@@ -91,43 +91,43 @@
         <tr>
           <td>141</td>
           <td>soc_min</td>
-          <td>10</td>
-          <td>10 %</td>
+          <td>11</td>
+          <td>11 %</td>
           <td>Minimalny poziom naładowania baterii [%]</td>
         </tr>
         <tr>
           <td>144</td>
           <td>soc_target</td>
-          <td>90</td>
-          <td>90 %</td>
+          <td>91</td>
+          <td>91 %</td>
           <td>Docelowy poziom naładowania baterii [%]</td>
         </tr>
         <tr>
           <td>150</td>
           <td>charge_start_hhmm</td>
-          <td>2</td>
-          <td>02:00</td>
+          <td>0</td>
+          <td>00:00</td>
           <td>Start okna wymuszonego ładowania (HH:MM)</td>
         </tr>
         <tr>
           <td>151</td>
           <td>charge_end_hhmm</td>
-          <td>258</td>
-          <td>02:58</td>
+          <td>15127</td>
+          <td>kod 15127</td>
           <td>Koniec okna wymuszonego ładowania (HH:MM)</td>
         </tr>
         <tr>
           <td>152</td>
           <td>discharge_start_hhmm</td>
-          <td>0</td>
-          <td>00:00</td>
+          <td>2</td>
+          <td>02:00</td>
           <td>Start okna rozładowania (HH:MM)</td>
         </tr>
         <tr>
           <td>153</td>
           <td>discharge_end_hhmm</td>
-          <td>15127</td>
-          <td>kod 15127</td>
+          <td>258</td>
+          <td>02:58</td>
           <td>Koniec okna rozładowania (HH:MM)</td>
         </tr>
         <tr>
