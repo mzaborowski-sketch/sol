@@ -309,8 +309,6 @@ p{
 .btn.btn-secondary:hover{
   background:rgba(123,30,43,.06);
 }
-body.titles-only details.hub-layer > :not(summary){ display:none !important; }
-
 body.titles-only details.hub-product > :not(summary){ display:none !important; }
 /* Hide expandable descriptions entirely in titles-only mode */
 body.titles-only details.hub-more{ display:none !important; }
@@ -338,6 +336,19 @@ body.titles-only .hub-area{ padding-top:10px; padding-bottom:10px; }
   outline:2px solid rgba(0,0,0,.10);
   box-shadow:0 1px 0 rgba(0,0,0,.04);
 }
+
+/* ===== REPORT BUTTON (visual highlight + right edge) ===== */
+#controls .report-btn{
+  margin-left:auto;      /* push to the far right */
+  order: 999;            /* ensure it's the last item in the flex row */
+  background:#ffe66a;    /* yellow */
+  border-color:#e0c200;
+  color:#000;
+}
+#controls .report-btn:hover{
+  background:#ffef99;
+}
+
 </style>
 </head>
 <body>
@@ -376,7 +387,8 @@ body.titles-only .hub-area{ padding-top:10px; padding-bottom:10px; }
     </p>
 <div class="card" id="controls">
 <button class="btn" id="toggleAll" type="button">Rozwiń wszystko</button>
-<button class="btn btn-secondary" id="titlesOnly" type="button">Pokaż tylko tytuły</button><button class="btn" id="reportSelected" type="button">Raport z zaznaczonych</button>
+<button class="btn btn-secondary" id="titlesOnly" type="button">Pokaż tylko tytuły</button><button class="btn report-btn" id="reportSelected" type="button">Raport do wysłania/drukowania</button>
+<button class="btn btn-secondary" id="selectedOnly" type="button">Pokaż tylko zaznaczone</button>
 <span class="note" id="toggleHint">Rozwija/zamyka wszystkie warstwy, obszary i działania.</span>
 </div>
 </div>
@@ -1047,6 +1059,7 @@ body.titles-only .hub-area{ padding-top:10px; padding-bottom:10px; }
   const btnAll = document.getElementById('toggleAll');
   const btnTitles = document.getElementById('titlesOnly');
   const btnReport = document.getElementById('reportSelected');
+  const btnSelectedOnly = document.getElementById('selectedOnly');
   const STORAGE_KEY = 'hub_ee_selected_actions_v8';
 
   function qsa(sel){ return Array.from(document.querySelectorAll(sel)); }
@@ -1070,7 +1083,7 @@ body.titles-only .hub-area{ padding-top:10px; padding-bottom:10px; }
     document.body.classList.add('titles-only');
     qsa('details.hub-layer').forEach(d => { d.open = true; });
     qsa('details.hub-area').forEach(d => { d.open = true; });
-    qsa('details.hub-product').forEach(d => { d.open = true; });
+    qsa('details.hub-product').forEach(d => { d.open = false; });
     qsa('details.hub-more').forEach(d => { d.open = false; });
     if(btnAll) btnAll.textContent = 'Zwiń wszystko';
     if(btnTitles) btnTitles.textContent = 'Pokaż pełne treści';
@@ -1162,7 +1175,72 @@ body.titles-only .hub-area{ padding-top:10px; padding-bottom:10px; }
     summary.appendChild(header);
   }
 
-  function injectCheckboxes(){
+  
+  // =====================
+  // VIEW: ONLY SELECTED (full)
+  // =====================
+  function setSelectedOnly(on){
+    document.body.classList.remove('titles-only');
+
+    if(on){
+      const selected = loadSelected();
+
+      // show/hide products
+      qsa('details.hub-product').forEach(p => {
+        const keep = selected.has(p.id);
+        p.style.display = keep ? '' : 'none';
+        if(keep){
+          p.open = true;
+          // expand "more" blocks inside product
+          qsa('details.hub-more').filter(m => p.contains(m)).forEach(m => { m.open = true; });
+        }
+      });
+
+      // show/hide areas (and open)
+      qsa('details.hub-area').forEach(a => {
+        const anyVisible = qsa('details.hub-product').some(p => a.contains(p) && p.style.display !== 'none');
+        a.style.display = anyVisible ? '' : 'none';
+        if(anyVisible) a.open = true;
+      });
+
+      // show/hide layers (and open)
+      qsa('details.hub-layer').forEach(l => {
+        const anyVisible = qsa('details.hub-area').some(a => l.contains(a) && a.style.display !== 'none');
+        l.style.display = anyVisible ? '' : 'none';
+        if(anyVisible) l.open = true;
+      });
+
+      // do NOT auto-expand layer/area descriptions in selected-only mode
+      qsa('details.hub-more').filter(m => !m.closest('details.hub-product')).forEach(m => { m.open = false; });
+
+      if(btnAll) btnAll.textContent = 'Zwiń wszystko';
+      if(btnTitles) btnTitles.textContent = 'Pokaż tylko tytuły';
+      if(btnSelectedOnly) btnSelectedOnly.textContent = 'Pokaż wszystkie';
+    }else{
+      // restore visibility
+      qsa('details.hub-layer, details.hub-area, details.hub-product').forEach(d => { d.style.display = ''; });
+
+      // restore a sane default view
+      qsa('details.hub-layer').forEach(d => { d.open = true; });
+      qsa('details.hub-area').forEach(d => { d.open = false; });
+      qsa('details.hub-product').forEach(d => { d.open = false; });
+      qsa('details.hub-more').forEach(d => { d.open = false; });
+
+      if(btnAll) btnAll.textContent = 'Rozwiń wszystko';
+      if(btnTitles) btnTitles.textContent = 'Pokaż tylko tytuły';
+      if(btnSelectedOnly) btnSelectedOnly.textContent = 'Pokaż tylko zaznaczone';
+    }
+  }
+
+  if(btnSelectedOnly){
+    btnSelectedOnly.addEventListener('click', function(){
+      const isOn = (btnSelectedOnly.textContent || '').toLowerCase().includes('wszystkie');
+      setSelectedOnly(!isOn);
+    });
+  }
+
+
+function injectCheckboxes(){
     const selected = loadSelected();
 
     qsa('details.hub-product').forEach(prod=>{
@@ -1304,12 +1382,54 @@ const csv = makeCSV(rows, generatedAt, versionStr);
     w.document.close();
 
     const d = w.document;
+
+    // Print styles (hide button on paper)
+    const st = d.createElement('style');
+    st.textContent = '@media print{#printReportBtn{display:none!important;}}';
+    d.head.appendChild(st);
+
     const root = d.createElement('div');
     root.style.maxWidth = '1000px';
     root.style.margin = '0 auto';
     root.style.padding = '22px';
     root.style.fontFamily = 'system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif';
     root.style.color = '#111';
+
+    // Print bar (inside report window)
+    const printBar = d.createElement('div');
+    printBar.style.display = 'flex';
+    printBar.style.alignItems = 'center';
+    printBar.style.justifyContent = 'space-between';
+    printBar.style.gap = '12px';
+    printBar.style.margin = '0 0 14px';
+
+    const printDate = d.createElement('div');
+    printDate.id = 'printDateLine';
+    printDate.style.fontWeight = '800';
+    printDate.textContent = ''; // filled on print click
+
+    const printBtn = d.createElement('button');
+    printBtn.id = 'printReportBtn';
+    printBtn.type = 'button';
+    printBtn.textContent = 'Drukuj';
+    printBtn.style.border = '1px solid #e0c200';
+    printBtn.style.background = '#ffe66a';
+    printBtn.style.color = '#000';
+    printBtn.style.fontWeight = '800';
+    printBtn.style.fontSize = '14px';
+    printBtn.style.padding = '10px 14px';
+    printBtn.style.borderRadius = '12px';
+    printBtn.style.cursor = 'pointer';
+
+    printBtn.addEventListener('click', ()=>{
+      printDate.textContent = 'Data druku: ' + (new Date()).toLocaleString('pl-PL');
+      w.print();
+    });
+
+    printBar.appendChild(printDate);
+    printBar.appendChild(printBtn);
+    root.appendChild(printBar);
+
 
     // Header with logo/title
     const header = d.createElement('div');
