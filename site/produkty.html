@@ -3,10 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Katalog produktów – prototyp</title>
+<title>Strefa A → A1 (test pełnych kart działań)</title>
 
 <style>
-:root{ --green:#1f7a3f; --border:#e3e3e3; --text:#111; }
+:root{
+  --text:#111;
+  --border:#e3e3e3;
+
+  --area-burgundy:#7b1e2b;
+
+  --short-accent:#2d6cff;
+  --short-bg:rgba(45,108,255,.06);
+
+  --long-accent:#1f7a3f;
+  --long-bg:rgba(31,122,63,.08);
+}
 
 body{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -17,55 +28,95 @@ main{ max-width:980px; margin:30px auto; padding:0 20px 40px; }
 h1{ margin:0 0 10px; font-size:22px; font-weight:800; }
 .note{ margin:0 0 18px; font-size:13px; opacity:.85; }
 
+details summary{ list-style:none; cursor:pointer; }
+details summary::-webkit-details-marker{ display:none; }
+
+/* ===== STREFA ===== */
+.layer{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  margin:18px 0;
+  background:linear-gradient(90deg, rgba(255,150,0,.12), rgba(255,220,0,.06));
+  border-left:12px solid #ff8c00;
+}
+
+/* ===== OBSZAR ===== */
+.area{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  margin:14px 0;
+  background:#fff;
+}
+.area-title{
+  font-size:18px;
+  font-weight:900;
+  color:var(--area-burgundy);
+  margin:0 0 8px;
+}
+
+/* ===== DZIAŁANIE (karta jak "product") ===== */
 .product{
   border:1px solid var(--border);
   border-radius:14px;
   padding:16px 18px;
-  margin:16px 0;
+  margin:14px 0;
+  background:#fff;
 }
+
+/* typy horyzontu */
+.product.short{
+  background:var(--short-bg);
+  border-left:10px solid var(--short-accent);
+}
+.product.long{
+  background:var(--long-bg);
+  border-left:10px solid var(--long-accent);
+}
+
 .product summary{ list-style:none; cursor:pointer; }
 .product summary::-webkit-details-marker{ display:none; }
 
 .header{ display:flex; flex-direction:column; gap:6px; }
-.title{ font-size:22px; font-weight:800; color:var(--green); }
+.title{ font-size:18px; font-weight:900; line-height:1.15; }
+.product.short .title{ color:var(--short-accent); }
+.product.long .title{ color:var(--long-accent); }
 
-.meta-line{ font-size:16px; }
-.meta-line .label{ color:var(--green); font-weight:700; }
+.meta-line{ font-size:14px; }
+.meta-line .label{ font-weight:800; }
+.product.short .meta-line .label{ color:var(--short-accent); }
+.product.long .meta-line .label{ color:var(--long-accent); }
+
+.badge{
+  display:inline-block;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  padding:4px 8px;
+  border-radius:999px;
+  margin-left:10px;
+  transform: translateY(-1px);
+}
+.badge.short{ color:var(--short-accent); background:rgba(45,108,255,.12); }
+.badge.long{  color:var(--long-accent);  background:rgba(31,122,63,.15); }
 
 .section-title{
-  color:var(--green);
-  font-size:16px;
-  font-weight:700;
-  margin:18px 0 6px;
-}
-
-p{ margin:0 0 10px; font-size:15px; }
-
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:10px;
-  margin-top:10px;
-}
-.metric{
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px;
-  text-align:center;
-}
-.metric .k{
   font-size:14px;
-  font-weight:800;
-  color:var(--green);
-  margin-bottom:6px;
+  font-weight:900;
+  margin:14px 0 6px;
 }
-.metric .v{ font-size:18px; font-weight:800; }
+.product.short .section-title{ color:var(--short-accent); }
+.product.long  .section-title{ color:var(--long-accent); }
 
+p{ margin:0 0 10px; font-size:14px; line-height:1.45; }
+
+/* obszary X (tabelka jak w Twoim wzorze) */
 .area-table{
   width:100%;
   border-collapse:collapse;
-  margin-top:10px;
-  font-size:15px;
+  margin-top:8px;
+  font-size:14px;
 }
 .area-table td{
   border:1px solid var(--border);
@@ -74,1786 +125,159 @@ p{ margin:0 0 10px; font-size:15px; }
 }
 .area-label{ white-space:nowrap; }
 .x{
-  font-size:22px;
+  font-size:20px;
   font-weight:900;
-  color:var(--green);
   text-align:center;
   width:56px;
 }
+.product.short .x{ color:var(--short-accent); }
+.product.long  .x{ color:var(--long-accent); }
 
+/* listy */
 .char-list{ margin:0; padding-left:18px; }
-.char-list li{ margin:4px 0; font-size:15px; }
+.char-list li{ margin:4px 0; font-size:14px; }
 
 @media (max-width:860px){
-  .metrics{ grid-template-columns:repeat(2,1fr); }
+  .area-label{ white-space:normal; }
 }
 </style>
 </head>
 
 <body>
 <main>
-  <h1>Katalog produktów</h1>
-  <p class="note">Kliknij na tytuł produktu, aby zobaczyć pełny opis.</p>
+  <h1>Test: STREFA A → A1 (pełne karty działań)</h1>
+  <p class="note">Kliknij na tytuł działania, aby rozwinąć pełny opis. Krótkoterminowe = niebieskie, długoterminowe = zielone.</p>
 
-  <!-- =========================================================
-       WSTAWIAJ KOLEJNE PRODUKTY TUTAJ (KOPIUJ BLOK <details>…)
-       ========================================================= -->
-
-  <!-- ================= PRODUCT 1 ================= -->
-  <details class="product" id="p001">
+  <!-- ================= STREFA A ================= -->
+  <details class="layer" id="A" open>
     <summary>
-      <div class="header">
-        <div class="title">1. Skala wiarygodności efektów efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Standard metodologiczny → pilotaż z bankami/funduszami → docelowy standard rynkowy</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
+      <div style="font-size:20px;font-weight:900;color:#444;">STREFA A – POPYTOWO-INFORMACYJNA</div>
     </summary>
 
-    <div class="section-title">Co to jest</div>
-    <p>Uzgodniona, konserwatywna skala pozwalająca określić poziom wiarygodności deklarowanych efektów efektywności energetycznej na potrzeby finansowania, oparta na jawnych założeniach metodologicznych i zróżnicowana w zależności od sposobu wyznaczania oraz zabezpieczenia efektu.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt porządkuje informacje o efektach efektywności energetycznej poprzez wprowadzenie wariantowej dolnej granicy efektu, zależnej od typu projektu i zastosowanych mechanizmów ograniczania ryzyka, takich jak A) kontrakty EPC/ESCO z gwarancją rezultatu; B) standardowe audyty energetyczne bez pomiarów powdrożeniowych; C) audyty pogłębione z pomiarami i procedurami M&amp;V. Skala nie służy maksymalizacji deklarowanych oszczędności, lecz umożliwia defensywne i powtarzalne przedstawienie efektu jako informacji ekonomicznej, którą bank może wykorzystać bez konieczności samodzielnej oceny technicznej projektu. W pierwszym etapie produkt przyjmuje formę dokumentu metodologicznego Huba wraz z przykładami zastosowania i arkuszem pomocniczym. Dokument jest następnie przedstawiany bankom i funduszom w celu uzgodnienia praktycznej użyteczności i ewentualnego pilotażowego zastosowania. W przypadku akceptacji środowiskowej możliwe jest przejście do formy uzgodnionego standardu rynkowego. Skala dotyczy przede wszystkim wiarygodności oszczędności energii oraz wynikających z nich oszczędności kosztów energii.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Banki postrzegają efekty efektywności energetycznej jako niejednorodne i obarczone trudnym do oszacowania ryzykiem metodologicznym, co prowadzi do ich pomijania w analizie finansowej; wprowadzenie wspólnej, wariantowej skali wiarygodności pozwala ograniczyć to ryzyko, uczytelnić założenia oraz przenieść ciężar dyskusji z pytania „ile wynosi efekt” na pytanie „jak bardzo można mu ufać”.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt rdzeniowy dla bankowalności EE; bezpośrednio zmienia percepcję EE jako informacji finansowej, redukuje asymetrię ryzyka i podnosi jakość audytów; wymaga uzgodnień z bankami, ale daje wysoką dźwignię systemową.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">5</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table" aria-label="Obszary – mapowanie x">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x">x</td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x">x</td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x">x</td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x">x</td>
-        <td class="area-label"></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Standard metodologiczny z etapem pilotażu i docelowym uzgodnieniem rynkowym.</li>
-      <li>Możliwe iteracje po konsultacjach z bankami/funduszami.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 2 ================= -->
-  <details class="product" id="p002">
-    <summary>
-      <div class="header">
-        <div class="title">2. Profil finansowy projektów efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Standard analityczny / ramy decyzyjne dla banków i funduszy</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Ramy interpretacyjne pozwalające rozróżnić, w jakich typach projektów efektywności energetycznej zasadne jest uwzględnianie oszczędności energii w analizie finansowej, a w jakich należy je świadomie pominąć ze względu na skalę efektu i profil ryzyka.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt opiera się na podziale projektów według dwóch osi: formy finansowania oraz znaczenia strumienia ekonomicznego generowanego przez efektywność energetyczną. W jego ramach wyróżnia się sytuacje, w których oszczędności mogą pełnić rolę quasi-przepływów pieniężnych umożliwiających spłatę finansowania w relatywnie krótkim horyzoncie, oraz przypadki, w których efekt EE ma charakter rozproszony lub długoterminowy i nie powinien być ujmowany w logice cash flow, lecz traktowany jako czynnik jakościowy wpływający na stabilność kosztów, odporność aktywa i profil ryzyka zabezpieczenia. Produkt ma formę zwięzłych ram decyzyjnych i przykładów, które pozwalają określić, kiedy uzasadnione jest prowadzenie pogłębionej analizy energetycznej i finansowej (audyt, modelowanie), a kiedy koszty takiej analizy przewyższają jej wartość decyzyjną. Dokument może być wykorzystywany przez banki, fundusze i projektantów instrumentów wsparcia jako punkt odniesienia przy projektowaniu wymogów analitycznych.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Jednym z głównych źródeł nadmiernej ostrożności banków jest próba stosowania tej samej logiki finansowej do wszystkich projektów efektywności energetycznej, niezależnie od ich skali i charakteru; jasne rozróżnienie przypadków, w których liczenie oszczędności ma sens, od tych, w których prowadzi do fałszywej precyzji, pozwala ograniczyć ryzyko decyzyjne i racjonalnie włączyć EE do procesu oceny projektów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Bardzo wysoka wykonalność i szybki efekt; produkt porządkuje decyzje analityczne banków i funduszy, ogranicza nadmierne audyty i koszty transakcyjne; kluczowy element racjonalizacji systemu.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">5</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x">x</td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x">x</td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x">x</td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x">x</td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Dokument ramowy (quasi-standard analityczny) – zasadniczo jednorazowy.</li>
-      <li>Możliwe uzupełnienia wraz z doświadczeniami rynku.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 3 ================= -->
-  <details class="product" id="p003">
-    <summary>
-      <div class="header">
-        <div class="title">3. Pilotaż cieniowego uwzględniania efektywności energetycznej w finansowaniu</div>
-        <div class="meta-line"><span class="label">Typ:</span> Pilotaż analityczno-edukacyjny z bankami</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Program pilotażowy polegający na równoległym, nieformalnym uwzględnianiu informacji o efektach efektywności energetycznej w analizie projektów inwestycyjnych, bez wpływu na decyzje kredytowe.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt zakłada współpracę z 2–3 bankami, w ramach której informacja o efektach efektywności energetycznej (oszczędności energii i kosztów) jest analizowana równolegle do standardowej procedury kredytowej, wyłącznie w celach analitycznych i edukacyjnych. Pilotaż wykorzystuje narzędzia wypracowane w ramach innych produktów Hubu, w szczególności: skalę wiarygodności efektów EE oraz profil finansowy projektów EE. Hub odpowiada za zaprojektowanie pilotażu, uzgodnienie zakresu z bankami, zbieranie doświadczeń analitycznych oraz syntezę wniosków w formie raportu systemowego. Horyzont pilotażu wynosi ok. 6 miesięcy. Produkt nie wpływa na decyzje kredytowe ani nie generuje zobowiązań regulacyjnych po stronie banków.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Zmiana percepcji efektywności energetycznej w finansowaniu nie następuje poprzez wytyczne ani deklaracje, lecz poprzez doświadczenie analityczne oparte na realnych projektach; pilotaż pozwala instytucjom finansowym oswoić się z informacją o EE bez ryzyka decyzyjnego i reputacyjnego, tworząc empiryczną podstawę do dalszych kroków systemowych.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt pomostowy: nie tworzy jeszcze standardu, ale testuje użyteczność produktów 1 i 2 w praktyce bankowej; kluczowy dla zmiany percepcji EE i redukcji bariery mentalnej po stronie sektora finansowego.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x">x</td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x">x</td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x">x</td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x">x</td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Pilotaż czasowy (ok. 6 miesięcy) z ograniczoną liczbą banków.</li>
-      <li>Wynik: wnioski i raport systemowy jako podstawa dla kolejnych kroków.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 5 ================= -->
-  <details class="product" id="p005">
-    <summary>
-      <div class="header">
-        <div class="title">5. Zintegrowana diagnoza systemowych luk edukacyjnych w finansowaniu efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Analiza systemowa / raport cykliczny</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Produkt analityczny polegający na systematycznym identyfikowaniu, porządkowaniu i syntetyzowaniu kluczowych luk edukacyjnych, które ograniczają skuteczność instrumentów finansowych i regulacyjnych w obszarze efektywności energetycznej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt łączy cykliczną diagnozę luk edukacyjnych z ich mapowaniem według ról uczestników systemu finansowania efektywności energetycznej (beneficjenci, banki, fundusze, operatorzy programów) oraz analizą wpływu tych luk na wykorzystanie środków publicznych, jakość projektów i decyzje inwestycyjne. Hub zbiera doświadczenia empiryczne (wywiady, analiza przypadków, obserwacje procesów) i przekłada je na uporządkowaną diagnozę systemową. Produkt ma charakter horyzontalny i stanowi zaplecze analityczne dla dalszych narzędzi projektowych (np. checklist, szablonów edukacyjnych, podręczników), bez formułowania rekomendacji operacyjnych.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Bez uporządkowanej diagnozy deficyty edukacyjne są traktowane jako problem jednostkowy lub komunikacyjny, co prowadzi do projektowania instrumentów, które formalnie istnieją, lecz nie generują popytu ani projektów o odpowiedniej jakości; produkt pozwala nazwać i zobiektywizować te bariery jako problem systemowy, możliwy do uwzględnienia już na etapie projektowania programów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt bazowy dla całego bloku edukacja–informacja; nie rozwiązuje problemów bezpośrednio, ale umożliwia ich systemowe adresowanie w kolejnych produktach (m.in. 6); wysoka waga strategiczna, średni time-to-value.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Raport cykliczny (diagnostyczny), możliwy do aktualizacji w kolejnych latach.</li>
-      <li>Stanowi bazę dla narzędzi operacyjnych (np. checklist i szablonów).</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 6 ================= -->
-  <details class="product" id="p006">
-    <summary>
-      <div class="header">
-        <div class="title">6. Checklista ryzyk edukacyjnych i informacyjnych w projektowaniu instrumentów efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Narzędzie projektowe (checklista rekomendowana dla projektantów instrumentów)</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Praktyczne narzędzie wspierające instytucje projektujące programy finansowania efektywności energetycznej w ocenie, czy założenia edukacyjne i informacyjne nie stanowią bariery skuteczności instrumentu oraz czy komponent edukacyjny został świadomie zaprojektowany, a nie domyślnie pominięty.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt ma formę ramy kontrolnej stosowanej na etapie projektowania instrumentu i pozwala weryfikować, czy program nie zakłada nadmiernych kompetencji po stronie beneficjentów, czy proces inwestycyjny jest dla nich zrozumiały oraz czy edukacja i informacja zostały potraktowane jako warunek wykonalności instrumentu. Checklista obejmuje zarówno sposób formułowania informacji (język, kolejność, moment przekazania), jak i jej umiejscowienie w procesie inwestycyjnym. Może być stosowana przez fundusze publiczne, banki, operatorów programów i ministerstwa. Narzędzie ma charakter rekomendowany, nie obowiązkowy, i może ewoluować wraz z doświadczeniami systemowymi oraz wnioskami z diagnozy luk edukacyjnych (produkt 5).</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Wiele instrumentów EE traci skuteczność nie z powodu braku finansowania, lecz dlatego, że edukacja i informacja stają się ukrytą barierą wejścia; checklista pozwala zidentyfikować to ryzyko przed wdrożeniem programu i ograniczyć potrzebę późniejszych korekt oraz kosztownych zmian w trakcie funkcjonowania instrumentu.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Wysoka wykonalność i szybki efekt; produkt operacjonalizuje wnioski z diagnozy (produkt 5) i może być używany natychmiast przez instytucje publiczne i finansowe; realnie redukuje bariery wejścia do programów i koszty informacyjne.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Narzędzie do natychmiastowego użycia (wdrożenie szybkie).</li>
-      <li>Może ewoluować wraz z doświadczeniami z programów i wnioskami z diagnozy (produkt 5).</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 13 ================= -->
-  <details class="product" id="p013">
-    <summary>
-      <div class="header">
-        <div class="title">13. Standard profesjonalnej edukacji klimatyczno-energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Standard rekomendacyjny (minimalne ramy jakości)</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Zestaw minimalnych ram jakościowych definiujących, czym jest profesjonalna edukacja klimatyczno-energetyczna w kontekście instrumentów finansowania efektywności energetycznej oraz czym różni się ona od informacji i działań marketingowych.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt ma charakter rekomendacyjnego punktu odniesienia dla instytucji publicznych projektujących instrumenty EE. Porządkuje rozumienie edukacji jako procesu wpływającego na percepcję, motywację i decyzje inwestycyjne, a nie wyłącznie przekazywania informacji. Standard wyraźnie rozróżnia edukację, informację i marketing oraz wskazuje, jak nie mieszać tych funkcji w architekturze programów. Dostarcza wspólnego języka i kryteriów jakości bez narzucania form, treści ani wykonawców działań edukacyjnych. Może funkcjonować jako samodzielny dokument odniesienia oraz część zaplecza koncepcyjnego podręcznika projektowego (8).</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak profesjonalizacji edukacji powoduje, że działania określane jako edukacyjne często nie wpływają na decyzje inwestycyjne i jakość projektów; standard pozwala instytucjom odróżnić edukację realnie wspierającą skuteczność instrumentów od działań pozornych i ograniczyć ryzyko systemowe.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Dokument odniesienia o wysokiej wadze strategicznej; wpływ pośredni, ale stabilizuje wspólne rozumienie edukacji i zasila inne produkty (5–12).</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Dokument stały; przegląd i ewentualna aktualizacja co 2–3 lata.</li>
-      <li>Standard rekomendacyjny: minimalne ramy jakości bez narzucania form i wykonawców.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 14 ================= -->
-  <details class="product" id="p014">
-    <summary>
-      <div class="header">
-        <div class="title">14. Ramy projektowania marketingu programów EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Ramy dobrej praktyki marketingowej (narzędzie projektowe)</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Zintegrowany zestaw narzędzi dobrej praktyki marketingowej obejmujący diagnozę popytową beneficjentów, mapę ścieżki decyzyjnej, strukturę strategii marketingowej oraz checklistę weryfikacyjną dla projektantów instrumentów efektywności energetycznej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt porządkuje marketing jako funkcję generowania i podtrzymywania popytu w programach EE. Obejmuje identyfikację grup odbiorców i ich barier decyzyjnych, określenie momentów kontaktu informacyjnego, dobór kanałów komunikacji oraz zestaw pytań kontrolnych pozwalających ocenić, czy marketing został zaprojektowany jako integralna część instrumentu. Edukacja pozostaje poza zakresem produktu i jest traktowana jako odrębna funkcja. Ramy mogą być stosowane przez instytucje publiczne i finansowe przy projektowaniu nowych instrumentów lub modernizacji istniejących.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak spójnych ram powoduje, że marketing w programach EE jest fragmentaryczny i intuicyjny, co skutkuje niskim popytem mimo dostępności środków; produkt umożliwia projektowanie marketingu jako warunku skuteczności instrumentu, a nie jego dodatku.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Wysoka użyteczność operacyjna; produkt może być stosowany bezpośrednio przy projektowaniu programów i uzupełnia blok edukacyjny o perspektywę popytową.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Dokument stały; stosowany przy każdym nowym lub modyfikowanym programie EE.</li>
-      <li>Narzędzie projektowe: porządkuje marketing jako funkcję popytową (edukacja poza zakresem).</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 15 ================= -->
-  <details class="product" id="p015">
-    <summary>
-      <div class="header">
-        <div class="title">15. Pilotaże aktywnego marketingu efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Pilotaż marketingowy (testowanie empiryczne)</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Ograniczone czasowo pilotaże testujące skuteczność wybranych kanałów, narracji i form aktywnego dotarcia do beneficjentów w generowaniu decyzji inwestycyjnych w obszarze efektywności energetycznej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Hub projektuje ramy pilotażu oraz wspólnie z zainteresowanymi instytucjami uzgadnia jego zakres, natomiast realizacja działań marketingowych odbywa się po stronie tych instytucji. Pilotaże mają charakter eksperymentalny i uczący się: testowane są różne kanały dotarcia, narracje inwestycyjne oraz momenty kontaktu z beneficjentem. Skala pilotaży jest ograniczona (np. 1–2 rocznie), a ich celem jest zebranie wiedzy empirycznej o tym, co realnie generuje decyzje inwestycyjne w różnych segmentach odbiorców. Wyniki mają charakter hybrydowy: część wniosków pozostaje robocza dla instytucji, część może być publikowana w formie zagregowanej lub case studies. Produkt stanowi empiryczne uzupełnienie ram marketingowych (14).</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>System finansowania EE nie posiada mechanizmów uczenia się w obszarze marketingu i nie wie, gdzie traci popyt; pilotaże pozwalają ograniczyć ryzyko kosztownych, nieskutecznych działań oraz budować wiedzę o skutecznych sposobach docierania do beneficjentów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt o wysokiej wartości poznawczej i strategicznej; umożliwia testowanie założeń marketingowych w praktyce bez konieczności uruchamiania pełnoskalowych kampanii.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Pilotaż 12 mies.; 1–2 pilotaże rocznie.</li>
-      <li>Wyniki hybrydowe: część robocza + część zagregowana (np. case studies).</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 16 ================= -->
-  <details class="product" id="p016">
-    <summary>
-      <div class="header">
-        <div class="title">16. Case studies instrumentów EE bez funkcji marketingowej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Krótka analiza refleksyjna / case study</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Cyklicznie opracowywane studia przypadków pokazujące konsekwencje braku zaprojektowanej funkcji marketingowej w instrumentach finansowania efektywności energetycznej oraz możliwe alternatywy.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt polega na opracowywaniu krótkich (do ok. 5 stron) analiz konkretnych instrumentów funkcjonujących w Polsce, w których marketing nie został zaprojektowany jako element systemowy. Case studies mają charakter neutralny, lecz analityczny: pokazują zarówno dobre, jak i problematyczne aspekty rozwiązań oraz konsekwencje braku właściciela marketingowego, narracji inwestycyjnej i kanałów dotarcia. Mogą odnosić się do konkretnych instrumentów z nazwy lub w sposób zagregowany. Publikacje pełnią funkcję refleksyjną i edukacyjną oraz uzupełniają pilotaże marketingowe (15) i ramy marketingowe (14).</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak marketingu generuje koszty systemowe w postaci niskiego wykorzystania instrumentów, słabego zrozumienia ich logiki i utraty zaufania beneficjentów; uporządkowane case studies pozwalają uczyć się na istniejących rozwiązaniach i unikać powielania błędów projektowych.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Lekki produkt stały o dobrej wykonalności; wspiera uczenie się systemu i wzmacnia argumentację na rzecz projektowania marketingu jako funkcji instrumentu.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">3</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Produkt stały; 1–2 case studies rocznie.</li>
-      <li>Case’y neutralne, ale analityczne: pokazują skutki braku funkcji marketingowej.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 17 ================= -->
-  <details class="product" id="p017">
-    <summary>
-      <div class="header">
-        <div class="title">17. Pilotażowe warsztaty kompetencyjne z marketingu programów EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Pilotaż kompetencyjny / warsztaty praktyczne</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Ograniczony program warsztatowy służący transferowi kompetencji z zakresu projektowania marketingu programów efektywności energetycznej do instytucji publicznych i finansowych.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt polega na przygotowaniu i realizacji pilotażowych warsztatów opartych na pracy na realnych przykładach programów EE. Hub projektuje program i zakres merytoryczny, może współprowadzić warsztaty, ale co do zasady korzysta z praktyków zewnętrznych. Warsztaty mają charakter praktyczny, nie certyfikacyjny. Model finansowania i skala są ustalane z interesariuszami; docelowo warsztaty mogą mieć charakter odpłatny i powtarzalny, jeśli okażą się użyteczne. Produkt stanowi marketingowy odpowiednik warsztatów refleksyjnych (10), ale jest nastawiony na transfer konkretnych kompetencji projektowych.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>System finansowania EE nie generuje samodzielnie kompetencji marketingowych po stronie instytucji projektujących instrumenty; warsztaty pozwalają w kontrolowany sposób uzupełnić tę lukę i poprawić jakość projektowania popytu bez przejmowania przez Hub funkcji operacyjnych.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Wysoka wykonalność i szybki efekt; produkt wspiera wdrażanie ram marketingowych (14) i może stać się stałym elementem oferty Huba, jeśli znajdzie odbiorców.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">3</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">5</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">3</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Pilotaż; możliwy format stały 1–2 warsztaty rocznie.</li>
-      <li>Warsztaty praktyczne (transfer kompetencji), z udziałem praktyków zewnętrznych.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 18 ================= -->
-  <details class="product" id="p018">
-    <summary>
-      <div class="header">
-        <div class="title">18. Infrastruktura informacji decyzyjnej w procesie inwestycyjnym EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Narzędzie projektowe (ramy informacji decyzyjnej)</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Zestaw ram i narzędzi porządkujących informację jako element prowadzący beneficjenta przez proces decyzyjny w obszarze efektywności energetycznej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt ma formę lekkiego dokumentu ramowego z elementami narzędziowymi. Definiuje ścieżkę informacyjną beneficjenta od zainteresowania do realizacji inwestycji oraz minimalny standard informacji potrzebnej do podjęcia decyzji na kolejnych etapach. Obejmuje checklistę dla projektantów programów, wzorcową strukturę informacji „krok po kroku” oraz zasady przekazywania informacji zwrotnej w procesie aplikowania i realizacji projektu. Hub projektuje ramy i narzędzia, ale nie tworzy platform ani systemów IT. Produkt skierowany głównie do programów publicznych i stanowi uzupełnienie produktów edukacyjnych (5–13) i marketingowych (14–17).</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak prowadzenia informacyjnego powoduje odkładanie decyzji, wycofywanie się z projektów i przenoszenie odpowiedzialności informacyjnej na rynek; uporządkowana infrastruktura informacji decyzyjnej obniża koszty poznawcze i zwiększa bezpieczeństwo decyzji inwestycyjnych.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt praktyczny o dobrej wykonalności; wzmacnia spójność projektowania instrumentów i redukuje bariery decyzyjne bez wchodzenia Huba w role operacyjne.</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">4</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Dokument stały; aktualizacja w miarę doświadczeń systemowych.</li>
-      <li>Ramy + proste narzędzia (checklisty, struktury informacji), bez tworzenia platform IT.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 19 ================= -->
-  <details class="product" id="p019">
-    <summary>
-      <div class="header">
-        <div class="title">19. Case studies błędów informacyjnych i ich konsekwencji systemowych</div>
-        <div class="meta-line"><span class="label">Typ:</span> Produkt refleksyjny i systemowy; para z produktami dotyczącymi informacji decyzyjnej i infrastruktury informacyjnej.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Cyklicznie opracowywane studia przypadków pokazujące, w jaki sposób konkretne luki informacyjne w systemie finansowania EE prowadzą do błędnych decyzji inwestycyjnych i długofalowych kosztów systemowych.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt analizuje rzeczywiste przypadki, w których brak informacji decyzyjnej, dominacja przekazu sprzedażowego, nieczytelne procedury lub brak informacji w trakcie procesu skutkowały nieracjonalnymi inwestycjami, konfliktami na etapie realizacji lub utratą zaufania do instrumentów EE. Case studies służą identyfikacji powtarzalnych mechanizmów systemowych, a nie ocenie poszczególnych podmiotów; w miarę możliwości materiały są anonimizowane i koncentrują się na architekturze systemu oraz skutkach informacyjnych decyzji projektowych.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>System nie uczy się na własnych błędach informacyjnych, a odpowiedzialność za nie jest przerzucana na beneficjentów; uporządkowane studia przypadków pozwalają przesunąć refleksję na poziom systemowy i ograniczać powielanie tych samych kosztownych schematów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>1–2 rocznie; produkt stały</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x"></td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x"></td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Produkt stały; 1–2 opracowania rocznie.</li>
-      <li>Case’y o mechanizmach systemowych (anonimizacja, nacisk na architekturę i skutki informacyjne).</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 21 ================= -->
-  <details class="product" id="p021">
-    <summary>
-      <div class="header">
-        <div class="title">21. Systemowy rejestr działań i efektów efektywności energetycznej (projekt flagowy – koncepcja i decyzja systemowa)</div>
-        <div class="meta-line"><span class="label">Typ:</span> Projekt flagowy o bardzo wysokiej wadze systemowej i wysokim ryzyku; inicjacja, facylitacja i koncepcja po stronie Huba; decyzja i wdrożenie po stronie instytucji centralnych.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Wieloetapowy, długoterminowy projekt koncepcyjny inicjowany przez Hub, którego celem jest ocena zasadności, wykonalności oraz – warunkowo – zaprojektowanie systemowego rejestru działań i efektów efektywności energetycznej jako elementu wspólnej infrastruktury informacyjnej systemu.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Projekt zakłada, że Hub inicjuje i moderuje proces refleksji systemowej nad możliwością stworzenia wspólnej, neutralnej bazy danych obejmującej rzeczywiście realizowane działania z zakresu efektywności energetycznej – zarówno finansowane ze środków publicznych, jak i realizowane bez wsparcia. Rola Huba obejmuje w pierwszej kolejności ustalenie, czy taki rejestr jest z punktu widzenia systemowego potrzebny i wykonalny. W przypadku pozytywnej oceny Hub uczestniczy w opracowaniu koncepcji rejestru, obejmującej m.in. cel systemowy, zakres gromadzonych informacji, logikę dobrowolnej rejestracji działań, sposób raportowania efektów, możliwe mechanizmy motywacyjne oraz powiązanie rejestru z politykami i instrumentami EE. Dalsze etapy obejmowałyby – już poza bezpośrednią rolą Huba – zaprojektowanie infrastruktury IT, kosztorys, model zarządzania i wdrożenie przez instytucje systemowe.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>System finansowania EE nie posiada dziś mechanizmu gromadzenia i porządkowania wiedzy o faktycznie realizowanych działaniach i ich efektach, co uniemożliwia uczenie się systemowe i wzmacnia dominację informacji marketingowej nad informacją decyzyjną; produkt odpowiada na potrzebę stworzenia wspólnego punktu odniesienia dla informacji o rzeczywistych działaniach i efektach.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Faza koncepcyjna 12–18 mies.; projekt wieloletni</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x"></td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x"></td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x"></td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Projekt wieloetapowy; na starcie: decyzja o zasadności i wykonalności.</li>
-      <li>Hub: inicjacja, moderacja i koncepcja; instytucje centralne: decyzja i wdrożenie.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 23 ================= -->
-  <details class="product" id="p023">
-    <summary>
-      <div class="header">
-        <div class="title">23. Spotkanie otwierające: prezentacja i konfrontacja diagnozy systemowej EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Zadanie kalibracyjne i legitymizujące; dotyka edukacji, informacji i marketingu systemowego jednocześnie.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Jednorazowe spotkanie służące prezentacji zidentyfikowanych obszarów problemowych oraz wstępnych kierunków działań Huba w obszarach edukacji, informacji i marketingu.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt polega na przygotowaniu i przeprowadzeniu półpublicznego spotkania z kluczowymi interesariuszami systemu finansowania efektywności energetycznej, podczas którego prezentowana jest syntetyczna diagnoza oparta na wywiadach oraz dotychczasowych pracach analitycznych Huba. Spotkanie ma charakter prezentacyjno-konfrontacyjny i służy sprawdzeniu, czy zaproponowany obraz systemu jest rozpoznawalny i akceptowalny, bez formułowania rekomendacji operacyjnych ani projektowania rozwiązań. Efektem jest jeden akt spotkania oraz krótka notatka syntetyczna.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak wspólnego punktu odniesienia powoduje, że działania porządkujące informację są postrzegane jako arbitralne lub sektorowe; spotkanie pozwala zsynchronizować rozumienie problemów systemowych i nadać legitymację dalszym pracom bez tworzenia stałych forów dialogu.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Jednorazowe; możliwe powtórzenie</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x"></td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Jednorazowe spotkanie kalibracyjne z krótką notatką syntetyczną.</li>
-      <li>Cel: konfrontacja diagnozy i nadanie legitymacji dalszym pracom.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 24 ================= -->
-  <details class="product" id="p024">
-    <summary>
-      <div class="header">
-        <div class="title">24. Przewidywalny kalendarz instrumentów wsparcia efektywności energetycznej</div>
-        <div class="meta-line"><span class="label">Typ:</span> Bardzo wysoka waga systemowa; produkt informacyjny, ale z silnym wpływem na marketing i edukację.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Uzgodniony, cyklicznie aktualizowany przegląd dostępnych i planowanych instrumentów wsparcia EE przedstawiony w jednolitej strukturze czasowej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt polega na inicjowaniu, wypracowaniu standardu oraz doprowadzeniu do uzgodnienia, że wspólny kalendarz instrumentów wsparcia EE powinien powstawać w sposób ciągły. Hub przygotowuje wytyczne dotyczące struktury kalendarza, zakresu danych oraz sposobu aktualizacji, a następnie dąży do tego, by instytucje publiczne oraz rząd przyjęły zasadę jego tworzenia. Zakres obejmuje obowiązkowo programy publiczne oraz fakultatywnie instrumenty bankowe i komercyjne. Docelowa forma: narzędzie online z ciągłą aktualizacją.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak przewidywalności czasowej prowadzi do reaktywności, odkładania decyzji inwestycyjnych oraz nieefektywnego wykorzystania instrumentów; wspólny kalendarz redukuje koszty informacyjne, wspiera marketing systemowy programów i pośrednio edukację beneficjentów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Ciągłe; narzędzie stałe</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x"></td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x"></td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Narzędzie stałe (ciągła aktualizacja) – docelowo online.</li>
-      <li>Zakres: obowiązkowo programy publiczne; opcjonalnie bankowe i komercyjne.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 25 ================= -->
-  <details class="product" id="p025">
-    <summary>
-      <div class="header">
-        <div class="title">25. Mechanizm identyfikacji i nazywania kanibalizacji instrumentów wsparcia EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Produkt systemowy o wysokiej wartości porządkującej; publiczny; Hub identyfikuje i nazywa, ale nie rozstrzyga sporów ani nie koordynuje instytucjonalnie.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Ramy analityczne służące systematycznej identyfikacji obszarów, w których równolegle funkcjonujące instrumenty wsparcia konkurują o te same grupy beneficjentów lub typy projektów.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt polega na okresowej analizie portfela instrumentów wsparcia EE pod kątem nakładania się grup docelowych, celów i warunków dostępu, bez przypisywania odpowiedzialności instytucjonalnej. Efektem są krótkie raporty syntetyczne oraz mapa nakładania się instrumentów, publikowane cyklicznie i – w razie potrzeby – ad hoc. Mechanizm umożliwia jawne nazwanie obszarów kanibalizacji oraz odróżnienie ich od sytuacji komplementarności, tworząc podstawę do dalszego porządkowania informacji i korekt systemowych.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Nienazwana kanibalizacja wzmacnia chaos informacyjny i obniża skuteczność instrumentów mimo dostępności środków; mechanizm pozwala zobaczyć system jako całość i ograniczyć straty wynikające z fragmentacji wsparcia bez konieczności tworzenia nowych instrumentów.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Rocznie + możliwe analizy ad hoc</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x"></td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Raporty + mapa nakładania się instrumentów (cyklicznie i ad hoc).</li>
-      <li>Publiczne „nazywanie” kanibalizacji, bez koordynacji instytucjonalnej.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 27 ================= -->
-  <details class="product" id="p027">
-    <summary>
-      <div class="header">
-        <div class="title">27. Wczesne ramy przewidywalności programów wsparcia EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Produkt o bardzo wysokiej wadze systemowej; adresowany głównie do instytucji publicznych; Hub negocjuje standard, nie zarządza operacyjnie programami.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Uzgodniona praktyka systemowa polegająca na komunikowaniu z wyprzedzeniem podstawowych informacji o planowanych programach wsparcia efektywności energetycznej, łącząca wczesny sygnał informacyjny z minimalnym standardem przewidywalności czasowej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt porządkuje przedformalną warstwę informacji o programach wsparcia EE, obejmującą zapowiedź kierunku i logiki instrumentu, orientacyjny horyzont czasowy jego uruchomienia, przewidywany czas trwania naboru oraz ramy realizacji projektów, przy jednoczesnym dopuszczeniu wariantowości i niepełności informacji. Hub dąży do wynegocjowania tego podejścia jako standardu systemowego wśród instytucji publicznych. Produkt ma formę dokumentu ramowego i jest aktualizowany wraz z praktyką systemową.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>Brak wyprzedzenia informacyjnego zmusza system do działania w trybie reaktywnym, obniża jakość projektów i generuje falowość popytu; wczesny sygnał połączony z minimalnym standardem przewidywalności przesuwa system z reakcji na planowanie bez usztywniania polityki wsparcia.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Produkt stały; aktualizowany</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x">x</td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x">x</td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x">x</td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Standard „wczesnego sygnału” + minimalna przewidywalność czasowa.</li>
-      <li>Dokument ramowy, aktualizowany wraz z praktyką systemową.</li>
-    </ul>
-  </details>
-
-
-  <!-- ================= PRODUCT 28 ================= -->
-  <details class="product" id="p028">
-    <summary>
-      <div class="header">
-        <div class="title">28. Zbiór dobrych praktyk projektowania informacji i przewidywalności w programach EE</div>
-        <div class="meta-line"><span class="label">Typ:</span> Narzędzie miękkie, możliwe pilotaże; potencjał do stania się standardem odniesienia.</div>
-        <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-      </div>
-    </summary>
-
-    <div class="section-title">Co to jest</div>
-    <p>Niezależny, horyzontalny poradnik projektowy wspierający instytucje publiczne i operatorów instrumentów w świadomym uwzględnianiu informacji, przewidywalności i wyprzedzenia w projektowaniu programów wsparcia efektywności energetycznej.</p>
-
-    <div class="section-title">Opis</div>
-    <p>Produkt ma formę krótkiego poradnika uzupełnionego checklistami, który porządkuje dobre i złe praktyki związane z komunikowaniem programów, definiowaniem ram czasowych, zarządzaniem niepewnością oraz relacją między informacją a ryzykiem po stronie beneficjenta; dopuszcza element warsztatowy i pilotażowe zastosowania oraz cykliczną aktualizację (np. co 2 lata), przy zachowaniu zdolności funkcjonowania samodzielnie.</p>
-
-    <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-    <p>W praktyce brak wspólnych standardów powoduje, że przewidywalność i informacja są traktowane intuicyjnie lub wtórnie, co zwiększa koszty decyzyjne i podważa zaufanie do systemu; poradnik umożliwia systemowe podnoszenie jakości projektowania programów bez ingerencji w kompetencje instytucji i bez konieczności zmian regulacyjnych.</p>
-
-    <div class="section-title">Z – komentarz</div>
-    <p>Stałe z aktualizacją co 2 lata</p>
-
-    <div class="section-title">Wstępna ocena</div>
-    <div class="metrics">
-      <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-      <div class="metric"><div class="k">Waga</div><div class="v">—</div></div>
-      <div class="metric"><div class="k">Priorytet</div><div class="v">—</div></div>
-    </div>
-
-    <div class="section-title">Obszary</div>
-    <table class="area-table">
-      <tr>
-        <td class="area-label">Percepcja EE</td><td class="x"></td>
-        <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x">x</td>
-        <td class="area-label">Idealny produkt dotacyjny</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyt edukacyjny</td><td class="x"></td>
-        <td class="area-label">Złożoność systemu / kanibalizacja / dublowanie instrumentów</td><td class="x"></td>
-        <td class="area-label">Monitoring efektów i uczenie się systemu</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Marketing</td><td class="x">x</td>
-        <td class="area-label">Asymetria odpowiedzialności i ryzyka</td><td class="x"></td>
-        <td class="area-label">Brak porównywalności instr. wsparcia</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
-        <td class="area-label">Finansowanie ESCO</td><td class="x"></td>
-        <td class="area-label">Wypieranie przez dotacje</td><td class="x"></td>
-      </tr>
-      <tr>
-        <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
-        <td class="area-label">Jakość audytów</td><td class="x"></td>
-        <td></td><td class="x"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">Charakter produktu</div>
-    <ul class="char-list">
-      <li>Poradnik + checklisty; możliwe pilotaże.</li>
-      <li>Aktualizacja cykliczna (np. co 2 lata); działa też jako samodzielny dokument.</li>
-    </ul>
-  </details>
-
-  <!-- =========================================================
-       KONIEC BLOKU PRODUKTÓW
-       ========================================================= -->
-
-
-<!-- ================= PRODUCT 30 ================= -->
-<details class="product" id="p030">
-  <summary>
-    <div class="header">
-      <div class="title">30. Metoda badania złożoności procedur i identyfikacji wąskich gardeł w systemie wsparcia EE</div>
-      <div class="meta-line"><span class="label">Typ:</span> Metoda analityczna / standard diagnostyczny</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Spójna, powtarzalna metoda analityczna pozwalająca diagnozować złożoność procedur wsparcia efektywności energetycznej oraz identyfikować etapy generujące największe ryzyka i koszty transakcyjne po stronie beneficjentów.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt polega na opracowaniu ram metodologicznych definiujących złożoność proceduralną w praktyce decyzyjnej, obejmujących m.in. liczbę i sekwencję kroków, jednoznaczność wymagań, rozkład ryzyk formalnych, dostępność wiążących interpretacji, czas reakcji instytucji oraz koszty wejścia ponoszone przed uzyskaniem decyzji. Metoda ma charakter publiczny, przewiduje pilotaże i kończy się rekomendacjami uproszczeń.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Bez wspólnej metody złożoność procedur pozostaje pojęciem intuicyjnym i anegdotycznym, co utrudnia jej systemowe adresowanie; metoda umożliwia przejście od opisów problemu do porównywalnej diagnozy i eliminacji wąskich gardeł.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt kluczowy systemowo; fundament przejścia od opisu problemów do ich eliminacji; wymaga pilotażu i ma wysoką wagę strategiczną.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">2</div></div>
-    <div class="metric"><div class="k">Waga</div><div class="v">5</div></div>
-    <div class="metric"><div class="k">Priorytet</div><div class="v">2</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Metoda publiczna z etapem pilotażu.</li>
-    <li>Możliwe cykliczne zastosowania po wdrożeniu.</li>
-  </ul>
-</details>
-
-
-
-<!-- ================= PRODUCT 31 ================= -->
-<details class="product" id="p031">
-  <summary>
-    <div class="header">
-      <div class="title">31. Badanie empiryczne złożoności procedur wsparcia EE wraz z testem dostępności instytucji</div>
-      <div class="meta-line"><span class="label">Typ:</span> Badanie empiryczne / jakościowe</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Empiryczna analiza wybranych procedur wsparcia efektywności energetycznej z perspektywy beneficjenta, uzupełniona o testy dostępności informacyjnej i kontaktowej instytucji.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt polega na przejściu przez wybrane procedury aplikacyjne zgodnie z metodą badania złożoności oraz testowaniu dostępności kanałów kontaktu (infolinie, komunikacja mailowa) pod kątem czasu reakcji i spójności informacji. Badanie koncentruje się na rzeczywistym doświadczeniu użytkownika systemu, bez charakteru audytowego lub kontrolnego.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Formalne opisy procedur nie oddają realnych barier pojawiających się na etapie kontaktu i interpretacji zasad; badanie ujawnia rozbieżności między zaprojektowaną a faktyczną ścieżką aplikacyjną.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Wysoka wartość systemowa; badanie jakościowe; wyniki półpubliczne; możliwa realizacja cykliczna.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Badanie cykliczne dla wybranych programów.</li>
-    <li>Możliwe zlecanie realizacji zewnętrznym podmiotom.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 32 ================= -->
-<details class="product" id="p032">
-  <summary>
-    <div class="header">
-      <div class="title">32. Laboratorium doświadczenia procedur wsparcia EE</div>
-      <div class="meta-line"><span class="label">Typ:</span> Produkt warsztatowy</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Powtarzalna forma pracy warsztatowej umożliwiająca bezpośrednie poznanie procedur wsparcia EE przez beneficjentów i instytucje projektujące programy.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Uczestnicy wspólnie przechodzą procedury aplikacyjne krok po kroku, konfrontując doświadczenie beneficjenta z intencjami instytucji. Laboratorium buduje wiedzę o miejscach, w których złożoność generuje bariery inwestycyjne.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak bezpośredniego kontaktu projektantów programów z doświadczeniem beneficjentów prowadzi do reprodukowania procedur oderwanych od realiów decyzyjnych.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt warsztatowy o znaczeniu systemowym; buduje wrażliwość proceduralną i wspiera upraszczanie systemu.</p>
-</details>
-
-
-<!-- ================= PRODUCT 33 ================= -->
-<details class="product" id="p033">
-  <summary>
-    <div class="header">
-      <div class="title">33. Monitor uproszczeń proceduralnych i efektów zmian</div>
-      <div class="meta-line"><span class="label">Typ:</span> Mechanizm monitorujący</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Mechanizm sprawdzania, czy wprowadzane zmiany proceduralne faktycznie zmniejszają złożoność i koszty transakcyjne po stronie beneficjentów.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt polega na powtarzaniu wybranych elementów badania złożoności i testów dostępności instytucji w celu porównywania doświadczeń beneficjentów w kolejnych edycjach programów.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>System nie posiada dziś mechanizmu weryfikacji, czy deklarowane uproszczenia rzeczywiście poprawiają funkcjonowanie procedur.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Mechanizm domykający pętlę uczenia się systemu; szybki do uruchomienia.</p>
-</details>
-
-
-<!-- ================= PRODUCT 34 ================= -->
-<details class="product" id="p034">
-  <summary>
-    <div class="header">
-      <div class="title">34. Diagnoza miejsc, w których system przerzuca ryzyko na beneficjenta</div>
-      <div class="meta-line"><span class="label">Typ:</span> Produkt metodologiczny / diagnoza systemowa</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Ramy diagnozy asymetrii i punktów krytycznych w instrumentach wsparcia EE.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt obejmuje metodę zbierania danych, anonimizacji i syntezy wyników dotyczących asymetrii informacyjnych i proceduralnych w instrumentach wsparcia EE.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak bezpiecznego mechanizmu identyfikowania źródeł nadmiernego ryzyka przenoszonego na beneficjentów utrudnia systemową refleksję.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Wysoka waga systemowa; produkt buduje zdolność systemu do identyfikowania asymetrii ryzyka.</p>
-</details>
-
-
-<!-- ================= PRODUCT 35 ================= -->
-<details class="product" id="p035">
-  <summary>
-    <div class="header">
-      <div class="title">35. Mapa bankowalności projektów efektywności energetycznej w formule ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Analiza systemowa / produkt publiczny</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Analityczny produkt porządkujący sposób oceny projektów EE w formule ESCO przez sektor finansowy.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Analiza identyfikuje punkty krytyczne oceny ryzyka oraz pokazuje, które elementy projektów ESCO są analizowane przez banki. Produkt ma charakter publiczny i może być aktualizowany co kilka lat.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Projekty ESCO są obecnie oceniane jako niestandardowe przypadki jednostkowe, co zwiększa koszty transakcyjne i ostrożność sektora finansowego.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt o bardzo wysokiej wadze systemowej; punkt odniesienia dla dalszych działań de-riskingowych.</p>
-</details>
-
-
-<!-- ================= PRODUCT 36 ================= -->
-<details class="product" id="p036">
-  <summary>
-    <div class="header">
-      <div class="title">36. Ramy analityczne bankowalności projektów ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Rozwinięcie produktu 35; quasi-standard dla rynku; dokument ramowy z przykładami; adresaci: banki, instytucje publiczne, ESCO.</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Zestaw wspólnych ram interpretacyjnych porządkujących ocenę projektów ESCO z perspektywy ryzyk technicznych, kontraktowych i eksploatacyjnych, niezależnie od formy finansowania.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt porządkuje sposób opisu projektów ESCO poprzez wyodrębnienie kluczowych kategorii ryzyka (performance, kontraktowe, operacyjne, monitoringowe) oraz pokazanie, w jaki sposób są one adresowane w konstrukcji projektu i umowy. Ramy mają charakter quasi-standardu rynkowego i umożliwiają porównywalność projektów oraz klarowność komunikacji ryzyka pomiędzy sektorem publicznym, finansowym i wykonawczym. Produkt może zawierać krótkie przykłady i schematy interpretacyjne.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak wspólnego podejścia do oceny ryzyk powoduje traktowanie projektów ESCO jako przypadków jednostkowych i podnosi koszty transakcyjne; ramy analityczne umożliwiają zarządzalne i zrozumiałe ujęcie ryzyka oraz zwiększają powtarzalność oceny projektów.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Jednorazowy dokument ramowy (możliwe uzupełnienia).</li>
-    <li>Quasi-standard komunikacji ryzyka między bankami, JST i rynkiem ESCO.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 37 ================= -->
-<details class="product" id="p037">
-  <summary>
-    <div class="header">
-      <div class="title">37. Wzorzec umowy ESCO utrzymywany przez Grupę ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Wzorzec rynkowy (dobrowolny) utrzymywany przez stałą grupę roboczą; Hub jako inicjator i koordynator</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Roboczy, rynkowy wzorzec umowy ESCO zawierający część wspólną akceptowalną przez banki, JST i wykonawców, opracowany i cyklicznie aktualizowany przez stałą grupę roboczą.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt obejmuje przygotowanie i utrzymywanie roboczego wzorca umowy koncentrującego się na kluczowych klauzulach: odpowiedzialności za efekt energetyczny, mechanizmach kar i premii, monitoringu efektów, relacji z finansowaniem oraz podziale ryzyk. Wzorzec ma charakter dobrowolny i adaptowalny, a jego aktualizacja opiera się na doświadczeniach wdrożeniowych i zmianach rynkowych, przy roli Huba jako inicjatora i koordynatora prac grupy roboczej.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak uzgodnionych wzorców kontraktowych powoduje uznaniowość, wysokie koszty transakcyjne i ryzyko reputacyjne; wspólny wzorzec zwiększa przewidywalność projektów ESCO i ułatwia ich ocenę przez sektor finansowy bez narzucania jednego modelu prawnego.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Wysoka waga systemowa; stabilizuje rynek ESCO i obniża koszty transakcyjne bez regulacyjnego przymusu.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Stałe utrzymywanie: grupa robocza + cykliczne aktualizacje.</li>
-    <li>Dobrowolny wzorzec z „częścią wspólną” akceptowalną przez różne strony.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 38 ================= -->
-<details class="product" id="p038">
-  <summary>
-    <div class="header">
-      <div class="title">38. Mechanizmy de-riskingu ryzyka efektu w projektach ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Produkt analityczno-koncepcyjny (mapa instrumentów de-riskingu)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Produkt analityczno-koncepcyjny identyfikujący możliwe instrumenty ograniczania ryzyka performance (gwarancje, ubezpieczenia, fundusze wykupu).</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt obejmuje analizę istniejących i potencjalnych mechanizmów de-riskingu ryzyka efektu energetycznego oraz opracowanie mapy możliwych instrumentów i wariantów ich wdrożenia w warunkach krajowych, bez przesądzania o ich formie instytucjonalnej.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Ryzyko performance nie jest dziś systemowo internalizowane w analizach bankowych; bez instrumentów de-riskingu ESCO pozostaje niszowe mimo potencjału technicznego i energetycznego.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt koncepcyjny o znaczeniu systemowym; tworzy podstawy dla instrumentów ograniczających ryzyko efektu w projektach ESCO.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">3</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Jednorazowe opracowanie + możliwe aktualizacje.</li>
-    <li>Mapa instrumentów: gwarancje, ubezpieczenia, fundusze wykupu i warianty wdrożenia.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 39 ================= -->
-<details class="product" id="p039">
-  <summary>
-    <div class="header">
-      <div class="title">39. Koncepcja funduszu wykupu projektów ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Flagowy produkt systemowy; publiczny; adresaci: banki, fundusze, instytucje publiczne; potencjalny kierunek wdrożenia: KPO</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Koncepcja dedykowanego instrumentu refinansującego lub wykupującego portfele projektów ESCO w celu poprawy płynności firm ESCO i skalowania rynku.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt polega na opracowaniu koncepcji funduszu lub mechanizmu wykupu strumieni płatności z projektów ESCO, umożliwiającego firmom ESCO uwolnienie kapitału i realizację większej liczby projektów równolegle. Obejmuje opracowanie dokumentu koncepcyjnego, wstępnego modelu finansowego oraz scenariuszy wdrożenia (np. w ramach KPO), przy jednoczesnym prowadzeniu dialogu z instytucjami finansowymi i publicznymi. Hub nie wdraża instrumentu operacyjnie, lecz doprowadza do powstania jego systemowo uzgodnionej architektury.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Ograniczona płynność operacyjna firm ESCO jest jedną z głównych barier skalowania rynku; mechanizm wykupu pozwala oddzielić ryzyko operacyjne od finansowania długoterminowego i zwiększyć zdolność rynku do realizacji projektów.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Horyzont długoterminowy: koncepcja → model → możliwe wdrożenie.</li>
-    <li>Hub: inicjuje, porządkuje architekturę, buduje uzgodnienie systemowe.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 40 ================= -->
-<details class="product" id="p040">
-  <summary>
-    <div class="header">
-      <div class="title">40. Standard wiarygodnego pomiaru i raportowania efektów projektów ESCO</div>
-      <div class="meta-line"><span class="label">Typ:</span> Quasi-standard rynku; adresaci: banki, instytucje publiczne, ESCO; możliwa funkcja kredytowa w przyszłości</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Zestaw minimalnych zasad monitoringu i raportowania efektów energetycznych i finansowych w projektach ESCO, umożliwiający porównywalność i wykorzystanie danych w analizie ryzyka.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Produkt porządkuje sposób monitorowania efektów projektów ESCO po realizacji poprzez określenie minimalnych wymogów raportowania, zakresu danych i zasad ich interpretacji. Może przyjąć formę rekomendacji rynkowych lub quasi-standardu i być stosowany przez banki, instytucje publiczne oraz firmy ESCO. W dłuższej perspektywie może wspierać ocenę kredytową i porównywalność projektów.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak spójnego monitoringu efektów po realizacji prowadzi do utraty zaufania i ogranicza możliwość finansowania projektów; wspólne zasady raportowania wzmacniają wiarygodność formuły ESCO i umożliwiają analizę skuteczności instrumentów.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Dokument jednorazowy; możliwe aktualizacje.</li>
-    <li>Minimalne wymagania: zakres danych, format raportowania, zasady interpretacji.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 42 ================= -->
-<details class="product" id="p042">
-  <summary>
-    <div class="header">
-      <div class="title">42. Proces rozdzielenia funkcji audytu energetycznego</div>
-      <div class="meta-line"><span class="label">Typ:</span> Produkt analityczno-koncepcyjny (model modułowego audytu); rozwinięcie 41</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Proces analityczno-koncepcyjny prowadzący do systemowego rozdzielenia funkcji audytu na proceduralną i decyzyjną oraz do wprowadzenia podejścia modułowego.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub porządkuje funkcje pełnione dziś przez audyt (proceduralną, diagnostyczną, ekonomiczną, efektową) na podstawie materiału empirycznego, następnie projektuje model rozwarstwienia: od prostych analiz „na wejściu” po pogłębione analizy tam, gdzie skala, ryzyko lub forma finansowania tego wymagają. Model jest konsultowany z instytucjami publicznymi, bankami, audytorami i rynkiem ESCO pod kątem praktycznej wykonalności. Produkt może przyjąć formę dokumentu aktualizowanego.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Obecny audyt próbuje spełniać wszystkie funkcje jednocześnie, co prowadzi do formalizacji, obniżenia jakości i utraty znaczenia decyzyjnego; uporządkowanie funkcji umożliwia lepsze dopasowanie zakresu audytu do potrzeb projektu.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Produkt aktualizowany (wraz z praktyką systemową).</li>
-    <li>Model modułowy: różne poziomy audytu zależnie od skali i ryzyka.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 43 ================= -->
-<details class="product" id="p043">
-  <summary>
-    <div class="header">
-      <div class="title">43. Proces projektowania audytu o charakterze transakcyjnym</div>
-      <div class="meta-line"><span class="label">Typ:</span> Produkt komunikacyjny / dokument koncepcyjno-metodologiczny</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Krótki dokument koncepcyjno-metodologiczny tłumaczący audyt energetyczny na język ryzyka finansowego i decyzji inwestycyjnej.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub opracowuje komunikacyjny wzorzec audytu transakcyjnego, który pokazuje, jak przekładać efekt energetyczny na parametry istotne dla instytucji finansowych: wariantowość efektu, dolne granice oszczędności, założenia cenowe oraz odpowiedzialność kontraktową. Dokument ma charakter punktu odniesienia dla audytorów i instytucji finansowych i może być iteracyjnie rozwijany w dialogu z rynkiem.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Banki nie wykorzystują dziś audytów w decyzjach kredytowych, a efekt energetyczny nie redukuje ryzyka finansowego projektu; dokument umożliwia włączenie efektu EE do logiki finansowania bez przenoszenia odpowiedzialności technicznej na sektor finansowy.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt komunikacyjny o bardzo wysokiej wadze systemowej; może szybko powstać i rozpocząć zmianę języka między audytorami a finansującymi.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">5</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Jednorazowe opracowanie + możliwe iteracje.</li>
-    <li>Wzorzec komunikacji: efekt EE → ryzyko finansowe → decyzja inwestycyjna.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 44 ================= -->
-<details class="product" id="p044">
-  <summary>
-    <div class="header">
-      <div class="title">44. Proces zapewnienia spójności audytu z realizacją inwestycji</div>
-      <div class="meta-line"><span class="label">Typ:</span> Dokument rekomendacyjny (lekki standard sygnalizacji zmian)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Krótki dokument rekomendacyjny definiujący momenty, w których inwestycja odchyla się od audytu i wymaga sygnalizacji zmian.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub identyfikuje typowe momenty rozjazdu między audytem, projektem i realizacją inwestycji oraz określa, które zmiany mają znaczenie dla efektu energetycznego i decyzji finansowej. Następnie opracowuje lekkie rekomendacje sygnalizowania takich zmian bez tworzenia nowych procedur kontrolnych.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Audyt często opisuje projekt, który nie jest realizowany w tej formie, a brak mechanizmu sygnalizacji zmian podważa wiarygodność efektów energetycznych i decyzji finansowych; produkt wprowadza minimalny standard reagowania na istotne odchylenia.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Produkt komplementarny do audytu transakcyjnego; szybki do opracowania, wzmacnia wiarygodność efektu EE w realizacji inwestycji.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">4</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Jednorazowe opracowanie + możliwe aktualizacje.</li>
-    <li>Minimalny standard: kiedy i jak sygnalizować istotne odchylenia od audytu.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 45 ================= -->
-<details class="product" id="p045">
-  <summary>
-    <div class="header">
-      <div class="title">45. Proces projektowania lekkiej weryfikacji efektów ex post</div>
-      <div class="meta-line"><span class="label">Typ:</span> Proces koncepcyjny (model proporcjonalny, niesankcyjny)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Proces koncepcyjny prowadzący do wprowadzenia proporcjonalnej, niskokosztowej weryfikacji efektów energetycznych po realizacji inwestycji.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub analizuje relację koszt–efekt różnych form weryfikacji i projektuje mechanizm oparty na uproszczonym raportowaniu po 1–2 latach, losowych kontrolach oraz jasnym informowaniu beneficjentów o zakresie i celu weryfikacji już na etapie wejścia do programu. Model jest konsultowany z instytucjami wdrażającymi i może być stosowany we wszystkich programach publicznych.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Brak jakiejkolwiek weryfikacji ex post obniża jakość analiz ex ante, sprzyja deklaratywności i niszczy wiarygodność efektów efektywności energetycznej jako informacji ekonomicznej.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Produkt aktualizowany: koncepcja + możliwe wdrożenia.</li>
-    <li>Proporcjonalność: niskie koszty, brak sankcyjności, jasna komunikacja na wejściu do programu.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 46 ================= -->
-<details class="product" id="p046">
-  <summary>
-    <div class="header">
-      <div class="title">46. Proces systemowego uczenia się na podstawie jakości audytów i rzeczywistych efektów</div>
-      <div class="meta-line"><span class="label">Typ:</span> Stały proces systemowy (anonimizowane wnioski + publikacje okresowe)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> długi</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Proces zbierania, anonimizowania i agregowania wiedzy o relacji pomiędzy audytami a rzeczywistymi efektami energetycznymi, bez oceny jednostkowej i sankcji.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub projektuje ramy zbierania danych o rozbieżnościach pomiędzy deklarowanym a rzeczywistym efektem energetycznym, agreguje je w sposób zanonimizowany i publikuje wnioski systemowe. Proces obejmuje również opracowywanie case studies oraz analizę nowych rozwiązań i ich skuteczności. Inspiracją są doświadczenia duńskie, gdzie wiedza o jakości audytów i efektów funkcjonuje jako zasób systemowy służący poprawie standardów rynkowych, a nie kontroli jednostkowej.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Jakość audytów i projektów poprawia się poprzez sprzężenie zwrotne i wiedzę systemową, a nie przez zaostrzanie formalnych wymogów; anonimowe uczenie się całego systemu jest skuteczniejsze niż indywidualna kontrola.</p>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Proces ciągły; publikacje okresowe.</li>
-    <li>Półpubliczny: wnioski agregowane + case studies; bez oceny jednostkowej.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 47 ================= -->
-<details class="product" id="p047">
-  <summary>
-    <div class="header">
-      <div class="title">47. Laboratorium „Idealny produkt dotacyjny EE” (proces projektowy)</div>
-      <div class="meta-line"><span class="label">Typ:</span> Proces facylitowany (platforma uzgadniania architektury dotacji)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> krótki</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Proces facylitowany przez Hub prowadzący do wspólnego wypracowania architektury produktu dotacyjnego EE.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub przygotowuje materiał analityczny (PL + UE) dotyczący funkcjonowania dotacji oraz organizuje zamknięte sesje robocze z funduszami, JST, bankami i rynkiem wykonawczym. Proces ma charakter cykliczny (np. coroczny) i może, ale nie musi, kończyć się dokumentem koncepcyjnym.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Dotacje są dziś projektowane w izolacji instytucjonalnej; laboratorium pozwala zderzyć perspektywy przed wdrożeniem, ograniczyć konflikty ex post i uniknąć instrumentów wypierających ESCO oraz generujących patologie jakościowe.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Proces o bardzo wysokiej wadze systemowej; szybki do uruchomienia i możliwy do prowadzenia cyklicznie jako platforma uzgadniania architektury dotacji.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">5</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">5</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Cykliczny (np. roczny).</li>
-    <li>Platforma robocza: fundusze, JST, banki, wykonawcy; bez narzucania decyzji.</li>
-  </ul>
-</details>
-
-
-<!-- ================= PRODUCT 48 ================= -->
-<details class="product" id="p048">
-  <summary>
-    <div class="header">
-      <div class="title">48. Dwutorowa architektura dotacji: standard vs projekt (koncepcja systemowa)</div>
-      <div class="meta-line"><span class="label">Typ:</span> Koncepcja systemowa (mapa decyzyjna architektury dotacji)</div>
-      <div class="meta-line"><span class="label">Horyzont czasowy:</span> średni</div>
-    </div>
-  </summary>
-
-  <div class="section-title">Co to jest</div>
-  <p>Koncepcja systemowa rozróżniająca tryb standaryzowany i tryb projektowy dla dotacji EE.</p>
-
-  <div class="section-title">Opis</div>
-  <p>Hub porządkuje typologię projektów EE (proste vs złożone) i opracowuje mapę decyzyjną: jaki typ projektu → jaki tryb dotacji. Dla każdego trybu definiuje poziom wymagań, relację z audytem oraz możliwą rolę ESCO.</p>
-
-  <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
-  <p>Obecny jednolity model dotacji przeciąża system, obniża jakość i marnuje kompetencje; dwutorowość obniża koszty transakcyjne i poprawia skalowalność systemu wsparcia.</p>
-
-  <div class="section-title">Z – komentarz</div>
-  <p>Koncepcja systemowa porządkująca architekturę dotacji; może stanowić punkt odniesienia dla przyszłych programów i reform.</p>
-
-  <div class="section-title">Wstępna ocena</div>
-  <div class="metrics">
-    <div class="metric"><div class="k">Wpływ</div><div class="v">4</div></div>
-    <div class="metric"><div class="k">Wykonalność</div><div class="v">3</div></div>
-  </div>
-
-  <div class="section-title">Charakter produktu</div>
-  <ul class="char-list">
-    <li>Jednorazowe opracowanie + możliwe aktualizacje.</li>
-    <li>Mapa decyzyjna: typ projektu → tryb dotacji → wymagania/audyt/ESCO.</li>
-  </ul>
-</details>
-
-
-
-
+    <p>Strefa A obejmuje tę część systemu finansowania efektywności energetycznej, w której powstaje – lub nie powstaje – decyzja inwestycyjna. To etap poprzedzający finansowanie, projektowanie techniczne i realizację. Jeżeli w tej strefie nie zostaną spełnione minimalne warunki poznawcze i decyzyjne, pozostałe elementy systemu nie są w stanie zadziałać w sposób efektywny.</p>
+    <p>Funkcją strefy nie jest prowadzenie kampanii ani obsługa beneficjenta, lecz uporządkowanie architektury popytu: sposobu, w jaki system informuje, motywuje i przygotowuje do decyzji inwestycyjnej. Obejmuje ona trzy odrębne, lecz powiązane funkcje: informację, marketing i edukację. Hub w tej strefie nie prowadzi działań operacyjnych ani kampanii, lecz projektuje ramy, narzędzia i praktyki.</p>
+
+    <!-- ================= OBSZAR A1 ================= -->
+    <details class="area" id="A1" open>
+      <summary>
+        <div class="area-title">A1. Informacja decyzyjna</div>
+      </summary>
+
+      <p>Obszar informacji decyzyjnej dotyczy architektury informacji w procesie inwestycyjnym: jej struktury, momentu przekazania, przewidywalności i kompletności. Celem jest obniżenie kosztów poznawczych decyzji inwestycyjnej oraz zwiększenie bezpieczeństwa informacyjnego beneficjentów.</p>
+
+      <!-- =========================================================
+           WSTAWIAJ KOLEJNE DZIAŁANIA TUTAJ (KOPIUJ BLOK <details>…)
+           ========================================================= -->
+
+      <!-- ================= DZIAŁANIE 1 (z tabeli: A.1.1, k) ================= -->
+      <details class="product short" id="A.1.1">
+        <summary>
+          <div class="header">
+            <div class="title">A.1.1 Infrastruktura informacji decyzyjnej w procesie inwestycyjnym EE <span class="badge short">KRÓTKO</span></div>
+            <div class="meta-line"><span class="label">Typ:</span> Narzędzie projektowe (ramy informacji decyzyjnej)</div>
+            <div class="meta-line"><span class="label">Horyzont:</span> krótki</div>
+          </div>
+        </summary>
+
+        <div class="section-title">Co to jest</div>
+        <p>Zestaw ram i narzędzi porządkujących informację jako element prowadzący beneficjenta przez proces decyzyjny w obszarze efektywności energetycznej.</p>
+
+        <div class="section-title">Opis</div>
+        <p>Produkt ma formę lekkiego dokumentu ramowego z elementami narzędziowymi. Definiuje ścieżkę informacyjną beneficjenta od zainteresowania do realizacji inwestycji oraz minimalny standard informacji potrzebnej do podjęcia decyzji na kolejnych etapach. Obejmuje checklistę dla projektantów programów, wzorcową strukturę informacji „krok po kroku” oraz zasady przekazywania informacji zwrotnej w procesie aplikowania i realizacji projektu. Hub projektuje ramy i narzędzia, ale nie tworzy platform ani systemów IT. Produkt skierowany głównie do programów publicznych i stanowi uzupełnienie produktów edukacyjnych (5–13) i marketingowych (14–17).</p>
+
+        <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
+        <p>Brak prowadzenia informacyjnego powoduje odkładanie decyzji, wycofywanie się z projektów i przenoszenie odpowiedzialności informacyjnej na rynek; uporządkowana infrastruktura informacji decyzyjnej obniża koszty poznawcze i zwiększa bezpieczeństwo decyzji inwestycyjnych.</p>
+
+        <div class="section-title">Wstępna ocena</div>
+        <div class="meta-line"><span class="label">Impact:</span> 4</div>
+        <div class="meta-line"><span class="label">Feasibility:</span> 4</div>
+        <div class="meta-line"><span class="label">Waga:</span> 4</div>
+        <div class="meta-line"><span class="label">Time-to-value:</span> 3</div>
+        <div class="meta-line"><span class="label">Priorytet:</span> 4</div>
+
+        <div class="section-title">Z – komentarz</div>
+        <p>Produkt praktyczny o dobrej wykonalności; wzmacnia spójność projektowania instrumentów i redukuje bariery decyzyjne bez wchodzenia Huba w role operacyjne.</p>
+
+        <div class="section-title">Tryb działania / czas trwania</div>
+        <p>Dokument stały; aktualizacja w miarę doświadczeń systemowych.</p>
+
+        <div class="section-title">Obszary (mapowanie x)</div>
+        <!-- UWAGA: w tym "teście" nie odtwarzam jeszcze pełnej tabeli X z Excela,
+             bo w zrzucie widać tylko fragmenty. Poniżej jest placeholder struktury
+             zgodnej z Twoim wzorcem. -->
+        <table class="area-table" aria-label="Obszary – mapowanie x (placeholder)">
+          <tr>
+            <td class="area-label">Percepcja EE</td><td class="x"></td>
+            <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
+            <td class="area-label">Fragmentacja informacyjna</td><td class="x">x</td>
+          </tr>
+          <tr>
+            <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x">x</td>
+            <td class="area-label">Złożoność systemu / dublowanie</td><td class="x">x</td>
+            <td class="area-label">Jakość audytów</td><td class="x"></td>
+          </tr>
+        </table>
+
+        <div class="section-title">Charakter produktu</div>
+        <ul class="char-list">
+          <li>Narzędzie projektowe (ramy informacji decyzyjnej) dla instytucji projektujących instrumenty.</li>
+          <li>Stosowanie powtarzalne; aktualizacja wraz z doświadczeniami.</li>
+        </ul>
+      </details>
+
+
+      <!-- ================= DZIAŁANIE 2 (z tabeli: A.1.4, d) ================= -->
+      <details class="product long" id="A.1.4">
+        <summary>
+          <div class="header">
+            <div class="title">A.1.4 Wczesne ramy przewidywalności programów wsparcia EE <span class="badge long">DŁUGO</span></div>
+            <div class="meta-line"><span class="label">Typ:</span> Standard / praktyka systemowa (uzgadniany)</div>
+            <div class="meta-line"><span class="label">Horyzont:</span> długi</div>
+          </div>
+        </summary>
+
+        <div class="section-title">Co to jest</div>
+        <p>Uzgodniona praktyka systemowa polegająca na komunikowaniu z wyprzedzeniem podstawowych informacji o planowanych programach wsparcia efektywności energetycznej, łącząca wczesny sygnał informacyjny z minimalnym standardem przewidywalności czasowej.</p>
+
+        <div class="section-title">Opis</div>
+        <p>Produkt porządkuje przedformalną warstwę informacji o programach wsparcia EE, obejmującą zapowiedź kierunku i logiki instrumentu, orientacyjny horyzont czasowy jego uruchomienia, przewidywany czas trwania naboru oraz ramy realizacji projektów, przy jednoczesnym dopuszczeniu wariantowości i niepełności informacji. Hub dąży do wynegocjowania tego podejścia jako standardu systemowego wśród instytucji publicznych. Produkt ma formę dokumentu ramowego i jest aktualizowany wraz z praktyką systemową.</p>
+
+        <div class="section-title">Dlaczego ten produkt jest potrzebny</div>
+        <p>Brak wyprzedzenia informacyjnego zmusza system do działania w trybie reaktywnym, obniża jakość projektów i generuje falowość popytu; wczesny sygnał połączony z minimalnym standardem przewidywalności przesuwa system z reakcji na planowanie bez usztywniania polityki wsparcia.</p>
+
+        <div class="section-title">Z – komentarz</div>
+        <p>Produkt o bardzo wysokiej wadze systemowej; adresowany głównie do instytucji publicznych; Hub negocjuje standard, nie zarządza operacyjnie programami.</p>
+
+        <div class="section-title">Tryb działania / czas trwania</div>
+        <p>Produkt stały; aktualizowany.</p>
+
+        <div class="section-title">Obszary (mapowanie x)</div>
+        <table class="area-table" aria-label="Obszary – mapowanie x (placeholder)">
+          <tr>
+            <td class="area-label">Brak przewidywalności i wyprzedzenia</td><td class="x">x</td>
+            <td class="area-label">Deficyty informacyjne</td><td class="x">x</td>
+            <td class="area-label">Fragmentacja informacyjna</td><td class="x"></td>
+          </tr>
+          <tr>
+            <td class="area-label">Marketing</td><td class="x">x</td>
+            <td class="area-label">Deficyt edukacyjny</td><td class="x">x</td>
+            <td class="area-label">Złożoność systemu</td><td class="x">x</td>
+          </tr>
+        </table>
+
+        <div class="section-title">Charakter produktu</div>
+        <ul class="char-list">
+          <li>Standard/praktyka systemowa: uzgadniany między instytucjami.</li>
+          <li>Dokument ramowy + iteracyjna aktualizacja wraz z praktyką.</li>
+        </ul>
+      </details>
+
+      <!-- =========================================================
+           /WSTAWIAJ KOLEJNE DZIAŁANIA TUTAJ
+           ========================================================= -->
+
+    </details><!-- /area A1 -->
+  </details><!-- /layer A -->
 </main>
 </body>
 </html>
