@@ -1,94 +1,35 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Taryfa — dzisiaj i jutro</title>
-  <link rel="stylesheet" href="css/metro_report.css">
-<style>
+  <style>
   :root {
-    --a:#1b5e20;
-    --b:#8BC34A;
-    --c:#FFC107;
-    --d:#E53935;
+    --a:#1b5e20; --b:#8BC34A; --c:#FFC107; --d:#E53935;
     --outer:#93c5fd;
     --grid:#bfdbfe;
     --left1:#d1d5db;
     --left2:#d1d5db;
   }
 
-  .floating-menu {
-    position: fixed;
-    top: calc(12px + env(safe-area-inset-top));
-    right: calc(12px + env(safe-area-inset-right));
-    width: 116px;
-    height: 92px;
-    z-index: 1000;
-  }
-
-  .floating-menu a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.18);
-    background: #0ea5e9;
-    color: #fff;
-    text-decoration: none;
-    padding: 14px;
-    position: relative;
-    font-weight: 700;
-  }
-
-  .floating-menu .label {
-    font-weight: 700;
-    letter-spacing: .04em;
-    font-size: 1.05rem;
-  }
-
-  .floating-menu .nia-mini-logo {
-    position: absolute;
-    right: 12px;
-    top: 10px;
-    width: 22px;
-    height: 22px;
-    display: block;
-    object-fit: contain;
-    opacity: .98;
-  }
-
-  .hero-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    align-items: center;
-    margin-top: 10px;
-    color: #64748b;
-    font-size: 11px;
-    line-height: 1.4;
-  }
-
-  .hero-meta-row span {
-    white-space: nowrap;
-  }
-
-  .section-date-inline {
-    font-size: .68em;
-    font-weight: 500;
-    color: #64748b;
-  }
+  .floating-menu { position: fixed; right: 16px; bottom: 16px; z-index: 1000; }
+  .floating-menu a { display:flex; align-items:center; gap:8px; padding:10px 12px;
+                      background:#0ea5e9; color:#fff; text-decoration:none;
+                      border-radius:12px; box-shadow: 0 8px 22px rgba(0,0,0,.18); font-weight:600; }
+  .floating-menu .emoji { line-height: 1; font-size: 18px; }
+  .floating-menu .label { letter-spacing:.04em; }
 
   .table-wrap {
     margin: 10px auto;
     border: 3px solid var(--outer);
     border-radius: 14px;
     overflow: hidden;
-    background: #d1d5db;
+    background: #ffffff;
     max-width: 760px;
   }
 
   table.prices {
-    width: 100%;
+    width:100%;
     border-collapse: separate;
     border-spacing: 0;
     table-layout: fixed;
@@ -107,137 +48,77 @@
     text-overflow: ellipsis;
   }
 
-  th:last-child, td:last-child {
-    border-right: none;
-  }
-
-  tr:last-child td {
-    border-bottom: none;
-  }
+  th:last-child, td:last-child { border-right: none; }
+  tr:last-child td { border-bottom: none; }
 
   thead th {
     font-weight: 700;
     background: #ffffff;
   }
 
-  td.left-1 {
-    background: var(--left1);
-    font-weight: 600;
-  }
+  td.left-1 { background: var(--left1); font-weight: 600; }
+  td.left-2 { background: var(--left2); font-weight: 600; }
 
-  td.left-2 {
-    background: var(--left2);
-    font-weight: 600;
-  }
+  .cat-a { background: var(--a); color: #ffffff; }
+  .cat-b { background: var(--b); color: #0f172a; }
+  .cat-c { background: var(--c); color: #0f172a; }
+  .cat-d { background: var(--d); color: #ffffff; }
 
-  .cat-a {
-    background: var(--a);
-    color: #ffffff;
-  }
+  /* SELL threshold coloring */
+  .sell-hot { background: var(--d); color: #ffffff; font-weight: 700; }
+  .sell-ok { background: #ffffff; color: #0f172a; }
 
-  .cat-b {
-    background: var(--b);
-    color: #0f172a;
-  }
-
-  .cat-c {
-    background: var(--c);
-    color: #0f172a;
-  }
-
-  .cat-d {
-    background: var(--d);
-    color: #ffffff;
-  }
-
-  .sell-hot {
-    background: var(--d);
-    color: #ffffff;
-    font-weight: 700;
-  }
-
-  .sell-ok {
-    background: #ffffff;
-    color: #0f172a;
-  }
-
-  .chart {
-    margin: 10px 0;
-  }
-
-  .chart img.small {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 6px auto;
-  }
-
-  .muted {
-    color: #64748b;
-    font-size: 11px;
-  }
-
-  section + section {
-    margin-top: 18px;
-  }
+  .chart { margin: 10px 0; }
+  .chart img.small { width:100%; max-width:100%; height:auto; display:block; margin:6px auto; }
+  .muted { color:#64748b; font-size:11px; }
+  section + section { margin-top: 18px; }
 
   .kompas-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 6px auto;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.18);
+    width:100%;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:6px auto;
+    cursor:pointer;
+    border-radius:10px;
+    box-shadow:0 8px 22px rgba(0,0,0,.18);
   }
 
   .img-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
   }
-
-  .img-modal.open {
-    display: flex;
-  }
-
-  .img-modal-inner {
-    position: relative;
-    max-width: 96vw;
-    max-height: 96vh;
-  }
-
+  .img-modal.open { display:flex; }
+  .img-modal-inner { position:relative; max-width:96vw; max-height:96vh; }
   .img-modal-inner img {
-    max-width: 96vw;
-    max-height: 96vh;
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.4);
-    display: block;
+    max-width:96vw;
+    max-height:96vh;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(0,0,0,.4);
+    display:block;
   }
-
   .img-modal-close {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    background: #0ea5e9;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 22px rgba(0,0,0,.4);
+    position:absolute;
+    top:-10px;
+    right:-10px;
+    width:32px;
+    height:32px;
+    border-radius:999px;
+    background:#0ea5e9;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.4);
   }
 
   .notice-tomorrow {
@@ -245,41 +126,29 @@
     font-weight: 700;
     margin: 6px 0;
   }
-
-  @media (max-width: 900px) {
-    .hero-meta-row {
-      gap: 10px;
-    }
-
-    .hero-meta-row span {
-      white-space: normal;
-    }
-  }
 </style>
 </head>
-<body class="doc-page has-floating accent-cyan">
-
+<body>
 <main class="container tight">
 
 <div class="floating-menu">
   <a href="index.html" title="Powrót do menu">
     <span class="label">MENU</span>
-    <img class="nia-mini-logo" src="img/nia_logo.svg" alt="NIA logo">
+    <span class="emoji">🏠</span>
   </a>
 </div>
 
 <section class="hero">
   <div class="kicker">Dane</div>
   <h1>Taryfa — dzisiaj i jutro</h1>
-  <div class="hero-meta-row">
-    <span>Strona wygenerowana: 2026-04-03 21:27:39</span>
-    <span>Dane (dzisiaj) — ostatnia próbka: 2026-04-03 23:45:00</span>
-    <span>Dane (jutro) — ostatnia próbka: brak danych</span>
-  </div>
+  <p class="muted">Strona wygenerowana: 2026-04-03 09:06:45</p>
+  <p class="muted">Dane (dzisiaj) — ostatnia próbka: 2026-04-03 23:45:00</p>
+  <p class="muted">Dane (jutro) — ostatnia próbka: brak danych</p>
 </section>
 
 <section class="content">
-  <h2>Dzisiaj <span class="section-date-inline">(dzień danych: 2026-04-03)</span></h2>
+  <h2>Dzisiaj</h2>
+  <p class="muted">Dzień danych: 2026-04-03</p>
 
   
 
@@ -987,7 +856,8 @@
 </section>
 
 <section class="content">
-  <h2>Jutro <span class="section-date-inline">(dzień danych: 2026-04-04)</span></h2>
+  <h2>Jutro</h2>
+  <p class="muted">Dzień danych: 2026-04-04</p>
 
   <p class="notice-tomorrow"><strong>Dane na jutro dostępne będą po 14 stej</strong></p>
 
@@ -1024,7 +894,6 @@
 </section>
 
 </main>
-
 
 <div class="img-modal" id="img-modal">
   <div class="img-modal-inner">
