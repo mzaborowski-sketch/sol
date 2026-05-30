@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opis skryptu: 02_parse_inv.py</title>
+<style>:root {
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --shadow: 0 10px 30px rgba(15, 23, 42, .06);
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 22px 0 34px;
+}
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+.top-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.top-nav a {
+  color: #334155;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-size: .9rem;
+}
+.top-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 32px;
+  flex: 0 0 auto;
+}
+.top-brand img {
+  display: block;
+  width: var(--logo-width, 54px);
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.header-card {
+  background: var(--header-bg);
+  border-color: var(--header-border);
+}
+.title-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+h1, h2, h3 {
+  margin-top: 0;
+  letter-spacing: -.01em;
+}
+h1 { font-size: clamp(1.45rem, 2.5vw, 2.1rem); margin-bottom: 0; }
+h2 { font-size: 1.12rem; margin-bottom: 12px; }
+.badge.main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-weight: 800;
+  letter-spacing: .03em;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+}
+.meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .94rem;
+}
+.message {
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.info-content {
+  overflow-wrap: anywhere;
+}
+.info-content p:first-child { margin-top: 0; }
+.info-content p:last-child { margin-bottom: 0; }
+.info-content code,
+.info-content pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.info-content pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f9fafb;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .94rem;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 10px;
+}
+th {
+  color: #374151;
+  background: #f9fafb;
+  font-weight: 750;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  overflow-wrap: anywhere;
+}
+.footer {
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+  margin: 18px 0 0;
+}
+@media (max-width: 640px) {
+  main { width: min(100% - 18px, 1120px); padding-top: 12px; }
+  .top-bar { align-items: flex-start; gap: 10px; }
+  .top-brand img { width: min(var(--logo-width, 54px), 64px); }
+  .card { padding: 14px; border-radius: 15px; }
+  .title-row { align-items: flex-start; flex-direction: column; gap: 8px; }
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+:root{--header-bg:#dff4e5;--header-border:#91c9a2;--badge-bg:#14532d;--badge-text:#ffffff;--mark-bg:#c8efd3;--mark-text:#14532d;}</style>
+</head>
+<body><main>
+<div class="top-bar"><nav class="top-nav"><a href="index.html">← Rejestr statusów</a><a href="02_parse_inv_status.html">Status skryptu</a><a href="index.html">Strona główna</a></nav><div class="top-brand" style="--logo-width:54px"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjAvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMtU1ZHLTIwMDEwOTA0L0RURC9zdmcxMC5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTA1cHgiIGhlaWdodD0iNDc0cHgiIHZpZXdCb3g9IjAgMCA1MDUgNDc0IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0Ij4KPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkMSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZBNTAwO3N0b3Atb3BhY2l0eToxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNDMDAwMDA7c3RvcC1vcGFjaXR5OjEiLz4KICA8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CgogPGcgZmlsbD0idXJsKCNncmFkMSkiPgogIDxwYXRoIGQ9Ik0yNTAuMTEgNDU5LjE0IGMtNC4zMCAtMC4yNCAtNS45OCAtMC41MyAtNy43NSAtMS4zOSAtMy41NCAtMS43MiAtNi40MSAtNC41OSAtOC4xMyAtOC4xMyBsLTEuNTggLTMuMjAgLTAuMjQgLTE5MC45NSBjLTAuMTkgLTE2OS4wNSAtMC4zMyAtMTkxIC0wLjk2IC0xOTEuMzggLTEuMjAgLTAuNzcgLTExMiAtMC42MiAtMTEzIDAuMTQgLTAuNzcgMC41MyAtMC44MSA3LjA4IC0wLjkxIDkyLjE1IGwtMC4xNCA5MS41OCAtMS4xMCAyLjczIGMtMS4zOSAzLjQwIC00Ljc4IDcuMjcgLTcuNzkgOC43NSAtNC4wNiAyLjEwIC02LjU1IDIuMjAgLTQ3Ljc3IDIuMDYgbC0zOC45NyAtMC4xNCAtMi43NyAtMS4xMCBjLTMuNTQgLTEuNDMgLTcuMTcgLTQuOTcgLTguODUgLTguNTYgLTEuMTAgLTIuMzkgLTEuMjQgLTMuNDAgLTEuMjkgLTcuNTYgMCAtNC40NSAwLjEwIC01LjAyIDEuNTggLTcuOTkgMS43NyAtMy42MyAzLjkyIC01Ljc0IDcuNzUgLTcuNTEgbDIuNjMgLTEuMjQgMzAuNzUgLTAuMjQgYzI2LjY0IC0wLjE5IDMwLjgwIC0wLjMzIDMxLjE4IC0wLjk2IDAuMjkgLTAuNDMgMC40OCAtMzUuMjkgMC40OCAtOTEuODcgMCAtMTAwLjc2IC0wLjI0IC05My41OSAzLjExIC05OC4wOCAyLjAxIC0yLjczIDQuODMgLTQuNjkgOC42MSAtNi4wNyBsMi44NyAtMS4wNSA3Ny45NSAwLjE0IDc3Ljk1IDAuMTQgMy4xMSAxLjQ4IGMzLjkyIDEuOTEgNi40MSA0LjQwIDguMzIgOC4zMiBsMS40OCAzLjExIDAuMjQgMTkwLjcxIGMwLjI0IDE4OC4xMyAwLjI0IDE5MC43NiAxLjE1IDE5MS40MyAwLjgxIDAuNTcgOS4yMyAwLjY3IDU2LjI0IDAuNjcgNDMuNDcgMCA1NS40NyAtMC4xNCA1Ni4xMCAtMC41NyAwLjc3IC0wLjU3IDAuODEgLTcuMDMgMC45MSAtOTIuNDQgbDAuMTQgLTkxLjgyIDEuMzQgLTIuODcgYzEuNzIgLTMuNzMgNC45NyAtNi45OCA4LjY2IC04LjcwIGwyLjkyIC0xLjM0IDQyLjMyIDAgNDIuMzIgMCAyLjI1IDEuMDUgYzMuMTYgMS40MyA2Ljc0IDQuOTcgOC4wOCA3Ljk0IDEgMi4xNSAxLjE1IDMuMjUgMS4xNSA3Ljk5IDAgNS4wNyAtMC4xMCA1Ljc0IC0xLjM0IDguMjMgLTEuNjMgMy4zNSAtNC43OCA2LjIyIC04LjQyIDcuNjUgLTIuNjggMS4xMCAtMi42OCAxLjEwIC0zMi41NyAxLjI0IC0xNi40NSAwLjA1IC0zMC4zNyAwLjE5IC0zMC45NCAwLjMzIGwtMS4xMCAwLjI0IC0wLjEwIDkxLjcyIC0wLjE0IDkxLjY3IC0xLjA1IDIuNTggYy0xLjQ4IDMuNjMgLTMuMzAgNi4wMyAtNS45OCA3Ljk5IC00LjU0IDMuMzUgMC45MSAzLjExIC04MC4wMSAzLjI1IC00MC4yMiAwLjEwIC03NS42NSAwIC03OC42NyAtMC4xNHoiLz4KICA8cGF0aCBkPSJNMTU4LjQ4IDI2MS4xMSBjLTMuMzAgLTAuNjcgLTYuNjAgLTIuNjggLTkuMTggLTUuNTAgLTIuOTYgLTMuMjUgLTMuOTIgLTUuOTggLTMuOTIgLTExLjQ4IDAgLTIuMTUgMC4zMyAtNC45NyAwLjcyIC02LjM2IDAuOTYgLTMuMjUgNC42NCAtNy4yNyA4LjI3IC05LjA0IGwyLjczIC0xLjM0IDE3LjkzIDAgMTcuOTMgMCAyLjY4IDEuMzQgYzMuMTYgMS41MyA2LjMxIDQuNzMgNy43NSA3Ljg5IDAuODYgMS44NyAxLjA1IDMuMTYgMS4wNSA3LjUxIDAgNC42OSAtMC4xNCA1LjU1IC0xLjI0IDcuODkgLTEuNjcgMy41NCAtNC4yNiA2LjAzIC04LjAzIDcuODQgbC0zLjE2IDEuNDggLTE1Ljc4IDAuMTAgYy04LjY2IDAuMDUgLTE2LjY5IC0wLjEwIC0xNy43NCAtMC4zM3oiLz4KICA8cGF0aCBkPSJNMzA3LjgzIDI2MS4xMSBjLTUuNjAgLTEgLTEwLjM4IC00LjgzIC0xMi4yOSAtOS44NSAtMS4yNCAtMy4zNSAtMS4zNCAtMTAuNDMgLTAuMTkgLTEzLjc3IDEuMDUgLTMuMTEgNS4yMSAtNy41MSA4LjQyIC04Ljk0IDIuNTMgLTEuMTUgMi42MyAtMS4xNSAyMC4yMyAtMS4xNSBsMTcuNjkgMCAzLjIwIDEuNTggYzMuODMgMS44NyA2LjE3IDQuNDUgNy42MCA4LjE4IDAuODYgMi4zMCAwLjk2IDMuNDQgMC44MSA3Ljk0IC0wLjE0IDQuNTQgLTAuMzggNS42MCAtMS40MyA3LjcwIC0xLjYzIDMuMTEgLTQuOTcgNi4wNyAtOC40NiA3LjQ2IC0yLjUzIDEgLTMuNDQgMS4wNSAtMTcuOTggMS4xNSAtOC40MiAwLjEwIC0xNi4zNiAtMC4wNSAtMTcuNjAgLTAuMjl6Ii8+CiA8L2c+CiA8ZyBmaWxsPSIjZmZmZmZmIj4KICA8cGF0aCBkPSJNMCAyMzcuMjAgbDAgLTIzNy4yMCAyNTIuNTAgMCAyNTIuNTAgMCAwIDIzNy4yMCAwIDIzNy4yMCAtMjUyLjUwIDAgLTI1Mi41MCAwIDAgLTIzNy4yMHogbTQwMi43NiAyMTkuNzkgYzQuNTkgLTEuMzkgOC40MiAtNS4xMiAxMC41NyAtMTAuMzggbDEuMDUgLTIuNTggMC4xMCAtOTEuNTMgYzAuMTAgLTUwLjM2IDAuMjkgLTkxLjY3IDAuNDMgLTkxLjgyIDAuMTQgLTAuMTQgMTQuMDYgLTAuMzggMzAuOTQgLTAuNTMgMzAuNTYgLTAuMjQgMzAuNzAgLTAuMjQgMzMuMzggLTEuMzQgMy42MyAtMS40MyA2Ljc5IC00LjMwIDguNDIgLTcuNjUgMS44MiAtMy42OCAxLjkxIC05LjU2IDAuMTkgLTEzLjM0IC0xLjI5IC0yLjk2IC00Ljg4IC02LjQ2IC04LjA4IC03Ljk0IGwtMi4yNSAtMS4wNSAtNDAuODkgMCAtNDAuODkgMCAtMi45MiAxLjM0IGMtMy42OCAxLjcyIC02LjkzIDQuOTcgLTguNjYgOC43MCBsLTEuMzQgMi44NyAtMC4xNCA5MS44MiBjLTAuMTAgODUuNDEgLTAuMTQgOTEuODcgLTAuOTEgOTIuNDQgLTAuNjIgMC40MyAtMTIuOTEgMC41NyAtNTcuNTMgMC41NyAtNDguMjUgMCAtNTYuODYgLTAuMTAgLTU3LjY3IC0wLjY3IC0wLjkxIC0wLjY3IC0wLjkxIC0zLjMwIC0xLjE1IC0xOTEuNDMgbC0wLjI0IC0xOTAuNzEgLTEuNDggLTMuMTEgYy0xLjkxIC0zLjkyIC00LjQwIC02LjQxIC04LjMyIC04LjMyIGwtMy4xMSAtMS40OCAtNzYuNTIgLTAuMTQgLTc2LjUyIC0wLjE0IC0yLjg3IDEuMDUgYy0zLjc4IDEuMzkgLTYuNjAgMy4zNSAtOC42MSA2LjA3IC0zLjM1IDQuNTAgLTMuMTEgLTIuNjggLTMuMTEgOTguMDggMCA1Ni41NyAtMC4xOSA5MS40NCAtMC40OCA5MS44NyAtMC4zOCAwLjYyIC00LjU0IDAuNzcgLTMxLjE4IDAuOTYgbC0zMC43NSAwLjI0IC0yLjYzIDEuMjQgYy0zLjc4IDEuNzcgLTUuOTggMy44NyAtNy43NSA3LjUxIC0zLjAxIDYuMDcgLTEuNzIgMTIuNzcgMy40MCAxNy43NCAxLjQ4IDEuNDMgMy40OSAyLjgyIDUuMTYgMy40OSBsMi43NyAxLjEwIDM3LjU0IDAuMTQgYzM5Ljc0IDAuMTQgNDIuMjcgMC4wNSA0Ni4zNCAtMi4wNiAzLjAxIC0xLjQ4IDYuNDEgLTUuMzYgNy43OSAtOC43NSBsMS4xMCAtMi43MyAwLjE0IC05MS41OCBjMC4xMCAtODUuMDggMC4xNCAtOTEuNjMgMC45MSAtOTIuMTUgMSAtMC43NyAxMTQuNjggLTAuOTEgMTE1Ljg3IC0wLjE0IDAuNjIgMC4zOCAwLjc3IDIyLjMzIDAuOTYgMTkxLjM4IGwwLjI0IDE5MC45NSAxLjU4IDMuMjAgYzEuNzIgMy41NCA0LjU5IDYuNDEgOC4xMyA4LjEzIDEuNzcgMC44NiAzLjQwIDEuMTUgNy43NSAxLjM0IDMuMDEgMC4xNCAzNy43OCAwLjI0IDc3LjIzIDAuMTQgNjAuNjQgLTAuMTAgNzIuMDcgLTAuMTkgNzMuOTggLTAuODF6IG0tMjA5LjAzIC0xOTguNTYgYzMuNzggLTEuODIgNi4zNiAtNC4zMCA4LjAzIC03Ljg0IDEuNjMgLTMuNDkgMS43MiAtOS4wOSAwLjE5IC0xMi41MyAtMS40MyAtMy4xNiAtNC41NCAtNi4zNiAtNy43NSAtNy44OSBsLTIuNjggLTEuMzQgLTE2LjUwIDAgLTE2LjUwIDAgLTIuNzMgMS4zNCBjLTkuNTIgNC42OSAtMTIgMTYuNDUgLTUuMDcgMjQuMDEgMi41OCAyLjgyIDUuODggNC44MyA5LjE4IDUuNTAgMS4wNSAwLjI0IDguNDIgMC4zOCAxNi4zMSAwLjMzIGwxNC4zNSAtMC4xMCAzLjE2IC0xLjQ4eiBtMTQ4LjI1IDAuMzggYzMuNDkgLTEuMzkgNi44NCAtNC4zNSA4LjQyIC03LjQ2IDAuOTYgLTEuODcgMS4yOSAtMy4zNSAxLjQ4IC02LjI2IDAuMzMgLTYuODQgLTIuNDQgLTExLjc2IC04LjQyIC0xNC42OCBsLTMuMjAgLTEuNTggLTE2LjI2IDAgYy0xNi4xMiAwIC0xNi4zMSAwIC0xOC43OSAxLjE1IC0zLjIwIDEuNDMgLTcuMzYgNS44MyAtOC40MiA4Ljk0IC0yLjQ5IDcuMzIgMC45MSAxNS44MyA3LjU2IDE5LjA4IDMuODcgMS45MSA2LjAzIDIuMTAgMjEuMDkgMS45NiAxMy4wNiAtMC4xMCAxNC4wMSAtMC4xOSAxNi41NSAtMS4xNXoiLz4KIDwvZz4KPC9zdmc+" alt="NIA" loading="eager"></div></div>
+<section class="card header-card">
+  <div class="title-row">
+    <span class="badge main">OK</span>
+    <h1>Opis skryptu: 02_parse_inv.py</h1>
+  </div>
+  <p class="meta">30.05.2026 19:15 | 10_system/01_inverter/01_solax/10_01_01_x3_neo_lv</p>
+  <div class="message"><strong>Parser danych RAW inwertera SolaX do tabeli 10_system_inv.csv</strong> — Skrypt czyta tekstowy raport RAW pobrany z SolaX Cloud, parsuje dane inwertera X3-NEO-LV, normalizuje czas do 5-minutowych slotów i aktualizuje tabelę operacyjną 10_system_inv.csv.</div>
+</section>
+<section class="card"><h2>Co robi ten skrypt</h2><div class="info-content"><p>Skrypt <code>02_parse_inv.py</code> jest drugim etapem potoku danych SolaX dla inwertera <code>X3-NEO-LV</code>. Nie loguje się do SolaX Cloud i nie pobiera danych samodzielnie. Jego zadaniem jest przetworzenie pliku <code>01_fetch_raw_inverter.txt</code>, który powstaje wcześniej w etapie <code>01_fetch_raw.py</code>.</p>
+<p>Wynikiem pracy jest tabela <code>10_system_inv.csv</code>. To uporządkowany plik slotowy z podstawowymi licznikami energii, stanem baterii oraz temperaturami, przygotowany do dalszego użycia przez kolejne moduły systemu.</p></div></section><section class="card"><h2>Dane wejściowe</h2><div class="info-content"><p>Najważniejszym wejściem jest <code>01_fetch_raw_inverter.txt</code>, czyli tekstowy raport inwertera pobrany z SolaX Cloud. Drugim wymaganym wejściem jest <code>02_parse_inv_defs.py</code>, gdzie zapisane są definicje kolumn RAW, kolumn wyjściowych, mapowanie pól oraz lista pól wymaganych.</p>
+<p>Jeżeli istnieje wcześniejszy plik <code>10_system_inv.csv</code>, skrypt czyta go jako wejście pomocnicze, aby scalić nowe dane z istniejącą historią i nie pogorszyć jakości już zapisanych rekordów.</p></div></section><section class="card"><h2>Wyniki i artefakty</h2><div class="info-content"><p>Głównym wynikiem jest <code>10_system_inv.csv</code>. Skrypt zapisuje go atomowo, z separatorem średnikowym, w kodowaniu UTF-8. Po udanym przebiegu tworzy także status HTML przez centralny builder NIA i czyści stare alerty tego komponentu.</p>
+<p>Przy błędzie skrypt tworzy widoczny plik alertu TXT lokalnie przy module oraz centralnie w katalogu <code>/work/00_nia_system/00_30_errors</code>. Alert nie jest historią zdarzeń; jest sygnałem aktualnego problemu.</p></div></section><section class="card"><h2>Logika przetwarzania</h2><div class="info-content"><p>Parser znajduje pierwszy wiersz danych RAW, dzieli raport na rekordy według układu z <code>RAW_COLUMNS</code>, przelicza czas źródłowy do początku natywnego slotu i buduje rekord wyjściowy według <code>OUTPUT_COLUMNS</code>.</p>
+<p>Deduplikacja jest jakościowa. Dla tego samego klucza <code>date + slot_start + slot_end</code> wygrywa rekord o lepszym statusie parsowania, wyższym <code>parse_quality_score</code>, a dopiero przy remisie nowszy rekord z tej samej partii danych. Dzięki temu nowszy, ale gorszy odczyt nie nadpisuje automatycznie lepszego wcześniejszego rekordu.</p></div></section><section class="card"><h2>Definicje pól wyjściowych</h2><div class="info-content"><p>Ta sekcja opisuje pola zapisywane do <code>10_system_inv.csv</code>. Jednostki są wpisane w nazwach pól tam, gdzie ma to znaczenie.</p>
+<table>
+<thead><tr><th>Pole</th><th>Gdzie występuje</th><th>Znaczenie</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td><code>date</code></td><td>output CSV</td><td>Data slotu.</td><td>Format <code>YYYY-MM-DD</code>.</td></tr>
+<tr><td><code>slot_start</code></td><td>output CSV</td><td>Początek slotu po zaokrągleniu czasu źródłowego w dół.</td><td>Format <code>HH:MM</code>.</td></tr>
+<tr><td><code>slot_end</code></td><td>output CSV</td><td>Koniec slotu.</td><td>Przy natywnym slocie 5 minut zwykle <code>slot_start + 5 min</code>.</td></tr>
+<tr><td><code>device_working_condition</code></td><td>output CSV</td><td>Tryb lub stan pracy inwertera podany przez SolaX.</td><td>Wartość tekstowa, np. tryb normalny albo inny stan urządzenia.</td></tr>
+<tr><td><code>daily_pv_yield_kWh</code></td><td>output CSV</td><td>Dzienna produkcja PV według licznika inwertera.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_pv_yield_kWh</code></td><td>output CSV</td><td>Całkowita produkcja PV według licznika inwertera.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>daily_inverter_output_kWh</code></td><td>output CSV</td><td>Dzienny uzysk/wyjście inwertera.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_inverter_output_kWh</code></td><td>output CSV</td><td>Całkowity uzysk/wyjście inwertera.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>daily_battery_discharge_kWh</code></td><td>output CSV</td><td>Dzienna energia rozładowania baterii.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_battery_discharge_kWh</code></td><td>output CSV</td><td>Całkowita energia rozładowania baterii.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>daily_battery_charge_kWh</code></td><td>output CSV</td><td>Dzienna energia ładowania baterii.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_battery_charge_kWh</code></td><td>output CSV</td><td>Całkowita energia ładowania baterii.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>daily_exported_energy_kWh</code></td><td>output CSV</td><td>Dzienna energia oddana do sieci.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_exported_energy_kWh</code></td><td>output CSV</td><td>Całkowita energia oddana do sieci.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>daily_imported_energy_kWh</code></td><td>output CSV</td><td>Dzienna energia pobrana z sieci.</td><td>kWh; licznik dzienny.</td></tr>
+<tr><td><code>total_imported_energy_kWh</code></td><td>output CSV</td><td>Całkowita energia pobrana z sieci.</td><td>kWh; licznik skumulowany.</td></tr>
+<tr><td><code>battery_soc_pct</code></td><td>output CSV</td><td>Stan naładowania baterii.</td><td>Wartość procentowa zapisana jako liczba.</td></tr>
+<tr><td><code>battery_temperature_C</code></td><td>output CSV</td><td>Temperatura baterii.</td><td>Stopnie Celsjusza.</td></tr>
+<tr><td><code>inverter_temperature_C</code></td><td>output CSV</td><td>Temperatura inwertera.</td><td>Stopnie Celsjusza.</td></tr>
+<tr><td><code>parse_status</code></td><td>output CSV</td><td>Status jakości rekordu po parsowaniu.</td><td><code>ok</code> albo <code>warning</code>.</td></tr>
+<tr><td><code>parse_quality_score</code></td><td>output CSV</td><td>Liczbowy wynik kompletności i jakości rekordu.</td><td>Używany przy wyborze lepszego rekordu dla tego samego slotu.</td></tr>
+<tr><td><code>parse_note</code></td><td>output CSV</td><td>Krótka notatka diagnostyczna parsera.</td><td>Może zawierać informację o zaokrągleniu czasu źródłowego albo brakujących polach.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Mapowanie najważniejszych pól RAW na wynik</h2><div class="info-content"><p>Mapowanie pól jest zdefiniowane w <code>02_parse_inv_defs.py</code>. Poniżej pokazano najważniejsze kierunki mapowania, istotne dla downstream.</p>
+<table>
+<thead><tr><th>Pole wyjściowe</th><th>Pole RAW</th><th>Znaczenie</th></tr></thead>
+<tbody>
+<tr><td><code>battery_soc_pct</code></td><td><code>mbmu_battery_soc_pct</code></td><td>Stan naładowania baterii przekazany z modułu baterii.</td></tr>
+<tr><td><code>battery_temperature_C</code></td><td><code>mbmu_battery_temperature_C</code></td><td>Temperatura baterii.</td></tr>
+<tr><td><code>inverter_temperature_C</code></td><td><code>inverter_temperature_C</code></td><td>Temperatura inwertera.</td></tr>
+<tr><td><code>daily_exported_energy_kWh</code></td><td><code>daily_exported_energy_kWh</code></td><td>Dzienny eksport energii do sieci.</td></tr>
+<tr><td><code>daily_imported_energy_kWh</code></td><td><code>daily_imported_energy_kWh</code></td><td>Dzienny import energii z sieci.</td></tr>
+<tr><td><code>total_battery_charge_kWh</code></td><td><code>total_battery_charge_kWh</code></td><td>Skumulowany licznik ładowania baterii.</td></tr>
+<tr><td><code>total_battery_discharge_kWh</code></td><td><code>total_battery_discharge_kWh</code></td><td>Skumulowany licznik rozładowania baterii.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Interpretacja statusu i alertów</h2><div class="info-content"><p><strong>OK</strong> oznacza, że plik RAW został odczytany, rekordy zostały sparsowane, tabela <code>10_system_inv.csv</code> została zapisana, a stare alerty tego komponentu zostały usunięte.</p>
+<p><strong>ERROR</strong> oznacza błąd konfiguracji, brak wejścia, problem zapisu albo nieoczekiwany wyjątek. W takim przypadku powstaje alert TXT o nazwie <code>!_ERROR_!!!_10_01_01_x3_neo_lv_parse_inv_*.txt</code>.</p>
+<p>Ten skrypt nie tworzy osobnej historii błędów. Aktualny wynik należy czytać ze statusu HTML, logu modułu i ewentualnego alertu TXT.</p></div></section><section class="card"><h2>Źródła danych i ograniczenia</h2><div class="info-content"><p>Źródłem danych jest raport Data reports z SolaX Cloud pobrany wcześniej przez <code>01_fetch_raw.py</code>. Parser zakłada, że układ raportu odpowiada definicjom w <code>02_parse_inv_defs.py</code>.</p>
+<p>Skrypt zapisuje natywne sloty 5-minutowe. Dalsza agregacja do 15 minut albo innych interwałów należy do kolejnych modułów potoku. Odczyty SolaX mogą być opóźnione względem czasu rzeczywistego, więc downstream powinien rozróżniać czas źródła od czasu decyzji.</p></div></section>
+<section class="card"><h2>Metadata techniczne</h2><table><tr><th>script_path</th><td class="mono">/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/02_parse_inv.py</td></tr><tr><th>ini_path</th><td class="mono">/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/02_parse_inv.ini</td></tr><tr><th>status_html_file</th><td class="mono">02_parse_inv_status.html</td></tr><tr><th>script_info_html_file</th><td class="mono">02_parse_inv_script_info.html</td></tr><tr><th>status_inherited_from_status_html</th><td class="mono">OK</td></tr><tr><th>generator_version</th><td class="mono">v0.7.4-script-info-contract-fields</td></tr></table></section>
+<p class="footer">Script info wygenerowane centralnie przez 00_20_nia_system_py_html_descr.py na podstawie statusu HTML i INI skryptu.</p>
+</main></body></html>

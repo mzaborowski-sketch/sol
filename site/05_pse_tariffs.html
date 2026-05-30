@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PSE — taryfa RCE i PDGSZ</title>
+  <style>
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#f6f7fb; color:#111827; }
+    main { max-width:1180px; margin:0 auto; padding:24px; }
+    .hero, .card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:20px; margin-bottom:16px; box-shadow:0 8px 24px rgba(15,23,42,.06); }
+    .kicker { color:#6b7280; text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; font-weight:700; }
+    h1, h2 { margin-top:0; }
+    .muted { color:#6b7280; }
+    code { background:#f3f4f6; padding:.1rem .3rem; border-radius:.35rem; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-size:.9rem; }
+    th, td { border-bottom:1px solid #e5e7eb; padding:.5rem .6rem; text-align:left; white-space:nowrap; }
+    th { background:#f9fafb; color:#374151; }
+    .ok { color:#166534; font-weight:700; }
+    .error { color:#991b1b; font-weight:700; }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="kicker">Taryfy / PSE</div>
+    <h1>PSE — taryfa RCE i PDGSZ</h1>
+    <p class="muted"><strong>Utworzono:</strong> 2026-05-28T17:44:56<br>
+    <strong>Status:</strong> <span class="ok">OK</span><br>
+    <strong>Source dir:</strong> <code>00_pse_rce</code><br>
+    <strong>Output dir:</strong> <code>/work/05_tariffs</code><br>
+    <strong>Write mode:</strong> <code>append</code></p>
+    <p>Import finished successfully.</p>
+  </section>
+  
+<section class="card">
+  <h2>PSE tariff — RCE + PDGSZ</h2>
+  <p class="muted">Plik: <code>/work/05_tariffs/05_pse_tariff.csv</code></p>
+  <p class="muted">Pokazano pierwsze 120 wierszy.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>date</th><th>start</th><th>end</th><th>price_PLN_kWh</th><th>pse_tariff_sell_buy_rce_PLN_kWh</th><th>pse_tariff_distr_pdgsz</th><th>pdgsz_distribution_PLN_kWh</th><th>pdgsz_source_name</th><th>pdgsz_source_url</th><th>rce_source_dir</th><th>pdgsz_source_dir</th></tr></thead>
+      <tbody><tr><td>2026-05-23</td><td>00:00</td><td>00:15</td><td>0,647</td><td>0,647</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>00:15</td><td>00:30</td><td>0,614</td><td>0,614</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>00:30</td><td>00:45</td><td>0,590</td><td>0,590</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>00:45</td><td>01:00</td><td>0,573</td><td>0,573</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>01:00</td><td>01:15</td><td>0,577</td><td>0,577</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>01:15</td><td>01:30</td><td>0,567</td><td>0,567</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>01:30</td><td>01:45</td><td>0,568</td><td>0,568</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>01:45</td><td>02:00</td><td>0,556</td><td>0,556</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>02:00</td><td>02:15</td><td>0,559</td><td>0,559</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>02:15</td><td>02:30</td><td>0,554</td><td>0,554</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>02:30</td><td>02:45</td><td>0,542</td><td>0,542</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>02:45</td><td>03:00</td><td>0,545</td><td>0,545</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>03:00</td><td>03:15</td><td>0,544</td><td>0,544</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>03:15</td><td>03:30</td><td>0,544</td><td>0,544</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>03:30</td><td>03:45</td><td>0,544</td><td>0,544</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>03:45</td><td>04:00</td><td>0,537</td><td>0,537</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>04:00</td><td>04:15</td><td>0,530</td><td>0,530</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>04:15</td><td>04:30</td><td>0,527</td><td>0,527</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>04:30</td><td>04:45</td><td>0,529</td><td>0,529</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>04:45</td><td>05:00</td><td>0,533</td><td>0,533</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>05:00</td><td>05:15</td><td>0,534</td><td>0,534</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>05:15</td><td>05:30</td><td>0,527</td><td>0,527</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>05:30</td><td>05:45</td><td>0,522</td><td>0,522</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>05:45</td><td>06:00</td><td>0,512</td><td>0,512</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>06:00</td><td>06:15</td><td>0,520</td><td>0,520</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>06:15</td><td>06:30</td><td>0,507</td><td>0,507</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>06:30</td><td>06:45</td><td>0,486</td><td>0,486</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>06:45</td><td>07:00</td><td>0,476</td><td>0,476</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>07:00</td><td>07:15</td><td>0,499</td><td>0,499</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>07:15</td><td>07:30</td><td>0,447</td><td>0,447</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>07:30</td><td>07:45</td><td>0,477</td><td>0,477</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>07:45</td><td>08:00</td><td>0,442</td><td>0,442</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>08:00</td><td>08:15</td><td>0,359</td><td>0,359</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>08:15</td><td>08:30</td><td>0,349</td><td>0,349</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>08:30</td><td>08:45</td><td>0,315</td><td>0,315</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>08:45</td><td>09:00</td><td>0,236</td><td>0,236</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>09:00</td><td>09:15</td><td>0,027</td><td>0,027</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>09:15</td><td>09:30</td><td>0,019</td><td>0,019</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>09:30</td><td>09:45</td><td>0,017</td><td>0,017</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>09:45</td><td>10:00</td><td>0,017</td><td>0,017</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>10:00</td><td>10:15</td><td>-0,000</td><td>-0,000</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>10:15</td><td>10:30</td><td>-0,000</td><td>-0,000</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>10:30</td><td>10:45</td><td>-0,001</td><td>-0,001</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>10:45</td><td>11:00</td><td>-0,002</td><td>-0,002</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>11:00</td><td>11:15</td><td>0,024</td><td>0,024</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>11:15</td><td>11:30</td><td>0,002</td><td>0,002</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>11:30</td><td>11:45</td><td>0,002</td><td>0,002</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>11:45</td><td>12:00</td><td>0,002</td><td>0,002</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>12:00</td><td>12:15</td><td>0,006</td><td>0,006</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>12:15</td><td>12:30</td><td>0,027</td><td>0,027</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>12:30</td><td>12:45</td><td>0,050</td><td>0,050</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>12:45</td><td>13:00</td><td>0,044</td><td>0,044</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>13:00</td><td>13:15</td><td>0,026</td><td>0,026</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>13:15</td><td>13:30</td><td>0,005</td><td>0,005</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>13:30</td><td>13:45</td><td>0,031</td><td>0,031</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>13:45</td><td>14:00</td><td>0,041</td><td>0,041</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>14:00</td><td>14:15</td><td>0,003</td><td>0,003</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>14:15</td><td>14:30</td><td>0,044</td><td>0,044</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>14:30</td><td>14:45</td><td>0,080</td><td>0,080</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>14:45</td><td>15:00</td><td>0,078</td><td>0,078</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>15:00</td><td>15:15</td><td>0,002</td><td>0,002</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>15:15</td><td>15:30</td><td>0,026</td><td>0,026</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>15:30</td><td>15:45</td><td>0,074</td><td>0,074</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>15:45</td><td>16:00</td><td>0,089</td><td>0,089</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>16:00</td><td>16:15</td><td>0,044</td><td>0,044</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>16:15</td><td>16:30</td><td>0,050</td><td>0,050</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>16:30</td><td>16:45</td><td>0,145</td><td>0,145</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>16:45</td><td>17:00</td><td>0,186</td><td>0,186</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>17:00</td><td>17:15</td><td>0,421</td><td>0,421</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>17:15</td><td>17:30</td><td>0,435</td><td>0,435</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>17:30</td><td>17:45</td><td>0,486</td><td>0,486</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>17:45</td><td>18:00</td><td>0,491</td><td>0,491</td><td>PDGSZ_0</td><td>0,06</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>18:00</td><td>18:15</td><td>0,631</td><td>0,631</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>18:15</td><td>18:30</td><td>0,528</td><td>0,528</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>18:30</td><td>18:45</td><td>0,568</td><td>0,568</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>18:45</td><td>19:00</td><td>0,614</td><td>0,614</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>19:00</td><td>19:15</td><td>0,608</td><td>0,608</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>19:15</td><td>19:30</td><td>0,634</td><td>0,634</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>19:30</td><td>19:45</td><td>0,663</td><td>0,663</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>19:45</td><td>20:00</td><td>0,710</td><td>0,710</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>20:00</td><td>20:15</td><td>0,727</td><td>0,727</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>20:15</td><td>20:30</td><td>0,741</td><td>0,741</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>20:30</td><td>20:45</td><td>0,776</td><td>0,776</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>20:45</td><td>21:00</td><td>0,786</td><td>0,786</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>21:00</td><td>21:15</td><td>0,733</td><td>0,733</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>21:15</td><td>21:30</td><td>0,722</td><td>0,722</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>21:30</td><td>21:45</td><td>0,712</td><td>0,712</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>21:45</td><td>22:00</td><td>0,705</td><td>0,705</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>22:00</td><td>22:15</td><td>0,703</td><td>0,703</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>22:15</td><td>22:30</td><td>0,665</td><td>0,665</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>22:30</td><td>22:45</td><td>0,649</td><td>0,649</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>22:45</td><td>23:00</td><td>0,633</td><td>0,633</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>23:00</td><td>23:15</td><td>0,624</td><td>0,624</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>23:15</td><td>23:30</td><td>0,615</td><td>0,615</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>23:30</td><td>23:45</td><td>0,599</td><td>0,599</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-23</td><td>23:45</td><td>00:00</td><td>0,596</td><td>0,596</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>00:00</td><td>00:15</td><td>0,627</td><td>0,627</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>00:15</td><td>00:30</td><td>0,621</td><td>0,621</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>00:30</td><td>00:45</td><td>0,593</td><td>0,593</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>00:45</td><td>01:00</td><td>0,592</td><td>0,592</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>01:00</td><td>01:15</td><td>0,575</td><td>0,575</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>01:15</td><td>01:30</td><td>0,574</td><td>0,574</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>01:30</td><td>01:45</td><td>0,564</td><td>0,564</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>01:45</td><td>02:00</td><td>0,560</td><td>0,560</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>02:00</td><td>02:15</td><td>0,581</td><td>0,581</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>02:15</td><td>02:30</td><td>0,574</td><td>0,574</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>02:30</td><td>02:45</td><td>0,565</td><td>0,565</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>02:45</td><td>03:00</td><td>0,555</td><td>0,555</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>03:00</td><td>03:15</td><td>0,540</td><td>0,540</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>03:15</td><td>03:30</td><td>0,539</td><td>0,539</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>03:30</td><td>03:45</td><td>0,538</td><td>0,538</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>03:45</td><td>04:00</td><td>0,536</td><td>0,536</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>04:00</td><td>04:15</td><td>0,527</td><td>0,527</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>04:15</td><td>04:30</td><td>0,526</td><td>0,526</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>04:30</td><td>04:45</td><td>0,534</td><td>0,534</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>04:45</td><td>05:00</td><td>0,532</td><td>0,532</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>05:00</td><td>05:15</td><td>0,530</td><td>0,530</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>05:15</td><td>05:30</td><td>0,521</td><td>0,521</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>05:30</td><td>05:45</td><td>0,511</td><td>0,511</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr>
+<tr><td>2026-05-24</td><td>05:45</td><td>06:00</td><td>0,498</td><td>0,498</td><td>PDGSZ_1</td><td>0,11</td><td>Akademia Fotowoltaiki / Tauron G14d</td><td>https://akademia-fotowoltaiki.pl/tauron/</td><td>00_pse_rce</td><td>00_pse_rce</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

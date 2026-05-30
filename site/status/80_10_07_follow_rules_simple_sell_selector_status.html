@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SolaX simple sell selector — status</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg:#f6f7f9; --card:#ffffff; --text:#17202a; --muted:#657080; --border:#d8dde6;
+  --ok:#0f7b3b; --warn:#9a6700; --error:#b42318; --accent:#1f6feb;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#111827; --card:#182235; --text:#e5e7eb; --muted:#aab3c2; --border:#2f3b52; --accent:#58a6ff; }
+}
+body { margin:0; padding:18px; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,sans-serif; }
+main { max-width:1120px; margin:0 auto; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; margin:0 0 14px 0; box-shadow:0 6px 20px rgba(0,0,0,.06); }
+h1 { font-size:1.35rem; margin:0 0 4px 0; }
+h2 { font-size:1.05rem; margin:0 0 10px 0; }
+.meta { color:var(--muted); margin:0 0 12px 0; }
+.nav a { margin-right:12px; color:var(--accent); text-decoration:none; font-weight:650; }
+.badge { display:inline-block; padding:5px 10px; border-radius:999px; font-weight:750; background:var(--border); margin-right:6px; }
+.badge.ok { background:rgba(15,123,59,.14); color:var(--ok); }
+.badge.warning { background:rgba(154,103,0,.14); color:var(--warn); }
+.badge.error { background:rgba(180,35,24,.14); color:var(--error); }
+table { width:100%; border-collapse:collapse; font-size:.92rem; }
+th,td { border-bottom:1px solid var(--border); text-align:left; padding:8px 7px; vertical-align:top; }
+th { width:290px; color:var(--muted); font-weight:650; }
+.reason { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+tr.armed td { background:rgba(154,103,0,.10); }
+tr.active td { font-weight:700; background:rgba(15,123,59,.10); }
+tr.target td { outline:2px solid var(--accent); outline-offset:-2px; }
+</style>
+</head>
+<body>
+<main>
+  <section class="card">
+    <p class="nav"><a href="index.html">← Indeks statusów</a><a href="../index.html">Strona główna</a></p>
+    <h1>SolaX simple sell selector — status</h1>
+    <p class="meta">80_10_07_follow_rules_simple_sell_selector | generated at 30.05.2026 19:15 | v2.2.0-arm-then-execute-status-three-places</p>
+    <p><span class="badge ok">OK</span><span class="badge">idle</span><span class="badge">preserve_idle</span></p>
+  </section>
+  <section class="card"><h2>Status</h2><table><tr><th>module_id</th><td>80_10_07_follow_rules_simple_sell_selector</td></tr>
+<tr><th>family</th><td>80_automation/10_solax</td></tr>
+<tr><th>status</th><td>OK</td></tr>
+<tr><th>generated_at</th><td>30.05.2026 19:15</td></tr>
+<tr><th>script</th><td>80_10_07_follow_rules_simple_sell_selector.py</td></tr>
+<tr><th>version</th><td>v2.2.0-arm-then-execute-status-three-places</td></tr>
+<tr><th>message</th><td>no active slot and no selected future slot inside arm window -&gt; preserve executor profile</td></tr>
+<tr><th>selector_state</th><td>idle</td></tr>
+<tr><th>selector_action</th><td>preserve_idle</td></tr>
+<tr><th>selected_profile</th><td>keep</td></tr>
+<tr><th>executor_update</th><td>false</td></tr>
+<tr><th>executor_profile_before</th><td>keep</td></tr>
+<tr><th>executor_profile_after</th><td>keep</td></tr>
+<tr><th>matched_rule</th><td>idle_preserve_executor_profile</td></tr>
+<tr><th>current_time</th><td>19:15</td></tr>
+<tr><th>current_slot</th><td>19:15-19:30</td></tr>
+<tr><th>decision_target_slot</th><td>20:15-20:30</td></tr>
+<tr><th>armed_slot</th><td>-</td></tr>
+<tr><th>active_slot</th><td>-</td></tr></table></section>
+  <section class="card"><h2>Reason</h2><div class="reason">state=idle; action=preserve_idle; arm_window=390s; execute_window=210s; no active slot and no selected future slot inside arm window -&gt; preserve executor profile</div></section>
+  <section class="card"><h2>Technical context</h2><table><tr><th>logic_csv_path</th><td>/work/80_automation/80_automation_interm__logic.csv</td></tr>
+<tr><th>log_path</th><td>/work/80_automation/10_solax/80_10_07_follow_rules/80_10_07_follow_rules_simple_sell_selector.log</td></tr>
+<tr><th>local_diagnostic_html</th><td>/work/80_automation/10_solax/80_10_07_follow_rules/80_10_07_follow_rules_simple_sell_selector_diagnostic.html</td></tr>
+<tr><th>local_status_html</th><td>/work/80_automation/10_solax/80_10_07_follow_rules/80_10_07_follow_rules_simple_sell_selector_status.html</td></tr>
+<tr><th>work_web_status</th><td>/work/84_web/!_www/status/80_10_07_follow_rules_simple_sell_selector_status.html</td></tr>
+<tr><th>share_web_status_expected</th><td>/share/CACHEDEV1_DATA/Web/status/80_10_07_follow_rules_simple_sell_selector_status.html</td></tr>
+<tr><th>status_registry_csv</th><td>/work/84_web/!_www/status/status_registry.csv</td></tr>
+<tr><th>status_registry_jsonl</th><td>/work/84_web/!_www/status/status_registry.jsonl</td></tr>
+<tr><th>plan_status_seen</th><td>planned</td></tr>
+<tr><th>plan_energy_to_sell_kWh_seen</th><td>7.880</td></tr>
+<tr><th>plan_selected_slots_count_seen</th><td>7</td></tr>
+<tr><th>parsed_selected_slots_count</th><td>7</td></tr></table></section>
+  <section class="card">
+    <h2>Selected plan slots</h2>
+    <table><tr><th>slot</th><th>time</th><th>power_kW</th><th>mark</th></tr>
+    <tr class="target"><td>plan_slot_01</td><td>20:15-20:30</td><td>4.500</td><td>target</td></tr><tr class=""><td>plan_slot_02</td><td>20:30-20:45</td><td>4.500</td><td></td></tr><tr class=""><td>plan_slot_03</td><td>20:45-21:00</td><td>4.500</td><td></td></tr><tr class=""><td>plan_slot_04</td><td>21:00-21:15</td><td>4.500</td><td></td></tr><tr class=""><td>plan_slot_05</td><td>21:15-21:30</td><td>4.500</td><td></td></tr><tr class=""><td>plan_slot_06</td><td>21:30-21:45</td><td>4.500</td><td></td></tr><tr class=""><td>plan_slot_07</td><td>21:45-22:00</td><td>4.500</td><td></td></tr>
+    </table>
+  </section>
+</main>
+</body>
+</html>

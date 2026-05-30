@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Współczynniki PV Open-Meteo H3 — status</title>
+  <style>
+    :root{--bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#4b5563;--line:#d9e1ea;--ok:#15803d;--warn:#d97706;--bad:#b91c1c;--info:#0369a1;}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+    main{max-width:1120px;margin:0 auto;padding:28px 18px 64px}.card{background:var(--card);border:1px solid #dce3eb;border-radius:14px;padding:20px 22px;margin:16px 0;box-shadow:0 2px 8px rgba(16,32,51,.05)}
+    h1{font-size:28px;margin:0 0 8px} h2{font-size:20px;margin:0 0 12px} .muted{color:var(--muted)} .small{font-size:.92rem;color:var(--muted)}
+    nav a{display:inline-block;margin-right:12px;color:var(--info);text-decoration:none;font-weight:700}.badge{display:inline-block;border-radius:999px;padding:.18rem .65rem;font-weight:700;font-size:.86rem}.OK{background:#dcfce7;color:var(--ok)}.WARNING{background:#fef3c7;color:var(--warn)}.ERROR{background:#fee2e2;color:var(--bad)}.INFO{background:#e0f2fe;color:var(--info)}
+    table{width:100%;border-collapse:collapse;margin:.4rem 0}th,td{border-bottom:1px solid #e5e7eb;padding:.55rem .65rem;text-align:left;vertical-align:top}th{background:#f8fafc;color:#374151}code{background:#eef2f7;border:1px solid #dbe3ef;border-radius:5px;padding:1px 5px} .mono{font-family:Consolas,Monaco,monospace;font-size:.92rem;word-break:break-all}
+    @media(max-width:760px){main{padding:20px 12px 48px}table{font-size:.9rem}th,td{padding:.45rem}.card{padding:16px}}
+    </style>
+</head>
+<body>
+<main>
+  <nav class="card">
+    <a href="index.html">← Statusy</a>
+    <a href="../index.html">Strona główna</a>
+  </nav>
+
+  <section class="card">
+    <h1>Współczynniki PV Open-Meteo H3</h1>
+    <p class="muted">Status techniczny modułu. Ten skrypt nie generuje raportu WWW.</p>
+    <p><span class="badge OK">OK</span></p>
+  </section>
+
+  <section class="card">
+    <h2>Stan ostatniego uruchomienia</h2>
+    <table><tr><th>Status</th><td class='mono'>OK</td></tr>
+<tr><th>Akcja</th><td class='mono'>UPDATED_FACTORS</td></tr>
+<tr><th>Komunikat</th><td class='mono'>Hourly PV factor table updated from system 15-minute source and Open-Meteo H3 history</td></tr>
+<tr><th>Wygenerowano</th><td class='mono'>2026-05-27 23:00:35</td></tr>
+<tr><th>Moduł</th><td class='mono'>20_40_11_forecast_open_meteo_factors</td></tr>
+<tr><th>Rodzina</th><td class='mono'>20_analysis/meteo_forecast</td></tr>
+<tr><th>Wersja skryptu</th><td class='mono'>v1.1.2-no-useless-outputs</td></tr>
+<tr><th>Raport WWW</th><td class='mono'>nie dotyczy — ten skrypt generuje tylko status techniczny</td></tr>
+<tr><th>Rysunki</th><td class='mono'>brak — no_figures_defined = true</td></tr></table>
+  </section>
+
+  <section class="card">
+    <h2>Liczniki i metryki</h2>
+    <table><tr><th>source_rows_read</th><td class='mono'>1246</td></tr>
+<tr><th>source_full_hour_boundary_totals</th><td class='mono'>312</td></tr>
+<tr><th>source_hourly_productions_built</th><td class='mono'>307</td></tr>
+<tr><th>source_rows_with_warning_status</th><td class='mono'>31</td></tr>
+<tr><th>source_rows_with_invalid_datetime_ignored</th><td class='mono'>0</td></tr>
+<tr><th>source_rows_with_blank_total_ignored</th><td class='mono'>1</td></tr>
+<tr><th>forecast_rows_read</th><td class='mono'>243</td></tr>
+<tr><th>forecast_indexed_target_hours</th><td class='mono'>84</td></tr>
+<tr><th>forecast_invalid_rows_ignored</th><td class='mono'>0</td></tr>
+<tr><th>production_min_hour_start</th><td class='mono'>2026-05-11 15:00:00</td></tr>
+<tr><th>production_max_hour_start</th><td class='mono'>2026-05-27 21:00:00</td></tr>
+<tr><th>forecast_min_hour_start</th><td class='mono'>2026-05-24 15:00:00</td></tr>
+<tr><th>forecast_max_hour_start</th><td class='mono'>2026-05-28 02:00:00</td></tr>
+<tr><th>factor_long_rows</th><td class='mono'>54</td></tr>
+<tr><th>factor_ok_rows</th><td class='mono'>54</td></tr>
+<tr><th>factor_no_forecast_rows</th><td class='mono'>230</td></tr>
+<tr><th>factor_no_h3_within_limit_rows</th><td class='mono'>4</td></tr>
+<tr><th>factor_no_radiation_rows</th><td class='mono'>19</td></tr>
+<tr><th>matrix_dates</th><td class='mono'>4</td></tr>
+<tr><th>csv_outputs_written</th><td class='mono'>True</td></tr>
+<tr><th>duration_s</th><td class='mono'>0.028</td></tr></table>
+  </section>
+
+  <section class="card">
+    <h2>Wejścia i wyjścia</h2>
+    <table><tr><th>Źródło PV 15 min</th><td class='mono'>/work/10_system/10_system_15min.csv</td></tr>
+<tr><th>Historia prognozy H3</th><td class='mono'>/work/20_analysis/20_40_meteo_forecast/20_40_10_forecast_open_meteo/20_40_10_forecast_hourly_control_3h_history.csv</td></tr>
+<tr><th>Matrix CSV</th><td class='mono'>/work/20_analysis/20_40_meteo_forecast/20_40_11_forecast_open_meteo_factors/20_40_11_forecast_open_meteo_factors_matrix.csv</td></tr>
+<tr><th>Long CSV</th><td class='mono'>/work/20_analysis/20_40_meteo_forecast/20_40_11_forecast_open_meteo_factors/20_40_11_forecast_open_meteo_factors_long.csv</td></tr>
+<tr><th>Status JSON</th><td class='mono'>/work/20_analysis/20_40_meteo_forecast/20_40_11_forecast_open_meteo_factors/status_20_40_11_forecast_open_meteo_factors.json</td></tr>
+<tr><th>Status HTML</th><td class='mono'>/work/84_web/!_www/status/20_40_11_forecast_open_meteo_factors_status.html</td></tr>
+<tr><th>Log</th><td class='mono'>/work/20_analysis/20_40_meteo_forecast/20_40_11_forecast_open_meteo_factors/20_40_11_forecast_open_meteo_factors.log</td></tr></table>
+  </section>
+
+  <footer class="card small">
+    <p>Plik: <code>20_40_11_forecast_open_meteo_factors_status.html</code>. Registry statusów jest plikiem w katalogu <code>status/</code>, nie osobnym katalogiem.</p>
+  </footer>
+</main>
+</body>
+</html>

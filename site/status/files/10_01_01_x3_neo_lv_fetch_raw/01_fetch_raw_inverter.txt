@@ -1,0 +1,249 @@
+===== SOLAX X3-NEO-LV INVERTER RAW FETCH =====
+fetched_at: 2026-05-26 00:07:59
+source_url: https://global.solaxcloud.com/blue/#/inverter-detail?sn=10U080020P0602&siteId=1964992125359648769
+source_type: inverter
+device_name: X3-NEO-LV
+device_sn: 10U080020P0602
+===== BODY INNER TEXT =====
+X3-NEO-LV
+Online
+NormalMode
+Device SN: 10U080020P0602
+Registration No.: SNZUZ8JJVA
+Device Model: X3-NEO-LV
+Plant: Schönborna 3, Kraków 
+Data update time: 2026-05-26 00:00:00
+Refresh
+Analysis
+Alarm
+Data reports
+Live data
+Maintenance
+Report Type
+Daily report
+Select time
+Search
+
+Data reports
+
+Export Records
+Export
+Batch export
+No.
+	
+Update time
+	
+Device working condition
+	
+Daily PV Yield (kWh)
+	
+Total PV Yield (kWh)
+	
+Daily inverter output (kWh)
+	
+Total inverter output (kWh)
+	
+Daily Inverter EPS Yield (kWh)
+	
+Total Inverter EPS Yield (kWh)
+	
+Daily battery discharge (kWh)
+	
+Total battery discharge (kWh)
+	
+Daily battery charge (kWh)
+	
+Total battery charge (kWh)
+	
+Daily exported energy (kWh)
+	
+Total exported energy (kWh)
+	
+Daily imported energy (kWh)
+	
+Total imported energy (kWh)
+	
+Total Battery SOC (%)
+	
+Realtime power (W)
+	
+Total PV Power (W)
+	
+Total battery power (W)
+	
+MBMU SN
+	
+MBMU Battery Type
+	
+MBMU Battery SOC (%)
+	
+MBMU Battery temperature (℃)
+	
+MBMU Battery current (A)
+	
+MBMU Battery voltage (V)
+	
+MBMU Battery power (W)
+	
+Grid power (W)
+	
+MPPT1 Power (W)
+	
+MPPT1 Voltage (V)
+	
+MPPT1 Current (A)
+	
+MPPT2 Power (W)
+	
+MPPT2 Voltage (V)
+	
+MPPT2 Current (A)
+	
+AC Power-L1 (W)
+	
+AC Voltage-L1 (V)
+	
+AC Current-L1 (A)
+	
+AC Power-L2 (W)
+	
+AC Voltage-L2 (V)
+	
+AC Current-L2 (A)
+	
+AC Power-L3 (W)
+	
+AC Voltage-L3 (V)
+	
+AC Current-L3 (A)
+	
+EPS Power -L1 (W)
+	
+EPS Voltage-L1 (V)
+	
+EPS Current-L1 (A)
+	
+EPS Power -L2 (W)
+	
+EPS Voltage-L2 (V)
+	
+EPS Current-L2 (A)
+	
+EPS Power -L3 (W)
+	
+EPS Voltage-L3 (V)
+	
+EPS Current-L3 (A)
+	
+Inverter temperature (℃)
+1
+	
+2026-05-26 00:00:00
+	
+NormalMode
+	
+0.00
+	
+1,983.80
+	
+0.00
+	
+1,907.50
+	
+0.00
+	
+2.30
+	
+0.00
+	
+1,394.50
+	
+0.00
+	
+1,644.10
+	
+0.00
+	
+554.40
+	
+0.00
+	
+3,489.80
+	
+10.0
+	
+-168
+	
+0
+	
+-14
+	
+20H380E116091C
+	
+Lithium
+	
+10.0
+	
+28.0
+	
+-0.2
+	
+51.0
+	
+-14
+	
+-4,544
+	
+0
+	
+0.0
+	
+0.0
+	
+0
+	
+0.0
+	
+0.0
+	
+-57
+	
+236.7
+	
+0.4
+	
+-57
+	
+239.7
+	
+0.4
+	
+-58
+	
+231.3
+	
+0.4
+	
+0
+	
+0.0
+	
+0.0
+	
+0
+	
+0.0
+	
+0.0
+	
+0
+	
+0.0
+	
+0.0
+	
+48.00
+Total: 1
+1
+20 / Page
+Goto

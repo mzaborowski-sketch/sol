@@ -1,0 +1,758 @@
+2026-05-25 23:45:01 | START 01_fetch_raw.py | version=v1.6.0-clean-text-fetch | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-25 23:45:01 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501
+2026-05-25 23:45:01 | Initial start delay: 60.0 s
+2026-05-25 23:46:01 | FETCH START | attempt=1/2
+2026-05-25 23:46:01 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:46:02 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:46:02 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:46:02 | OK: login page ready | marker=Remember Me
+2026-05-25 23:46:02 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_01_login_page.png
+2026-05-25 23:46:02 | OK: Credentials filled
+2026-05-25 23:46:03 | OK: Remember Me: checked
+2026-05-25 23:46:03 | OK: Terms agreement: checked
+2026-05-25 23:46:04 | OK: Clicked login button
+2026-05-25 23:46:06 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-25 23:46:06 | OK: post-login ready | marker=Overview
+2026-05-25 23:46:07 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_02_logged_in.png
+2026-05-25 23:46:07 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:46:07 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:46:08 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:46:08 | OK: device page ready | marker=Devices
+2026-05-25 23:46:08 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_03_device_page.png
+2026-05-25 23:46:08 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:46:09 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:46:10 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:46:10 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:46:10 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:46:10 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:46:10 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:46:22 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:46:22 | WARNING: Opening inverter by candidate failed: '10U080020P0602' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:46:22 | Found inverter device candidate: text='X3-NEO-LV' | method=exact | x=341.3, y=359.0
+2026-05-25 23:46:22 | OK: Clicked inverter device: 'X3-NEO-LV' | x=341.3, y=359.0
+2026-05-25 23:46:34 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:46:34 | WARNING: Opening inverter by candidate failed: 'X3-NEO-LV' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:46:34 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_device_open_failed_body_text.txt
+2026-05-25 23:46:34 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:46:34 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:46:34 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-25 23:47:05 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:47:06 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:47:06 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:47:06 | OK: login page ready | marker=Remember Me
+2026-05-25 23:47:06 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_01_login_page.png
+2026-05-25 23:47:06 | OK: Credentials filled
+2026-05-25 23:47:07 | OK: Remember Me: checked
+2026-05-25 23:47:07 | OK: Terms agreement: checked
+2026-05-25 23:47:07 | OK: Clicked login button
+2026-05-25 23:47:10 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-25 23:47:10 | OK: post-login ready | marker=Overview
+2026-05-25 23:47:11 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_02_logged_in.png
+2026-05-25 23:47:11 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:47:11 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:47:12 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:47:12 | OK: device page ready | marker=Devices
+2026-05-25 23:47:13 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/01_step_03_device_page.png
+2026-05-25 23:47:13 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:47:13 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:47:14 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:47:14 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:47:14 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:47:14 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:47:14 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:47:26 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:47:26 | WARNING: Opening inverter by candidate failed: '10U080020P0602' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:47:26 | Found inverter device candidate: text='X3-NEO-LV' | method=exact | x=341.3, y=359.0
+2026-05-25 23:47:26 | OK: Clicked inverter device: 'X3-NEO-LV' | x=341.3, y=359.0
+2026-05-25 23:47:39 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:47:39 | WARNING: Opening inverter by candidate failed: 'X3-NEO-LV' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:47:39 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_device_open_failed_body_text.txt
+2026-05-25 23:47:39 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:47:39 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:47:39 | ERROR: END | rc=1 | error=Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:47:39 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1243, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1155, in run_fetch_once
+    open_device_by_text(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1023, in open_device_by_text
+    raise RuntimeError(f"Could not open {kind} device detail. Last error: {last_error}")
+RuntimeError: Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T234501/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+
+2026-05-25 23:50:01 | START 01_fetch_raw.py | version=v1.6.0-clean-text-fetch | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-25 23:50:01 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001
+2026-05-25 23:50:01 | Initial start delay: 60.0 s
+2026-05-25 23:51:01 | FETCH START | attempt=1/2
+2026-05-25 23:51:01 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:51:02 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:51:02 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:51:02 | OK: login page ready | marker=Remember Me
+2026-05-25 23:51:03 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_01_login_page.png
+2026-05-25 23:51:03 | OK: Credentials filled
+2026-05-25 23:51:03 | OK: Remember Me: checked
+2026-05-25 23:51:04 | OK: Terms agreement: checked
+2026-05-25 23:51:04 | OK: Clicked login button
+2026-05-25 23:51:07 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:51:07 | OK: post-login ready | marker=Overview
+2026-05-25 23:51:07 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_02_logged_in.png
+2026-05-25 23:51:07 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:51:08 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:51:09 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:51:09 | OK: device page ready | marker=Devices
+2026-05-25 23:51:09 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_03_device_page.png
+2026-05-25 23:51:09 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:51:09 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:51:10 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:51:10 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:51:10 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:51:10 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:51:11 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:51:23 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:51:23 | WARNING: Opening inverter by candidate failed: '10U080020P0602' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:51:23 | Found inverter device candidate: text='X3-NEO-LV' | method=exact | x=341.3, y=359.0
+2026-05-25 23:51:23 | OK: Clicked inverter device: 'X3-NEO-LV' | x=341.3, y=359.0
+2026-05-25 23:51:36 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:51:36 | WARNING: Opening inverter by candidate failed: 'X3-NEO-LV' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:51:36 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_device_open_failed_body_text.txt
+2026-05-25 23:51:36 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:51:36 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:51:36 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-25 23:52:06 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:52:07 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:52:07 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:52:07 | OK: login page ready | marker=Remember Me
+2026-05-25 23:52:08 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_01_login_page.png
+2026-05-25 23:52:08 | OK: Credentials filled
+2026-05-25 23:52:08 | OK: Remember Me: checked
+2026-05-25 23:52:09 | OK: Terms agreement: checked
+2026-05-25 23:52:09 | OK: Clicked login button
+2026-05-25 23:52:12 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:52:12 | OK: post-login ready | marker=Overview
+2026-05-25 23:52:12 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_02_logged_in.png
+2026-05-25 23:52:12 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:52:12 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:52:14 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:52:14 | OK: device page ready | marker=Devices
+2026-05-25 23:52:14 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/01_step_03_device_page.png
+2026-05-25 23:52:14 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:52:14 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:52:15 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:52:15 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:52:15 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:52:15 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:52:15 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:52:28 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:52:28 | WARNING: Opening inverter by candidate failed: '10U080020P0602' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:52:28 | Found inverter device candidate: text='X3-NEO-LV' | method=exact | x=341.3, y=359.0
+2026-05-25 23:52:28 | OK: Clicked inverter device: 'X3-NEO-LV' | x=341.3, y=359.0
+2026-05-25 23:52:40 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt
+2026-05-25 23:52:40 | WARNING: Opening inverter by candidate failed: 'X3-NEO-LV' | inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:52:40 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_device_open_failed_body_text.txt
+2026-05-25 23:52:41 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:52:41 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:52:41 | ERROR: END | rc=1 | error=Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:52:41 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1243, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1155, in run_fetch_once
+    open_device_by_text(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1023, in open_device_by_text
+    raise RuntimeError(f"Could not open {kind} device detail. Last error: {last_error}")
+RuntimeError: Could not open inverter device detail. Last error: inverter detail page not confirmed; required device identity and Data reports label. candidates=['10U080020P0602', 'X3-NEO-LV']; body_len=728; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235001/inverter_detail_not_ready_body_text.txt; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+
+2026-05-25 23:54:19 | START 01_fetch_raw.py | version=v1.6.1-operable-detail-page | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-25 23:54:19 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419
+2026-05-25 23:54:19 | Initial start delay: 60.0 s
+2026-05-25 23:55:01 | START 01_fetch_raw.py | version=v1.6.1-operable-detail-page | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-25 23:55:01 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501
+2026-05-25 23:55:01 | Initial start delay: 60.0 s
+2026-05-25 23:55:19 | FETCH START | attempt=1/2
+2026-05-25 23:55:20 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:55:21 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:55:21 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:55:21 | OK: login page ready | marker=Remember Me
+2026-05-25 23:55:21 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_01_login_page.png
+2026-05-25 23:55:21 | OK: Credentials filled
+2026-05-25 23:55:22 | OK: Remember Me: checked
+2026-05-25 23:55:22 | OK: Terms agreement: checked
+2026-05-25 23:55:23 | OK: Clicked login button
+2026-05-25 23:55:25 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:55:25 | OK: post-login ready | marker=Overview
+2026-05-25 23:55:26 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_02_logged_in.png
+2026-05-25 23:55:26 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:55:26 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:55:28 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:55:28 | OK: device page ready | marker=Devices
+2026-05-25 23:55:28 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_03_device_page.png
+2026-05-25 23:55:28 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:55:28 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:55:29 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:55:29 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:55:29 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:55:29 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:55:29 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:55:31 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:55:31 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_04_inverter_page.png
+2026-05-25 23:55:42 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/missing_inverter_Data_reports.txt
+2026-05-25 23:55:42 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:55:42 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:55:42 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:55:42 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-25 23:55:46 | START 01_fetch_raw.py | version=v1.6.1-operable-detail-page | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-25 23:55:46 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546
+2026-05-25 23:55:46 | Initial start delay: 1.0 s
+2026-05-25 23:55:47 | FETCH START | attempt=1/2
+2026-05-25 23:55:47 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:55:48 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:55:48 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:55:48 | OK: login page ready | marker=Remember Me
+2026-05-25 23:55:49 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_01_login_page.png
+2026-05-25 23:55:49 | OK: Credentials filled
+2026-05-25 23:55:49 | OK: Remember Me: checked
+2026-05-25 23:55:50 | OK: Terms agreement: checked
+2026-05-25 23:55:50 | OK: Clicked login button
+2026-05-25 23:55:53 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:55:53 | OK: post-login ready | marker=Overview
+2026-05-25 23:55:53 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_02_logged_in.png
+2026-05-25 23:55:53 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:55:54 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:55:55 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:55:55 | OK: device page ready | marker=Devices
+2026-05-25 23:55:55 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_03_device_page.png
+2026-05-25 23:55:55 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:55:55 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:55:56 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:55:56 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:55:56 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:55:56 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:55:56 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:55:58 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:55:59 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_04_inverter_page.png
+2026-05-25 23:56:01 | FETCH START | attempt=1/2
+2026-05-25 23:56:01 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:02 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:02 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:56:02 | OK: login page ready | marker=Remember Me
+2026-05-25 23:56:03 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_01_login_page.png
+2026-05-25 23:56:03 | OK: Credentials filled
+2026-05-25 23:56:03 | OK: Remember Me: checked
+2026-05-25 23:56:03 | OK: Terms agreement: checked
+2026-05-25 23:56:04 | OK: Clicked login button
+2026-05-25 23:56:07 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:56:07 | OK: post-login ready | marker=Overview
+2026-05-25 23:56:07 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_02_logged_in.png
+2026-05-25 23:56:07 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:07 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:09 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:09 | OK: device page ready | marker=Devices
+2026-05-25 23:56:09 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_03_device_page.png
+2026-05-25 23:56:09 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:09 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:56:09 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/missing_inverter_Data_reports.txt
+2026-05-25 23:56:09 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:56:09 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:56:09 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:56:09 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-25 23:56:10 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:10 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:56:10 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:56:10 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:10 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:56:12 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:56:12 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:12 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_04_inverter_page.png
+2026-05-25 23:56:13 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:13 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:56:13 | OK: login page ready | marker=Remember Me
+2026-05-25 23:56:14 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_01_login_page.png
+2026-05-25 23:56:14 | OK: Credentials filled
+2026-05-25 23:56:14 | OK: Remember Me: checked
+2026-05-25 23:56:15 | OK: Terms agreement: checked
+2026-05-25 23:56:15 | OK: Clicked login button
+2026-05-25 23:56:18 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:56:18 | OK: post-login ready | marker=Overview
+2026-05-25 23:56:19 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_02_logged_in.png
+2026-05-25 23:56:19 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:19 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:21 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:21 | OK: device page ready | marker=Devices
+2026-05-25 23:56:21 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_03_device_page.png
+2026-05-25 23:56:21 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:21 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:56:22 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:22 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:56:22 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:56:22 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:22 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:56:23 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/missing_inverter_Data_reports.txt
+2026-05-25 23:56:23 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:56:23 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:56:23 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:56:23 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-25 23:56:24 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:56:25 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/01_step_04_inverter_page.png
+2026-05-25 23:56:35 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/missing_inverter_Data_reports.txt
+2026-05-25 23:56:35 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:56:35 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:56:35 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:56:35 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:56:35 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1109, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1317, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1231, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1112, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235419/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-25 23:56:40 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:40 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:40 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:56:40 | OK: login page ready | marker=Remember Me
+2026-05-25 23:56:41 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_01_login_page.png
+2026-05-25 23:56:41 | OK: Credentials filled
+2026-05-25 23:56:41 | OK: Remember Me: checked
+2026-05-25 23:56:42 | OK: Terms agreement: checked
+2026-05-25 23:56:42 | OK: Clicked login button
+2026-05-25 23:56:45 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-25 23:56:45 | OK: post-login ready | marker=Overview
+2026-05-25 23:56:45 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_02_logged_in.png
+2026-05-25 23:56:45 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:45 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:47 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:47 | OK: device page ready | marker=Devices
+2026-05-25 23:56:47 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_03_device_page.png
+2026-05-25 23:56:47 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:56:47 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:56:48 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:48 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:56:48 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:56:48 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:56:48 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:56:50 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:56:51 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/01_step_04_inverter_page.png
+2026-05-25 23:56:53 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:54 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-25 23:56:54 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-25 23:56:54 | OK: login page ready | marker=Remember Me
+2026-05-25 23:56:55 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_01_login_page.png
+2026-05-25 23:56:55 | OK: Credentials filled
+2026-05-25 23:56:55 | OK: Remember Me: checked
+2026-05-25 23:56:56 | OK: Terms agreement: checked
+2026-05-25 23:56:56 | OK: Clicked login button
+2026-05-25 23:56:59 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-25 23:56:59 | OK: post-login ready | marker=Overview
+2026-05-25 23:56:59 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_02_logged_in.png
+2026-05-25 23:56:59 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:56:59 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-25 23:57:01 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/missing_inverter_Data_reports.txt
+2026-05-25 23:57:01 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:57:01 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:57:01 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:57:01 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:57:01 | OK: device page ready | marker=Devices
+2026-05-25 23:57:01 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:57:01 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1109, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1317, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1231, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1112, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235546/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-25 23:57:01 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_03_device_page.png
+2026-05-25 23:57:01 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-25 23:57:02 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-25 23:57:03 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:57:03 | OK: devices tab ready | marker=10U080020P0602
+2026-05-25 23:57:03 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-25 23:57:03 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-25 23:57:03 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-25 23:57:05 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-25 23:57:05 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/01_step_04_inverter_page.png
+2026-05-25 23:57:15 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/missing_inverter_Data_reports.txt
+2026-05-25 23:57:15 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt
+2026-05-25 23:57:15 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-25 23:57:15 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:57:15 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-25 23:57:15 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1109, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1317, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1231, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1112, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260525T235501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-26 00:00:01 | START 01_fetch_raw.py | version=v1.6.1-operable-detail-page | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-26 00:00:01 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001
+2026-05-26 00:00:02 | Initial start delay: 1.0 s
+2026-05-26 00:00:03 | FETCH START | attempt=1/2
+2026-05-26 00:00:04 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:00:04 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:00:04 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:00:04 | OK: login page ready | marker=Remember Me
+2026-05-26 00:00:05 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_01_login_page.png
+2026-05-26 00:00:05 | OK: Credentials filled
+2026-05-26 00:00:05 | OK: Remember Me: checked
+2026-05-26 00:00:06 | OK: Terms agreement: checked
+2026-05-26 00:00:06 | OK: Clicked login button
+2026-05-26 00:00:11 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-26 00:00:11 | OK: post-login ready | marker=Overview
+2026-05-26 00:00:12 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_02_logged_in.png
+2026-05-26 00:00:12 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:00:12 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:00:14 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:00:14 | OK: device page ready | marker=Devices
+2026-05-26 00:00:14 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_03_device_page.png
+2026-05-26 00:00:14 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:00:14 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:00:15 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:00:15 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:00:15 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:00:15 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:00:15 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-26 00:00:17 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:00:17 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_04_inverter_page.png
+2026-05-26 00:00:28 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/missing_inverter_Data_reports.txt
+2026-05-26 00:00:28 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:00:28 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:00:28 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:00:28 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-26 00:00:58 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:00:59 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:00:59 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:00:59 | OK: login page ready | marker=Remember Me
+2026-05-26 00:01:00 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_01_login_page.png
+2026-05-26 00:01:00 | OK: Credentials filled
+2026-05-26 00:01:00 | OK: Remember Me: checked
+2026-05-26 00:01:00 | OK: Terms agreement: checked
+2026-05-26 00:01:01 | OK: Clicked login button
+2026-05-26 00:01:03 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-26 00:01:03 | OK: post-login ready | marker=Overview
+2026-05-26 00:01:04 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_02_logged_in.png
+2026-05-26 00:01:04 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:01:04 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:01:06 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:01:06 | OK: device page ready | marker=Devices
+2026-05-26 00:01:06 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_03_device_page.png
+2026-05-26 00:01:06 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:01:06 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:01:07 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:01:07 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:01:07 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:01:07 | Found inverter device candidate: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:01:07 | OK: Clicked inverter device: '10U080020P0602' | x=553.6, y=359.0
+2026-05-26 00:01:09 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=728 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:01:09 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/01_step_04_inverter_page.png
+2026-05-26 00:01:20 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/missing_inverter_Data_reports.txt
+2026-05-26 00:01:20 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:01:20 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:01:20 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:01:20 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:01:20 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1109, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1317, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1231, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1112, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000001/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-26 00:02:54 | START 01_fetch_raw.py | version=v1.6.2-operation-icon-open | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-26 00:02:54 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254
+2026-05-26 00:02:54 | Initial start delay: 60.0 s
+2026-05-26 00:03:50 | START 01_fetch_raw.py | version=v1.6.2-operation-icon-open | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-26 00:03:50 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350
+2026-05-26 00:03:50 | Initial start delay: 1.0 s
+2026-05-26 00:03:51 | FETCH START | attempt=1/2
+2026-05-26 00:03:51 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:03:52 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:03:52 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:03:52 | OK: login page ready | marker=Remember Me
+2026-05-26 00:03:53 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_01_login_page.png
+2026-05-26 00:03:53 | OK: Credentials filled
+2026-05-26 00:03:53 | OK: Remember Me: checked
+2026-05-26 00:03:54 | OK: Terms agreement: checked
+2026-05-26 00:03:54 | FETCH START | attempt=1/2
+2026-05-26 00:03:54 | OK: Clicked login button
+2026-05-26 00:03:54 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:03:55 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:03:55 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:03:55 | OK: login page ready | marker=Remember Me
+2026-05-26 00:03:56 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_01_login_page.png
+2026-05-26 00:03:56 | OK: Credentials filled
+2026-05-26 00:03:56 | OK: Remember Me: checked
+2026-05-26 00:03:57 | OK: Terms agreement: checked
+2026-05-26 00:03:57 | Found post-login marker: text='Overview' | method=exact | x=81.4, y=110.1
+2026-05-26 00:03:57 | OK: post-login ready | marker=Overview
+2026-05-26 00:03:57 | OK: Clicked login button
+2026-05-26 00:03:57 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_02_logged_in.png
+2026-05-26 00:03:57 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:03:58 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:00 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:00 | OK: device page ready | marker=Devices
+2026-05-26 00:04:00 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_03_device_page.png
+2026-05-26 00:04:00 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:00 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-26 00:04:00 | OK: post-login ready | marker=Overview
+2026-05-26 00:04:00 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:04:00 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_02_logged_in.png
+2026-05-26 00:04:00 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:01 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:01 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:04:01 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:04:01 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:04:01 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:04:02 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:02 | OK: device page ready | marker=Devices
+2026-05-26 00:04:02 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_03_device_page.png
+2026-05-26 00:04:02 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:02 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:04:03 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:04:03 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:04:03 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:04:03 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:04:03 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:04:04 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_04_inverter_page.png
+2026-05-26 00:04:06 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:04:06 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_04_inverter_page.png
+2026-05-26 00:04:14 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/missing_inverter_Data_reports.txt
+2026-05-26 00:04:14 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:04:14 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:04:14 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:04:14 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-26 00:04:16 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/missing_inverter_Data_reports.txt
+2026-05-26 00:04:16 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:04:16 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:04:16 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:04:16 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-26 00:04:44 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:04:45 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:04:45 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:04:45 | OK: login page ready | marker=Remember Me
+2026-05-26 00:04:46 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_01_login_page.png
+2026-05-26 00:04:46 | OK: Credentials filled
+2026-05-26 00:04:46 | OK: Remember Me: checked
+2026-05-26 00:04:47 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:04:47 | OK: Terms agreement: checked
+2026-05-26 00:04:47 | OK: Clicked login button
+2026-05-26 00:04:47 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:04:47 | Found login page marker: text='Remember Me' | method=exact | x=1144.3, y=555.3
+2026-05-26 00:04:47 | OK: login page ready | marker=Remember Me
+2026-05-26 00:04:48 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_01_login_page.png
+2026-05-26 00:04:48 | OK: Credentials filled
+2026-05-26 00:04:48 | OK: Remember Me: checked
+2026-05-26 00:04:49 | OK: Terms agreement: checked
+2026-05-26 00:04:49 | OK: Clicked login button
+2026-05-26 00:04:51 | Found post-login marker: text='Overview' | method=partial | x=78.2, y=110.1
+2026-05-26 00:04:51 | OK: post-login ready | marker=Overview
+2026-05-26 00:04:51 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_02_logged_in.png
+2026-05-26 00:04:51 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:51 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:53 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-26 00:04:53 | OK: post-login ready | marker=Overview
+2026-05-26 00:04:54 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_02_logged_in.png
+2026-05-26 00:04:54 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:54 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:54 | OK: device page ready | marker=Devices
+2026-05-26 00:04:54 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:04:54 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_03_device_page.png
+2026-05-26 00:04:54 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:54 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:04:55 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:04:55 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:04:55 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:04:55 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:04:56 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:56 | OK: device page ready | marker=Devices
+2026-05-26 00:04:56 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_03_device_page.png
+2026-05-26 00:04:56 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:04:57 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:04:57 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:04:57 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/01_step_04_inverter_page.png
+2026-05-26 00:04:58 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:04:58 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:04:58 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:04:58 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:05:00 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:05:00 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/01_step_04_inverter_page.png
+2026-05-26 00:05:01 | START 01_fetch_raw.py | version=v1.6.2-operation-icon-open | ini=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.ini | policy=nia_error_policy_v2.1
+2026-05-26 00:05:01 | Screenshot directory: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501
+2026-05-26 00:05:01 | Initial start delay: 1.0 s
+2026-05-26 00:05:02 | FETCH START | attempt=1/2
+2026-05-26 00:05:02 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:05:03 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:05:03 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:05:03 | OK: login page ready | marker=Remember Me
+2026-05-26 00:05:03 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_01_login_page.png
+2026-05-26 00:05:03 | OK: Credentials filled
+2026-05-26 00:05:04 | OK: Remember Me: checked
+2026-05-26 00:05:04 | OK: Terms agreement: checked
+2026-05-26 00:05:05 | OK: Clicked login button
+2026-05-26 00:05:07 | Found post-login marker: text='Overview' | method=exact | x=78.2, y=110.1
+2026-05-26 00:05:07 | OK: post-login ready | marker=Overview
+2026-05-26 00:05:08 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_02_logged_in.png
+2026-05-26 00:05:08 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:05:08 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/missing_inverter_Data_reports.txt
+2026-05-26 00:05:08 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:05:08 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:05:08 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:05:08 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:05:08 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1271, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1479, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1393, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1274, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000350/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-26 00:05:08 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:05:09 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:05:09 | OK: device page ready | marker=Devices
+2026-05-26 00:05:09 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_03_device_page.png
+2026-05-26 00:05:09 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:05:10 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:05:10 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/missing_inverter_Data_reports.txt
+2026-05-26 00:05:10 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:05:10 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:05:10 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:05:10 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:05:10 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1271, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1479, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1393, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1274, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000254/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+
+2026-05-26 00:05:11 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:05:11 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:05:11 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:05:11 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:05:13 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:05:13 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_04_inverter_page.png
+2026-05-26 00:05:23 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/missing_inverter_Data_reports.txt
+2026-05-26 00:05:23 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:05:23 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:05:23 | ERROR: FETCH ATTEMPT FAILED | attempt=1/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:05:23 | RETRY FETCH START | attempt=2/2 | sleep_before_retry_s=30.0
+2026-05-26 00:05:53 | Opening login page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:05:54 | OK: Opened login page: attempt=1 | url=https://global.solaxcloud.com/user-center/
+2026-05-26 00:05:54 | Found login page marker: text='Remember Me' | method=exact | x=1146.5, y=574.9
+2026-05-26 00:05:54 | OK: login page ready | marker=Remember Me
+2026-05-26 00:05:54 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_01_login_page.png
+2026-05-26 00:05:54 | OK: Credentials filled
+2026-05-26 00:05:55 | OK: Remember Me: checked
+2026-05-26 00:05:55 | OK: Terms agreement: checked
+2026-05-26 00:05:56 | OK: Clicked login button
+2026-05-26 00:05:58 | Found post-login marker: text='Dashboard' | method=partial | x=1096.4, y=22.8
+2026-05-26 00:05:58 | OK: post-login ready | marker=Dashboard
+2026-05-26 00:05:59 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_02_logged_in.png
+2026-05-26 00:05:59 | Opening device page: attempt=1/3 | timeout_ms=30000 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:05:59 | OK: Opened device page: attempt=1 | url=https://global.solaxcloud.com/green/#/device
+2026-05-26 00:06:00 | Found device page marker: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:06:00 | OK: device page ready | marker=Devices
+2026-05-26 00:06:01 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_03_device_page.png
+2026-05-26 00:06:01 | Found Devices tab: text='Devices' | method=exact | x=73.7, y=158.8
+2026-05-26 00:06:01 | OK: Clicked: Devices tab | text='Devices' | x=73.7, y=158.8
+2026-05-26 00:06:02 | Found devices tab marker: text='10U080020P0602' | method=exact | x=553.6, y=359.0
+2026-05-26 00:06:02 | OK: devices tab ready | marker=10U080020P0602
+2026-05-26 00:06:02 | inverter device candidates: ['10U080020P0602', 'X3-NEO-LV']
+2026-05-26 00:06:02 | OK: Clicked inverter operation icon | x=1516.1, y=358.7 | tag=I | fallback_cell=False
+2026-05-26 00:06:04 | WARNING: inverter detail URL reached; Data reports label not confirmed yet, proceeding to next target | identity=True | body_len=1133 | url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0
+2026-05-26 00:06:04 | Screenshot saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/01_step_04_inverter_page.png
+2026-05-26 00:06:14 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/missing_inverter_Data_reports.txt
+2026-05-26 00:06:14 | Text dump saved: /work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt
+2026-05-26 00:06:14 | WARNING: Could not save error screenshot: Event loop is closed! Is Playwright already stopped?
+2026-05-26 00:06:14 | ERROR: FETCH ATTEMPT FAILED | attempt=2/2 | Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:06:14 | ERROR: END | rc=1 | error=Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+2026-05-26 00:06:14 | ERROR: Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1271, in wait_data_reports_with_rows
+    click_text_center(page, cfg, label, name=f"{kind} Data reports")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 794, in click_text_center
+    item = wait_visible_text_locator(page, text, name=name, timeout_ms=cfg["locator_timeout_ms"])
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 786, in wait_visible_text_locator
+    raise RuntimeError(f"Required visible text not found: name={name!r}, text={text!r}")
+RuntimeError: Required visible text not found: name='inverter Data reports', text='Data reports'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1479, in main
+    result = run_fetch_once(cfg, attempt)
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1393, in run_fetch_once
+    inverter_report_details = wait_data_reports_with_rows(page, cfg, kind="inverter")
+  File "/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw.py", line 1274, in wait_data_reports_with_rows
+    raise RuntimeError(
+RuntimeError: Could not click inverter Data reports after device page open; label='Data reports'; url=https://global.solaxcloud.com/blue/#/device?stationId=1964992125359648769&siteId=1964992125359648769&businessType=1&onlyView=1&isOnlyQuerySiteId=1&newTab=0; dump=/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/screenshots/01_fetch_raw/20260526T000501/inverter_data_reports_click_failed_body_text.txt; error=Required visible text not found: name='inverter Data reports', text='Data reports'
+

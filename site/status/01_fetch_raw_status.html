@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status techniczny — 01_fetch_raw</title>
+  <style>
+    :root { --bg:#f5f7fa; --card:#fff; --text:#172033; --muted:#4b5563; --line:#d9e1ea; --ok:#15803d; --warn:#b45309; --bad:#b91c1c; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Arial, Helvetica, sans-serif; line-height:1.55; }
+    main { max-width:1120px; margin:0 auto; padding:28px 18px 64px; }
+    h1 { margin:0 0 8px; font-size:28px; }
+    h2 { margin-top:28px; padding-top:16px; border-top:1px solid var(--line); font-size:20px; }
+    .card { background:var(--card); border:1px solid #dce3eb; border-radius:14px; padding:20px 22px; margin:16px 0; box-shadow:0 2px 8px rgba(16,32,51,.05); }
+    .badge { display:inline-block; border-radius:999px; padding:4px 10px; font-weight:700; }
+    .ok { color:#fff; background:var(--ok); } .warn { color:#fff; background:var(--warn); } .bad { color:#fff; background:var(--bad); } .neutral { color:#172033; background:#e5e7eb; }
+    table { width:100%; border-collapse:collapse; margin:.7rem 0; }
+    th,td { border-bottom:1px solid #e5e7eb; padding:.5rem .6rem; text-align:left; vertical-align:top; }
+    th { background:#f8fafc; color:#374151; }
+    code { word-break:break-all; background:#eef2f7; border:1px solid #dbe3ef; border-radius:5px; padding:1px 5px; }
+    a { color:#075985; }
+    .muted { color:var(--muted); }
+    @media(max-width:800px) { main { padding:20px 12px 48px; } table { font-size:13px; } }
+  </style>
+</head>
+<body>
+<main>
+  <nav class="muted"><a href="index.html">← Indeks statusów</a> · <a href="../index.html">Strona główna</a></nav>
+  <section class="card">
+    <h1>Status techniczny — 01_fetch_raw</h1>
+    <p><span class="badge bad">ERROR</span></p>
+    <p>inverter Data reports not ready; last_len=676; has_shell=True; required_min_len=800</p>
+    <p class="muted">Wariant publikacji: work_web · wygenerowano: 2026-05-26 00:15:21</p>
+  </section>
+
+  <section class="card">
+    <h2>Metadane przebiegu</h2>
+    <table><tbody>
+      <tr><td>module_id</td><td><code>10_01_01_x3_neo_lv_fetch_raw</code></td></tr>
+      <tr><td>script</td><td><code>01_fetch_raw.py</code></td></tr>
+      <tr><td>version</td><td><code>v1.5.3-ini-duplicate-section-fix</code></td></tr>
+      <tr><td>run_id</td><td><code>10_01_01_x3_neo_lv_fetch_raw__20260526T001501__e6a866c9</code></td></tr>
+      <tr><td>status</td><td>ERROR</td></tr>
+      <tr><td>run_status</td><td>ERROR</td></tr>
+      <tr><td>duration_s</td><td>20.059</td></tr>
+      <tr><td>warnings_count</td><td>0</td></tr>
+      <tr><td>errors_count</td><td>1</td></tr>
+      <tr><td>ev_enabled</td><td>True</td></tr>
+      <tr><td>text_length</td><td></td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="card">
+    <h2>Pliki do pobrania / kontroli</h2>
+    <table><thead><tr><th>Plik</th><th>Status</th><th>Rozmiar B</th><th>Ścieżka</th></tr></thead><tbody>
+      <tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw.txt" download>RAW merged TXT</a></td><td>OK</td><td>4491</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw.txt</code></td></tr>
+<tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_inverter.txt" download>RAW inverter TXT</a></td><td>OK</td><td>2279</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_inverter.txt</code></td></tr>
+<tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_ev.txt" download>RAW EV TXT</a></td><td>OK</td><td>2210</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_ev.txt</code></td></tr>
+<tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_status.json" download>Status JSON</a></td><td>OK</td><td>1121</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_status.json</code></td></tr>
+<tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw.log" download>Log</a></td><td>OK</td><td>95411</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw.log</code></td></tr>
+<tr><td><a href="files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_error.json" download>Error JSON</a></td><td>OK</td><td>1031</td><td><code>/work/84_web/!_www/status/files/10_01_01_x3_neo_lv_fetch_raw/01_fetch_raw_error.json</code></td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="card">
+    <h2>Źródła SolaX</h2>
+    <table><tbody>
+      <tr><td>inverter_source_url</td><td><code></code></td></tr>
+      <tr><td>ev_source_url</td><td><code></code></td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="card">
+    <h2>Walidacja RAW</h2>
+    <table><tbody></tbody></table>
+  </section>
+
+  <section class="card">
+    <h2>Kopie statusu HTML</h2>
+    <table><tbody><tr><td>host_web</td><td><code>/share/CACHEDEV1_DATA/Web/status/01_fetch_raw_status.html</code></td></tr><tr><td>local</td><td><code>/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/01_fetch_raw_status.html</code></td></tr><tr><td>work_web</td><td><code>/work/84_web/!_www/status/01_fetch_raw_status.html</code></td></tr></tbody></table>
+    <p class="muted">Ten moduł nie generuje raportu HTML. Generowany jest wyłącznie techniczny status HTML.</p>
+  </section>
+</main>
+</body>
+</html>

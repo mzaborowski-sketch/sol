@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil zużycia energii</title>
+  <meta name="theme-color" content="#0ea5e9">
+  <link rel="stylesheet" href="../assets/css/metro.css">
+  <style>
+
+.report-meta { color:#6b7280; margin-top:.6rem; }
+.report-image { width:100%; max-width:1200px; border-radius:18px; box-shadow:0 10px 30px rgba(15,23,42,.10); background:white; display:block; margin:0 auto .25rem auto; }
+.report-section { margin-top:1.15rem; }
+.report-table { width:100%; border-collapse:collapse; margin-top:.75rem; }
+.report-table th, .report-table td { padding:.55rem .65rem; border-bottom:1px solid #e5e7eb; vertical-align:middle; }
+.report-table th { text-align:left; color:#374151; }
+.report-table .num { text-align:right; white-space:nowrap; }
+.detail-table { font-size:.88rem; }
+.muted { color:#6b7280; }
+.details-block { margin:.8rem 0; padding:.75rem 1rem; border:1px solid #e5e7eb; border-radius:14px; background:#fff; }
+.details-block summary { cursor:pointer; font-weight:700; }
+.weekly-animation-card { background:#fff; border-radius:18px; box-shadow:0 10px 30px rgba(15,23,42,.10); padding:1rem; }
+.weekly-animation-toolbar { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; margin-bottom:.75rem; }
+.weekly-animation-toolbar button { border:1px solid #d1d5db; background:#f9fafb; border-radius:999px; padding:.45rem .85rem; cursor:pointer; }
+.weekly-animation-toolbar button:hover { background:#eef2ff; }
+#weekly-animation-svg { width:100%; height:auto; display:block; }
+code { background:#f3f4f6; border-radius:.35rem; padding:.05rem .25rem; }
+
+  </style>
+</head>
+<body class="accent-yellow has-floating">
+<main class="container tight">
+
+<div class="floating-menu">
+  <a href="../index.html" title="Powrót do menu">
+    <span class="label">MENU</span>
+    <span class="emoji">🏠</span>
+  </a>
+</div>
+
+<section class="hero">
+  <div class="kicker">Energia</div>
+  <h1>Profil zużycia energii</h1>
+  <p>Raport pokazuje typowe godzinowe profile zużycia energii w domu, osobno z ładowaniem auta i bez ładowania auta. Dane pochodzą z modułu <code>20_15_energy_use</code>.</p>
+  <p class="report-meta"><strong>Utworzono:</strong> 2026-05-30 19:15<br><strong>Źródło CSV:</strong> /work/20_analysis/20_15_energy_use<br><strong>Moduł raportowy:</strong> 20_15_energy_use | <strong>wersja:</strong> v1.7.3-v8-web-artifacts</p>
+</section>
+
+<section class='content report-section' id='methodology'><h2>Jak czytać raport</h2>
+<p>Raport korzysta z danych przygotowanych przez moduł <code>20_15_energy_use</code>. Warstwa raportowa nie liczy zużycia od nowa, tylko czyta gotowe profile godzinowe wygenerowane w tym samym przebiegu.</p>
+<p>Pierwszy wykres porównuje średnią i medianę. Mediana jest odporna na pojedyncze nietypowe zdarzenia, ale może ukrywać nieregularne, lecz energetycznie istotne ładowanie auta. Dlatego dalsze wykresy raportu opierają się na średnich, które są bardziej intuicyjne i lepiej pokazują rzeczywisty ciężar energii w profilu godzinowym.</p>
+<p>Brak danych nie jest traktowany jako zużycie zerowe. Jeżeli godzina jest niepełna albo źródłowy profil zawiera brak, raport pozostawia brak danych zamiast sztucznie wygładzać wynik.</p>
+</section>
+<section class='content report-section' id='avg-median'><h2>Średnia i mediana</h2><p>Ten wykres pokazuje różnicę między średnią i medianą. W dalszej części raportu używamy średniej, ponieważ jest bardziej intuicyjna i lepiej pokazuje energetyczny wpływ nieregularnego ładowania EV.</p><img class='report-image' src='../assets/img/20_15_energy_use__01_avg_vs_median_without_ev.png' alt='Średnia i mediana zużycia bez EV'></section><section class='content report-section' id='with-without-ev'><h2>Zużycie z autem i bez auta</h2><p>Odległość między krzywymi pokazuje średni godzinowy ślad ładowania auta.</p><img class='report-image' src='../assets/img/20_15_energy_use__02_avg_with_vs_without_ev.png' alt='Średnie zużycie z EV i bez EV'></section><section class='content report-section' id='cumulative'><h2>Zużycie narastająco w ciągu dnia</h2><p>Powierzchnie pokazują, jak narasta średnie zużycie energii od północy do kolejnych godzin dnia.</p><img class='report-image' src='../assets/img/20_15_energy_use__03_cumulative_area.png' alt='Skumulowane zużycie energii z EV i bez EV'></section><section class='content report-section' id='last7-without-ev'><h2>Ostatnie 7 dni na tle historii — bez EV</h2><p>Porównanie pozwala zobaczyć, czy ostatni tydzień odbiega od długoterminowego profilu domu bez ładowania auta.</p><img class='report-image' src='../assets/img/20_15_energy_use__04_last7_vs_all_without_ev.png' alt='Ostatnie 7 dni i historia bez EV'></section><section class='content report-section' id='last7-with-ev'><h2>Ostatnie 7 dni na tle historii — z EV</h2><p>Ten sam test, ale dla całkowitego zużycia wraz z ładowaniem auta.</p><img class='report-image' src='../assets/img/20_15_energy_use__05_last7_vs_all_with_ev.png' alt='Ostatnie 7 dni i historia z EV'></section>
+<section class='content report-section' id='weekly-animation'><h2>Tygodniowe profile — animacja</h2><p>Kolejne tygodnie są dokładane na wykres co kilka sekund, żeby pokazać zmianę profilu w czasie bez robienia statycznego spaghetti.</p>
+<div class="weekly-animation-card">
+  <div class="weekly-animation-toolbar">
+    <button type="button" onclick="EnergyUseWeeklyAnimation.toggle()">Start / pauza</button>
+    <button type="button" onclick="EnergyUseWeeklyAnimation.restart()">Od początku</button>
+    <span id="weekly-animation-label" class="muted"></span>
+  </div>
+  <svg id="weekly-animation-svg" viewBox="0 0 1000 420" role="img" aria-label="Animowane profile tygodniowe"></svg>
+</div>
+<script>
+const ENERGY_USE_WEEKLY_DATA = {"variant": "without_ev", "hours": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"], "series": [{"name": "2026-W20", "values": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.4, 0.2, 0.5, 0.5, 0.6, 0.8, 0.5, 0.5, 0.6, 1.2, 0.2, 0.3, 0.5, 0.8, 0.8, 0.2]}, {"name": "2026-W21", "values": [0.1, 0.2, 0.2, 0.2, 0.2, 0.3, 0.2, 0.4, 0.6, 0.3, 0.5, 0.3, 0.7, 0.6, 0.7, 1.3, 1.0, 0.7, 0.4, 0.2, 0.5, 0.3, 0.8, 0.3]}, {"name": "2026-W22", "values": [0.1, 0.1, 0.1, 0.1, 0.0, 0.3, 0.1, 0.3, 0.4, 0.2, 0.2, 0.5, 0.5, 0.4, 0.5, 0.4, 0.5, 0.4, 0.5, 0.3, 0.3, 0.2, 0.3, 0.2]}], "stepSeconds": 2.0, "showControls": true};
+const EnergyUseWeeklyAnimation = (() => {
+  const data = ENERGY_USE_WEEKLY_DATA;
+  let index = 0;
+  let timer = null;
+  const svg = () => document.getElementById('weekly-animation-svg');
+  const label = () => document.getElementById('weekly-animation-label');
+  const width = 1000, height = 420, left = 55, right = 20, top = 25, bottom = 45;
+  const plotW = width - left - right;
+  const plotH = height - top - bottom;
+  const allValues = data.series.flatMap(s => s.values.filter(v => v !== null && !Number.isNaN(v)));
+  const maxY = Math.max(0.1, ...allValues) * 1.12;
+  function x(i) { return left + (plotW * i / 23); }
+  function y(v) { return top + plotH - (plotH * v / maxY); }
+  function linePath(values) {
+    let d = '';
+    values.forEach((v, i) => {
+      if (v === null || Number.isNaN(v)) return;
+      d += (d ? ' L ' : 'M ') + x(i).toFixed(1) + ' ' + y(v).toFixed(1);
+    });
+    return d;
+  }
+  function drawAxes() {
+    const s = svg();
+    s.innerHTML = '';
+    const axis = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    axis.setAttribute('d', `M ${left} ${top} L ${left} ${height-bottom} L ${width-right} ${height-bottom}`);
+    axis.setAttribute('stroke', '#9ca3af');
+    axis.setAttribute('fill', 'none');
+    s.appendChild(axis);
+    for (let h = 0; h < 24; h += 3) {
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', x(h));
+      text.setAttribute('y', height - 15);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('font-size', '13');
+      text.setAttribute('fill', '#4b5563');
+      text.textContent = String(h).padStart(2, '0');
+      s.appendChild(text);
+    }
+    for (let g = 0; g <= 4; g++) {
+      const gy = top + plotH * g / 4;
+      const grid = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      grid.setAttribute('x1', left);
+      grid.setAttribute('x2', width - right);
+      grid.setAttribute('y1', gy);
+      grid.setAttribute('y2', gy);
+      grid.setAttribute('stroke', '#e5e7eb');
+      s.appendChild(grid);
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', 8);
+      text.setAttribute('y', gy + 4);
+      text.setAttribute('font-size', '12');
+      text.setAttribute('fill', '#6b7280');
+      text.textContent = (maxY * (1 - g / 4)).toFixed(1);
+      s.appendChild(text);
+    }
+  }
+  function draw() {
+    drawAxes();
+    const s = svg();
+    data.series.slice(0, index + 1).forEach((serie, i) => {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', linePath(serie.values));
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', i === index ? '#0f172a' : '#94a3b8');
+      path.setAttribute('stroke-width', i === index ? '3' : '1.8');
+      path.setAttribute('opacity', i === index ? '1' : '0.55');
+      s.appendChild(path);
+    });
+    label().textContent = data.series[index] ? data.series[index].name : '';
+  }
+  function next() {
+    draw();
+    index = (index + 1) % data.series.length;
+  }
+  function start() {
+    if (timer) return;
+    timer = setInterval(next, Math.max(0.5, data.stepSeconds || 2) * 1000);
+  }
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+  function toggle() { timer ? stop() : start(); }
+  function restart() { index = 0; draw(); }
+  document.addEventListener('DOMContentLoaded', () => { draw(); start(); });
+  return {toggle, restart};
+})();
+</script>
+</section>
+<section class='content report-section' id='monthly-without-ev'><h2>Miesięczne profile — bez EV</h2><p>Profile miesięczne pokazują sezonowość podstawowego zużycia domu.</p><img class='report-image' src='../assets/img/20_15_energy_use__06_monthly_profiles_without_ev.png' alt='Miesięczne profile bez EV'></section><section class='content report-section' id='monthly-with-ev'><h2>Miesięczne profile — z EV</h2><p>Profile miesięczne z EV pokazują sezonowość całkowitego zużycia wraz z ładowaniem auta.</p><img class='report-image' src='../assets/img/20_15_energy_use__07_monthly_profiles_with_ev.png' alt='Miesięczne profile z EV'></section><section class='content report-section' id='ranking'><h2>Ranking godzin największego zużycia</h2><p>Ranking pokazuje godziny o najwyższym średnim zużyciu. To dobry skrót do decyzji taryfowych, bateryjnych i sterowania EV.</p><img class='report-image' src='../assets/img/20_15_energy_use__08_top_hours_ranking.png' alt='Ranking godzin największego zużycia'></section><section class='content report-section' id='tables'><h2>Tabele rozwijane</h2><details class='details-block'><summary>Średnia i mediana — bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>median_without_ev_kWh</th></tr></thead><tbody><tr><td>00</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td>01</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td>02</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td>03</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td>04</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td>05</td><td class='num'>0.2</td><td class='num'>0.1</td></tr><tr><td>06</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td>07</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td>08</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td>09</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td>10</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td>11</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td>12</td><td class='num'>0.6</td><td class='num'>0.6</td></tr><tr><td>13</td><td class='num'>0.6</td><td class='num'>0.4</td></tr><tr><td>14</td><td class='num'>0.5</td><td class='num'>0.5</td></tr><tr><td>15</td><td class='num'>0.7</td><td class='num'>0.7</td></tr><tr><td>16</td><td class='num'>0.7</td><td class='num'>0.6</td></tr><tr><td>17</td><td class='num'>0.8</td><td class='num'>0.5</td></tr><tr><td>18</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td>19</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td>20</td><td class='num'>0.5</td><td class='num'>0.3</td></tr><tr><td>21</td><td class='num'>0.4</td><td class='num'>0.2</td></tr><tr><td>22</td><td class='num'>0.6</td><td class='num'>0.3</td></tr><tr><td>23</td><td class='num'>0.2</td><td class='num'>0.2</td></tr></tbody></table></details><details class='details-block'><summary>Średnia — z EV i bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>avg_with_ev_kWh</th></tr></thead><tbody><tr><td>00</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td>01</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td>02</td><td class='num'>0.1</td><td class='num'>0.3</td></tr><tr><td>03</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td>04</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td>05</td><td class='num'>0.2</td><td class='num'>0.5</td></tr><tr><td>06</td><td class='num'>0.1</td><td class='num'>0.6</td></tr><tr><td>07</td><td class='num'>0.2</td><td class='num'>0.5</td></tr><tr><td>08</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td>09</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td>10</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td>11</td><td class='num'>0.4</td><td class='num'>0.8</td></tr><tr><td>12</td><td class='num'>0.6</td><td class='num'>1.0</td></tr><tr><td>13</td><td class='num'>0.6</td><td class='num'>1.0</td></tr><tr><td>14</td><td class='num'>0.5</td><td class='num'>0.7</td></tr><tr><td>15</td><td class='num'>0.7</td><td class='num'>1.4</td></tr><tr><td>16</td><td class='num'>0.7</td><td class='num'>1.6</td></tr><tr><td>17</td><td class='num'>0.8</td><td class='num'>1.4</td></tr><tr><td>18</td><td class='num'>0.4</td><td class='num'>0.7</td></tr><tr><td>19</td><td class='num'>0.2</td><td class='num'>0.3</td></tr><tr><td>20</td><td class='num'>0.5</td><td class='num'>0.8</td></tr><tr><td>21</td><td class='num'>0.4</td><td class='num'>0.7</td></tr><tr><td>22</td><td class='num'>0.6</td><td class='num'>0.8</td></tr><tr><td>23</td><td class='num'>0.2</td><td class='num'>0.4</td></tr></tbody></table></details><details class='details-block'><summary>Ranking godzin</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>without_ev_kWh</th><th>with_ev_kWh</th><th>ev_impact_kWh</th><th>hour_label</th></tr></thead><tbody><tr><td>16</td><td class='num'>0.7</td><td class='num'>1.6</td><td class='num'>0.9</td><td>16:00</td></tr><tr><td>17</td><td class='num'>0.8</td><td class='num'>1.4</td><td class='num'>0.6</td><td>17:00</td></tr><tr><td>15</td><td class='num'>0.7</td><td class='num'>1.4</td><td class='num'>0.7</td><td>15:00</td></tr><tr><td>12</td><td class='num'>0.6</td><td class='num'>1.0</td><td class='num'>0.4</td><td>12:00</td></tr><tr><td>13</td><td class='num'>0.6</td><td class='num'>1.0</td><td class='num'>0.4</td><td>13:00</td></tr><tr><td>22</td><td class='num'>0.6</td><td class='num'>0.8</td><td class='num'>0.2</td><td>22:00</td></tr><tr><td>20</td><td class='num'>0.5</td><td class='num'>0.8</td><td class='num'>0.3</td><td>20:00</td></tr><tr><td>11</td><td class='num'>0.4</td><td class='num'>0.8</td><td class='num'>0.4</td><td>11:00</td></tr><tr><td>14</td><td class='num'>0.5</td><td class='num'>0.7</td><td class='num'>0.2</td><td>14:00</td></tr><tr><td>21</td><td class='num'>0.4</td><td class='num'>0.7</td><td class='num'>0.3</td><td>21:00</td></tr></tbody></table></details><details class='details-block'><summary>Brakujące pliki opcjonalne</summary><ul><li>20_15_energy_use_slot_diagnostics.csv</li></ul></details></section><section class='content report-section'><h2>Pliki źródłowe</h2><p>Raport korzysta z następujących plików wygenerowanych przez <code>20_15_energy_use</code>:</p><ul><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_all_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_all_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_all_with_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_all_with_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_cumulative_avg_forecast.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_cumulative_median_forecast.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_weekly_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_weekly_with_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_monthly_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_avg_monthly_with_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_weekly_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_weekly_with_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_monthly_without_ev.csv</code></li><li><code>/work/20_analysis/20_15_energy_use/20_15_energy_use_hourly_median_monthly_with_ev.csv</code></li></ul></section>
+</main>
+<script src="../assets/js/metro.js"></script>
+</body>
+</html>

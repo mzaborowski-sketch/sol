@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prognoza pogody i promieniowania Open-Meteo</title>
+  <meta name="generator" content="84_00_00_www_page_generator v1.3.0-flat-reports-status-registries">
+  <link rel="stylesheet" href="../assets/css/metro.css">
+  <style>
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#f6f7fb; color:#172033; }
+    .container { max-width:1180px; margin:0 auto; padding:24px 16px 56px; }
+    .breadcrumb { display:flex; gap:.7rem; flex-wrap:wrap; margin:0 0 1rem; }
+    .breadcrumb a { color:#0369a1; text-decoration:none; background:#fff; border:1px solid #d9dee8; border-radius:999px; padding:.38rem .75rem; }
+    .hero, .content { background:#fff; border:1px solid #d9dee8; border-radius:20px; padding:22px 24px; margin:16px 0; box-shadow:0 8px 24px rgba(15,23,42,.045); }
+    .hero { background:linear-gradient(135deg,#0ea5e9,#0369a1); color:white; }
+    .hero h1 { margin:0 0 .45rem; font-size:clamp(1.7rem,3vw,2.7rem); }
+    .hero p { margin:.25rem 0; color:rgba(255,255,255,.92); }
+    .report-meta { font-size:.9rem; color:rgba(255,255,255,.80); margin-top:.8rem; }
+    .report-section h2, .report-section h3, .report-section h4 { margin-top:0; }
+    .interpretation p { margin:.4rem 0; }
+    .report-image { width:100%; max-width:1200px; border-radius:18px; box-shadow:0 10px 30px rgba(15,23,42,.10); background:white; display:block; margin:0 auto .35rem; }
+    figcaption { color:#5b6475; font-size:.92rem; }
+    .table-wrap { overflow-x:auto; }
+    .report-table { width:100%; border-collapse:collapse; }
+    .report-table th, .report-table td { border-bottom:1px solid #e5e7eb; padding:.55rem .65rem; text-align:left; }
+  </style>
+</head>
+<body>
+<main class="container">
+  <nav class="breadcrumb">
+  <a href="../index.html">← Powrót poziom wyżej</a>
+  <a href="/index.html">Strona główna</a>
+  <a href="../reports/20_40_10_forecast_open_meteo.html">Raport</a><a href="../status/20_40_10_forecast_open_meteo_status.html">Status</a>
+</nav>
+  <section class="hero">
+    <div class="kicker">20_40_meteo_forecast</div>
+    <h1>Prognoza pogody i promieniowania Open-Meteo</h1>
+    <p>Godzinowa prognoza wykorzystywana przez logikę PV i automatyki energii.</p>
+    <p>Raport generowany centralnym generatorem WWW na podstawie danych i rysunków przygotowanych przez moduł forecast_open_meteo.</p>
+    <p class="report-meta">Generated: 2026-05-30 19:00:20 | module: 20_40_10_forecast_open_meteo | generator: v1.3.0-flat-reports-status-registries</p>
+  </section>
+  <section class="content report-section" id="figure_48h">
+  <h2>Prognoza 48 godzin</h2>
+  <p class="section-intro">Rysunek pokazuje najbliższe 48 pełnych godzin prognozy.</p>
+  <div class="interpretation"><p>W pliku html_texts można ręcznie rozbudować opis i interpretację bez zmiany kodu.</p></div>
+  <figure class="report-figure">
+  <img class="report-image" src="../assets/img/forecast_48h.png" alt="Prognoza 48 godzin">
+  <figcaption>Prognoza godzinowa: promieniowanie krótkofalowe i zachmurzenie dla najbliższych 48 godzin.</figcaption>
+</figure>
+  
+</section><section class="content report-section" id="figure_today_to_sunset">
+  <h2>Dzisiaj od rana do zachodu słońca</h2>
+  <p class="section-intro">Rysunek pokazuje dzisiejszy przebieg prognozy od poranka do zachodu słońca.</p>
+  <div class="interpretation"><p>Zakres kończy się na dzisiejszym zachodzie słońca. Dzięki temu wykres jest prosty i czytelny dla operacyjnej oceny dnia.</p></div>
+  <figure class="report-figure">
+  <img class="report-image" src="../assets/img/forecast_today_to_sunset.png" alt="Prognoza do zachodu słońca">
+  <figcaption>Zakres dzisiejszy: od początku dostępnej prognozy porannej do zachodu słońca.</figcaption>
+</figure>
+  
+</section>
+</main>
+<script src="../assets/js/metro.js"></script>
+</body>
+</html>

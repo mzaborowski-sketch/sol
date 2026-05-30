@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opis skryptu: 10_01_01_x3_neo_lv_orchestrator.py</title>
+<style>:root {
+  --page-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --shadow: 0 10px 30px rgba(15, 23, 42, .06);
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 22px 0 34px;
+}
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+.top-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.top-nav a {
+  color: #334155;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-size: .9rem;
+}
+.top-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 32px;
+  flex: 0 0 auto;
+}
+.top-brand img {
+  display: block;
+  width: var(--logo-width, 54px);
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.header-card {
+  background: var(--header-bg);
+  border-color: var(--header-border);
+}
+.title-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+h1, h2, h3 {
+  margin-top: 0;
+  letter-spacing: -.01em;
+}
+h1 { font-size: clamp(1.45rem, 2.5vw, 2.1rem); margin-bottom: 0; }
+h2 { font-size: 1.12rem; margin-bottom: 12px; }
+.badge.main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-weight: 800;
+  letter-spacing: .03em;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+}
+.meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .94rem;
+}
+.message {
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.info-content {
+  overflow-wrap: anywhere;
+}
+.info-content p:first-child { margin-top: 0; }
+.info-content p:last-child { margin-bottom: 0; }
+.info-content code,
+.info-content pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+.info-content pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f9fafb;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .94rem;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 10px;
+}
+th {
+  color: #374151;
+  background: #f9fafb;
+  font-weight: 750;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  overflow-wrap: anywhere;
+}
+.footer {
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+  margin: 18px 0 0;
+}
+@media (max-width: 640px) {
+  main { width: min(100% - 18px, 1120px); padding-top: 12px; }
+  .top-bar { align-items: flex-start; gap: 10px; }
+  .top-brand img { width: min(var(--logo-width, 54px), 64px); }
+  .card { padding: 14px; border-radius: 15px; }
+  .title-row { align-items: flex-start; flex-direction: column; gap: 8px; }
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+:root{--header-bg:#dff4e5;--header-border:#91c9a2;--badge-bg:#14532d;--badge-text:#ffffff;--mark-bg:#c8efd3;--mark-text:#14532d;}</style>
+</head>
+<body><main>
+<div class="top-bar"><nav class="top-nav"><a href="index.html">← Rejestr statusów</a><a href="10_01_01_x3_neo_lv_orchestrator_status.html">Status skryptu</a><a href="index.html">Strona główna</a></nav><div class="top-brand" style="--logo-width:54px"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjAvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMtU1ZHLTIwMDEwOTA0L0RURC9zdmcxMC5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTA1cHgiIGhlaWdodD0iNDc0cHgiIHZpZXdCb3g9IjAgMCA1MDUgNDc0IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0Ij4KPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkMSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZBNTAwO3N0b3Atb3BhY2l0eToxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNDMDAwMDA7c3RvcC1vcGFjaXR5OjEiLz4KICA8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CgogPGcgZmlsbD0idXJsKCNncmFkMSkiPgogIDxwYXRoIGQ9Ik0yNTAuMTEgNDU5LjE0IGMtNC4zMCAtMC4yNCAtNS45OCAtMC41MyAtNy43NSAtMS4zOSAtMy41NCAtMS43MiAtNi40MSAtNC41OSAtOC4xMyAtOC4xMyBsLTEuNTggLTMuMjAgLTAuMjQgLTE5MC45NSBjLTAuMTkgLTE2OS4wNSAtMC4zMyAtMTkxIC0wLjk2IC0xOTEuMzggLTEuMjAgLTAuNzcgLTExMiAtMC42MiAtMTEzIDAuMTQgLTAuNzcgMC41MyAtMC44MSA3LjA4IC0wLjkxIDkyLjE1IGwtMC4xNCA5MS41OCAtMS4xMCAyLjczIGMtMS4zOSAzLjQwIC00Ljc4IDcuMjcgLTcuNzkgOC43NSAtNC4wNiAyLjEwIC02LjU1IDIuMjAgLTQ3Ljc3IDIuMDYgbC0zOC45NyAtMC4xNCAtMi43NyAtMS4xMCBjLTMuNTQgLTEuNDMgLTcuMTcgLTQuOTcgLTguODUgLTguNTYgLTEuMTAgLTIuMzkgLTEuMjQgLTMuNDAgLTEuMjkgLTcuNTYgMCAtNC40NSAwLjEwIC01LjAyIDEuNTggLTcuOTkgMS43NyAtMy42MyAzLjkyIC01Ljc0IDcuNzUgLTcuNTEgbDIuNjMgLTEuMjQgMzAuNzUgLTAuMjQgYzI2LjY0IC0wLjE5IDMwLjgwIC0wLjMzIDMxLjE4IC0wLjk2IDAuMjkgLTAuNDMgMC40OCAtMzUuMjkgMC40OCAtOTEuODcgMCAtMTAwLjc2IC0wLjI0IC05My41OSAzLjExIC05OC4wOCAyLjAxIC0yLjczIDQuODMgLTQuNjkgOC42MSAtNi4wNyBsMi44NyAtMS4wNSA3Ny45NSAwLjE0IDc3Ljk1IDAuMTQgMy4xMSAxLjQ4IGMzLjkyIDEuOTEgNi40MSA0LjQwIDguMzIgOC4zMiBsMS40OCAzLjExIDAuMjQgMTkwLjcxIGMwLjI0IDE4OC4xMyAwLjI0IDE5MC43NiAxLjE1IDE5MS40MyAwLjgxIDAuNTcgOS4yMyAwLjY3IDU2LjI0IDAuNjcgNDMuNDcgMCA1NS40NyAtMC4xNCA1Ni4xMCAtMC41NyAwLjc3IC0wLjU3IDAuODEgLTcuMDMgMC45MSAtOTIuNDQgbDAuMTQgLTkxLjgyIDEuMzQgLTIuODcgYzEuNzIgLTMuNzMgNC45NyAtNi45OCA4LjY2IC04LjcwIGwyLjkyIC0xLjM0IDQyLjMyIDAgNDIuMzIgMCAyLjI1IDEuMDUgYzMuMTYgMS40MyA2Ljc0IDQuOTcgOC4wOCA3Ljk0IDEgMi4xNSAxLjE1IDMuMjUgMS4xNSA3Ljk5IDAgNS4wNyAtMC4xMCA1Ljc0IC0xLjM0IDguMjMgLTEuNjMgMy4zNSAtNC43OCA2LjIyIC04LjQyIDcuNjUgLTIuNjggMS4xMCAtMi42OCAxLjEwIC0zMi41NyAxLjI0IC0xNi40NSAwLjA1IC0zMC4zNyAwLjE5IC0zMC45NCAwLjMzIGwtMS4xMCAwLjI0IC0wLjEwIDkxLjcyIC0wLjE0IDkxLjY3IC0xLjA1IDIuNTggYy0xLjQ4IDMuNjMgLTMuMzAgNi4wMyAtNS45OCA3Ljk5IC00LjU0IDMuMzUgMC45MSAzLjExIC04MC4wMSAzLjI1IC00MC4yMiAwLjEwIC03NS42NSAwIC03OC42NyAtMC4xNHoiLz4KICA8cGF0aCBkPSJNMTU4LjQ4IDI2MS4xMSBjLTMuMzAgLTAuNjcgLTYuNjAgLTIuNjggLTkuMTggLTUuNTAgLTIuOTYgLTMuMjUgLTMuOTIgLTUuOTggLTMuOTIgLTExLjQ4IDAgLTIuMTUgMC4zMyAtNC45NyAwLjcyIC02LjM2IDAuOTYgLTMuMjUgNC42NCAtNy4yNyA4LjI3IC05LjA0IGwyLjczIC0xLjM0IDE3LjkzIDAgMTcuOTMgMCAyLjY4IDEuMzQgYzMuMTYgMS41MyA2LjMxIDQuNzMgNy43NSA3Ljg5IDAuODYgMS44NyAxLjA1IDMuMTYgMS4wNSA3LjUxIDAgNC42OSAtMC4xNCA1LjU1IC0xLjI0IDcuODkgLTEuNjcgMy41NCAtNC4yNiA2LjAzIC04LjAzIDcuODQgbC0zLjE2IDEuNDggLTE1Ljc4IDAuMTAgYy04LjY2IDAuMDUgLTE2LjY5IC0wLjEwIC0xNy43NCAtMC4zM3oiLz4KICA8cGF0aCBkPSJNMzA3LjgzIDI2MS4xMSBjLTUuNjAgLTEgLTEwLjM4IC00LjgzIC0xMi4yOSAtOS44NSAtMS4yNCAtMy4zNSAtMS4zNCAtMTAuNDMgLTAuMTkgLTEzLjc3IDEuMDUgLTMuMTEgNS4yMSAtNy41MSA4LjQyIC04Ljk0IDIuNTMgLTEuMTUgMi42MyAtMS4xNSAyMC4yMyAtMS4xNSBsMTcuNjkgMCAzLjIwIDEuNTggYzMuODMgMS44NyA2LjE3IDQuNDUgNy42MCA4LjE4IDAuODYgMi4zMCAwLjk2IDMuNDQgMC44MSA3Ljk0IC0wLjE0IDQuNTQgLTAuMzggNS42MCAtMS40MyA3LjcwIC0xLjYzIDMuMTEgLTQuOTcgNi4wNyAtOC40NiA3LjQ2IC0yLjUzIDEgLTMuNDQgMS4wNSAtMTcuOTggMS4xNSAtOC40MiAwLjEwIC0xNi4zNiAtMC4wNSAtMTcuNjAgLTAuMjl6Ii8+CiA8L2c+CiA8ZyBmaWxsPSIjZmZmZmZmIj4KICA8cGF0aCBkPSJNMCAyMzcuMjAgbDAgLTIzNy4yMCAyNTIuNTAgMCAyNTIuNTAgMCAwIDIzNy4yMCAwIDIzNy4yMCAtMjUyLjUwIDAgLTI1Mi41MCAwIDAgLTIzNy4yMHogbTQwMi43NiAyMTkuNzkgYzQuNTkgLTEuMzkgOC40MiAtNS4xMiAxMC41NyAtMTAuMzggbDEuMDUgLTIuNTggMC4xMCAtOTEuNTMgYzAuMTAgLTUwLjM2IDAuMjkgLTkxLjY3IDAuNDMgLTkxLjgyIDAuMTQgLTAuMTQgMTQuMDYgLTAuMzggMzAuOTQgLTAuNTMgMzAuNTYgLTAuMjQgMzAuNzAgLTAuMjQgMzMuMzggLTEuMzQgMy42MyAtMS40MyA2Ljc5IC00LjMwIDguNDIgLTcuNjUgMS44MiAtMy42OCAxLjkxIC05LjU2IDAuMTkgLTEzLjM0IC0xLjI5IC0yLjk2IC00Ljg4IC02LjQ2IC04LjA4IC03Ljk0IGwtMi4yNSAtMS4wNSAtNDAuODkgMCAtNDAuODkgMCAtMi45MiAxLjM0IGMtMy42OCAxLjcyIC02LjkzIDQuOTcgLTguNjYgOC43MCBsLTEuMzQgMi44NyAtMC4xNCA5MS44MiBjLTAuMTAgODUuNDEgLTAuMTQgOTEuODcgLTAuOTEgOTIuNDQgLTAuNjIgMC40MyAtMTIuOTEgMC41NyAtNTcuNTMgMC41NyAtNDguMjUgMCAtNTYuODYgLTAuMTAgLTU3LjY3IC0wLjY3IC0wLjkxIC0wLjY3IC0wLjkxIC0zLjMwIC0xLjE1IC0xOTEuNDMgbC0wLjI0IC0xOTAuNzEgLTEuNDggLTMuMTEgYy0xLjkxIC0zLjkyIC00LjQwIC02LjQxIC04LjMyIC04LjMyIGwtMy4xMSAtMS40OCAtNzYuNTIgLTAuMTQgLTc2LjUyIC0wLjE0IC0yLjg3IDEuMDUgYy0zLjc4IDEuMzkgLTYuNjAgMy4zNSAtOC42MSA2LjA3IC0zLjM1IDQuNTAgLTMuMTEgLTIuNjggLTMuMTEgOTguMDggMCA1Ni41NyAtMC4xOSA5MS40NCAtMC40OCA5MS44NyAtMC4zOCAwLjYyIC00LjU0IDAuNzcgLTMxLjE4IDAuOTYgbC0zMC43NSAwLjI0IC0yLjYzIDEuMjQgYy0zLjc4IDEuNzcgLTUuOTggMy44NyAtNy43NSA3LjUxIC0zLjAxIDYuMDcgLTEuNzIgMTIuNzcgMy40MCAxNy43NCAxLjQ4IDEuNDMgMy40OSAyLjgyIDUuMTYgMy40OSBsMi43NyAxLjEwIDM3LjU0IDAuMTQgYzM5Ljc0IDAuMTQgNDIuMjcgMC4wNSA0Ni4zNCAtMi4wNiAzLjAxIC0xLjQ4IDYuNDEgLTUuMzYgNy43OSAtOC43NSBsMS4xMCAtMi43MyAwLjE0IC05MS41OCBjMC4xMCAtODUuMDggMC4xNCAtOTEuNjMgMC45MSAtOTIuMTUgMSAtMC43NyAxMTQuNjggLTAuOTEgMTE1Ljg3IC0wLjE0IDAuNjIgMC4zOCAwLjc3IDIyLjMzIDAuOTYgMTkxLjM4IGwwLjI0IDE5MC45NSAxLjU4IDMuMjAgYzEuNzIgMy41NCA0LjU5IDYuNDEgOC4xMyA4LjEzIDEuNzcgMC44NiAzLjQwIDEuMTUgNy43NSAxLjM0IDMuMDEgMC4xNCAzNy43OCAwLjI0IDc3LjIzIDAuMTQgNjAuNjQgLTAuMTAgNzIuMDcgLTAuMTkgNzMuOTggLTAuODF6IG0tMjA5LjAzIC0xOTguNTYgYzMuNzggLTEuODIgNi4zNiAtNC4zMCA4LjAzIC03Ljg0IDEuNjMgLTMuNDkgMS43MiAtOS4wOSAwLjE5IC0xMi41MyAtMS40MyAtMy4xNiAtNC41NCAtNi4zNiAtNy43NSAtNy44OSBsLTIuNjggLTEuMzQgLTE2LjUwIDAgLTE2LjUwIDAgLTIuNzMgMS4zNCBjLTkuNTIgNC42OSAtMTIgMTYuNDUgLTUuMDcgMjQuMDEgMi41OCAyLjgyIDUuODggNC44MyA5LjE4IDUuNTAgMS4wNSAwLjI0IDguNDIgMC4zOCAxNi4zMSAwLjMzIGwxNC4zNSAtMC4xMCAzLjE2IC0xLjQ4eiBtMTQ4LjI1IDAuMzggYzMuNDkgLTEuMzkgNi44NCAtNC4zNSA4LjQyIC03LjQ2IDAuOTYgLTEuODcgMS4yOSAtMy4zNSAxLjQ4IC02LjI2IDAuMzMgLTYuODQgLTIuNDQgLTExLjc2IC04LjQyIC0xNC42OCBsLTMuMjAgLTEuNTggLTE2LjI2IDAgYy0xNi4xMiAwIC0xNi4zMSAwIC0xOC43OSAxLjE1IC0zLjIwIDEuNDMgLTcuMzYgNS44MyAtOC40MiA4Ljk0IC0yLjQ5IDcuMzIgMC45MSAxNS44MyA3LjU2IDE5LjA4IDMuODcgMS45MSA2LjAzIDIuMTAgMjEuMDkgMS45NiAxMy4wNiAtMC4xMCAxNC4wMSAtMC4xOSAxNi41NSAtMS4xNXoiLz4KIDwvZz4KPC9zdmc+" alt="NIA" loading="eager"></div></div>
+<section class="card header-card">
+  <div class="title-row">
+    <span class="badge main">OK</span>
+    <h1>Opis skryptu: 10_01_01_x3_neo_lv_orchestrator.py</h1>
+  </div>
+  <p class="meta">30.05.2026 19:15 | 10_system/01_inverter/01_solax/10_01_01_x3_neo_lv</p>
+  <div class="message"><strong>Orchestrator lokalnego pipeline SolaX X3-NEO-LV</strong> — Uruchamia w kontrolowanej kolejności cztery kroki lokalnego pipeline SolaX: pobranie RAW, parser inwertera, parser EV oraz zapis zsynchronizowanych CSV systemowych.</div>
+</section>
+<section class="card"><h2>Co robi ten skrypt</h2><div class="info-content"><p>Ten moduł jest orchestrator-em lokalnego pipeline SolaX X3-NEO-LV. Nie pobiera, nie parsuje i nie przelicza samodzielnie danych energetycznych. Jego zadaniem jest uruchomić po kolei skonfigurowane skrypty potomne: <code>01_fetch_raw.py</code>, <code>02_parse_inv.py</code>, <code>03_parse_ev.py</code> i <code>04_write_csv.py</code>.</p>
+<p>Orchestrator pilnuje kolejności, katalogu roboczego, timeoutów, kodów wyjścia oraz decyzji, czy zatrzymać pipeline po błędzie kroku wymaganego.</p></div></section><section class="card"><h2>Przepływ danych</h2><div class="info-content"><p>Przepływ danych jest wykonywany przez skrypty potomne. Orchestrator uruchamia je w kolejności z sekcji <code>[step_*]</code>. Typowy przepływ to: RAW z SolaX Cloud → parser inwertera → parser ładowarki EV → zsynchronizowane pliki <code>10_system_5min.csv</code> i <code>10_system_15min.csv</code>.</p>
+<p>Ten moduł nie modyfikuje danych źródłowych ani wynikowych CSV poza tym, że wywołuje skrypty, które te dane tworzą.</p></div></section><section class="card"><h2>Wejścia</h2><div class="info-content"><table>
+<thead><tr><th>Wejście</th><th>Znaczenie</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td><code>10_01_01_x3_neo_lv_orchestrator.ini</code></td><td>Konfiguracja orchestratora.</td><td>Zawiera listę kroków, komendy, timeouty, katalog roboczy i konfigurację statusu.</td></tr>
+<tr><td><code>[step_*].command</code></td><td>Komenda uruchomienia kroku potomnego.</td><td>Placeholder <code>{python}</code> jest zastępowany wartością <code>python_executable</code>.</td></tr>
+<tr><td><code>[step_*].timeout_s</code></td><td>Maksymalny czas wykonania kroku.</td><td>Po przekroczeniu timeoutu krok dostaje kod <code>124</code>.</td></tr>
+<tr><td><code>[orchestrator].stop_on_error</code></td><td>Decyzja, czy zatrzymać pipeline po błędzie wymaganego kroku.</td><td>W trybie produkcyjnym zwykle <code>true</code>.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Wyjścia</h2><div class="info-content"><table>
+<thead><tr><th>Wyjście</th><th>Znaczenie</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td>Status HTML</td><td>Wynik ostatniego przebiegu orchestratora.</td><td>Tworzony przez centralny builder NIA.</td></tr>
+<tr><td>Log tekstowy</td><td>Pełniejszy zapis przebiegu, komend, kodów wyjścia oraz końcówek stdout/stderr dzieci.</td><td>Ścieżka z <code>[paths].log_path</code> albo <code>[logging].log_path</code>.</td></tr>
+<tr><td>Alert TXT</td><td>Widoczny sygnał awarii przy statusie ERROR.</td><td>Powstaje lokalnie i centralnie zgodnie z <code>[alerts]</code>.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Definicje pól runtime</h2><div class="info-content"><table>
+<thead><tr><th>Pole</th><th>Gdzie występuje</th><th>Znaczenie</th><th>Uwagi</th></tr></thead>
+<tbody>
+<tr><td><code>name</code></td><td><code>[step_*]</code>, status</td><td>Nazwa kroku pipeline.</td><td>Pokazywana w logu i statusie.</td></tr>
+<tr><td><code>command</code></td><td><code>[step_*]</code>, log</td><td>Komenda uruchomienia skryptu potomnego.</td><td>Nie jest interpretowana jako logika danych, tylko jako wywołanie procesu.</td></tr>
+<tr><td><code>timeout_s</code></td><td><code>[step_*]</code>, status</td><td>Limit czasu wykonania kroku w sekundach.</td><td>Po przekroczeniu kroku ustawiany jest błąd <code>TIMEOUT</code>.</td></tr>
+<tr><td><code>required</code></td><td><code>[step_*]</code>, status</td><td>Informacja, czy błąd kroku zatrzymuje pipeline.</td><td>Krok wymagany z błędem daje status ERROR.</td></tr>
+<tr><td><code>return_code</code></td><td>wynik kroku, status</td><td>Kod wyjścia procesu potomnego.</td><td><code>0</code> oznacza poprawne zakończenie kroku.</td></tr>
+<tr><td><code>stdout_last</code></td><td>log/status techniczny</td><td>Końcówka stdout procesu potomnego.</td><td>Długość ograniczona przez <code>child_stdout_max_chars</code>.</td></tr>
+<tr><td><code>stderr_last</code></td><td>log/status techniczny</td><td>Końcówka stderr procesu potomnego.</td><td>Używana w alercie przy błędzie kroku.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Logika działania</h2><div class="info-content"><p>Moduł czyta sekcje <code>[step_*]</code>, sortuje je po nazwie sekcji i uruchamia tylko te, które mają <code>enabled = true</code>. Każdy krok jest uruchamiany przez <code>subprocess.run</code> w katalogu roboczym z konfiguracji, z przechwyceniem stdout, stderr i kodu wyjścia.</p>
+<p>Jeżeli krok wymagany zakończy się błędem, orchestrator zatrzymuje dalsze wykonywanie, o ile <code>stop_on_error = true</code>. Przy poprawnym przebiegu czyści stare alerty tego komponentu.</p></div></section><section class="card"><h2>Interpretacja statusu</h2><div class="info-content"><table>
+<thead><tr><th>Status</th><th>Znaczenie</th></tr></thead>
+<tbody>
+<tr><td><strong>OK</strong></td><td>Wszystkie wymagane kroki zakończyły się kodem wyjścia <code>0</code>.</td></tr>
+<tr><td><strong>WARNING</strong></td><td>Wystąpił problem w kroku niewymaganym, ale pipeline nie musiał zostać zatrzymany.</td></tr>
+<tr><td><strong>ERROR</strong></td><td>Krok wymagany zakończył się błędem, przekroczył timeout albo wystąpił błąd konfiguracji orchestratora.</td></tr>
+</tbody>
+</table></div></section><section class="card"><h2>Polityka błędów</h2><div class="info-content"><p>Moduł stosuje standard <code>NIA status/script_info/alert v1.3.7</code>. Status ostatniego przebiegu jest publikowany jako HTML przez centralny builder NIA. Przy błędzie powstaje prosty alert TXT lokalnie i centralnie. Stare alerty tego komponentu są czyszczone po poprawnym przebiegu.</p>
+<p>Moduł nie tworzy pośrednich statusów ani starych rejestrów błędów. Status ostatniego przebiegu jest widoczny jako HTML, a błąd jako prosty alert TXT.</p></div></section>
+<section class="card"><h2>Metadata techniczne</h2><table><tr><th>script_path</th><td class="mono">/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/10_01_01_x3_neo_lv_orchestrator.py</td></tr><tr><th>ini_path</th><td class="mono">/work/10_system/01_inverter/01_solax/10_01_01_x3_neo_lv/10_01_01_x3_neo_lv_orchestrator.ini</td></tr><tr><th>status_html_file</th><td class="mono">10_01_01_x3_neo_lv_orchestrator_status.html</td></tr><tr><th>script_info_html_file</th><td class="mono">10_01_01_x3_neo_lv_orchestrator_script_info.html</td></tr><tr><th>status_inherited_from_status_html</th><td class="mono">OK</td></tr><tr><th>generator_version</th><td class="mono">v0.7.4-script-info-contract-fields</td></tr></table></section>
+<p class="footer">Script info wygenerowane centralnie przez 00_20_nia_system_py_html_descr.py na podstawie statusu HTML i INI skryptu.</p>
+</main></body></html>
