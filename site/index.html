@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domowa energia</title>
+  <style>
+    :root {
+      --bg: #f2fbf7;
+      --ink: #102018;
+      --muted: #557067;
+      --green: #0f8f58;
+      --green-dark: #0b653f;
+      --blue: #0ea5e9;
+      --yellow: #ffd21f;
+      --card: #ffffff;
+      --line: #dbe7e0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    .floating-menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+    }
+    .floating-menu a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 54px;
+      padding: 14px 18px;
+      border: 4px solid #fff;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(14, 165, 233, .35);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+    .floating-menu a:active {
+      transform: translateY(-2px) scale(1.08);
+      filter: brightness(1.08);
+      box-shadow: 0 16px 34px rgba(14, 165, 233, .46);
+    }
+    .page {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 34px 0 72px;
+    }
+    .hero {
+      margin-right: 96px;
+      padding: 24px 28px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0f8f58, #12b86d);
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(15, 143, 88, .22);
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 4.4rem);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+    .meta-line {
+      margin: 8px 0 14px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.3;
+    }
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 18px 0;
+    }
+    .mini-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(16, 32, 24, .06);
+    }
+    .mini-card span {
+      display: block;
+      color: var(--muted);
+      font-size: .74rem;
+      margin-bottom: 6px;
+    }
+    .mini-card strong {
+      display: block;
+      font-size: clamp(1.38rem, 5.1vw, 1.8rem);
+      line-height: 1.2;
+    }
+    .mini-card.battery strong {
+      text-align: center;
+    }
+    .top-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(135px, 180px);
+      gap: 10px;
+      margin: 18px 0;
+      align-items: stretch;
+    }
+    .money-snapshot {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 10px 24px rgba(16, 32, 24, .06);
+    }
+    .money-snapshot th,
+    .money-snapshot td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid rgba(85, 112, 103, .18);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .money-snapshot th:last-child,
+    .money-snapshot td:last-child {
+      border-right: 0;
+    }
+    .money-snapshot thead th {
+      color: var(--muted);
+      font-size: clamp(1.02rem, 3.5vw, 1.28rem);
+      font-weight: 850;
+      background: #f6fbf8;
+    }
+    .money-snapshot tbody th {
+      color: var(--ink);
+      text-align: left;
+      font-size: clamp(1.16rem, 4.3vw, 1.55rem);
+      font-weight: 850;
+    }
+    .money-snapshot tbody td {
+      font-size: clamp(1.16rem, 4.8vw, 1.55rem);
+      font-weight: 900;
+    }
+    .money-snapshot tr:last-child th,
+    .money-snapshot tr:last-child td {
+      border-bottom: 0;
+    }
+    .price-strip-card {
+      margin-top: 14px;
+      padding: 14px;
+    }
+    .price-strip-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 4.8vw, 1.9rem);
+    }
+    .price-strip {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .axis-label {
+      fill: #52675f;
+      font-size: 54px;
+      font-weight: 700;
+    }
+    .axis-title {
+      font-size: 37px;
+    }
+    .time-label {
+      fill: #52675f;
+      font-size: 38px;
+      font-weight: 700;
+    }
+    .x-axis-title {
+      fill: #52675f;
+      font-size: 38px;
+      font-weight: 800;
+    }
+    .system-note {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #effaf4;
+      border: 1px solid var(--line);
+      font-size: clamp(1rem, 3.8vw, 1.3rem);
+      font-weight: 500;
+      color: var(--green-dark);
+    }
+    .system-note strong {
+      font-weight: 900;
+    }
+    .price-label {
+      fill: #102018;
+      font-size: 42px;
+      font-weight: 850;
+    }
+    .bubble-label {
+      fill: #0f172a;
+      font-size: 42px;
+      font-weight: 900;
+    }
+    section {
+      margin-top: 18px;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 26px rgba(16, 32, 24, .07);
+    }
+    section h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 5vw, 2.1rem);
+      letter-spacing: 0;
+    }
+    section p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .chart {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .standalone-chart {
+      margin: 0 0 14px;
+    }
+    .figure-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .figure-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fbfffd;
+    }
+    .figure-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      font-size: .98rem;
+    }
+    .summary-table thead th {
+      background: var(--green-dark);
+      color: #fff;
+      text-align: right;
+      padding: 12px 10px;
+    }
+    .summary-table thead th:first-child,
+    .summary-table tbody th {
+      text-align: left;
+    }
+    .summary-table tbody th,
+    .summary-table tbody td {
+      padding: 13px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .summary-table tbody td {
+      text-align: right;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .summary-table tbody tr:nth-child(even) {
+      background: #f0faf5;
+    }
+    .now-box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .message {
+      min-height: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      background: #e8f7ff;
+      border: 1px solid #b9e5ff;
+      font-size: 1.15rem;
+      font-weight: 750;
+    }
+    .fact-list {
+      display: grid;
+      gap: 8px;
+    }
+    .fact {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f5fbf8;
+      border: 1px solid var(--line);
+    }
+    .fact span { color: var(--muted); }
+    .fact strong { text-align: right; }
+    .service-panel {
+      margin-top: 18px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+    .service-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 900;
+      box-shadow: 0 14px 30px rgba(124, 58, 237, .22);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+    .service-button:active,
+    .service-button:hover,
+    .service-button:focus {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .service-button:active {
+      transform: translateY(-2px) scale(1.04);
+      filter: brightness(1.08);
+      box-shadow: 0 18px 38px rgba(124, 58, 237, .32);
+    }
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 18px, 560px);
+        padding-top: 76px;
+      }
+      .floating-menu {
+        top: 12px;
+        right: 12px;
+      }
+      .floating-menu a {
+        min-height: 48px;
+        padding: 11px 14px;
+      }
+      .hero {
+        margin-right: 0;
+        padding: 18px;
+      }
+      .status-strip {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 5px;
+      }
+      .top-summary {
+        grid-template-columns: 1fr;
+      }
+      .mini-card {
+        padding: 9px 6px;
+        border-radius: 11px;
+      }
+      .mini-card span {
+        font-size: .62rem;
+      }
+      section {
+        padding: 14px;
+      }
+      .figure-pair,
+      .now-box {
+        grid-template-columns: 1fr;
+      }
+      .summary-table {
+        font-size: .86rem;
+      }
+      .summary-table tbody th,
+      .summary-table tbody td,
+      .summary-table thead th {
+        padding: 10px 6px;
+      }
+    }
+    </style>
+</head>
+<body>
+  <nav class="floating-menu"><a href="http://192.168.1.105:8081/status_soft_stop/">CAR</a></nav>
+  <main class="page">
+    <header class="hero">
+      <h1>Domowa energia</h1>
+    </header>
+    <div class="meta-line">Wygenerowano: 2026-07-11 20:38:11 · Dane do: 2026-07-11 20:25</div>
+
+    
+    <section class="price-strip-card">
+      <h2>Ceny zakupu dzisiaj</h2>
+      <svg class="price-strip" viewBox="0 0 1000 435" role="img" aria-label="Dzisiejsza cena zakupu energii i obecny moment">
+        <rect x="0" y="0" width="1000" height="435" rx="18" fill="#ffffff"/>
+        <text x="48" y="205.00" class="axis-label axis-title" text-anchor="middle" transform="rotate(-90 48 205.00)">PLN/kWh</text>
+        <line x1="118" y1="310" x2="918" y2="310" stroke="#8aa099" stroke-width="4"/>
+        <line x1="118" y1="100" x2="118" y2="310" stroke="#8aa099" stroke-width="4"/>
+        <rect x="118.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="126.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="134.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="143.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="151.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="159.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="168.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="176.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="184.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="193.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="201.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="209.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="218.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="226.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="234.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="243.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="251.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="259.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="268.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="276.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="284.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="293.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="301.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="309.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="318.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="326.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="334.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="343.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="351.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="359.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="368.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="376.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="384.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="393.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="401.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="409.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="418.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="426.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="434.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="443.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="451.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="459.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="468.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="476.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="484.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="493.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="501.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="509.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="518.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="526.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="534.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="543.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="551.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="559.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="568.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="576.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="584.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="593.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="601.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="609.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="618.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="626.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="634.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="643.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="651.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="659.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="668.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="676.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="684.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="693.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="701.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="709.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="718.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="726.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="734.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="743.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="751.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="759.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="768.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="776.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="784.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="793.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="801.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="809.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="818.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="826.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="834.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="843.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="851.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="859.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="868.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="876.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="884.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="893.00" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="901.33" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/><rect x="909.67" y="236.50" width="8.33" height="73.50" rx="2" fill="#16a34a" opacity="0.92"/>
+        <text x="518.00" y="222.50" text-anchor="middle" class="price-label">0.63</text>
+        <line x1="805.88" y1="78" x2="805.88" y2="358" stroke="rgba(14,165,233,.72)" stroke-width="8" stroke-linecap="round"/>
+        <rect x="132.00" y="6" width="860" height="68" rx="34" fill="rgba(186,230,253,.74)" stroke="rgba(14,165,233,.78)" stroke-width="4"/>
+        <text x="562.00" y="52" text-anchor="middle" class="bubble-label">Teraz: 20:38, bateria: 100%, PV: 0,00 kW</text>
+        
+        <text x="518.00" y="420" text-anchor="middle" class="x-axis-title">Godziny</text>
+      </svg>
+      <div class="system-note"><span>System wysłał ustawienie: </span><strong>unikamy poboru z sieci</strong></div>
+    </section>
+    
+
+    <div class="top-summary">
+      <table class="money-snapshot" aria-label="Zysk i korzyść">
+        <thead><tr><th></th><th>Dzisiaj</th><th>Od początku</th></tr></thead>
+        <tbody><tr><th>Zysk</th><td>1 zł</td><td>141 zł</td></tr>
+<tr><th>Korzyść</th><td>6 zł</td><td>273 zł</td></tr></tbody>
+      </table>
+      <div class="mini-card battery"><span>Bateria</span><strong>100%</strong></div>
+    </div>
+
+    <section>
+      <h2>Sprzedaż/zakup dzisiaj</h2>
+      <p>Tu widać, kiedy dom kupował energię, kiedy sprzedawał nadwyżkę i jak zmieniała się bateria.</p>
+      <img class="chart" src="assets/img/index__buy_sell.svg" alt="Dzisiejszy wykres kupna, sprzedaży i SOC">
+    </section>
+
+    <section>
+      <h2>Bilans pieniędzy</h2>
+      <table class="summary-table">
+        <thead><tr><th>Co</th><th>Dzisiaj</th><th>Ten miesiąc</th><th>Od początku</th></tr></thead>
+        <tbody><tr><th>Kupiliśmy energię</th><td>1,20 zł</td><td>20,16 zł</td><td>45,71 zł</td></tr>
+<tr><th>Sprzedaliśmy energię</th><td>2,51 zł</td><td>60,61 zł</td><td>187,53 zł</td></tr>
+<tr><th>Zużyliśmy swoją zamiast kupić</th><td>5,10 zł</td><td>46,41 zł</td><td>132,01 zł</td></tr>
+<tr><th>Razem wyszło</th><td>6,41 zł</td><td>86,86 zł</td><td>273,03 zł</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Energia zamiast zakupu</h2>
+      <p>To pokazuje, ile energii zostało wykorzystane lokalnie zamiast kupowania jej z sieci.</p>
+      <table class="summary-table">
+        <thead><tr><th>Co</th><th>Dzisiaj</th><th>Ten miesiąc</th><th>Od początku</th></tr></thead>
+        <tbody><tr><th>Własna energia zamiast zakupu</th><td>8,1 kWh</td><td>71,6 kWh</td><td>190,9 kWh</td></tr>
+<tr><th>Kupiona z sieci</th><td>1,9 kWh</td><td>31,8 kWh</td><td>71,7 kWh</td></tr>
+<tr><th>Oddana do sieci</th><td>4,4 kWh</td><td>106,3 kWh</td><td>235,0 kWh</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Prognoza vs. produkcja</h2>
+      <img class="chart standalone-chart" src="assets/img/index__pv_forecast_actual.svg" alt="Prognoza PV z rana i produkcja rzeczywista">
+    </section>
+
+    <section>
+      <h2>Bilans energii</h2>
+      <p>Obrazki pokazują, jak energia przepływała między PV, domem, autem, baterią i siecią.</p>
+      <div class="figure-pair">
+        <div class="figure-card">
+          <h3>Dzisiaj</h3>
+          <img class="chart" src="assets/img/20_16_energy_balance_current__today.png" alt="Bilans energii dzisiaj">
+        </div>
+        <div class="figure-card">
+          <h3>Od początku</h3>
+          <img class="chart" src="assets/img/20_16_energy_balance_current__total.png" alt="Bilans energii od początku">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Co system robi teraz</h2>
+      <div class="now-box">
+        <div class="fact-list">
+          <div class="fact"><span>Falownik</span><strong>unikamy poboru z sieci</strong></div>
+          <div class="fact"><span>Auto</span><strong>zatrzymane bezpiecznie</strong></div>
+          <div class="fact"><span>Ładowanie auta z</span><strong>brak ładowania</strong></div>
+          <div class="fact"><span>Bateria</span><strong>100%</strong></div>
+          <div class="fact"><span>Komenda</span><strong>skipped_same_command</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-panel" aria-label="Panel serwisowy">
+      <a class="service-button" href="index2.html">Panel serwisowy</a>
+    </section>
+  </main>
+</body>
+</html>

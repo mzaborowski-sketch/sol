@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pl" data-doc-id="taryfy-g13-g14dynamic">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Neutralne wyjaśnienie taryf G13 i G14dynamic na przykładzie TAURONU.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Taryfy G13 i G14dynamic</title>
+  <style id="page-fallback-css">
+:root {
+  --bg:#f6f7fb; --card:#ffffff; --text:#172033; --muted:#5b6475;
+  --line:#d9dee8; --accent:#0ea5e9; --accent-dark:#0369a1;
+  --ok:#059669; --warn:#d97706; --bad:#dc2626;
+  --high-bg:#fee2e2; --high-text:#991b1b; --low-bg:#dcfce7; --low-text:#166534;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:Arial, Helvetica, sans-serif; line-height:1.55; }
+.container { max-width:1240px; margin:0 auto; padding:24px 16px 56px; }
+.hero { background:linear-gradient(135deg,#0ea5e9,#0369a1); color:#fff; padding:24px 26px; border-radius:24px; box-shadow:0 12px 30px rgba(2,132,199,.22); margin-bottom:18px; }
+.hero h1 { margin:0 0 8px; font-size:clamp(1.7rem,3vw,2.6rem); line-height:1.08; }
+.hero p { margin:0; color:rgba(255,255,255,.92); }
+.hero .page-date { margin-top:7px; font-weight:700; }
+.hero .generated-at { color:rgba(255,255,255,.80); margin-top:8px; font-size:.92rem; }
+.kicker { margin-bottom:7px; font-size:.84rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.88); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:0 8px 24px rgba(15,23,42,.045); margin:16px 0; }
+h2 { margin:0 0 12px; font-size:1.35rem; padding-bottom:8px; border-bottom:1px solid var(--line); }
+h3 { margin:20px 0 8px; font-size:1.08rem; }
+p { margin:.75rem 0; }
+.summary { border-left:5px solid var(--ok); background:linear-gradient(135deg,#ffffff 0%,#ecfdf5 100%); }
+.summary h2 { border-bottom:0; color:#065f46; }
+.summary p { font-size:1.03rem; }
+.formula { margin:16px 0; padding:14px 16px; overflow-wrap:anywhere; background:#f8fafc; border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; color:#0f172a; font-family:Consolas, Monaco, "Courier New", monospace; font-size:.98rem; }
+.note, .warning, .info { margin:18px 0; padding:14px 16px; border-radius:14px; }
+.note { color:#164e63; background:#ecfeff; border:1px solid #bae6fd; border-left:4px solid var(--accent); }
+.warning { color:#78350f; background:#fffbeb; border:1px solid #fde68a; border-left:4px solid var(--warn); }
+.info { color:#166534; background:#f0fdf4; border:1px solid #bbf7d0; border-left:4px solid var(--ok); }
+.toc { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:10px; padding:0; list-style:none; }
+.toc a { display:block; padding:10px 12px; color:var(--text); text-decoration:none; background:#f8fafc; border:1px solid var(--line); border-radius:12px; }
+.toc a:hover { color:var(--accent-dark); background:#eff6ff; border-color:var(--accent); }
+table { width:100%; border-collapse:collapse; font-size:.94rem; line-height:1.35; margin:12px 0 6px; }
+th, td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { color:#334155; background:#f8fafc; font-weight:700; }
+tr:nth-child(even) td { background:#fbfdff; }
+blockquote { margin:18px 0; padding:14px 16px; background:#f8fafc; border-left:4px solid var(--accent); border-radius:0 12px 12px 0; }
+ul, ol { padding-left:24px; }
+li { margin:.35rem 0; }
+.sources li { margin-bottom:12px; }
+.sources a { color:var(--accent-dark); font-weight:650; }
+.sources a:hover { text-decoration:underline; }
+.small, .muted, .document-footer { color:var(--muted); font-size:.92rem; }
+.doc-backlink { display:inline-block; margin-top:12px; color:var(--muted); font-size:.84rem; font-style:italic; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px; }
+.floating-menu { position:fixed; right:18px; bottom:18px; z-index:20; }
+.floating-menu a { display:inline-flex; gap:7px; align-items:center; padding:9px 12px; color:#fff; background:#0f172a; text-decoration:none; border-radius:999px; box-shadow:0 8px 18px rgba(15,23,42,.20); }
+.compare-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.compare-grid .card { margin:0; }
+@media (max-width:900px) {
+  .toc, .compare-grid { grid-template-columns:1fr; }
+  .container { padding:16px 10px 44px; }
+  .hero { border-radius:18px; }
+  .card { border-radius:16px; padding:17px 16px; }
+  table { display:block; overflow-x:auto; }
+}
+@media print {
+  body { background:#fff; }
+  .container { max-width:none; padding:0; }
+  .hero, .card { box-shadow:none; break-inside:avoid; }
+  .floating-menu, .doc-backlink { display:none; }
+  a { color:inherit; text-decoration:none; }
+}
+  </style>
+  <link rel="stylesheet" href="../assets/css/metro.css">
+</head>
+<body class="accent-green has-floating">
+<main class="container tight">
+
+  <div class="floating-menu">
+    <a href="../index.html" title="Powrót do menu"><span class="label">MENU</span><span class="emoji">🏠</span></a>
+  </div>
+
+  <section class="hero" data-type="document-header" data-search="include">
+    <div class="kicker">Energia · taryfy dla gospodarstw domowych</div>
+    <h1>Taryfy G13 i G14dynamic</h1>
+    <p class="page-date">Zasady działania, strefy i przykłady rozliczeń</p>
+    <p class="generated-at">Stan informacji: 9 czerwca 2026 r.</p>
+  </section>
+
+  <section class="card summary" id="podsumowanie" data-type="summary" data-search="include">
+    <h2>Praktyczne podsumowanie</h2>
+    <p><strong>G13</strong> jest taryfą trzystrefową. Godziny stref są znane z góry i zależą od sezonu oraz rodzaju dnia.</p>
+    <p><strong>G14dynamic</strong> jest czterostrefową taryfą dystrybucyjną. Strefy S1–S4 wynikają z Energetycznego Kompasu PSE i mogą zmieniać się z dnia na dzień.</p>
+    <p>W obu przypadkach pełny koszt poboru obejmuje osobno <strong>cenę energii czynnej</strong> oraz <strong>opłaty dystrybucyjne</strong>.</p>
+    <div class="formula">koszt poboru 1 kWh = cena energii czynnej + opłaty dystrybucyjne</div>
+    <p>G14dynamic nie jest tym samym co umowa z dynamiczną ceną energii. W G14dynamic zmienna jest dystrybucja, natomiast w umowie dynamicznej zmienia się cena samej energii.</p>
+  </section>
+
+  <section class="card" id="spis-tresci" data-type="toc" data-search="include">
+    <h2>Spis treści</h2>
+    <ol class="toc">
+      <li><a href="#grupa-taryfowa">1. Czym jest grupa taryfowa</a></li>
+      <li><a href="#g13">2. Taryfa G13</a></li>
+      <li><a href="#g13-ceny">3. Ceny i przykład G13</a></li>
+      <li><a href="#g14">4. Taryfa G14dynamic</a></li>
+      <li><a href="#g14-stawki">5. Stawki i przykład G14dynamic</a></li>
+      <li><a href="#rozliczenie">6. Rozliczenie miesięczne G14dynamic</a></li>
+      <li><a href="#warunki">7. Warunki korzystania</a></li>
+      <li><a href="#dynamiczna-energia">8. G14dynamic a cena dynamiczna</a></li>
+      <li><a href="#porownanie">9. Porównanie G13 i G14dynamic</a></li>
+      <li><a href="#zrodla">10. Źródła oficjalne</a></li>
+    </ol>
+  </section>
+
+  <section class="card" id="grupa-taryfowa" data-type="section" data-search="include">
+    <h2>1. Czym jest grupa taryfowa</h2>
+    <p>Grupa taryfowa określa sposób rozliczania energii elektrycznej pobieranej z sieci. Na rachunku należy rozróżnić dwie podstawowe części:</p>
+    <div class="formula">koszt poboru energii = cena energii czynnej + opłaty dystrybucyjne</div>
+    <p>Cena energii czynnej jest należnością dla sprzedawcy energii. Opłaty dystrybucyjne są należnością dla operatora sieci.</p>
+    <p>W taryfie G13 podział na strefy jest z góry określony. W grupie G14dynamic strefy dystrybucyjne wynikają z komunikatów Energetycznego Kompasu PSE.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="g13" data-type="section" data-search="include">
+    <h2>2. Taryfa G13</h2>
+    <p>G13 jest taryfą trzystrefową. Każda doba jest dzielona na szczyt przedpołudniowy, szczyt popołudniowy oraz pozostałe godziny doby.</p>
+
+    <h3>Okres letni: 1 kwietnia – 30 września</h3>
+    <table>
+      <thead><tr><th>Strefa</th><th>Godziny w dni robocze</th></tr></thead>
+      <tbody>
+        <tr><td>Szczyt przedpołudniowy</td><td>7:00–13:00</td></tr>
+        <tr><td>Szczyt popołudniowy</td><td>19:00–22:00</td></tr>
+        <tr><td>Pozostałe godziny doby</td><td>13:00–19:00 oraz 22:00–7:00</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Okres zimowy: 1 października – 31 marca</h3>
+    <table>
+      <thead><tr><th>Strefa</th><th>Godziny w dni robocze</th></tr></thead>
+      <tbody>
+        <tr><td>Szczyt przedpołudniowy</td><td>7:00–13:00</td></tr>
+        <tr><td>Szczyt popołudniowy</td><td>16:00–21:00</td></tr>
+        <tr><td>Pozostałe godziny doby</td><td>13:00–16:00 oraz 21:00–7:00</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info">
+      W soboty, niedziele i dni ustawowo wolne od pracy wszystkie godziny są zaliczane do trzeciej strefy – pozostałych godzin doby.
+    </div>
+
+    <p>Godziny G13 nie zależą od bieżącej sytuacji w systemie elektroenergetycznym. Harmonogram jest znany z góry.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="g13-ceny" data-type="section" data-search="include">
+    <h2>3. Ceny i przykład G13</h2>
+    <p>W taryfie TAURON Sprzedaż obowiązującej w 2026 r. ceny samej energii czynnej wynoszą:</p>
+    <table>
+      <thead><tr><th>Strefa G13</th><th>Cena energii netto</th></tr></thead>
+      <tbody>
+        <tr><td>Szczyt przedpołudniowy</td><td>0,4668 zł/kWh</td></tr>
+        <tr><td>Szczyt popołudniowy</td><td>0,7780 zł/kWh</td></tr>
+        <tr><td>Pozostałe godziny doby</td><td>0,4210 zł/kWh</td></tr>
+      </tbody>
+    </table>
+
+    <p>Są to ceny bez VAT, akcyzy i opłat dystrybucyjnych.</p>
+
+    <h3>Przykład: pobór 10 kWh</h3>
+    <div class="compare-grid">
+      <div class="card">
+        <p class="muted">Szczyt przedpołudniowy</p>
+        <div class="formula">10 × 0,4668 = 4,668 zł netto</div>
+      </div>
+      <div class="card">
+        <p class="muted">Szczyt popołudniowy</p>
+        <div class="formula">10 × 0,7780 = 7,780 zł netto</div>
+      </div>
+      <div class="card">
+        <p class="muted">Pozostałe godziny</p>
+        <div class="formula">10 × 0,4210 = 4,210 zł netto</div>
+      </div>
+    </div>
+
+    <p>Do każdej z tych kwot należy doliczyć akcyzę, VAT, zmienne opłaty dystrybucyjne oraz odpowiednią część opłat stałych.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="g14" data-type="section" data-search="include">
+    <h2>4. Taryfa G14dynamic</h2>
+    <p>G14dynamic, oznaczana również jako G14d, jest czterostrefową grupą taryfową dotyczącą dystrybucji energii elektrycznej.</p>
+
+    <table>
+      <thead><tr><th>Strefa</th><th>Znaczenie</th></tr></thead>
+      <tbody>
+        <tr><td>S1</td><td>Zalecane użytkowanie</td></tr>
+        <tr><td>S2</td><td>Normalne użytkowanie</td></tr>
+        <tr><td>S3</td><td>Zalecane oszczędzanie</td></tr>
+        <tr><td>S4</td><td>Wymagane ograniczenie</td></tr>
+      </tbody>
+    </table>
+
+    <p>W odróżnieniu od G13 strefy nie mają stałych godzin obowiązujących przez cały sezon. Przypisanie godzin do S1–S4 wynika z Energetycznego Kompasu publikowanego przez PSE.</p>
+
+    <div class="note">
+      Prognozowane strefy są publikowane z wyprzedzeniem na kolejną dobę. Mogą jednak ulegać zmianie. Do rozliczenia stosowane są strefy ostatecznie ustalone dla danej doby.
+    </div>
+
+    <p>Dynamiczna jest tu przede wszystkim część dystrybucyjna rachunku. Cena energii czynnej wynika z osobnego cennika sprzedawcy.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="g14-stawki" data-type="section" data-search="include">
+    <h2>5. Stawki i przykład G14dynamic</h2>
+    <p>W 2026 r. zmienny składnik stawki sieciowej brutto wynosi:</p>
+
+    <table>
+      <thead><tr><th>Strefa G14dynamic</th><th>Zmienny składnik sieciowy brutto</th></tr></thead>
+      <tbody>
+        <tr><td>S1 – zalecane użytkowanie</td><td>0,0276 zł/kWh</td></tr>
+        <tr><td>S2 – normalne użytkowanie</td><td>0,1098 zł/kWh</td></tr>
+        <tr><td>S3 – zalecane oszczędzanie</td><td>0,4774 zł/kWh</td></tr>
+        <tr><td>S4 – wymagane ograniczenie</td><td>2,9220 zł/kWh</td></tr>
+      </tbody>
+    </table>
+
+    <p>Są to wyłącznie stawki zmiennego składnika sieciowego. Do rachunku dochodzą cena energii czynnej, opłata jakościowa, OZE, kogeneracyjna, opłaty stałe i pozostałe składniki umowy.</p>
+
+    <h3>Przykład: pobór 10 kWh</h3>
+    <table>
+      <thead><tr><th>Strefa</th><th>Koszt zmiennego składnika sieciowego</th></tr></thead>
+      <tbody>
+        <tr><td>S1</td><td>10 × 0,0276 = 0,276 zł</td></tr>
+        <tr><td>S2</td><td>10 × 0,1098 = 1,098 zł</td></tr>
+        <tr><td>S3</td><td>10 × 0,4774 = 4,774 zł</td></tr>
+        <tr><td>S4</td><td>10 × 2,9220 = 29,220 zł</td></tr>
+      </tbody>
+    </table>
+
+    <p>Do tych kwot należy następnie doliczyć cenę energii czynnej i pozostałe składniki rachunku.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="rozliczenie" data-type="section" data-search="include">
+    <h2>6. Rozliczenie miesięczne G14dynamic</h2>
+    <p>Licznik zdalnego odczytu rejestruje ilość energii pobranej w kolejnych godzinach. Dla każdej godziny operator:</p>
+    <ol>
+      <li>sprawdza ostateczną strefę Energetycznego Kompasu,</li>
+      <li>przypisuje zużycie do S1, S2, S3 albo S4,</li>
+      <li>mnoży zużycie przez stawkę właściwą dla strefy,</li>
+      <li>sumuje wartości z całego okresu rozliczeniowego.</li>
+    </ol>
+
+    <p>Przykładowo w jednym miesiącu gospodarstwo pobiera:</p>
+    <ul>
+      <li>100 kWh w S1,</li>
+      <li>120 kWh w S2,</li>
+      <li>40 kWh w S3,</li>
+      <li>5 kWh w S4.</li>
+    </ul>
+
+    <div class="formula">
+      100×0,0276 + 120×0,1098 + 40×0,4774 + 5×2,9220 = 49,642 zł
+    </div>
+
+    <p>Jest to tylko zmienny składnik sieciowy, a nie pełny rachunek za energię.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="warunki" data-type="section" data-search="include">
+    <h2>7. Warunki korzystania z G14dynamic</h2>
+    <p>W TAURONIE korzystanie z G14dynamic wymaga między innymi:</p>
+    <ul>
+      <li>licznika zdalnego odczytu,</li>
+      <li>jednomiesięcznego okresu rozliczeniowego,</li>
+      <li>zawarcia odpowiedniej umowy albo zmiany obecnej umowy,</li>
+      <li>korzystania z oferty sprzedawcy umożliwiającej rozliczenie dystrybucji w G14dynamic.</li>
+    </ul>
+    <p>W przypadku umów kompleksowych TAURON udostępnia G14dynamic w ramach oferty „Prąd ze zmienną dystrybucją”. Nie oznacza to automatycznie zawarcia umowy z dynamiczną ceną energii.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="dynamiczna-energia" data-type="section" data-search="include">
+    <h2>8. G14dynamic a dynamiczna cena energii</h2>
+    <p>G14dynamic i umowa z ceną dynamiczną są odrębnymi rozwiązaniami.</p>
+
+    <div class="compare-grid">
+      <div class="card">
+        <h3>G14dynamic</h3>
+        <p>Zmienia się stawka dystrybucyjna.</p>
+        <div class="formula">dystrybucja = stawka S1, S2, S3 albo S4</div>
+        <p>Strefa wynika z Energetycznego Kompasu.</p>
+      </div>
+      <div class="card">
+        <h3>Umowa z ceną dynamiczną</h3>
+        <p>Zmienia się cena energii czynnej.</p>
+        <div class="formula">cena energii = cena rynku + składniki określone w umowie</div>
+        <p>Dystrybucja jest rozliczana osobno według wybranej grupy taryfowej.</p>
+      </div>
+    </div>
+
+    <div class="warning">
+      Samo zawarcie umowy z dynamiczną ceną energii nie oznacza automatycznego przejścia na G14dynamic.
+    </div>
+
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="porownanie" data-type="section" data-search="include">
+    <h2>9. Porównanie G13 i G14dynamic</h2>
+    <table>
+      <thead>
+        <tr><th>Cecha</th><th>G13</th><th>G14dynamic</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Liczba stref</td><td>3</td><td>4</td></tr>
+        <tr><td>Rodzaj stref</td><td>Stałe strefy godzinowe</td><td>Zmienne strefy według Kompasu PSE</td></tr>
+        <tr><td>Harmonogram</td><td>Ustalony z góry</td><td>Publikowany dla kolejnych dób</td></tr>
+        <tr><td>Zależność od pory roku</td><td>Tak</td><td>Nie według stałego kalendarza</td></tr>
+        <tr><td>Weekendy i święta</td><td>Cała doba w trzeciej strefie</td><td>Strefy wynikają z Kompasu</td></tr>
+        <tr><td>Cena energii</td><td>Zróżnicowana w trzech strefach taryfy sprzedawcy</td><td>Wynika z osobnego cennika sprzedawcy</td></tr>
+        <tr><td>Dystrybucja</td><td>Trzy strefy</td><td>Cztery strefy S1–S4</td></tr>
+        <tr><td>Źródło godzin stref</td><td>Taryfa sprzedawcy i operatora</td><td>Energetyczny Kompas PSE</td></tr>
+        <tr><td>Licznik zdalnego odczytu</td><td>Nie jest podstawową cechą taryfy</td><td>Wymagany</td></tr>
+        <tr><td>Okres rozliczeniowy</td><td>Zgodny z umową</td><td>Miesięczny</td></tr>
+      </tbody>
+    </table>
+
+    <p>G13 opiera się na znanych z góry strefach sezonowych. G14dynamic opiera się na bieżących i prognozowanych warunkach pracy systemu elektroenergetycznego.</p>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card" id="zrodla" data-type="section" data-search="include">
+    <h2>10. Źródła oficjalne</h2>
+    <ul class="sources">
+      <li>
+        <a href="https://bip.ure.gov.pl/download/3/20340/TauronSprzedaz.pdf" target="_blank" rel="noopener noreferrer">
+          Taryfa TAURON Sprzedaż zatwierdzona przez Prezesa URE
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tauron-dystrybucja.pl/grupa-taryfowa-g14dynamic" target="_blank" rel="noopener noreferrer">
+          TAURON Dystrybucja: grupa taryfowa G14dynamic
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tauron-dystrybucja.pl/-/media/offer-documents/dystrybucja/aktualna-taryfa/stawki-brutto-w-grupach-g-na-rok-2026.ashx" target="_blank" rel="noopener noreferrer">
+          TAURON Dystrybucja: stawki brutto dla grup G na 2026 r.
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tauron.pl/dla-domu/prad/prad-z-usluga/prad-dynamiczna-dystrybucja" target="_blank" rel="noopener noreferrer">
+          TAURON: Prąd ze zmienną dystrybucją
+        </a>
+      </li>
+      <li>
+        <a href="https://www.energetycznykompas.pl/" target="_blank" rel="noopener noreferrer">
+          Energetyczny Kompas PSE
+        </a>
+      </li>
+    </ul>
+    <a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a>
+  </section>
+
+  <section class="card document-footer" data-type="footer" data-search="include">
+    Materiał informacyjny. Ostateczne zasady rozliczenia wynikają z aktualnej taryfy operatora, taryfy lub cennika sprzedawcy oraz indywidualnej umowy odbiorcy.
+  </section>
+
+  <section class="card" id="doc-meta-visible-note" data-type="system-note" data-search="exclude">
+    <h2>Notatka techniczna</h2>
+    <p class="small">Poniższy blok JSON zawiera metadane dokumentu wykorzystywane do indeksowania i porządkowania stron systemowych.</p>
+  </section>
+
+  <script type="application/json" id="doc-meta">
+{
+  "schema_version": "json-doc-spec-v2",
+  "id": "taryfy-g13-g14dynamic",
+  "title": "Taryfy G13 i G14dynamic – zasady działania i przykłady rozliczeń",
+  "short_title": "G13 i G14dynamic",
+  "type": "information_page",
+  "category": "energy",
+  "subcategory": "tariffs",
+  "status": "working",
+  "version": "v1.0",
+  "created": "2026-06-09",
+  "updated": "2026-06-09",
+  "author": "Marek Zaborowski / NIA",
+  "language": "pl",
+  "path": "reports/taryfy_g13_g14dynamic.html",
+  "description": "Neutralne wyjaśnienie taryf G13 i G14dynamic na przykładzie TAURONU, z przykładami obliczeń i rozróżnieniem energii czynnej oraz dystrybucji.",
+  "keywords": [
+    "G13",
+    "G14dynamic",
+    "TAURON",
+    "dystrybucja",
+    "Energetyczny Kompas",
+    "taryfa",
+    "energia"
+  ],
+  "content_flags": {
+    "has_toc": true,
+    "has_summary": true,
+    "has_examples": true,
+    "has_sources": true
+  },
+  "technical": {
+    "format": "html",
+    "css": {
+      "embedded_fallback": true,
+      "external_override": "../assets/css/metro.css",
+      "mechanism": "zewnętrzny metro.css jest ładowany po CSS wewnętrznym i może go nadpisywać"
+    },
+    "document_schema": "system-document-v2"
+  }
+}
+  </script>
+</main>
+<script src="../assets/js/metro.js"></script>
+</body>
+</html>

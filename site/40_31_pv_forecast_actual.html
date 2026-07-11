@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prognoza PV z rana oraz produkcja rzeczywista</title>
+  <style>
+    :root { --green:#047857; --soft:#ecfdf5; --line:#d1fae5; --text:#0f172a; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background:#eefbf5; color:var(--text); }
+    main { max-width:1100px; margin:0 auto; padding:24px 18px 40px; }
+    .card { background:white; border:1px solid #c7f2df; border-radius:12px; padding:18px; margin:16px 0; box-shadow:0 10px 28px rgba(15,23,42,.06); }
+    h1 { margin:0 0 4px; font-size:30px; }
+    h2 { margin:0 0 14px; font-size:24px; }
+    .muted { color:#475569; font-size:14px; }
+    .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:14px 0; }
+    .stat { border:1px solid #bbf7d0; border-radius:8px; padding:11px 12px; background:#f8fffb; }
+    .stat strong { display:block; font-size:22px; }
+    .chart svg { width:100%; height:auto; display:block; }
+    .floating-menu{position:fixed;right:18px;top:18px;z-index:20}
+    .floating-menu a{display:flex;align-items:center;gap:8px;min-height:42px;padding:9px 13px;border:3px solid #fff;outline:3px solid #ffd21f;border-radius:999px;background:#115e59;color:#fff;text-decoration:none;font-size:12px;font-weight:900;letter-spacing:.02em;box-shadow:0 18px 40px rgba(15,23,42,.42),0 0 0 7px rgba(255,210,31,.18);transition:transform .08s ease,box-shadow .12s ease,background .12s ease}
+    .floating-menu a:hover{background:#134e4a}
+    .floating-menu a:active{transform:scale(.97)}
+    .floating-menu .menu-mark{font-size:16px;line-height:1}
+    table { width:100%; border-collapse:collapse; font-size:14px; }
+    th { background:#0f6b43; color:white; text-align:left; padding:10px; }
+    td { padding:9px 10px; border-bottom:1px solid #dbeee5; }
+    tr:nth-child(even) td { background:#f1fbf6; }
+    .foot { margin-top:10px; color:#64748b; font-size:12px; }
+    @media (max-width: 760px) { .stats { grid-template-columns:1fr 1fr; } h1 { font-size:24px; } main { padding-top:74px; } .floating-menu { right:12px; top:12px; } }
+  </style>
+</head>
+<body>
+<div class="floating-menu">
+  <a href="index2.html" title="Powrót do menu">
+    <span class="label">MENU</span>
+    <span class="menu-mark" aria-hidden="true">&#8962;</span>
+  </a>
+</div>
+<main>
+  <section class="card">
+    <h1>Prognoza PV z rana oraz produkcja rzeczywista</h1>
+    <div class="muted">Data raportu: 2026-07-11 | snapshot prognozy: 05:00 | wygenerowano: 2026-07-11 20:38</div>
+    <div class="stats">
+      <div class="stat"><span>Prognoza dnia</span><strong>15,7 kWh</strong></div>
+      <div class="stat"><span>Produkcja dotąd</span><strong>26,0 kWh</strong></div>
+      <div class="stat"><span>Ostatni slot produkcji</span><strong>20:30</strong></div>
+      <div class="stat"><span>Źródło prognozy</span><strong>2026-07-10 23:00</strong></div>
+    </div>
+    <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 746" role="img">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="86" y="34" font-size="28" font-weight="800" fill="#111827">Prognoza PV z rana oraz produkcja rzeczywista</text>
+<text x="86" y="60" font-size="14" fill="#475569">Data: 2026-07-11 | prognoza poranna: 05:00 | wygenerowano: 2026-07-11 20:38</text>
+<line x1="86.00" y1="84" x2="86.00" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<text x="86.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">00:00</text>
+<line x1="128.75" y1="84" x2="128.75" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="171.50" y1="84" x2="171.50" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="171.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">02:00</text>
+<line x1="214.25" y1="84" x2="214.25" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<line x1="257.00" y1="84" x2="257.00" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="257.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">04:00</text>
+<line x1="299.75" y1="84" x2="299.75" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="342.50" y1="84" x2="342.50" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<text x="342.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">06:00</text>
+<line x1="385.25" y1="84" x2="385.25" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="428.00" y1="84" x2="428.00" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="428.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">08:00</text>
+<line x1="470.75" y1="84" x2="470.75" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<line x1="513.50" y1="84" x2="513.50" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="513.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">10:00</text>
+<line x1="556.25" y1="84" x2="556.25" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="599.00" y1="84" x2="599.00" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<text x="599.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">12:00</text>
+<line x1="641.75" y1="84" x2="641.75" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="684.50" y1="84" x2="684.50" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="684.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">14:00</text>
+<line x1="727.25" y1="84" x2="727.25" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<line x1="770.00" y1="84" x2="770.00" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="770.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">16:00</text>
+<line x1="812.75" y1="84" x2="812.75" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="855.50" y1="84" x2="855.50" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<text x="855.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">18:00</text>
+<line x1="898.25" y1="84" x2="898.25" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="941.00" y1="84" x2="941.00" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="941.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">20:00</text>
+<line x1="983.75" y1="84" x2="983.75" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<line x1="1026.50" y1="84" x2="1026.50" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<text x="1026.50" y="690" text-anchor="middle" font-size="16" fill="#64748b">22:00</text>
+<line x1="1069.25" y1="84" x2="1069.25" y2="660" stroke="#eef2ff" stroke-width="0.7"/>
+<line x1="1112.00" y1="84" x2="1112.00" y2="660" stroke="#dbeafe" stroke-width="1.2"/>
+<text x="1112.00" y="690" text-anchor="middle" font-size="16" fill="#64748b">24:00</text>
+<line x1="86" y1="660.00" x2="1112" y2="660.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="665.00" text-anchor="end" font-size="15" fill="#64748b">0,00</text>
+<line x1="86" y1="544.80" x2="1112" y2="544.80" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="549.80" text-anchor="end" font-size="15" fill="#64748b">0,28</text>
+<line x1="86" y1="429.60" x2="1112" y2="429.60" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="434.60" text-anchor="end" font-size="15" fill="#64748b">0,56</text>
+<line x1="86" y1="314.40" x2="1112" y2="314.40" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="319.40" text-anchor="end" font-size="15" fill="#64748b">0,84</text>
+<line x1="86" y1="199.20" x2="1112" y2="199.20" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="204.20" text-anchor="end" font-size="15" fill="#64748b">1,12</text>
+<line x1="86" y1="84.00" x2="1112" y2="84.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="74" y="89.00" text-anchor="end" font-size="15" fill="#64748b">1,40</text>
+<text x="1124" y="665.00" font-size="15" fill="#2563eb" opacity="0.75">0,00</text>
+<text x="1124" y="549.80" font-size="15" fill="#2563eb" opacity="0.75">0,20</text>
+<text x="1124" y="434.60" font-size="15" fill="#2563eb" opacity="0.75">0,40</text>
+<text x="1124" y="319.40" font-size="15" fill="#2563eb" opacity="0.75">0,60</text>
+<text x="1124" y="204.20" font-size="15" fill="#2563eb" opacity="0.75">0,80</text>
+<text x="1124" y="89.00" font-size="15" fill="#2563eb" opacity="0.75">1,00</text>
+<rect x="86" y="84" width="1026" height="576" fill="none" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="28" y="372.00" transform="rotate(-90 28 372.00)" text-anchor="middle" font-size="17" font-weight="700" fill="#334155">kWh / slot</text>
+<text x="1170" y="372.00" transform="rotate(90 1170 372.00)" text-anchor="middle" font-size="17" font-weight="700" fill="#2563eb">PLN/kWh</text>
+<polyline points="86.00,165.22 96.69,165.22 96.69,165.22 96.69,190.56 107.38,190.56 107.38,190.56 107.38,218.78 118.06,218.78 118.06,218.78 118.06,232.03 128.75,232.03 128.75,232.03 128.75,209.57 139.44,209.57 139.44,209.57 139.44,216.48 150.12,216.48 150.12,216.48 150.12,228.00 160.81,228.00 160.81,228.00 160.81,237.79 171.50,237.79 171.50,237.79 171.50,228.00 182.19,228.00 182.19,228.00 182.19,236.06 192.88,236.06 192.88,236.06 192.88,237.79 203.56,237.79 203.56,237.79 203.56,244.70 214.25,244.70 214.25,244.70 214.25,243.55 224.94,243.55 224.94,243.55 224.94,235.49 235.62,235.49 235.62,235.49 235.62,241.25 246.31,241.25 246.31,241.25 246.31,235.49 257.00,235.49 257.00,235.49 257.00,238.94 267.69,238.94 267.69,238.94 267.69,236.06 278.38,236.06 278.38,236.06 278.38,240.67 289.06,240.67 289.06,240.67 289.06,242.98 299.75,242.98 299.75,242.98 299.75,237.22 310.44,237.22 310.44,237.22 310.44,244.13 321.12,244.13 321.12,244.13 321.12,245.28 331.81,245.28 331.81,245.28 331.81,247.58 342.50,247.58 342.50,247.58 342.50,233.76 353.19,233.76 353.19,233.76 353.19,244.13 363.88,244.13 363.88,244.13 363.88,260.26 374.56,260.26 374.56,260.26 374.56,284.45 385.25,284.45 385.25,284.45 385.25,252.19 395.94,252.19 395.94,252.19 395.94,278.69 406.62,278.69 406.62,278.69 406.62,296.54 417.31,296.54 417.31,296.54 417.31,329.38 428.00,329.38 428.00,329.38 428.00,247.01 438.69,247.01 438.69,247.01 438.69,301.73 449.38,301.73 449.38,301.73 449.38,344.93 460.06,344.93 460.06,344.93 460.06,355.30 470.75,355.30 470.75,355.30 470.75,334.56 481.44,334.56 481.44,334.56 481.44,367.39 492.12,367.39 492.12,367.39 492.12,416.93 502.81,416.93 502.81,416.93 502.81,518.30 513.50,518.30 513.50,518.30 513.50,464.74 524.19,464.74 524.19,464.74 524.19,582.82 534.88,582.82 534.88,582.82 534.88,617.95 545.56,617.95 545.56,617.95 545.56,626.02 556.25,626.02 556.25,626.02 556.25,608.74 566.94,608.74 566.94,608.74 566.94,551.71 577.62,551.71 577.62,551.71 577.62,583.97 588.31,583.97 588.31,583.97 588.31,615.65 599.00,615.65 599.00,615.65 599.00,594.34 609.69,594.34 609.69,594.34 609.69,620.83 620.38,620.83 620.38,620.83 620.38,631.78 631.06,631.78 631.06,631.78 631.06,636.38 641.75,636.38 641.75,636.38 641.75,620.26 652.44,620.26 652.44,620.26 652.44,641.57 663.12,641.57 663.12,641.57 663.12,645.60 673.81,645.60 673.81,645.60 673.81,654.82 684.50,654.82 684.50,654.82 684.50,654.82 695.19,654.82 695.19,654.82 695.19,654.82 705.88,654.82 705.88,654.82 705.88,635.81 716.56,635.81 716.56,635.81 716.56,641.57 727.25,641.57 727.25,641.57 727.25,632.35 737.94,632.35 737.94,632.35 737.94,627.17 748.62,627.17 748.62,627.17 748.62,530.98 759.31,530.98 759.31,530.98 759.31,486.62 770.00,486.62 770.00,486.62 770.00,450.91 780.69,450.91 780.69,450.91 780.69,403.10 791.38,403.10 791.38,403.10 791.38,385.82 802.06,385.82 802.06,385.82 802.06,371.42 812.75,371.42 812.75,371.42 812.75,351.26 823.44,351.26 823.44,351.26 823.44,334.56 834.12,334.56 834.12,334.56 834.12,321.89 844.81,321.89 844.81,321.89 844.81,267.74 855.50,267.74 855.50,267.74 855.50,327.07 866.19,327.07 866.19,327.07 866.19,302.30 876.88,302.30 876.88,302.30 876.88,237.79 887.56,237.79 887.56,237.79 887.56,226.27 898.25,226.27 898.25,226.27 898.25,272.93 908.94,272.93 908.94,272.93 908.94,245.28 919.62,245.28 919.62,245.28 919.62,209.57 930.31,209.57 930.31,209.57 930.31,179.04 941.00,179.04 941.00,179.04 941.00,225.12 951.69,225.12 951.69,225.12 951.69,212.45 962.38,212.45 962.38,212.45 962.38,189.41 973.06,189.41 973.06,189.41 973.06,175.58 983.75,175.58 983.75,175.58 983.75,186.53 994.44,186.53 994.44,186.53 994.44,200.93 1005.12,200.93 1005.12,200.93 1005.12,200.93 1015.81,200.93 1015.81,200.93 1015.81,211.30 1026.50,211.30 1026.50,211.30 1026.50,180.19 1037.19,180.19 1037.19,180.19 1037.19,200.35 1047.88,200.35 1047.88,200.35 1047.88,213.02 1058.56,213.02 1058.56,213.02 1058.56,241.25 1069.25,241.25 1069.25,241.25 1069.25,204.38 1079.94,204.38 1079.94,204.38 1079.94,225.70 1090.62,225.70 1090.62,225.70 1090.62,235.49 1101.31,235.49 1101.31,235.49 1101.31,250.46 1112.00,250.46" fill="none" stroke="#1d4ed8" stroke-width="2.4" opacity="0.58" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="91.34,660.00 102.03,660.00 112.72,660.00 123.41,660.00 134.09,660.00 144.78,660.00 155.47,660.00 166.16,660.00 176.84,660.00 187.53,660.00 198.22,660.00 208.91,660.00 219.59,660.00 230.28,660.00 240.97,660.00 251.66,660.00 262.34,660.00 273.03,660.00 283.72,660.00 294.41,660.00 305.09,660.00 315.78,660.00 326.47,660.00 337.16,660.00 347.84,660.00 358.53,660.00 369.22,660.00 379.91,660.00 390.59,660.00 401.28,660.00 411.97,658.86 422.66,656.57 433.34,653.14 444.03,650.86 454.72,642.86 465.41,629.14 476.09,608.57 486.78,594.86 497.47,575.43 508.16,550.29 518.84,512.57 529.53,487.43 540.22,477.14 550.91,479.43 561.59,481.71 572.28,479.43 582.97,472.57 593.66,474.86 604.34,488.57 615.03,520.57 625.72,550.29 636.41,577.71 647.09,598.29 657.78,612.00 668.47,600.57 679.16,557.14 689.84,488.57 700.53,431.43 711.22,385.71 721.91,351.43 732.59,310.29 743.28,282.86 753.97,285.14 764.66,317.14 775.34,365.14 786.03,397.14 796.72,428.00 807.41,463.43 818.09,519.43 828.78,566.29 839.47,585.71 850.16,591.43 860.84,598.29 871.53,625.71 882.22,646.29 892.91,660.00 903.59,660.00 914.28,660.00 924.97,660.00 935.66,660.00 946.34,660.00 957.03,660.00 967.72,660.00 978.41,660.00 989.09,660.00 999.78,660.00 1010.47,660.00 1021.16,660.00 1031.84,660.00 1042.53,660.00 1053.22,660.00 1063.91,660.00 1074.59,660.00 1085.28,660.00 1095.97,660.00 1106.66,660.00" fill="none" stroke="#16a34a" stroke-width="4.0" opacity="0.95" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="91.34,660.00 102.03,660.00 112.72,660.00 123.41,660.00 134.09,660.00 144.78,660.00 155.47,660.00 166.16,660.00 176.84,660.00 187.53,660.00 198.22,660.00 208.91,660.00 219.59,660.00 230.28,660.00 240.97,660.00 251.66,660.00 262.34,660.00 273.03,660.00 283.72,660.00 294.41,660.00 305.09,660.00 315.78,660.00 326.47,655.43 337.16,650.86 347.84,641.71 358.53,632.57 369.22,618.86 379.91,605.14 390.59,596.00 401.28,586.86 411.97,582.29 422.66,577.71 433.34,577.71 444.03,577.71 454.72,573.14 465.41,564.00 476.09,554.86 486.78,554.86 497.47,554.86 508.16,545.71 518.84,518.29 529.53,486.29 540.22,468.00 550.91,454.29 561.59,445.14 572.28,413.14 582.97,399.43 593.66,376.57 604.34,367.43 615.03,335.43 625.72,330.86 636.41,321.71 647.09,335.43 657.78,340.00 668.47,358.29 679.16,344.57 689.84,308.00 700.53,289.71 711.22,321.71 721.91,372.00 732.59,394.86 743.28,376.57 753.97,376.57 764.66,367.43 775.34,394.86 786.03,417.71 796.72,486.29 807.41,536.57 818.09,577.71 828.78,577.71 839.47,559.43 850.16,532.00 860.84,500.00 871.53,468.00 882.22,426.86 892.91,394.86 903.59,408.57 914.28,458.86 924.97,545.71 935.66,600.57 946.34,637.14 957.03,639.43 967.72,642.86" fill="none" stroke="#dc2626" stroke-width="4.0" opacity="0.95" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="231.5" y1="104" x2="261.5" y2="104" stroke="#16a34a" stroke-width="4.0" opacity="1.0" stroke-linecap="round"/>
+<text x="271.5" y="109" font-size="16" fill="#334155">Prognoza PV z rana</text>
+<line x1="476.5" y1="104" x2="506.5" y2="104" stroke="#dc2626" stroke-width="4.0" opacity="1.0" stroke-linecap="round"/>
+<text x="516.5" y="109" font-size="16" fill="#334155">Produkcja rzeczywista</text>
+<line x1="721.5" y1="104" x2="751.5" y2="104" stroke="#1d4ed8" stroke-width="2.4" opacity="0.58" stroke-linecap="round"/>
+<text x="761.5" y="109" font-size="16" fill="#334155">Cena sprzedaży</text>
+<text x="1112" y="728" text-anchor="end" font-size="12" fill="#94a3b8">NIA/MZ 11/07/2026</text>
+</svg></div>
+    <div class="foot">Produkcja rzeczywista jest liczona z przyrostów 5-minutowego licznika inwertera. Prognoza jest wypełniona dla całej doby.</div>
+  </section>
+  <section class="card">
+    <h2>Podsumowanie narastająco co 3 godziny</h2>
+    <table>
+      <thead><tr><th>Okres</th><th>Prognoza</th><th>Produkcja</th><th>Różnica</th><th>Realizacja</th></tr></thead>
+      <tbody><tr><td>06:00-09:00</td><td>0,1 kWh</td><td>1,9 kWh</td><td>1,8 kWh</td><td>1900%</td></tr>
+<tr><td>06:00-12:00</td><td>4,4 kWh</td><td>7,2 kWh</td><td>2,8 kWh</td><td>166%</td></tr>
+<tr><td>06:00-15:00</td><td>8,5 kWh</td><td>16,6 kWh</td><td>8,1 kWh</td><td>195%</td></tr>
+<tr><td>06:00-18:00</td><td>15,4 kWh</td><td>22,2 kWh</td><td>6,8 kWh</td><td>144%</td></tr>
+<tr><td>06:00-21:00</td><td>15,7 kWh</td><td></td><td></td><td></td></tr></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

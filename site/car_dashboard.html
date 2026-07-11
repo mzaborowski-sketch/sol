@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samochód</title>
+  <meta name="theme-color" content="#0ea5e9">
+  <style>
+    :root {
+      --bg: #f2fbf7;
+      --ink: #102018;
+      --blue: #0ea5e9;
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .floating-start {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 10000;
+    }
+    .floating-start a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 98px;
+      min-height: 48px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      border: 4px solid #fff;
+      box-shadow: 0 14px 34px rgba(14, 165, 233, .34);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+    .floating-start a:active,
+    .floating-start a.menu-pop {
+      transform: translateY(-2px) scale(1.06);
+      filter: brightness(1.08);
+      box-shadow: 0 18px 42px rgba(14, 165, 233, .44);
+      animation: tapShake 180ms ease-out both;
+    }
+    @keyframes tapShake {
+      0% { transform: translateY(0) scale(1); }
+      25% { transform: translateY(-2px) translateX(-2px) scale(1.06); }
+      50% { transform: translateY(-2px) translateX(2px) scale(1.06); }
+      75% { transform: translateY(-2px) translateX(-1px) scale(1.06); }
+      100% { transform: translateY(-2px) translateX(0) scale(1.06); }
+    }
+    .page {
+      width: min(760px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 78px 0 56px;
+    }
+    .hero {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(14, 165, 233, .24);
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 9vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .tile {
+      display: flex;
+      align-items: center;
+      min-height: 62px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      color: #fff !important;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, .16);
+      -webkit-tap-highlight-color: transparent;
+      transform-origin: center;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+    .tile h2 {
+      margin: 0;
+      font-size: clamp(1.1rem, 5vw, 1.45rem);
+      line-height: 1.15;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tile:active,
+    .tile.tile-pop {
+      transform: translateY(-3px) scale(1.06);
+      filter: brightness(1.08);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .30);
+      animation: tapShake 180ms ease-out both;
+    }
+    .tile:nth-child(1) { background: linear-gradient(135deg, #dc2626, #ef4444); }
+    .tile:nth-child(2) { background: linear-gradient(135deg, #ea580c, #f97316); }
+    .tile:nth-child(3) { background: linear-gradient(135deg, #d97706, #f59e0b); }
+    .tile:nth-child(4) { background: linear-gradient(135deg, #16a34a, #22c55e); }
+    .tile:nth-child(5) { background: linear-gradient(135deg, #0284c7, #0ea5e9); }
+    .tile:nth-child(6) { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+    @media (min-width: 720px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-start">
+    <a href="index.html" title="Powrót do domowej energii">START</a>
+  </div>
+  <main class="page">
+    <header class="hero">
+      <h1>Samochód</h1>
+    </header>
+    <section class="grid" aria-label="Panel samochodu">
+      <a class="tile" href="http://192.168.1.105:8081/car_manual_km/"><h2>Kilometry</h2></a>
+      <a class="tile" href="http://192.168.1.105:8081/car_charging_time_two/"><h2>Timer</h2></a>
+      <a class="tile" href="http://192.168.1.105:8081/car_manual_power/"><h2>Ad mortem</h2></a>
+      <a class="tile" href="http://192.168.1.105:8081/status_soft_stop/"><h2>Status soft stop</h2></a>
+      <a class="tile" href="html_04_good_news.html"><h2>Dobre wiadomości</h2></a>
+      <a class="tile" href="index2.html"><h2>Panel serwisowy</h2></a>
+    </section>
+  </main>
+  <script>
+    (function () {
+      function vibrate(ms) {
+        if (navigator.vibrate) {
+          try { navigator.vibrate(ms || 18); } catch (e) {}
+        }
+      }
+      function pulse(el, cls) {
+        if (!el) return;
+        el.classList.remove(cls);
+        void el.offsetWidth;
+        el.classList.add(cls);
+        window.setTimeout(function () { el.classList.remove(cls); }, 220);
+        vibrate(18);
+      }
+      document.querySelectorAll('.tile').forEach(function (tile) {
+        tile.addEventListener('pointerdown', function () { pulse(tile, 'tile-pop'); });
+        tile.addEventListener('touchstart', function () { pulse(tile, 'tile-pop'); }, { passive: true });
+      });
+      document.querySelectorAll('.floating-start a').forEach(function (link) {
+        link.addEventListener('pointerdown', function () { pulse(link, 'menu-pop'); });
+        link.addEventListener('touchstart', function () { pulse(link, 'menu-pop'); }, { passive: true });
+      });
+    })();
+  </script>
+</body>
+</html>

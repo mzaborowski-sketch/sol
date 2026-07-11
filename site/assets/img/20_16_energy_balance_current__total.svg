@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="398" viewBox="0 0 940 398">
+
+    <style>
+      .card { fill: #ffffff; stroke: #d9d9d9; stroke-width: 1.2; }
+      .title { font: 700 22px Arial, sans-serif; fill: #1d1d1d; }
+      .label { font: 400 18px Arial, sans-serif; fill: #1d1d1d; }
+      .value { font: 700 18px Arial, sans-serif; fill: #1d1d1d; }
+      .track { fill: #ededed; }
+    </style>
+    
+<rect class="card" x="8" y="8" width="924" height="382" rx="18" ry="18"/>
+
+    <g transform="translate(18,16)" fill="none" stroke="#ff1a1a" stroke-width="2">
+      <path d="M2,10 C2,4 8,4 10,10 C12,16 18,16 18,10 C18,4 12,4 10,10 C8,16 2,16 2,10 Z"/>
+    </g>
+    
+<text class="title" x="54" y="33">Od początku</text>
+<text class="label" x="26" y="72">Zużycie domu</text>
+<text class="value" x="430" y="72" text-anchor="end">180 kWh</text>
+<rect class="track" x="510" y="60" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="60" width="137.6" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="106">EV</text>
+<text class="value" x="430" y="106" text-anchor="end">156 kWh</text>
+<rect class="track" x="510" y="94" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="94" width="119.6" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="140">Zużycie łączne</text>
+<text class="value" x="430" y="140" text-anchor="end">336 kWh</text>
+<rect class="track" x="510" y="128" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="128" width="257.2" height="8" rx="4" ry="4" fill="#7d0000"/>
+<text class="label" x="26" y="174">PV</text>
+<text class="value" x="430" y="174" text-anchor="end">471 kWh</text>
+<rect class="track" x="510" y="162" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="162" width="360.0" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="208">Import</text>
+<text class="value" x="430" y="208" text-anchor="end">146 kWh</text>
+<rect class="track" x="510" y="196" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="196" width="111.9" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="242">Eksport</text>
+<text class="value" x="430" y="242" text-anchor="end">192 kWh</text>
+<rect class="track" x="510" y="230" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="230" width="146.8" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="276">Ładowanie magazynu</text>
+<text class="value" x="430" y="276" text-anchor="end">203 kWh</text>
+<rect class="track" x="510" y="264" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="264" width="155.2" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="310">Rozładowanie magazynu</text>
+<text class="value" x="430" y="310" text-anchor="end">229 kWh</text>
+<rect class="track" x="510" y="298" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="298" width="174.8" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+<text class="label" x="26" y="344">Sprawność systemu</text>
+<text class="value" x="430" y="344" text-anchor="end">107 %</text>
+<rect class="track" x="510" y="332" width="360" height="8" rx="4" ry="4"/>
+<rect x="510" y="332" width="360.0" height="8" rx="4" ry="4" fill="#ff1a1a"/>
+</svg>

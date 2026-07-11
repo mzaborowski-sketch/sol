@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html data-doc-id="cena-sprzedazy-energii-net-billing" lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Pełne wyjaśnienie sposobu ustalania ceny energii oddawanej do sieci przez prosumenta w systemie net-billingu: RCE, RDN, depozyt prosumencki, dane PSE i ceny ujemne." name="description"/>
+<title>Cena sprzedaży energii przez prosumenta w net-billingu</title><style id="page-fallback-css">
+
+:root {
+  --bg:#f6f7fb; --card:#ffffff; --text:#172033; --muted:#5b6475;
+  --line:#d9dee8; --accent:#0ea5e9; --accent-dark:#0369a1;
+  --ok:#059669; --warn:#d97706; --bad:#dc2626;
+  --high-bg:#fee2e2; --high-text:#991b1b; --low-bg:#dcfce7; --low-text:#166534;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:Arial, Helvetica, sans-serif; line-height:1.55; }
+.container { max-width:1240px; margin:0 auto; padding:24px 16px 56px; }
+.hero { background:linear-gradient(135deg,#0ea5e9,#0369a1); color:#fff; padding:24px 26px; border-radius:24px; box-shadow:0 12px 30px rgba(2,132,199,.22); margin-bottom:18px; }
+.hero h1 { margin:0 0 8px; font-size:clamp(1.7rem,3vw,2.6rem); line-height:1.08; }
+.hero p { margin:0; color:rgba(255,255,255,.92); }
+.hero .page-date { margin-top:7px; font-weight:700; }
+.hero .generated-at { color:rgba(255,255,255,.80); margin-top:8px; font-size:.92rem; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:0 8px 24px rgba(15,23,42,.045); margin:16px 0; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.kpi { margin:0; color:var(--muted); font-size:.9rem; }
+.value { margin:5px 0 0; font-size:1.35rem; font-weight:700; color:#0f172a; }
+h2 { margin:0 0 12px; font-size:1.35rem; }
+.report-chart { width:100%; height:auto; border:1px solid var(--line); border-radius:16px; background:#fff; display:block; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; }
+table {
+  width:auto;
+  border-collapse:collapse;
+  font-size:.84rem;
+  line-height:1.12;
+}
+
+.tariff-table {
+  width:710px;
+  min-width:710px;
+  max-width:710px;
+  table-layout:fixed;
+}
+
+.tariff-table th:nth-child(1), .tariff-table td:nth-child(1) { width:78px; }
+.tariff-table th:nth-child(2), .tariff-table td:nth-child(2) { width:54px; }
+.tariff-table th:nth-child(3), .tariff-table td:nth-child(3) { width:54px; }
+.tariff-table th:nth-child(4), .tariff-table td:nth-child(4) { width:168px; }
+.tariff-table th:nth-child(5), .tariff-table td:nth-child(5) { width:178px; }
+.tariff-table th:nth-child(6), .tariff-table td:nth-child(6) { width:178px; }
+
+.tariff-table th {
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+
+.tariff-table td {
+  white-space:nowrap;
+}
+th, td {
+  padding:2px 6px;
+  border-bottom:1px solid var(--line);
+  vertical-align:middle;
+}
+th {
+  text-align:left;
+  color:#334155;
+  background:#f8fafc;
+  position:sticky;
+  top:0;
+  z-index:1;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+td.num, th.num {
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+tr:nth-child(even) td { background:#fbfdff; }
+td.rank-high { background:var(--high-bg) !important; color:var(--high-text); font-weight:700; }
+td.rank-low { background:var(--low-bg) !important; color:var(--low-text); font-weight:700; }
+.legend { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 0; color:var(--muted); font-size:.92rem; }
+.legend span { display:inline-flex; align-items:center; gap:6px; }
+.swatch { width:14px; height:14px; border-radius:4px; border:1px solid var(--line); display:inline-block; }
+.swatch.high { background:var(--high-bg); }
+.swatch.low { background:var(--low-bg); }
+.source-note { margin-top:12px; font-size:.9rem; color:var(--muted); }
+.source-note a { color:var(--accent-dark); text-decoration:none; font-weight:650; }
+.source-note a:hover { text-decoration:underline; }
+.muted { color:var(--muted); }
+.floating-menu { position:fixed; right:18px; bottom:18px; z-index:10; }
+.floating-menu a { display:inline-flex; gap:7px; align-items:center; padding:9px 12px; border-radius:999px; color:#fff; background:#0f172a; text-decoration:none; box-shadow:0 8px 18px rgba(15,23,42,.20); }
+@media (max-width:900px) { .grid { grid-template-columns:1fr; } }
+
+/* Dodatkowe reguły dla strony opisowej o net-billingu. */
+html { scroll-behavior:smooth; }
+body { min-height:100vh; }
+
+.container.tight {
+  max-width:1180px;
+}
+
+.kicker {
+  margin-bottom:7px;
+  font-size:.84rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.88);
+}
+
+.hero .meta {
+  margin-top:10px;
+  color:rgba(255,255,255,.82);
+  font-size:.92rem;
+}
+
+.hero code {
+  background:rgba(255,255,255,.18);
+  color:#fff;
+}
+
+.card h2 {
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+
+.card h3 {
+  margin:20px 0 8px;
+  font-size:1.08rem;
+}
+
+.summary {
+  border-left:5px solid var(--ok);
+  background:linear-gradient(135deg,#ffffff 0%,#ecfdf5 100%);
+}
+
+.summary h2 {
+  border-bottom:0;
+  color:#065f46;
+}
+
+.summary p {
+  font-size:1.03rem;
+}
+
+.formula {
+  margin:16px 0;
+  padding:14px 16px;
+  overflow-wrap:anywhere;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-left:4px solid var(--accent);
+  border-radius:12px;
+  color:#0f172a;
+  font-family:Consolas, Monaco, "Courier New", monospace;
+  font-size:.98rem;
+}
+
+.important,
+.info {
+  margin:18px 0;
+  padding:14px 16px;
+  border-radius:14px;
+}
+
+.important {
+  color:#78350f;
+  background:#fffbeb;
+  border:1px solid #fde68a;
+  border-left:4px solid var(--warn);
+}
+
+.info {
+  color:#164e63;
+  background:#ecfeff;
+  border:1px solid #bae6fd;
+  border-left:4px solid var(--accent);
+}
+
+blockquote {
+  margin:18px 0;
+  padding:14px 16px;
+  background:#f8fafc;
+  border-left:4px solid var(--accent);
+  border-radius:0 12px 12px 0;
+}
+
+.toc {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:10px;
+  padding:0;
+  list-style:none;
+}
+
+.toc a {
+  display:block;
+  padding:10px 12px;
+  color:var(--text);
+  text-decoration:none;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+
+.toc a:hover {
+  color:var(--accent-dark);
+  background:#eff6ff;
+  border-color:var(--accent);
+}
+
+table {
+  width:100%;
+  font-size:.94rem;
+  line-height:1.35;
+}
+
+th, td {
+  padding:8px 10px;
+}
+
+th {
+  position:static;
+}
+
+tr:nth-child(even) td {
+  background:#fbfdff;
+}
+
+.sources li {
+  margin-bottom:12px;
+}
+
+.sources a {
+  color:var(--accent-dark);
+  font-weight:650;
+}
+
+.sources a:hover {
+  text-decoration:underline;
+}
+
+.note,
+.small,
+.document-footer {
+  color:var(--muted);
+  font-size:.92rem;
+}
+
+.doc-backlink {
+  display:inline-block;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:.84rem;
+  font-style:italic;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+
+.floating-menu {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:20;
+}
+
+.floating-menu a {
+  display:inline-flex;
+  gap:7px;
+  align-items:center;
+  padding:9px 12px;
+  color:#fff;
+  text-decoration:none;
+  background:#0f172a;
+  border-radius:999px;
+  box-shadow:0 8px 18px rgba(15,23,42,.20);
+}
+
+@media (max-width:900px) {
+  .toc { grid-template-columns:1fr; }
+  .container { padding:16px 10px 44px; }
+  .hero { border-radius:18px; }
+  .card { border-radius:16px; padding:17px 16px; }
+  table { display:block; overflow-x:auto; }
+}
+
+@media print {
+  body { background:#fff; }
+  .container { max-width:none; padding:0; }
+  .hero, .card { box-shadow:none; break-inside:avoid; }
+  .floating-menu, .doc-backlink { display:none; }
+  a { color:inherit; text-decoration:none; }
+}
+</style><link href="../assets/css/metro.css" rel="stylesheet"/>
+</head>
+<body class="accent-green has-floating">
+<main class="container tight"><div class="floating-menu"><a href="../index.html" title="Powrót do menu"><span class="label">MENU</span><span class="emoji">🏠</span></a></div>
+<header class="hero" data-search="include" data-type="document-header"><div class="kicker">Energia · net-billing · materiał informacyjny</div>
+<h1>Jaka jest cena energii sprzedawanej przez prosumenta?</h1>
+<p class="generated-at">Net-billing: RCE, RDN, depozyt prosumencki, dane PSE i ceny ujemne. Stan informacji: 9 czerwca 2026 r.</p>
+</header>
+<section class="card summary" data-search="include" data-type="summary" id="podsumowanie">
+<h2>Praktyczne podsumowanie</h2>
+<p><strong>Ceną bazową energii oddawanej do sieci jest RCE</strong> — Rynkowa Cena Energii publikowana przez Polskie Sieci Elektroenergetyczne dla konkretnego 15-minutowego okresu.</p>
+<div class="formula">
+      Cena bazowa 1 kWh = RCE [PLN/MWh] ÷ 1000
+    </div>
+<p>W standardowym net-billingu wartość tej energii zapisywana w depozycie prosumenckim jest następnie zwiększana o 23%:</p>
+<div class="formula">
+      Wartość depozytowa 1 kWh = max(RCE, 0) ÷ 1000 × 1,23
+    </div>
+<p><strong>Przykład:</strong> RCE 500 PLN/MWh oznacza cenę bazową 0,50 PLN/kWh i wartość depozytową 0,615 PLN za 1 kWh.</p>
+<p><strong>Przy cenie ujemnej standardowo przyjmuje się 0 PLN</strong>: prosument nie otrzymuje zapisu do depozytu za eksport w tym okresie, ale co do zasady również nie dopłaca za oddanie energii.</p>
+<p>System pobiera oficjalną RCE bezpośrednio z API PSE dla dnia bieżącego oraz — po publikacji — dla dnia następnego. Ceny na jutro pojawiają się zwykle po południu, praktycznie najczęściej około 14:00–17:00. Cała doba jest publikowana jako harmonogram 96 cen 15-minutowych.</p>
+<p class="note">RCE jest ceną rynkową. Wartość depozytowa nie jest automatycznie wypłatą gotówkową i służy przede wszystkim do rozliczania zakupu energii od sprzedawcy.</p>
+</section>
+<nav aria-label="Spis treści" class="card" data-search="include" data-type="toc" id="spis-tresci">
+<strong>Pełne rozwinięcie</strong>
+<ol class="toc">
+<li><a href="#najwazniejszy-wniosek">Najważniejszy wniosek</a></li>
+<li><a href="#jak-pse-wyznacza-rce">Jak PSE wyznacza RCE</a></li>
+<li><a href="#rozliczenie-prosumenta">Jak wyceniana jest energia prosumenta</a></li>
+<li><a href="#depozyt">RCE a depozyt prosumencki</a></li>
+<li><a href="#wyplata">Depozyt a wypłata gotówki</a></li>
+<li><a href="#starsi-prosumenci">Starsze instalacje i RCEm</a></li>
+<li><a href="#rce-rdn">Relacja między RCE i RDN</a></li>
+<li><a href="#zrodlo-systemu">Skąd system pobiera cenę sprzedaży</a></li>
+<li><a href="#dzis-jutro">Ceny na dziś i na jutro</a></li>
+<li><a href="#kwadranse">Ceny 15-minutowe</a></li>
+<li><a href="#ujemne">Ceny ujemne i zasady dla prosumentów</a></li>
+<li><a href="#wnioski-praktyczne">Wnioski praktyczne dla sterowania energią</a></li>
+<li><a href="#podstawy">Podstawy prawne i oficjalne źródła</a></li>
+</ol>
+</nav>
+<section class="card" data-search="include" data-type="section" id="najwazniejszy-wniosek">
+<h2>1. Najważniejszy wniosek</h2>
+<p>W systemie net-billingu wartość energii wprowadzonej do sieci przez prosumenta jest ustalana na podstawie rynkowej ceny energii <strong>RCE</strong>, właściwej dla konkretnego okresu rozliczania niezbilansowania. Obecnie jest to okres 15-minutowy.</p>
+<p>Wartości energii oddanej w kolejnych okresach są sumowane, a ustalona w ten sposób miesięczna wartość energii zwiększa depozyt prosumencki o współczynnik <strong>1,23</strong>.</p>
+<div class="formula">
+      Dm = 1,23 × Σ [Eeksport,t × max(RCEt, 0)]
+    </div>
+<p>gdzie:</p>
+<ul>
+<li><strong>Dm</strong> — wartość depozytu przypisana za dany miesiąc,</li>
+<li><strong>Eeksport,t</strong> — energia wprowadzona do sieci w danym okresie,</li>
+<li><strong>RCEt</strong> — Rynkowa Cena Energii dla tego okresu,</li>
+<li><strong>1,23</strong> — ustawowy współczynnik zwiększający wartość depozytu o 23%.</li>
+</ul>
+<div class="important">
+      Współczynnik 1,23 nie podwyższa samej RCE. Najpierw obliczana jest wartość energii według RCE, a dopiero następnie ustalana jest wartość przypisywana do depozytu prosumenckiego.
+    </div>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="jak-pse-wyznacza-rce">
+<h2>2. Jak PSE wyznacza RCE</h2>
+<p>RCE nie jest ceną dowolnie ustalaną przez sprzedawcę energii. Jej sposób wyznaczania wynika z ustawy o odnawialnych źródłach energii.</p>
+<p>Dla konkretnego okresu dostawy uwzględniane są ceny i wolumeny właściwych sesji Rynku Dnia Następnego prowadzonych dla polskiego obszaru rynkowego. RCE jest średnią ważoną wolumenem obrotu:</p>
+<div class="formula">
+      RCEt = Σ (CGs,t × EGs,t) ÷ Σ EGs,t
+    </div>
+<p>gdzie:</p>
+<ul>
+<li><strong>CGs,t</strong> — cena energii ustalona na danej sesji RDN,</li>
+<li><strong>EGs,t</strong> — wolumen energii sprzedany na tej sesji,</li>
+<li><strong>s</strong> — właściwa sesja rynku dnia następnego,</li>
+<li><strong>t</strong> — konkretny okres dostawy.</li>
+</ul>
+<p>Nie jest to zwykła średnia arytmetyczna. Cena z sesji, na której zawarto transakcje dotyczące większego wolumenu energii, ma większy wpływ na wynik.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="rozliczenie-prosumenta">
+<h2>3. Jak wyceniana jest energia prosumenta</h2>
+<p>Dla instalacji rozliczanych według okresowej RCE miesięczna wartość energii oddanej do sieci jest sumą wartości obliczonych oddzielnie dla kolejnych okresów 15-minutowych:</p>
+<div class="formula">
+      Wm = Σ [Eeksport,t × RCEt]
+    </div>
+<p>Oznacza to, że:</p>
+<ul>
+<li>energia oddana wieczorem może mieć wysoką wartość,</li>
+<li>energia oddana w słoneczne południe może mieć wartość bardzo niską,</li>
+<li>nie stosuje się jednej wspólnej ceny do całej produkcji miesięcznej,</li>
+<li>moment wprowadzenia energii do sieci ma bezpośredni wpływ na wartość rozliczenia.</li>
+</ul>
+<p>Przykładowo 1 kWh wysłana do sieci przy RCE 100 PLN/MWh ma wartość bazową 0,10 PLN, natomiast ta sama 1 kWh wysłana przy RCE 700 PLN/MWh ma wartość bazową 0,70 PLN.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="depozyt">
+<h2>4. RCE a depozyt prosumencki</h2>
+<p>Po ustaleniu miesięcznej wartości energii oddanej do sieci wartość depozytu prosumenckiego jest zwiększana o 23%.</p>
+<div class="formula">
+      depozyt = wartość energii oddanej do sieci × 1,23
+    </div>
+<p>Przykład:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Wartość</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RCE</td>
+<td>500 PLN/MWh</td>
+</tr>
+<tr>
+<td>RCE po przeliczeniu</td>
+<td>0,50 PLN/kWh</td>
+</tr>
+<tr>
+<td>Wartość rynkowa 1 kWh</td>
+<td>0,50 PLN</td>
+</tr>
+<tr>
+<td>Wartość zapisana w depozycie</td>
+<td>0,50 × 1,23 = 0,615 PLN</td>
+</tr>
+</tbody>
+</table>
+<p>Dlatego można powiedzieć, że efektywna wartość depozytowa 1 kWh wynosi zasadniczo:</p>
+<div class="formula">
+      RCE [PLN/kWh] × 1,23
+    </div>
+<p>Nie należy jednak nazywać tego po prostu „ceną RCE”, ponieważ RCE pozostaje ceną rynkową przed zastosowaniem współczynnika depozytowego.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="wyplata">
+<h2>5. Depozyt nie jest tym samym co wypłata gotówki</h2>
+<p>Depozyt prosumencki służy przede wszystkim do pokrywania zobowiązań za energię elektryczną pobieraną od sprzedawcy. Nie jest automatyczną wypłatą całej wartości energii na rachunek bankowy.</p>
+<p>Co do zasady depozyt:</p>
+<ul>
+<li>obniża koszt energii czynnej kupowanej od sprzedawcy,</li>
+<li>nie pokrywa automatycznie wszystkich opłat dystrybucyjnych,</li>
+<li>jest rozliczany w ustawowym okresie,</li>
+<li>podlega ograniczeniom dotyczącym wypłaty niewykorzystanej nadpłaty.</li>
+</ul>
+<p>Ustawa różnicuje maksymalną wysokość zwracanej nadpłaty w zależności od sposobu rozliczania:</p>
+<ul>
+<li>do 20% wartości energii — przy rozliczeniu według miesięcznej RCEm,</li>
+<li>do 30% wartości energii — przy rozliczeniu według okresowej RCE.</li>
+</ul>
+<div class="info">
+      Ekonomiczna wartość energii zapisanej w depozycie i kwota, którą prosument może później otrzymać w gotówce, są więc dwiema różnymi wielkościami.
+    </div>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="starsi-prosumenci">
+<h2>6. Starsze instalacje i miesięczna RCEm</h2>
+<p>Prosument, który po raz pierwszy wprowadził energię do sieci przed rozpoczęciem obowiązkowego rozliczania według okresowej RCE, może nadal rozliczać się według miesięcznej rynkowej ceny energii — RCEm, o ile nie przeszedł na rozliczenie okresowe.</p>
+<p>RCEm nie jest prostą średnią cen z całego miesiąca. Jest średnią ważoną ilością energii wprowadzanej do sieci przez uwzględnianych prosumentów:</p>
+<div class="formula">
+      RCEm = Σ (Et × RCEt) ÷ Σ Et
+    </div>
+<p>Godziny lub kwadranse, w których prosumenci wprowadzają do sieci dużo energii, mają większy wpływ na RCEm niż okresy o niewielkim eksporcie.</p>
+<p>Dlatego duża produkcja fotowoltaiczna w podobnych godzinach może obniżać miesięczną cenę ważoną, zwłaszcza gdy w tych samych okresach ceny rynkowe są niskie.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="rce-rdn">
+<h2>7. Relacja między RCE i RDN</h2>
+<blockquote>
+      RDN jest rynkiem, natomiast RCE jest ceną obliczaną na podstawie wyników tego rynku.
+    </blockquote>
+<p><strong>RDN — Rynek Dnia Następnego</strong> — jest segmentem hurtowego rynku energii, na którym kupuje się i sprzedaje energię z dostawą w kolejnej dobie.</p>
+<p>Na RDN powstają ceny i wolumeny transakcji dla poszczególnych okresów dostawy. RCE jest następnie obliczana z właściwych wyników sesji RDN zgodnie z ustawowym wzorem.</p>
+<div class="formula">
+      zlecenia kupna i sprzedaży → RDN → ceny i wolumeny → RCE → rozliczenie prosumenta
+    </div>
+<h3>7.1. RDN nie jest jedną ceną</h3>
+<p>Określenie „cena RDN” może oznaczać:</p>
+<ul>
+<li>cenę dla konkretnego kwadransa lub godziny,</li>
+<li>cenę ustaloną podczas konkretnej sesji,</li>
+<li>wynik publikowany przez konkretnego operatora rynku,</li>
+<li>średnią dobową lub indeks dobowy,</li>
+<li>cenę produktu blokowego.</li>
+</ul>
+<p>Nie każda wartość opisana jako cena RDN jest więc automatycznie RCE stosowaną w net-billingu.</p>
+<h3>7.2. Więcej niż jeden operator rynku</h3>
+<p>Dla polskiego obszaru rynkowego wyniki kwalifikowanych sesji RDN mogą pochodzić od kilku wyznaczonych operatorów rynku energii — NEMO. PSE wskazuje w tym kontekście Towarową Giełdę Energii, EPEX SPOT oraz Nord Pool.</p>
+<p>RCE nie musi być więc ceną odczytaną z jednej tabeli jednej giełdy. Jest ceną obliczoną z właściwych wyników sesji zgodnie z zasadą ważenia wolumenem.</p>
+<h3>7.3. Kiedy RCE jest równa cenie RDN</h3>
+<p>Jeżeli wszystkie uwzględniane sesje dla danego okresu mają taką samą cenę, RCE będzie równa tej cenie. Jeżeli ceny różnią się, RCE będzie średnią ważoną wolumenem.</p>
+<table>
+<thead>
+<tr>
+<th>Sesja</th>
+<th>Cena</th>
+<th>Wolumen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sesja 1</td>
+<td>400 PLN/MWh</td>
+<td>100 MWh</td>
+</tr>
+<tr>
+<td>Sesja 2</td>
+<td>500 PLN/MWh</td>
+<td>300 MWh</td>
+</tr>
+</tbody>
+</table>
+<div class="formula">
+      RCE = (400 × 100 + 500 × 300) ÷ (100 + 300) = 475 PLN/MWh
+    </div>
+<h3>7.4. RCE nie jest indeksem dobowym</h3>
+<p>RCE nie należy utożsamiać z indeksami dobowymi typu TGeBase lub TGe24. Indeks dobowy opisuje ogólny poziom cen w całej dobie, natomiast RCE jest przypisana do konkretnego okresu rozliczeniowego.</p>
+<div class="formula">
+      RCE dla 10:00–10:15 ≠ indeks dobowy
+    </div>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="zrodlo-systemu">
+<h2>8. Skąd system pobiera cenę sprzedaży</h2>
+<p>System nie pobiera dowolnej ceny opisanej jako „RDN”. Źródłem ceny sprzedaży jest oficjalna <strong>RCE publikowana przez Polskie Sieci Elektroenergetyczne</strong>.</p>
+<p>Dane są pobierane z publicznego API portalu raportowego PSE. System otrzymuje gotową cenę RCE dla poszczególnych okresów dostawy i przelicza ją z PLN/MWh na PLN/kWh.</p>
+<div class="formula">
+      RCE [PLN/kWh] = RCE [PLN/MWh] ÷ 1000
+    </div>
+<p>Przykład:</p>
+<div class="formula">
+      650 PLN/MWh = 0,650 PLN/kWh
+    </div>
+<p>Źródłem ceny nie jest:</p>
+<ul>
+<li>producent falownika lub baterii,</li>
+<li>aplikacja sprzedawcy energii,</li>
+<li>komercyjny serwis cenowy,</li>
+<li>lokalna prognoza,</li>
+<li>indeks dobowy jednej giełdy.</li>
+</ul>
+<p>System pobiera oficjalny wynik opublikowany przez PSE, a nie samodzielnie rekonstruuje RCE z wyników wszystkich giełd.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="dzis-jutro">
+<h2>9. Ceny na dziś i na jutro</h2>
+<p>Ceny obowiązujące w bieżącym dniu są znane wcześniej, ponieważ zostały ustalone w poprzednim dniu na Rynku Dnia Następnego.</p>
+<p>Po opublikowaniu wyników dla kolejnej doby system otrzymuje także pełny zestaw cen na jutro. W praktyce dane na następny dzień pojawiają się zwykle po południu, najczęściej około <strong>14:00–17:00</strong>.</p>
+<div class="important">
+      Przedział 14:00–17:00 jest praktycznym okresem obserwowanej publikacji i odświeżania danych. Nie jest jedną ustawowo zagwarantowaną godziną publikacji.
+    </div>
+<p>System sprawdza dostępność danych i po ich opublikowaniu rozszerza horyzont cenowy z pozostałej części dnia na pełną kolejną dobę.</p>
+<p>Dzięki temu możliwe jest porównywanie:</p>
+<ul>
+<li>ceny sprzedaży dzisiaj wieczorem,</li>
+<li>cen nocnych,</li>
+<li>cen jutro rano,</li>
+<li>cen w okresie wysokiej produkcji PV,</li>
+<li>cen jutro wieczorem.</li>
+</ul>
+<p>System nie musi więc podejmować decyzji wyłącznie na podstawie najbliższego kwadransa.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="kwadranse">
+<h2>10. Ceny 15-minutowe</h2>
+<p>Od 1 października 2025 r. na europejskim Rynku Dnia Następnego funkcjonują 15-minutowe produkty rynkowe. Jedna doba obejmuje zatem:</p>
+<div class="formula">
+      24 godziny × 4 = 96 okresów 15-minutowych
+    </div>
+<p>Każdy kwadrans może mieć inną RCE.</p>
+<table>
+<thead>
+<tr>
+<th>Okres dostawy</th>
+<th>Przykładowa RCE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12:00–12:15</td>
+<td>0,08 PLN/kWh</td>
+</tr>
+<tr>
+<td>12:15–12:30</td>
+<td>0,05 PLN/kWh</td>
+</tr>
+<tr>
+<td>12:30–12:45</td>
+<td>0,02 PLN/kWh</td>
+</tr>
+<tr>
+<td>12:45–13:00</td>
+<td>0,10 PLN/kWh</td>
+</tr>
+<tr>
+<td>18:00–18:15</td>
+<td>0,72 PLN/kWh</td>
+</tr>
+</tbody>
+</table>
+<p>Nie oznacza to jednak, że cena jest ustalana na żywo co 15 minut. Cały zestaw 96 cen na kolejną dobę jest publikowany wcześniej.</p>
+<div class="formula">
+      publikacja po południu → 96 cen dla całej następnej doby
+    </div>
+<p>Rozdzielczość 15-minutowa pozwala dokładnie przypisać wartość energii do momentu jej oddania do sieci oraz planować pracę magazynu energii z wyprzedzeniem.</p>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="ujemne">
+<h2>11. Ceny ujemne i zasady dla prosumentów</h2>
+<p>RCE publikowana przez PSE może mieć wartość ujemną. Oznacza to, że w danym okresie sytuacja rynkowa wskazuje na nadmiar podaży energii w stosunku do zapotrzebowania.</p>
+<h3>11.1. Podstawowa zasada</h3>
+<p>Zgodnie z <strong>art. 4b ust. 2 pkt 2 ustawy o OZE</strong>, jeżeli RCE jest ujemna, to przy standardowym wyznaczaniu wartości energii wprowadzonej do sieci przez prosumenta przyjmuje się cenę równą zero.</p>
+<div class="formula">
+      RCE rozliczeniowa = max(RCE opublikowana przez PSE, 0)
+    </div>
+<p>Przykład:</p>
+<div class="formula">
+      RCE PSE = −200 PLN/MWh → RCE rozliczeniowa = 0 PLN/MWh
+    </div>
+<p>Prosument standardowo:</p>
+<ul>
+<li>nie otrzymuje wartości dodatniej za energię oddaną w tym okresie,</li>
+<li>ale również nie jest obciążany ujemną wartością tej energii.</li>
+</ul>
+<h3>11.2. Wpływ na depozyt</h3>
+<p>Współczynnik 1,23 nie zmienia wyniku zerowego:</p>
+<div class="formula">
+      0 × 1,23 = 0
+    </div>
+<p>Energia oddana podczas ujemnej RCE standardowo nie zwiększa depozytu prosumenckiego.</p>
+<h3>11.3. RCEm</h3>
+<p>Zgodnie z <strong>art. 4b ust. 7 ustawy o OZE</strong>, przy obliczaniu miesięcznej RCEm ujemne okresowe RCE również zastępuje się wartością zero.</p>
+<p>Ujemne ceny nie obniżają więc RCEm bezpośrednio poniżej zera, chociaż duża ilość energii oddanej w okresach o wartości zerowej może obniżać średnią miesięczną.</p>
+<h3>11.4. Sterowanie mikroinstalacją</h3>
+<p>Ustawa przewiduje możliwość zawarcia odpowiednich postanowień umownych pozwalających sprzedawcy ograniczać lub wyłączać mikroinstalację w okresach cen ujemnych. Zagadnienie to regulują <strong>art. 4b ust. 12–18</strong>.</p>
+<p>Przepisy obejmują między innymi:</p>
+<ul>
+<li>upoważnienie sprzedawcy do ograniczania lub wyłączania instalacji,</li>
+<li>instalację urządzeń umożliwiających sterowanie,</li>
+<li>podział kosztów zakupu urządzeń,</li>
+<li>brak rekompensaty za energię niewytworzoną wskutek ograniczenia,</li>
+<li>szczególną sytuację odmowy przyjęcia proponowanych warunków umownych.</li>
+</ul>
+<p>Zgodnie z <strong>art. 4b ust. 17</strong>, w określonych warunkach odmowa prosumenta może umożliwić sprzedawcy zastosowanie rzeczywistej ceny ujemnej zamiast zastępowania jej zerem.</p>
+<p>Zgodnie z <strong>art. 4b ust. 18</strong>, w przypadku skierowania sporu do Koordynatora do spraw negocjacji przy Prezesie URE, do czasu rozwiązania sporu stosuje się zasadę zastępowania ceny ujemnej wartością zero.</p>
+<div class="important">
+      Ujemna RCE pobrana z PSE pozostaje ważną informacją rynkową i sygnałem dla sterowania instalacją, nawet jeżeli standardowa wartość rozliczeniowa prosumenta wynosi w takim okresie zero.
+    </div>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="wnioski-praktyczne">
+<h2>12. Wnioski praktyczne dla sterowania energią</h2>
+<p>Z punktu widzenia automatyki energetycznej należy rozróżnić trzy warstwy:</p>
+<table>
+<thead>
+<tr>
+<th>Warstwa</th>
+<th>Znaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RCE publikowana przez PSE</td>
+<td>Oficjalna rynkowa cena energii dla konkretnego kwadransa.</td>
+</tr>
+<tr>
+<td>RCE stosowana w standardowym rozliczeniu prosumenta</td>
+<td>RCE dodatnia albo zero, gdy RCE rynkowa jest ujemna.</td>
+</tr>
+<tr>
+<td>Wartość depozytowa</td>
+<td>Wartość energii według RCE rozliczeniowej zwiększona o współczynnik 1,23.</td>
+</tr>
+</tbody>
+</table>
+<p>System powinien zachować rzeczywistą RCE, ponieważ informuje ona o sytuacji rynkowej. Jednocześnie przy ocenie wartości ekonomicznej sprzedaży dla standardowego prosumenta powinien uwzględniać zasady rozliczeniowe.</p>
+<p>W praktyce oznacza to, że system może:</p>
+<ul>
+<li>unikać eksportu podczas cen ujemnych,</li>
+<li>przesuwać sprzedaż do okresów o wyższej RCE,</li>
+<li>zachować energię w baterii, gdy późniejsza cena jest wyższa,</li>
+<li>opróżnić część baterii przed spodziewanym przepełnieniem przez PV,</li>
+<li>porównywać dzisiejszą cenę sprzedaży z cenami na jutro,</li>
+<li>odróżniać cenę rynkową od wartości zapisanej w depozycie.</li>
+</ul>
+<blockquote>
+      System pobiera oficjalną RCE z PSE, ale decyzja ekonomiczna powinna być podejmowana na podstawie rzeczywistej wartości energii dla konkretnego prosumenta.
+    </blockquote>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<section class="card" data-search="include" data-type="section" id="podstawy">
+<h2>13. Podstawy prawne i oficjalne źródła</h2>
+<ul class="sources">
+<li>
+<a href="https://isap.sejm.gov.pl/isap.nsf/download.xsp/WDU20150000478/U/D20150478Lj.pdf" rel="noopener noreferrer" target="_blank">
+          Ustawa z 20 lutego 2015 r. o odnawialnych źródłach energii — tekst ujednolicony
+        </a><br/>
+        Kluczowe przepisy: art. 4b dotyczący RCE, RCEm i cen ujemnych oraz art. 4c dotyczący depozytu prosumenckiego.
+      </li>
+<li>
+<a href="https://www.pse.pl/oire/rce-rynkowa-cena-energii-elektrycznej" rel="noopener noreferrer" target="_blank">
+          PSE: RCE — Rynkowa cena energii elektrycznej
+        </a>
+</li>
+<li>
+<a href="https://api.raporty.pse.pl/" rel="noopener noreferrer" target="_blank">
+          Oficjalne API portalu raportowego PSE
+        </a>
+</li>
+<li>
+<a href="https://www.pse.pl/oire/rcem-rynkowa-miesieczna-cena-energii-elektrycznej" rel="noopener noreferrer" target="_blank">
+          PSE: RCEm — Rynkowa miesięczna cena energii elektrycznej
+        </a>
+</li>
+<li>
+<a href="https://www.pse.pl/oire/wyniki-sesji-notowan-rynku-dnia-nastepnego-w-systemie-kursu-jednolitego" rel="noopener noreferrer" target="_blank">
+          PSE: wyniki sesji notowań Rynku Dnia Następnego
+        </a>
+</li>
+<li>
+<a href="https://www.pse.pl/obszary-dzialalnosci/wymiana-miedzysystemowa/rynek-dnia-nastepnego" rel="noopener noreferrer" target="_blank">
+          PSE: Rynek Dnia Następnego i mechanizm łączenia rynków
+        </a>
+</li>
+<li>
+<a href="https://www.pse.pl/-/pomyslne-uruchomienie-projektu-15-mtu-na-rynku-dnia-nastepnego" rel="noopener noreferrer" target="_blank">
+          PSE: wdrożenie 15-minutowych produktów na Rynku Dnia Następnego
+        </a>
+</li>
+<li>
+<a href="https://www.gov.pl/web/klimat/korzystne-zmiany-dla-prosumentow-wchodza-w-zycie" rel="noopener noreferrer" target="_blank">
+          Ministerstwo Klimatu i Środowiska: zwiększenie depozytu prosumenckiego o 23%
+        </a>
+</li>
+<li>
+<a href="https://tge.pl/energia-elektryczna-rdn" rel="noopener noreferrer" target="_blank">
+          Towarowa Giełda Energii: Rynek Dnia Następnego
+        </a>
+</li>
+</ul>
+<a class="doc-backlink" href="#spis-tresci">powrót do spisu treści</a></section>
+<footer class="card document-footer" data-search="include" data-type="footer">
+    Materiał informacyjny. W przypadku indywidualnego rozliczenia decydują aktualne przepisy prawa oraz postanowienia umowy zawartej ze sprzedawcą energii.
+  </footer>
+<section class="card" data-search="exclude" data-type="system-note" id="doc-meta-visible-note"><h2>Notatka techniczna</h2><p class="small">Poniższy blok JSON zawiera metadane dokumentu wykorzystywane do przyszłego indeksowania i porządkowania stron systemowych.</p></section><script id="doc-meta" type="application/json">
+{
+  "schema_version": "json-doc-spec-v2",
+  "id": "cena-sprzedazy-energii-net-billing",
+  "title": "Jaka jest cena energii sprzedawanej przez prosumenta?",
+  "short_title": "Cena sprzedaży energii w net-billingu",
+  "type": "information_page",
+  "category": "energy",
+  "subcategory": "net-billing",
+  "status": "working",
+  "version": "v1.3",
+  "created": "2026-06-09",
+  "updated": "2026-06-09",
+  "author": "Marek Zaborowski / NIA",
+  "language": "pl",
+  "path": "reports/cena_sprzedazy_energii_net_billing.html",
+  "description": "Pełne wyjaśnienie ceny energii oddawanej przez prosumenta: RCE, RDN, API PSE, depozyt 1,23, ceny ujemne i praktyka planowania.",
+  "keywords": [
+    "RCE",
+    "RDN",
+    "RCEm",
+    "PSE",
+    "net-billing",
+    "depozyt prosumencki",
+    "ceny ujemne",
+    "prosument"
+  ],
+  "relations": {
+    "parent": null,
+    "children": [],
+    "related": [
+      "PSE",
+      "ustawa o OZE",
+      "automatyka energii"
+    ],
+    "replaces": "cena_sprzedazy_energii_net_billing_pelna.html",
+    "replaced_by": null
+  },
+  "content_flags": {
+    "has_toc": true,
+    "has_summary": true,
+    "has_sources": true,
+    "has_legal_basis": true
+  },
+  "technical": {
+    "format": "html",
+    "css": {
+      "embedded_fallback": true,
+      "external_override": "../assets/css/metro.css",
+      "load_order": [
+        "wbudowany CSS strony",
+        "zewnętrzny metro.css, jeżeli dostępny"
+      ],
+      "mechanism": "standardowa kaskada CSS: metro.css jest dołączony po stylu wewnętrznym i może go nadpisywać"
+    },
+    "document_schema": "system-document-v2"
+  }
+}
+</script></main>
+<script src="../assets/js/metro.js"></script></body>
+</html>

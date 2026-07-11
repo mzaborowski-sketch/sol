@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#65a30d">
+  <title>Bilans energii domu, PV i magazynu</title>
+  <link rel="stylesheet" href="assets/css/metro.css">
+  <style>
+    /* Page-local theme and fallback. It is intentionally loaded after metro.css. */
+*{box-sizing:border-box}body{margin:0;background:#f7fee7;color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.5}.container{max-width:1180px;margin:0 auto;padding:20px 14px 48px}.hero{background:linear-gradient(135deg,#84cc16,#65a30d);color:#fff;padding:22px 104px 22px 24px;border-radius:20px;margin-bottom:16px}.hero h1{margin:0 0 8px}.hero p{margin:4px 0}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.read-summary{display:grid;grid-template-columns:minmax(0,190px);gap:12px;margin:0 0 16px}.info-button{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;min-height:76px;border:1px solid #d97706;border-radius:14px;padding:14px 16px;background:#ffd21f;color:#4a2b00;cursor:pointer;text-align:left;font:inherit;box-shadow:0 12px 28px rgba(161,98,7,.24),0 0 0 1px rgba(255,255,255,.65) inset;transition:transform .08s ease,box-shadow .12s ease,background .12s ease}.info-button:active{transform:scale(.985)}.info-button span{color:#7c4a00;font-size:.86rem}.info-button strong{color:#3f2500;font-size:1.08rem}.card{background:#fff;border:1px solid #d9dee8;border-radius:18px;padding:16px 18px;margin:14px 0}.nav-card{color:inherit;text-decoration:none}.chart-frame img{display:block;width:100%;height:auto}.figure-title{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.figure-title h2{margin:0}.figure-note,.figure-caption,.muted{color:#5b6475}.balance-arithmetic{margin-top:10px;padding:10px 12px;border:1px solid #d9dee8;border-radius:12px;background:#f8fafc}.factor-table{width:100%;border-collapse:collapse}.factor-table th,.factor-table td{padding:8px;border-bottom:1px solid #d9dee8}.data-links{display:flex;flex-wrap:wrap;gap:10px}.floating-menu{position:fixed;right:12px;top:12px;z-index:999}.floating-menu a{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:3px solid #fff;outline:3px solid #ffd21f;border-radius:999px;background:#3f6212;color:#fff;text-decoration:none;font-weight:900;letter-spacing:.02em;box-shadow:0 18px 40px rgba(15,23,42,.42),0 0 0 7px rgba(255,210,31,.18);transition:transform .08s ease,box-shadow .12s ease,background .12s ease}.floating-menu a:active{transform:scale(.97)}.info-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(24,35,10,.48);padding:14px}.info-modal.open{display:flex}.info-card{width:min(760px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:18px;border:1px solid #d9dee8;box-shadow:0 24px 70px rgba(0,0,0,.30)}.info-head{position:sticky;top:0;display:flex;justify-content:space-between;gap:12px;align-items:center;background:#65a30d;color:#fff;padding:12px 16px}.info-close{border:0;border-radius:999px;background:#fff;color:#65a30d;font-weight:900;width:34px;height:34px}.info-content{padding:14px 18px 16px;font-size:.88rem;line-height:1.36}.info-content h3{margin:13px 0 5px;color:#65a30d;font-size:1rem}.info-content p{margin:0 0 8px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.grid{grid-template-columns:1fr}.read-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.container{padding:10px 8px 32px}.hero{padding:18px 100px 18px 16px}.hero h1{font-size:1.45rem}.figure-title{display:block}.info-modal{align-items:stretch;padding:8px}.info-card{max-height:none;border-radius:15px}.info-content{padding:12px 14px 14px;font-size:.84rem}}
+
+  </style>
+</head>
+<body class="accent-blue has-floating">
+<main class="container tight">
+
+  <div class="floating-menu">
+    <a href="index2.html" title="Powrót do menu">
+      <span class="label">MENU</span>
+      <span class="menu-mark" aria-hidden="true">⌂</span>
+    </a>
+  </div>
+
+  <section class="hero">
+    <h1>Bilans energii domu, PV i magazynu</h1>
+    <p class="generated-at">Wygenerowano: 2026-07-11 20:30:44</p>
+  </section>
+
+  <section class="read-summary" aria-label="Pomoc raportu">
+    <button class="info-button" type="button" data-info-open aria-haspopup="dialog" aria-controls="info-modal">
+      <span>Pomoc</span>
+      <strong>Jak czytać</strong>
+    </button>
+  </section>
+
+  <div class="info-modal" id="info-modal" aria-hidden="true">
+    <div class="info-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+      <div class="info-head">
+        <div class="info-title" id="info-modal-title">Jak czytać bilans energii?</div>
+        <button class="info-close" type="button" aria-label="Zamknij">X</button>
+      </div>
+      <div class="info-content">
+        <h3>Co to jest i po co</h3>
+        <p>To jest raport bilansu energii domu, PV, sieci, EV i magazynu energii. Pokazuje, skąd energia przyszła, dokąd poszła i ile energii zostało utracone albo zachowane w baterii.</p>
+        <p>Raport nie podejmuje decyzji sterujących. Jest mapą przepływów energii, która pomaga sprawdzić, czy system energetyczny zachowuje się logicznie i czy dane z liczników układają się w spójny bilans.</p>
+
+        <h3>Jak korzystać</h3>
+        <p>Na początku są skróty do okresów: <code>Dziś</code>, <code>Tydzień</code>, <code>Miesiąc</code> i <code>Od początku</code>. Każdy okres ma osobny rysunek oraz arytmetykę bilansu pod spodem.</p>
+        <p>Najpierw warto patrzeć na wykres, a potem na równanie pod nim. Równanie pokazuje wprost, czy suma źródeł energii zgadza się z sumą odbiorów, eksportu, zmianą baterii i stratami systemu.</p>
+
+        <h3>Jak czytać wykresy</h3>
+        <p>Po stronie źródeł są zwykle <code>PV</code>, <code>import</code> oraz energia oddana z zapasu baterii. Po stronie wykorzystania są <code>dom</code>, <code>EV</code>, <code>eksport</code>, zmiana energii w baterii i <code>straty systemu</code>.</p>
+        <p><code>Dziś</code>, <code>Tydzień</code> i <code>Miesiąc</code> są liczone jako różnica liczników na początku i końcu okresu. <code>Od początku</code> korzysta z liczników narastających od zera, więc jest najlepsze dla długiego obrazu, ale może mieć inne ograniczenia przy początkowym SOC.</p>
+
+        <h3>Co oznaczają straty systemu</h3>
+        <p>Straty systemu to domknięcie bilansu: energia wejściowa minus energia użyta, wyeksportowana i zachowana w baterii. Nie jest to jeden fizyczny licznik. To wynik złożony z wielu pomiarów, więc może zawierać sprawność magazynu, różnice liczników, zaokrąglenia i przesunięcia czasowe.</p>
+
+        <h3>Jak czytać baterię i sprawność</h3>
+        <p>Zmiana energii baterii wynika ze zmiany SOC i pojemności baterii. Wewnętrzne liczniki ładowania i rozładowania nie są dodawane do głównego bilansu, żeby nie liczyć tej samej energii podwójnie.</p>
+        <p>Sekcja sprawności pokazuje relację energii oddanej z magazynu do energii włożonej do magazynu. Jeśli sprawność wychodzi podejrzanie wysoka, zwłaszcza powyżej 100%, trzeba sprawdzić liczniki i granice okresu.</p>
+
+        <h3>Kiedy wynik jest dobry</h3>
+        <p>Dobry wynik jest wtedy, gdy wykres i równanie są spójne, straty systemu są rozsądne, a kierunki energii pasują do rzeczywistości: PV zasila dom lub eksport, import pojawia się wtedy, gdy brakuje lokalnej energii, a bateria zachowuje się zgodnie z SOC.</p>
+
+        <h3>Kiedy wynik jest zły</h3>
+        <p>Zły albo podejrzany wynik jest wtedy, gdy straty są bardzo duże, energia pojawia się po niewłaściwej stronie bilansu, sprawność przekracza 100%, albo okres ma luki w danych. Wtedy raport nadal jest użyteczny, ale bardziej jako diagnostyka niż jako twarde rozliczenie.</p>
+
+        <h3>Najkrócej</h3>
+        <p>Ta strona odpowiada na pytanie: którędy przepłynęła energia. Najpierw wybierasz okres, potem patrzysz na wykres i równanie bilansu. Jeśli liczby się nie domykają elegancko, sprawdzasz straty, SOC, sprawność i flagi jakości danych.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="period-nav grid" aria-label="Przejście do okresu">
+    <a class="card nav-card" href="#today">
+      <p class="kpi">okres: 2026-07-11</p>
+      <p class="value">Dziś</p>
+    </a>
+    <a class="card nav-card" href="#week">
+      <p class="kpi">tydzień: 2026-W28</p>
+      <p class="value">Tydzień</p>
+    </a>
+    <a class="card nav-card" href="#month">
+      <p class="kpi">miesiąc: 2026-07</p>
+      <p class="value">Miesiąc</p>
+    </a>
+    <a class="card nav-card" href="#total">
+      <p class="kpi">od zera licznika do ostatniego rekordu</p>
+      <p class="value">Od początku</p>
+    </a>
+  </section>
+
+
+  <section class="card report-card" id="today">
+    <div class="figure-title">
+      <h2>Dziś</h2>
+      <span class="figure-note">okres: 2026-07-11</span>
+    </div>
+    <div class="chart-frame">
+      <img src="assets/img/20_16_energy_balance_current__today.png" alt="Dziś">
+    </div>
+    <p class="figure-caption">Bieżący dzień: wartości okresowe z liczników brzegowych dnia. Sprawność nie jest pokazywana na rysunku.</p>
+
+    <div class="balance-arithmetic">
+      <strong>Arytmetyka bilansu:</strong><br>
+      <code>26,0 PV + 1,9 import = 5,3 dom + 4,7 EV + 4,4 eksport + 9,2 przyrost energii w baterii + 4,3 straty systemu (15,33%) kWh</code>
+    </div>
+
+  </section>
+
+
+  <section class="card report-card" id="week">
+    <div class="figure-title">
+      <h2>Tydzień</h2>
+      <span class="figure-note">tydzień: 2026-W28</span>
+    </div>
+    <div class="chart-frame">
+      <img src="assets/img/20_16_energy_balance_current__week.png" alt="Tydzień">
+    </div>
+    <p class="figure-caption">Aktualny tydzień: agregacja liczona jako koniec okresu minus początek okresu.</p>
+
+    <div class="balance-arithmetic">
+      <strong>Arytmetyka bilansu:</strong><br>
+      <code>140,1 PV + 14,0 import = 30,6 dom + 21,7 EV + 63,2 eksport + 8,9 przyrost energii w baterii + 29,7 straty systemu (19,27%) kWh</code>
+    </div>
+
+  </section>
+
+
+  <section class="card report-card" id="month">
+    <div class="figure-title">
+      <h2>Miesiąc</h2>
+      <span class="figure-note">miesiąc: 2026-07</span>
+    </div>
+    <div class="chart-frame">
+      <img src="assets/img/20_16_energy_balance_current__month.png" alt="Miesiąc">
+    </div>
+    <p class="figure-caption">Aktualny miesiąc: agregacja liczona jako koniec okresu minus początek okresu.</p>
+
+    <div class="balance-arithmetic">
+      <strong>Arytmetyka bilansu:</strong><br>
+      <code>271,3 PV + 38,5 import = 61,3 dom + 58,7 EV + 128,3 eksport + 9,3 przyrost energii w baterii + 52,2 straty systemu (16,84%) kWh</code>
+    </div>
+
+  </section>
+
+
+  <section class="card report-card" id="total">
+    <div class="figure-title">
+      <h2>Od początku</h2>
+      <span class="figure-note">od zera licznika do ostatniego rekordu</span>
+    </div>
+    <div class="chart-frame">
+      <img src="assets/img/20_16_energy_balance_current__total.png" alt="Od początku">
+    </div>
+    <p class="figure-caption">Total: wartości liczników narastających liczone od zera; to główna metryka długookresowa.</p>
+
+    <div class="balance-arithmetic">
+      <strong>Szacowana arytmetyka bilansu:</strong><br>
+      <code>3192,0 PV + 3701,2 import = 3456,1 dom + 2037,5 EV + 1085,2 eksport + 6,6 przyrost energii w baterii + 307,8 straty systemu (4,47%) kWh</code><br><small>Dla wartości total liczniki energii są liczone od zera, natomiast początkowy SOC pochodzi z pierwszego dostępnego pomiaru.</small>
+    </div>
+
+  </section>
+
+
+
+  <section class="card text-card">
+    <div class="section-title"><span class="icon">ⓘ</span><span>Informacja o sprawności</span></div>
+    <p><strong>Sprawność systemu użyta w sekcji sprawności:</strong> 89,54%.</p>
+    <p>Obliczenie jest proste i jawne:</p>
+    <p><code>sprawność_systemu = 100 × battery_discharge_counter_delta_kWh / battery_charge_counter_delta_kWh</code></p>
+    <p>Dzień, tydzień i miesiąc są liczone jako różnica liczników na końcu i początku okresu. <strong>Total</strong> jest liczony od zera licznika do ostatniej dostępnej wartości total counter. Sloty 5/15-minutowe służą tylko do diagnostyki szczegółowej.</p>
+    <p>Współczynnik sprawności: <strong>0,8954</strong>. Flagi jakości: <code>total_origin_zero,period_has_gaps,system_losses_total_uses_first_available_soc</code>.</p>
+
+    <table class="factor-table">
+      <thead>
+        <tr><th>Próg</th><th>Wynik</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wyjście na 0% bez amortyzacji</td>
+          <td>1,117× ceny zakupu</td>
+        </tr>
+        <tr>
+          <td>5% zysku bez amortyzacji</td>
+          <td>1,173× ceny zakupu</td>
+        </tr>
+        <tr>
+          <td>Przykład: zakup 1,000 PLN/kWh, amortyzacja 0,100 PLN/kWh, próg 0%</td>
+          <td>1,229 PLN/kWh</td>
+        </tr>
+        <tr>
+          <td>Przykład: zakup 1,000 PLN/kWh, amortyzacja 0,100 PLN/kWh, próg 5%</td>
+          <td>1,290 PLN/kWh</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Amortyzacja <strong>0,100 PLN/kWh</strong> jest założeniem arbitralnym.</p>
+  </section>
+
+
+  <section class="card text-card">
+    <div class="section-title"><span class="icon">i</span><span>Komentarz i legenda</span></div>
+    <ul class="bullet-list">
+      <li>Rysunki są generowane standardowo: CSV pod wykres → plik <code>.pic_def</code> → <code>90_10_pic_drawer.py</code>; układ poziomy używa <code>render_type=barh</code>.</li>
+      <li>Sprawność magazynowania nie jest pokazywana na rysunkach; jest liczona wyłącznie w sekcji sprawności.</li>
+      <li><strong>Straty systemu</strong> są liczone osobno dla każdego okresu: PV + import + energia netto oddana z zapasu baterii − dom − EV − eksport − energia netto zachowana w baterii.</li>
+      <li>Dla dnia, tygodnia i miesiąca granice liczników oraz SOC są zgodne. Dla totalu liczonego od zera liczników wynik jest oznaczony jako szacunkowy, ponieważ początkowy SOC pochodzi z pierwszego dostępnego pomiaru.</li>
+      <li>Zmiana energii baterii wynika ze zmiany SOC i pojemności <code>battery_capacity_kWh</code>; wewnętrzne liczniki ładowania i rozładowania nie są dodawane do tego bilansu, aby nie liczyć tej samej energii podwójnie.</li>
+      <li>Dzień, tydzień i miesiąc są liczone z liczników brzegowych okresu. Total jest liczony od zera licznika do ostatniej dostępnej wartości. Sloty są tylko diagnostyką.</li>
+      <li>Jeżeli sprawność przekracza 100%, moduł oznacza to flagą <code>storage_efficiency_gt_100_check_counters</code>.</li>
+    </ul>
+
+    <div class="data-links">
+      <a href="assets/data/20_16_energy_balance_current__daily.csv">daily CSV</a>
+      <a href="assets/data/20_16_energy_balance_current__weekly.csv">weekly CSV</a>
+      <a href="assets/data/20_16_energy_balance_current__monthly.csv">monthly CSV</a>
+      <a href="assets/data/20_16_energy_balance_current__total.csv">total CSV</a>
+    </div>
+  </section>
+
+</main>
+<script>
+(function(){
+  const infoModal = document.getElementById('info-modal');
+  const infoOpen = document.querySelector('[data-info-open]');
+  const infoClose = infoModal ? infoModal.querySelector('.info-close') : null;
+  function tapFeedback(){
+    if (navigator.vibrate) navigator.vibrate(35);
+  }
+  document.querySelectorAll('.floating-menu a').forEach(function(link){
+    link.addEventListener('click', tapFeedback);
+    link.addEventListener('touchstart', tapFeedback, {passive: true});
+  });
+  function openInfo(){
+    if (!infoModal || !infoClose) return;
+    tapFeedback();
+    infoModal.classList.add('open');
+    infoModal.setAttribute('aria-hidden', 'false');
+    infoClose.focus();
+  }
+  function closeInfo(){
+    if (!infoModal) return;
+    infoModal.classList.remove('open');
+    infoModal.setAttribute('aria-hidden', 'true');
+    if (infoOpen) infoOpen.focus();
+  }
+  if (infoOpen) infoOpen.addEventListener('click', openInfo);
+  if (infoClose) infoClose.addEventListener('click', closeInfo);
+  if (infoModal) infoModal.addEventListener('click', function(event){ if (event.target === infoModal) closeInfo(); });
+  document.addEventListener('keydown', function(event){ if (event.key === 'Escape') closeInfo(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+{
+  "pl-home": {
+    "src": "index.html",
+    "out": "index.html",
+    "lang": "pl",
+    "key": "home",
+    "title": "Polski Hub Finansowania Efektywności Energetycznej",
+    "desc": "Krajowa platforma współpracy na rzecz skuteczniejszego finansowania inwestycji w efektywność energetyczną.",
+    "pair": "en-home",
+    "toc": [
+      {
+        "id": "trwaa-platforma-wspopracy",
+        "label": "Trwała platforma współpracy"
+      },
+      {
+        "id": "kapita-to-tylko-czesc-problemu",
+        "label": "Kapitał to tylko część problemu"
+      },
+      {
+        "id": "od-problemu-do-rekomendacji",
+        "label": "Od problemu do rekomendacji"
+      },
+      {
+        "id": "dwie-uzupeniajace-sie-grupy-robocze",
+        "label": "Dwie uzupełniające się grupy robocze"
+      },
+      {
+        "id": "koalicja-europejska-projekt-life-i-sekretariat-kape",
+        "label": "Koalicja europejska, projekt LIFE i Sekretariat KAPE"
+      },
+      {
+        "id": "wiedza-uczestnikow-rynku-jest-podstawa-dziaania-hubu",
+        "label": "Wiedza uczestników rynku jest podstawą działania Hubu"
+      }
+    ]
+  },
+  "pl-coalition": {
+    "src": "koalicja.html",
+    "out": "koalicja.html",
+    "lang": "pl",
+    "key": "coalition",
+    "title": "Europejska Koalicja | Polski Hub",
+    "desc": "Struktura i główne obszary pracy Europejskiej Koalicji na rzecz Finansowania Efektywności Energetycznej.",
+    "pair": "en-coalition",
+    "toc": [
+      {
+        "id": "czym-jest-koalicja",
+        "label": "Czym jest Koalicja?"
+      },
+      {
+        "id": "trzy-uzupeniajace-sie-poziomy",
+        "label": "Trzy uzupełniające się poziomy"
+      },
+      {
+        "id": "gowne-obszary-pracy",
+        "label": "Główne obszary pracy"
+      },
+      {
+        "id": "europejskie-kierunki-krajowe-rozwiazania",
+        "label": "Europejskie kierunki, krajowe rozwiązania"
+      },
+      {
+        "id": "zrodla",
+        "label": "Zweryfikowane materiały instytucjonalne"
+      }
+    ]
+  },
+  "pl-hub": {
+    "src": "hub.html",
+    "out": "hub.html",
+    "lang": "pl",
+    "key": "hub",
+    "title": "Polski Hub | Cele i organizacja",
+    "desc": "Cele, organizacja i sposób działania Polskiego Hubu Finansowania Efektywności Energetycznej.",
+    "pair": "en-hub",
+    "toc": [
+      {
+        "id": "nie-seria-spotkan-lecz-ciagy-proces-pracy",
+        "label": "Nie seria spotkań, lecz ciągły proces pracy"
+      },
+      {
+        "id": "powstanie-krajowego-hubu",
+        "label": "Powstanie krajowego Hubu"
+      },
+      {
+        "id": "cztery-poziomy-wspopracy",
+        "label": "Cztery poziomy współpracy"
+      },
+      {
+        "id": "jak-pracuja-grupy-robocze",
+        "label": "Jak pracują grupy robocze?"
+      },
+      {
+        "id": "rola-kape-s-a",
+        "label": "Rola KAPE S.A."
+      },
+      {
+        "id": "zrodla",
+        "label": "Więcej o instytucjach"
+      }
+    ]
+  },
+  "pl-life": {
+    "src": "life.html",
+    "out": "life.html",
+    "lang": "pl",
+    "key": "life",
+    "title": "Projekt LIFE EEFINH | Polski Hub",
+    "desc": "Projekt LIFE EEFINH i europejskie zaplecze rozwoju Polskiego Hubu.",
+    "pair": "en-life",
+    "toc": [
+      {
+        "id": "rola-projektu",
+        "label": "Rola projektu"
+      },
+      {
+        "id": "najwazniejsze-informacje",
+        "label": "Najważniejsze informacje"
+      },
+      {
+        "id": "co-projekt-umozliwi",
+        "label": "Co projekt umożliwi?"
+      },
+      {
+        "id": "dwukierunkowa-wymiana-doswiadczen",
+        "label": "Dwukierunkowa wymiana doświadczeń"
+      },
+      {
+        "id": "zrodla",
+        "label": "Projekt i program LIFE"
+      }
+    ]
+  },
+  "pl-groups": {
+    "src": "grupy.html",
+    "out": "grupy.html",
+    "lang": "pl",
+    "key": "groups",
+    "title": "Grupy robocze | Polski Hub",
+    "desc": "Zakres pierwszych grup roboczych Polskiego Hubu Finansowania Efektywności Energetycznej.",
+    "pair": "en-groups",
+    "toc": [
+      {
+        "id": "zakres-pierwszych-grup",
+        "label": "Dwa powiązane obszary pracy"
+      },
+      {
+        "id": "kazdy-temat-ma-swoj-poczatek-i-rezultat",
+        "label": "Każdy temat ma swój początek i rezultat"
+      }
+    ]
+  },
+  "pl-cooperation": {
+    "src": "wspolpraca.html",
+    "out": "wspolpraca.html",
+    "lang": "pl",
+    "key": "cooperation",
+    "title": "Współpraca i rezultaty | Polski Hub",
+    "desc": "Oczekiwane rezultaty Polskiego Hubu i możliwości udziału w jego pracach.",
+    "pair": "en-cooperation",
+    "toc": [
+      {
+        "id": "co-ma-powstac-w-wyniku-prac-hubu",
+        "label": "Co ma powstać w wyniku prac Hubu?"
+      },
+      {
+        "id": "kto-moze-uczestniczyc",
+        "label": "Kto może uczestniczyć?"
+      },
+      {
+        "id": "diagnoza-rynku",
+        "label": "Diagnoza rynku"
+      },
+      {
+        "id": "zgos-doswiadczenie-problem-lub-temat-do-wspolnej-analiz",
+        "label": "Zgłoś doświadczenie, problem lub temat do wspólnej analizy"
+      }
+    ]
+  },
+  "pl-contact": {
+    "src": "kontakt.html",
+    "out": "kontakt.html",
+    "lang": "pl",
+    "key": "contact",
+    "title": "Kontakt | Polski Hub",
+    "desc": "Kontakt z Sekretariatem Polskiego Hubu Finansowania Efektywności Energetycznej.",
+    "pair": "en-contact",
+    "toc": [
+      {
+        "id": "w-jakich-sprawach-mozna-sie-skontaktowac",
+        "label": "W jakich sprawach można się skontaktować?"
+      }
+    ]
+  },
+  "en-home": {
+    "src": "en/index.html",
+    "out": "en/index.html",
+    "lang": "en",
+    "key": "home",
+    "title": "Polish Energy Efficiency Financing Hub",
+    "desc": "A national cooperation platform supporting more effective financing of energy efficiency investments.",
+    "pair": "pl-home",
+    "toc": [
+      {
+        "id": "a-permanent-cooperation-platform",
+        "label": "A permanent cooperation platform"
+      },
+      {
+        "id": "capital-is-only-part-of-the-problem",
+        "label": "Capital is only part of the problem"
+      },
+      {
+        "id": "from-problem-to-recommendation",
+        "label": "From problem to recommendation"
+      },
+      {
+        "id": "two-complementary-working-groups",
+        "label": "Two complementary working groups"
+      },
+      {
+        "id": "european-coalition-life-project-and-kape-secretariat",
+        "label": "European Coalition, LIFE project and KAPE Secretariat"
+      },
+      {
+        "id": "market-knowledge-is-the-foundation-of-the-hub",
+        "label": "Market knowledge is the foundation of the Hub"
+      }
+    ]
+  },
+  "en-coalition": {
+    "src": "en/coalition.html",
+    "out": "en/coalition.html",
+    "lang": "en",
+    "key": "coalition",
+    "title": "European Coalition | Polish Hub",
+    "desc": "Structure and main areas of work of the European Energy Efficiency Financing Coalition.",
+    "pair": "pl-coalition",
+    "toc": [
+      {
+        "id": "what-is-the-coalition",
+        "label": "What is the Coalition?"
+      },
+      {
+        "id": "three-complementary-levels",
+        "label": "Three complementary levels"
+      },
+      {
+        "id": "main-areas-of-work",
+        "label": "Main areas of work"
+      },
+      {
+        "id": "european-directions-national-solutions",
+        "label": "European directions, national solutions"
+      },
+      {
+        "id": "sources",
+        "label": "Verified institutional materials"
+      }
+    ]
+  },
+  "en-hub": {
+    "src": "en/hub.html",
+    "out": "en/hub.html",
+    "lang": "en",
+    "key": "hub",
+    "title": "Polish Hub | Objectives and organisation",
+    "desc": "Objectives, organisation and working method of the Polish Energy Efficiency Financing Hub.",
+    "pair": "pl-hub",
+    "toc": [
+      {
+        "id": "a-continuous-work-process-not-a-series-of-meetings",
+        "label": "A continuous work process, not a series of meetings"
+      },
+      {
+        "id": "development-of-the-national-hub",
+        "label": "Development of the national Hub"
+      },
+      {
+        "id": "four-levels-of-cooperation",
+        "label": "Four levels of cooperation"
+      },
+      {
+        "id": "how-do-the-working-groups-operate",
+        "label": "How do the working groups operate?"
+      },
+      {
+        "id": "role-of-kape-s-a",
+        "label": "Role of KAPE S.A."
+      },
+      {
+        "id": "sources",
+        "label": "Learn more about the institutions"
+      }
+    ]
+  },
+  "en-life": {
+    "src": "en/life.html",
+    "out": "en/life.html",
+    "lang": "en",
+    "key": "life",
+    "title": "LIFE EEFINH Project | Polish Hub",
+    "desc": "The LIFE EEFINH project and European support for developing the Polish Hub.",
+    "pair": "pl-life",
+    "toc": [
+      {
+        "id": "role-of-the-project",
+        "label": "Role of the project"
+      },
+      {
+        "id": "key-information",
+        "label": "Key information"
+      },
+      {
+        "id": "what-does-the-project-enable",
+        "label": "What does the project enable?"
+      },
+      {
+        "id": "two-way-exchange-of-experience",
+        "label": "Two-way exchange of experience"
+      },
+      {
+        "id": "sources",
+        "label": "The project and the LIFE programme"
+      }
+    ]
+  },
+  "en-groups": {
+    "src": "en/working-groups.html",
+    "out": "en/working-groups.html",
+    "lang": "en",
+    "key": "groups",
+    "title": "Working Groups | Polish Hub",
+    "desc": "Scope of the initial working groups of the Polish Energy Efficiency Financing Hub.",
+    "pair": "pl-groups",
+    "toc": [
+      {
+        "id": "scope-of-initial-groups",
+        "label": "Two connected areas of work"
+      },
+      {
+        "id": "each-topic-has-a-starting-point-and-a-result",
+        "label": "Each topic has a starting point and a result"
+      }
+    ]
+  },
+  "en-cooperation": {
+    "src": "en/cooperation.html",
+    "out": "en/cooperation.html",
+    "lang": "en",
+    "key": "cooperation",
+    "title": "Cooperation and results | Polish Hub",
+    "desc": "Expected results of the Polish Hub and opportunities to contribute.",
+    "pair": "pl-cooperation",
+    "toc": [
+      {
+        "id": "what-should-the-hub-produce",
+        "label": "What should the Hub produce?"
+      },
+      {
+        "id": "who-can-participate",
+        "label": "Who can participate?"
+      },
+      {
+        "id": "market-diagnosis",
+        "label": "Market diagnosis"
+      },
+      {
+        "id": "share-an-experience-problem-or-topic-for-joint-analysis",
+        "label": "Share an experience, problem or topic for joint analysis"
+      }
+    ]
+  },
+  "en-contact": {
+    "src": "en/contact.html",
+    "out": "en/contact.html",
+    "lang": "en",
+    "key": "contact",
+    "title": "Contact | Polish Hub",
+    "desc": "Contact the Secretariat of the Polish Energy Efficiency Financing Hub.",
+    "pair": "pl-contact",
+    "toc": [
+      {
+        "id": "what-can-you-contact-us-about",
+        "label": "What can you contact us about?"
+      }
+    ]
+  },
+  "pl-privacy": {
+    "out": "prywatnosc.html",
+    "lang": "pl",
+    "key": "privacy",
+    "title": "Prywatność | Polski Hub",
+    "desc": "Informacja o prywatności, plikach cookies i danych w serwisie Polskiego Hubu.",
+    "pair": "en-privacy",
+    "toc": [
+      {
+        "id": "zakres",
+        "label": "Zakres przetwarzania"
+      },
+      {
+        "id": "cookies",
+        "label": "Cookies i analityka"
+      },
+      {
+        "id": "kontakt",
+        "label": "Kontakt"
+      }
+    ]
+  },
+  "pl-accessibility": {
+    "out": "dostepnosc.html",
+    "lang": "pl",
+    "key": "accessibility",
+    "title": "Dostępność | Polski Hub",
+    "desc": "Informacje o rozwiązaniach dostępności zastosowanych w serwisie Polskiego Hubu.",
+    "pair": "en-accessibility",
+    "toc": [
+      {
+        "id": "standard",
+        "label": "Przyjęty standard"
+      },
+      {
+        "id": "rozwiazania",
+        "label": "Zastosowane rozwiązania"
+      },
+      {
+        "id": "zgloszenie",
+        "label": "Zgłaszanie problemów"
+      }
+    ]
+  },
+  "en-privacy": {
+    "out": "en/privacy.html",
+    "lang": "en",
+    "key": "privacy",
+    "title": "Privacy | Polish Hub",
+    "desc": "Information on privacy, cookies and data processing on the Polish Hub website.",
+    "pair": "pl-privacy",
+    "toc": [
+      {
+        "id": "scope",
+        "label": "Processing scope"
+      },
+      {
+        "id": "cookies",
+        "label": "Cookies and analytics"
+      },
+      {
+        "id": "contact",
+        "label": "Contact"
+      }
+    ]
+  },
+  "en-accessibility": {
+    "out": "en/accessibility.html",
+    "lang": "en",
+    "key": "accessibility",
+    "title": "Accessibility | Polish Hub",
+    "desc": "Information on accessibility features implemented on the Polish Hub website.",
+    "pair": "pl-accessibility",
+    "toc": [
+      {
+        "id": "standard",
+        "label": "Standard applied"
+      },
+      {
+        "id": "features",
+        "label": "Implemented features"
+      },
+      {
+        "id": "reporting",
+        "label": "Reporting issues"
+      }
+    ]
+  }
+}

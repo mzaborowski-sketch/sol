@@ -4,10 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profil zużycia energii</title>
-  <meta name="theme-color" content="#0ea5e9">
+  <meta name="theme-color" content="#16a34a">
   <link rel="stylesheet" href="assets/css/metro.css">
   <style>
+* { box-sizing:border-box; }
+body { background:#f0fdf4; color:#172033; }
+.container.tight { max-width:1180px; }
+.hero { background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; border:0; border-radius:18px; box-shadow:0 18px 42px rgba(22,163,74,.22); }
+.hero h1 { color:#fff; margin:0; letter-spacing:0; }
 .report-meta { color:#6b7280; margin-top:.6rem; }
+.hero .report-meta { color:rgba(255,255,255,.86); }
+.floating-menu { position:fixed; top:18px; right:18px; z-index:20; }
+.floating-menu a { display:flex; align-items:center; gap:.45rem; padding:.72rem 1.05rem; border:3px solid #fff; outline:3px solid #ffd21f; border-radius:999px; background:#166534; color:#fff; font-weight:900; letter-spacing:.02em; text-decoration:none; box-shadow:0 18px 40px rgba(15,23,42,.42), 0 0 0 7px rgba(255,210,31,.18); transition:transform .08s ease, box-shadow .12s ease, background .12s ease; }
+.floating-menu a:hover { background:#14532d; }
+.floating-menu a:active { transform:scale(.97); }
+.floating-menu .emoji { font-size:1rem; }
 .report-image { width:100%; max-width:1200px; border-radius:18px; box-shadow:0 10px 30px rgba(15,23,42,.10); background:white; display:block; margin:0 auto .25rem auto; }
 .report-section { margin-top:1.15rem; }
 .report-table { width:100%; border-collapse:collapse; margin-top:.75rem; }
@@ -24,25 +35,92 @@
 .weekly-animation-toolbar button:hover { background:#eef2ff; }
 #weekly-animation-svg { width:100%; height:auto; display:block; }
 code { background:#f3f4f6; border-radius:.35rem; padding:.05rem .25rem; }
+.read-summary { margin:1rem 0 1.15rem; display:flex; gap:.75rem; align-items:flex-start; }
+.info-button { width:156px; min-width:156px; min-height:62px; border:1px solid rgba(217,119,6,.22); background:#ffd21f; color:#1f2937; border-radius:14px; padding:.62rem .85rem; cursor:pointer; text-align:left; box-shadow:0 12px 28px rgba(161,98,7,.24), 0 0 0 1px rgba(255,255,255,.65) inset; transition:transform .08s ease, box-shadow .12s ease, background .12s ease; }
+.info-button span { display:block; font-size:.78rem; color:#64748b; margin-bottom:.18rem; }
+.info-button strong { display:block; font-size:1.1rem; line-height:1.05; }
+.info-button:hover { filter:brightness(.98); transform:translateY(-1px); }
+.info-button:active { transform:scale(.985); }
+.info-modal { position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(15,23,42,.48); }
+.info-modal[aria-hidden="false"] { display:flex; }
+.info-card { width:min(720px, calc(100vw - 2rem)); max-height:min(820px, calc(100vh - 2rem)); overflow:auto; background:#fff; color:#172033; border-radius:18px; box-shadow:0 24px 70px rgba(15,23,42,.32); }
+.info-head { position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.9rem 1rem; background:#16a34a; color:#fff; }
+.info-title { font-weight:900; font-size:1.06rem; }
+.info-close { width:38px; height:38px; border-radius:999px; border:0; background:#fff; color:#166534; font-weight:900; cursor:pointer; }
+.info-content { padding:.85rem 1rem 1rem; font-size:.92rem; line-height:1.36; }
+.info-content h3 { margin:.75rem 0 .25rem; font-size:.98rem; color:#166534; }
+.info-content p { margin:.25rem 0 .55rem; }
+body.modal-open { overflow:hidden; }
+@media (max-width:720px) {
+  body { overflow-x:hidden; }
+  .container.tight { width:100%; padding-left:.85rem; padding-right:.85rem; }
+  .hero { margin-top:4.2rem; border-radius:14px; padding:1rem; }
+  .hero h1 { font-size:1.65rem; line-height:1.08; }
+  .floating-menu { top:.75rem; right:.75rem; }
+  .floating-menu a { padding:.62rem .9rem; }
+  .read-summary { margin:.85rem 0; }
+  .info-button { width:148px; min-width:148px; min-height:58px; }
+  .report-section { margin-top:.9rem; }
+  .report-image { border-radius:12px; max-width:100%; }
+  .weekly-animation-card { border-radius:12px; padding:.65rem; }
+  .details-block { border-radius:12px; padding:.65rem .75rem; overflow-x:auto; }
+  .report-table { font-size:.82rem; min-width:520px; }
+  .info-card { width:calc(100vw - 1rem); max-height:calc(100vh - 1rem); border-radius:14px; }
+  .info-content { font-size:.86rem; line-height:1.3; padding:.7rem .8rem .9rem; }
+}
 </style>
 </head>
 <body class="accent-yellow has-floating">
 <main class="container tight">
 
 <div class="floating-menu">
-  <a href="index.html" title="Powrót do menu">
+  <a href="index2.html" title="Powrót do menu">
     <span class="label">MENU</span>
     <span class="emoji">🏠</span>
   </a>
 </div>
 
 <section class="hero">
-  <div class="kicker">Energia</div>
   <h1>Profil zużycia energii</h1>
-  <p>Raport pokazuje typowe godzinowe profile zużycia energii w domu, osobno z ładowaniem auta i bez ładowania auta. Dane pochodzą z modułu <code>20_15_energy_use</code>.</p>
-  <p class="report-meta"><strong>Utworzono:</strong> 2026-05-30 12:46<br><strong>Źródło CSV:</strong> /work/20_analysis/20_15_energy_use<br><strong>Moduł raportowy:</strong> 40_20_15_energy_use | <strong>wersja:</strong> v1.0.3-average-main-profiles</p>
+  <p class="report-meta"><strong>Utworzono:</strong> 2026-07-03 21:13</p>
   
 </section>
+
+<section class="read-summary" aria-label="Pomoc raportu">
+  <button class="info-button" type="button" data-info-open aria-haspopup="dialog" aria-controls="info-modal">
+    <span>Pomoc</span>
+    <strong>Jak czytać</strong>
+  </button>
+</section>
+<div class="info-modal" id="info-modal" aria-hidden="true">
+  <div class="info-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+    <div class="info-head">
+      <div class="info-title" id="info-modal-title">Jak czytać profil zużycia energii?</div>
+      <button class="info-close" type="button" data-info-close aria-label="Zamknij">X</button>
+    </div>
+    <div class="info-content">
+      <h3>Co to jest i po co</h3>
+      <p>Ten raport pokazuje typowy dobowy profil zużycia energii w domu. Nie liczy zużycia od nowa, tylko korzysta z danych przygotowanych przez moduł <code>20_15_energy_use</code>. Dzięki temu tutaj oglądasz warstwę raportową: wykresy, porównania i skróty decyzyjne.</p>
+      <h3>Co korzysta z wyników</h3>
+      <p>Raport pomaga przy decyzjach taryfowych, planowaniu pracy baterii, ocenie wpływu ładowania auta oraz sprawdzaniu, czy ostatnie dni nie odbiegają od normalnego rytmu domu.</p>
+      <h3>Jak czytać wykresy</h3>
+      <p>Krzywa bez EV pokazuje bazowy profil domu. Krzywa z EV pokazuje całkowite zużycie razem z ładowaniem auta. Odległość między nimi to praktyczny ślad ładowania auta w danej godzinie.</p>
+      <h3>Średnia i mediana</h3>
+      <p>Mediana jest odporna na pojedyncze nietypowe zdarzenia, ale może ukrywać nieregularne ładowanie auta. Średnia lepiej pokazuje rzeczywisty ciężar energetyczny takich zdarzeń, dlatego jest główną miarą w dalszych wykresach.</p>
+      <h3>Ostatnie dni kontra historia</h3>
+      <p>Porównanie ostatnich 7 dni z całą historią mówi, czy obecny profil domu jest typowy. Jeżeli linie są blisko, zachowanie jest stabilne. Jeżeli mocno się rozjeżdżają, warto sprawdzić, czy zmienił się rytm domu, EV, ogrzewanie, chłodzenie albo automatyka.</p>
+      <h3>Ranking godzin</h3>
+      <p>Ranking godzin pokazuje, kiedy średnio zużycie jest największe. To najprostszy skrót do decyzji: które godziny są drogie energetycznie i gdzie sterowanie może dać największy efekt.</p>
+      <h3>Kiedy wynik jest dobry</h3>
+      <p>Dobry wynik to stabilny profil bez niespodziewanych szczytów, sensowna różnica między zużyciem z EV i bez EV oraz czytelny ranking godzin, który zgadza się z rzeczywistym rytmem domu.</p>
+      <h3>Kiedy wynik jest zły</h3>
+      <p>Zły albo podejrzany wynik to nagłe skoki bez oczywistej przyczyny, duża rozbieżność ostatnich 7 dni względem historii, brakujące dane albo profil EV, który nie pasuje do faktycznego ładowania auta.</p>
+      <h3>Najkrócej</h3>
+      <p>Patrz najpierw na różnicę z EV i bez EV, potem na ostatnie 7 dni względem historii, a na końcu na ranking godzin. To daje szybki obraz, kiedy dom naprawdę zużywa energię i gdzie automatyka może coś poprawić.</p>
+    </div>
+  </div>
+</div>
+
 <section class='content report-section' id='methodology'><h2>Jak czytać raport</h2>
 <p>Raport korzysta z danych przygotowanych przez moduł <code>20_15_energy_use</code>. Warstwa raportowa nie liczy zużycia od nowa, tylko czyta gotowe profile godzinowe. Dzięki temu logika obliczeń pozostaje w jednym miejscu.</p>
 <p>Pierwszy wykres porównuje średnią i medianę. Mediana jest odporna na pojedyncze nietypowe zdarzenia, ale może ukrywać nieregularne, lecz energetycznie istotne ładowanie auta. Dlatego dalsze wykresy raportu opierają się na średnich, które są bardziej intuicyjne i lepiej pokazują rzeczywisty ciężar energii w profilu godzinowym.</p>
@@ -57,7 +135,7 @@ code { background:#f3f4f6; border-radius:.35rem; padding:.05rem .25rem; }
   <svg id="weekly-animation-svg" viewBox="0 0 1000 420" role="img" aria-label="Animowane profile tygodniowe"></svg>
 </div>
 <script>
-const ENERGY_USE_WEEKLY_DATA = {"variant": "without_ev", "hours": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"], "series": [{"name": "2026-W20", "values": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.4, 0.2, 0.5, 0.5, 0.6, 0.8, 0.5, 0.5, 0.6, 1.2, 0.2, 0.3, 0.5, 0.8, 0.8, 0.2]}, {"name": "2026-W21", "values": [0.1, 0.2, 0.2, 0.2, 0.2, 0.3, 0.2, 0.4, 0.6, 0.3, 0.5, 0.3, 0.7, 0.6, 0.7, 1.3, 1.0, 0.7, 0.4, 0.2, 0.5, 0.3, 0.8, 0.3]}, {"name": "2026-W22", "values": [0.1, 0.1, 0.1, 0.1, 0.0, 0.3, 0.1, 0.3, 0.4, 0.2, 0.2, 0.5, 0.6, 0.4, 0.5, 0.4, 0.6, 0.5, 0.6, 0.3, 0.3, 0.2, 0.3, 0.2]}], "stepSeconds": 2.0, "showControls": true};
+const ENERGY_USE_WEEKLY_DATA = {"variant": "without_ev", "hours": ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"], "series": [{"name": "2026-W20", "values": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.4, 0.2, 0.5, 0.5, 0.6, 0.8, 0.5, 0.5, 0.6, 1.2, 0.2, 0.3, 0.5, 0.8, 0.8, 0.2]}, {"name": "2026-W21", "values": [0.1, 0.2, 0.2, 0.2, 0.2, 0.3, 0.2, 0.4, 0.6, 0.3, 0.5, 0.3, 0.7, 0.6, 0.7, 1.3, 1.0, 0.7, 0.4, 0.2, 0.5, 0.3, 0.8, 0.3]}, {"name": "2026-W22", "values": [0.1, 0.1, 0.1, 0.1, 0.0, 0.3, 0.1, 0.2, 0.4, 0.2, 0.3, 0.5, 0.5, 0.4, 0.5, 0.4, 0.4, 0.4, 0.5, 0.3, 0.3, 0.1, 0.2, 0.2]}, {"name": "2026-W23", "values": [0.6, 0.1, 0.1, 0.2, 0.2, 0.4, 0.1, 0.1, 0.2, 0.3, 0.2, 0.4, 0.4, 0.3, 0.1, 0.7, 0.5, 0.6, 0.3, 0.1, 0.2, 0.3, 0.7, 0.2]}, {"name": "2026-W24", "values": [0.2, 0.2, 0.5, 0.3, 0.2, 0.4, 0.6, 0.1, 0.5, 0.5, 0.6, 0.5, 0.4, 0.5, 1.0, 1.3, 1.2, 0.4, 0.4, 0.5, 0.3, 0.3, 0.3, 0.3]}, {"name": "2026-W25", "values": [0.0, 0.1, 0.1, 0.1, 0.0, 0.2, 0.1, 0.2, 0.1, 0.5, 0.4, 0.3, 0.2, 0.5, 0.8, 0.4, 0.4, 0.3, 0.3, 0.6, 0.3, 0.3, 0.2, 0.1]}, {"name": "2026-W26", "values": [0.1, 0.1, 0.1, 0.2, 0.1, 0.8, 0.2, 0.2, 0.1, 0.4, 0.5, 0.3, 0.4, 0.6, 0.7, 0.8, 0.7, 0.7, 0.9, 0.8, 0.5, 0.5, 0.3, 0.1]}, {"name": "2026-W27", "values": [0.1, 0.1, 0.1, 0.1, 0.2, 0.3, 1.1, 0.2, 0.2, 0.7, 0.3, 0.6, 0.5, 0.8, 1.0, 1.0, 0.5, 0.3, 0.4, 0.2, 0.6, 0.4, 0.2, 0.1]}], "stepSeconds": 2.0, "showControls": true};
 const EnergyUseWeeklyAnimation = (() => {
   const data = ENERGY_USE_WEEKLY_DATA;
   let index = 0;
@@ -147,7 +225,7 @@ const EnergyUseWeeklyAnimation = (() => {
   return {toggle, restart};
 })();
 </script>
-</section><section class='content report-section' id='monthly-without-ev'><h2>Miesięczne profile — bez EV</h2><p>Profile miesięczne pokazują sezonowość podstawowego zużycia domu.</p><img class='report-image' src='assets/img/40_20_15_energy_use__06_monthly_profiles_without_ev.png' alt='Miesięczne profile bez EV'></section><section class='content report-section' id='monthly-with-ev'><h2>Miesięczne profile — z EV</h2><p>Profile miesięczne z EV pokazują sezonowość całkowitego zużycia wraz z ładowaniem auta.</p><img class='report-image' src='assets/img/40_20_15_energy_use__07_monthly_profiles_with_ev.png' alt='Miesięczne profile z EV'></section><section class='content report-section' id='ranking'><h2>Ranking godzin największego zużycia</h2><p>Ranking pokazuje godziny o najwyższym średnim zużyciu. To dobry skrót do decyzji taryfowych, bateryjnych i sterowania EV.</p><img class='report-image' src='assets/img/40_20_15_energy_use__08_top_hours_ranking.png' alt='Ranking godzin największego zużycia'></section><section class='content report-section' id='tables'><h2>Tabele rozwijane</h2><details class='details-block'><summary>Średnia i mediana — bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>median_without_ev_kWh</th></tr></thead><tbody><tr><td class='num'>0.0</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td class='num'>1.0</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td class='num'>2.0</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td class='num'>3.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>4.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>5.0</td><td class='num'>0.2</td><td class='num'>0.1</td></tr><tr><td class='num'>6.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>7.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td class='num'>8.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>9.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td class='num'>10.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>12.0</td><td class='num'>0.7</td><td class='num'>0.6</td></tr><tr><td class='num'>13.0</td><td class='num'>0.6</td><td class='num'>0.5</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>0.6</td></tr><tr><td class='num'>15.0</td><td class='num'>0.7</td><td class='num'>0.7</td></tr><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>0.7</td></tr><tr><td class='num'>17.0</td><td class='num'>0.8</td><td class='num'>0.6</td></tr><tr><td class='num'>18.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>19.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td class='num'>20.0</td><td class='num'>0.5</td><td class='num'>0.3</td></tr><tr><td class='num'>21.0</td><td class='num'>0.4</td><td class='num'>0.2</td></tr><tr><td class='num'>22.0</td><td class='num'>0.6</td><td class='num'>0.3</td></tr><tr><td class='num'>23.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr></tbody></table></details><details class='details-block'><summary>Średnia — z EV i bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>avg_with_ev_kWh</th></tr></thead><tbody><tr><td class='num'>0.0</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td class='num'>1.0</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td class='num'>2.0</td><td class='num'>0.1</td><td class='num'>0.3</td></tr><tr><td class='num'>3.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>4.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>5.0</td><td class='num'>0.2</td><td class='num'>0.5</td></tr><tr><td class='num'>6.0</td><td class='num'>0.1</td><td class='num'>0.6</td></tr><tr><td class='num'>7.0</td><td class='num'>0.2</td><td class='num'>0.5</td></tr><tr><td class='num'>8.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>9.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td class='num'>10.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.8</td></tr><tr><td class='num'>12.0</td><td class='num'>0.7</td><td class='num'>1.1</td></tr><tr><td class='num'>13.0</td><td class='num'>0.6</td><td class='num'>1.0</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>0.7</td></tr><tr><td class='num'>15.0</td><td class='num'>0.7</td><td class='num'>1.4</td></tr><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>1.7</td></tr><tr><td class='num'>17.0</td><td class='num'>0.8</td><td class='num'>1.5</td></tr><tr><td class='num'>18.0</td><td class='num'>0.4</td><td class='num'>0.7</td></tr><tr><td class='num'>19.0</td><td class='num'>0.2</td><td class='num'>0.3</td></tr><tr><td class='num'>20.0</td><td class='num'>0.5</td><td class='num'>0.8</td></tr><tr><td class='num'>21.0</td><td class='num'>0.4</td><td class='num'>0.7</td></tr><tr><td class='num'>22.0</td><td class='num'>0.6</td><td class='num'>0.8</td></tr><tr><td class='num'>23.0</td><td class='num'>0.2</td><td class='num'>0.4</td></tr></tbody></table></details><details class='details-block'><summary>Ranking godzin</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>without_ev_kWh</th><th>with_ev_kWh</th><th>ev_impact_kWh</th><th>hour_label</th></tr></thead><tbody><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>1.7</td><td class='num'>1.0</td><td>16:00</td></tr><tr><td class='num'>17.0</td><td class='num'>0.8</td><td class='num'>1.5</td><td class='num'>0.7</td><td>17:00</td></tr><tr><td class='num'>15.0</td><td class='num'>0.7</td><td class='num'>1.4</td><td class='num'>0.7</td><td>15:00</td></tr><tr><td class='num'>12.0</td><td class='num'>0.7</td><td class='num'>1.1</td><td class='num'>0.4</td><td>12:00</td></tr><tr><td class='num'>13.0</td><td class='num'>0.6</td><td class='num'>1.0</td><td class='num'>0.4</td><td>13:00</td></tr><tr><td class='num'>22.0</td><td class='num'>0.6</td><td class='num'>0.8</td><td class='num'>0.2</td><td>22:00</td></tr><tr><td class='num'>20.0</td><td class='num'>0.5</td><td class='num'>0.8</td><td class='num'>0.3</td><td>20:00</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.8</td><td class='num'>0.4</td><td>11:00</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>0.7</td><td class='num'>0.1</td><td>14:00</td></tr><tr><td class='num'>21.0</td><td class='num'>0.4</td><td class='num'>0.7</td><td class='num'>0.3</td><td>21:00</td></tr></tbody></table></details><details class='details-block'><summary>Brakujące pliki opcjonalne</summary><ul><li>20_15_energy_use_slot_diagnostics.csv</li></ul></details></section>
+</section><section class='content report-section' id='monthly-without-ev'><h2>Miesięczne profile — bez EV</h2><p>Profile miesięczne pokazują sezonowość podstawowego zużycia domu.</p><img class='report-image' src='assets/img/40_20_15_energy_use__06_monthly_profiles_without_ev.png' alt='Miesięczne profile bez EV'></section><section class='content report-section' id='monthly-with-ev'><h2>Miesięczne profile — z EV</h2><p>Profile miesięczne z EV pokazują sezonowość całkowitego zużycia wraz z ładowaniem auta.</p><img class='report-image' src='assets/img/40_20_15_energy_use__07_monthly_profiles_with_ev.png' alt='Miesięczne profile z EV'></section><section class='content report-section' id='ranking'><h2>Ranking godzin największego zużycia</h2><p>Ranking pokazuje godziny o najwyższym średnim zużyciu. To dobry skrót do decyzji taryfowych, bateryjnych i sterowania EV.</p><img class='report-image' src='assets/img/40_20_15_energy_use__08_top_hours_ranking.png' alt='Ranking godzin największego zużycia'></section><section class='content report-section' id='tables'><h2>Tabele rozwijane</h2><details class='details-block'><summary>Średnia i mediana — bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>median_without_ev_kWh</th></tr></thead><tbody><tr><td class='num'>0.0</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td class='num'>1.0</td><td class='num'>0.1</td><td class='num'>0.0</td></tr><tr><td class='num'>2.0</td><td class='num'>0.2</td><td class='num'>0.0</td></tr><tr><td class='num'>3.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>4.0</td><td class='num'>0.1</td><td class='num'>0.1</td></tr><tr><td class='num'>5.0</td><td class='num'>0.3</td><td class='num'>0.2</td></tr><tr><td class='num'>6.0</td><td class='num'>0.3</td><td class='num'>0.1</td></tr><tr><td class='num'>7.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr><tr><td class='num'>8.0</td><td class='num'>0.3</td><td class='num'>0.2</td></tr><tr><td class='num'>9.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>10.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>12.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>13.0</td><td class='num'>0.5</td><td class='num'>0.4</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>0.4</td></tr><tr><td class='num'>15.0</td><td class='num'>0.8</td><td class='num'>0.6</td></tr><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>0.6</td></tr><tr><td class='num'>17.0</td><td class='num'>0.6</td><td class='num'>0.4</td></tr><tr><td class='num'>18.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>19.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>20.0</td><td class='num'>0.4</td><td class='num'>0.3</td></tr><tr><td class='num'>21.0</td><td class='num'>0.3</td><td class='num'>0.2</td></tr><tr><td class='num'>22.0</td><td class='num'>0.4</td><td class='num'>0.2</td></tr><tr><td class='num'>23.0</td><td class='num'>0.2</td><td class='num'>0.2</td></tr></tbody></table></details><details class='details-block'><summary>Średnia — z EV i bez EV</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>avg_without_ev_kWh</th><th>avg_with_ev_kWh</th></tr></thead><tbody><tr><td class='num'>0.0</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td class='num'>1.0</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td class='num'>2.0</td><td class='num'>0.2</td><td class='num'>0.4</td></tr><tr><td class='num'>3.0</td><td class='num'>0.1</td><td class='num'>0.4</td></tr><tr><td class='num'>4.0</td><td class='num'>0.1</td><td class='num'>0.3</td></tr><tr><td class='num'>5.0</td><td class='num'>0.3</td><td class='num'>0.5</td></tr><tr><td class='num'>6.0</td><td class='num'>0.3</td><td class='num'>0.5</td></tr><tr><td class='num'>7.0</td><td class='num'>0.2</td><td class='num'>0.4</td></tr><tr><td class='num'>8.0</td><td class='num'>0.3</td><td class='num'>0.3</td></tr><tr><td class='num'>9.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>10.0</td><td class='num'>0.4</td><td class='num'>0.4</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.6</td></tr><tr><td class='num'>12.0</td><td class='num'>0.4</td><td class='num'>0.8</td></tr><tr><td class='num'>13.0</td><td class='num'>0.5</td><td class='num'>1.1</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>1.1</td></tr><tr><td class='num'>15.0</td><td class='num'>0.8</td><td class='num'>1.2</td></tr><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>1.5</td></tr><tr><td class='num'>17.0</td><td class='num'>0.6</td><td class='num'>1.1</td></tr><tr><td class='num'>18.0</td><td class='num'>0.4</td><td class='num'>0.7</td></tr><tr><td class='num'>19.0</td><td class='num'>0.4</td><td class='num'>0.5</td></tr><tr><td class='num'>20.0</td><td class='num'>0.4</td><td class='num'>0.6</td></tr><tr><td class='num'>21.0</td><td class='num'>0.3</td><td class='num'>0.5</td></tr><tr><td class='num'>22.0</td><td class='num'>0.4</td><td class='num'>0.8</td></tr><tr><td class='num'>23.0</td><td class='num'>0.2</td><td class='num'>0.5</td></tr></tbody></table></details><details class='details-block'><summary>Ranking godzin</summary><table class='report-table detail-table'><thead><tr><th>hour</th><th>without_ev_kWh</th><th>with_ev_kWh</th><th>ev_impact_kWh</th><th>hour_label</th></tr></thead><tbody><tr><td class='num'>16.0</td><td class='num'>0.7</td><td class='num'>1.5</td><td class='num'>0.8</td><td>16:00</td></tr><tr><td class='num'>15.0</td><td class='num'>0.8</td><td class='num'>1.2</td><td class='num'>0.4</td><td>15:00</td></tr><tr><td class='num'>13.0</td><td class='num'>0.5</td><td class='num'>1.1</td><td class='num'>0.6</td><td>13:00</td></tr><tr><td class='num'>17.0</td><td class='num'>0.6</td><td class='num'>1.1</td><td class='num'>0.5</td><td>17:00</td></tr><tr><td class='num'>14.0</td><td class='num'>0.6</td><td class='num'>1.1</td><td class='num'>0.5</td><td>14:00</td></tr><tr><td class='num'>12.0</td><td class='num'>0.4</td><td class='num'>0.8</td><td class='num'>0.4</td><td>12:00</td></tr><tr><td class='num'>22.0</td><td class='num'>0.4</td><td class='num'>0.8</td><td class='num'>0.4</td><td>22:00</td></tr><tr><td class='num'>18.0</td><td class='num'>0.4</td><td class='num'>0.7</td><td class='num'>0.3</td><td>18:00</td></tr><tr><td class='num'>20.0</td><td class='num'>0.4</td><td class='num'>0.6</td><td class='num'>0.2</td><td>20:00</td></tr><tr><td class='num'>11.0</td><td class='num'>0.4</td><td class='num'>0.6</td><td class='num'>0.2</td><td>11:00</td></tr></tbody></table></details><details class='details-block'><summary>Brakujące pliki opcjonalne</summary><ul><li>20_15_energy_use_slot_diagnostics.csv</li></ul></details></section>
 <section class='content report-section'>
   <h2>Pliki źródłowe</h2>
   <p>Raport korzysta z następujących plików wygenerowanych przez <code>20_15_energy_use</code>:</p>
@@ -155,5 +233,41 @@ const EnergyUseWeeklyAnimation = (() => {
 </section>
 </main>
 <script src="assets/js/metro.js"></script>
+
+<script>
+(() => {
+  const modal = document.getElementById('info-modal');
+  const openBtn = document.querySelector('[data-info-open]');
+  const closeBtn = document.querySelector('[data-info-close]');
+  if (!modal || !openBtn || !closeBtn) return;
+  const tapFeedback = () => {
+    if (navigator.vibrate) navigator.vibrate(35);
+  };
+  document.querySelectorAll('.floating-menu a').forEach((link) => {
+    link.addEventListener('click', tapFeedback);
+    link.addEventListener('touchstart', tapFeedback, {passive: true});
+  });
+  const open = () => {
+    tapFeedback();
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+  };
+  const close = () => {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    openBtn.focus();
+  };
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) close();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') close();
+  });
+})();
+</script>
+
 </body>
 </html>

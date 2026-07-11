@@ -1,138 +1,326 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" data-layout="pv-r-metro-dashboard-v3">
 <head>
-<meta charset="utf-8">
-<title>20_40_12_pv_r_week_review — 2026-W22</title>
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Krzywa referencyjna PV r(h) — 2026-W28</title>
+  <style>
+:root {
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#5b6475;
+  --line:#d9e1ec;
+  --accent:#0b78b8;
+  --accent-dark:#075985;
+  --accent-soft:#e0f2fe;
+  --ok:#15803d;
+  --ok-bg:#dcfce7;
+  --bad:#b91c1c;
+  --bad-bg:#fee2e2;
+  --warn:#b45309;
+  --warn-bg:#ffedd5;
+  --shadow:0 10px 28px rgba(15,23,42,.07);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 24px;
-    color: #1f2937;
-    background: #ffffff;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.55;
 }
-h1, h2, h3 {
-    margin-top: 1.2em;
+a { color:var(--accent-dark); }
+.container {
+  width:min(1440px, calc(100% - 32px));
+  margin:0 auto;
+  padding:24px 0 56px;
 }
-p {
-    line-height: 1.45;
+.hero {
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:linear-gradient(135deg,#0ea5e9 0%,#075985 100%);
+  border-radius:26px;
+  padding:30px 34px;
+  box-shadow:0 16px 38px rgba(3,105,161,.24);
+  margin-bottom:18px;
+}
+.hero::after {
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  right:-90px;
+  top:-120px;
+  background:rgba(255,255,255,.11);
+}
+.hero .kicker {
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.86;
+}
+.hero h1 {
+  position:relative;
+  z-index:1;
+  margin:8px 0 8px;
+  font-size:clamp(1.85rem,3.2vw,3rem);
+  line-height:1.08;
+}
+.hero p { margin:4px 0; max-width:980px; color:rgba(255,255,255,.92); }
+.hero .meta { color:rgba(255,255,255,.76); font-size:.9rem; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin:16px 0;
 }
 .card {
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin: 16px 0;
-    background: #ffffff;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px 22px;
+  box-shadow:var(--shadow);
+  margin:16px 0;
 }
+.kpi-card { margin:0; min-height:118px; }
+.kpi { margin:0; color:var(--muted); font-size:.88rem; font-weight:700; }
+.value { margin:8px 0 0; font-size:1.65rem; line-height:1.15; font-weight:800; color:#0f172a; }
+.value.ok { color:var(--ok); }
+.value.bad { color:var(--bad); }
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+  margin-bottom:10px;
+}
+h2 { margin:0 0 7px; font-size:1.25rem; line-height:1.25; }
+h3 { margin:0 0 7px; }
+p { margin:8px 0; }
+.muted,.small { color:var(--muted); }
+.small { font-size:.88rem; }
 .note {
-    background: #f8fafc;
+  background:linear-gradient(180deg,#f8fbff,#ffffff);
+  border-left:5px solid var(--accent);
 }
+.status-strip {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:14px;
+}
+.badge {
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.badge-green { background:var(--ok-bg); color:#166534; }
+.badge-red { background:var(--bad-bg); color:#991b1b; }
+.badge-blue { background:var(--accent-soft); color:#075985; }
+.code,code {
+  font-family:Consolas, Monaco, monospace;
+  background:#eef2f7;
+  padding:1px 5px;
+  border-radius:5px;
+  font-size:.94em;
+}
+.chart-card { padding:16px; }
+.chart-card .chart-copy { padding:4px 6px 10px; }
 img.chart {
-    width: 100%;
-    max-width: 1400px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
 }
-table.std {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 13px;
+.chart-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
 }
-table.std th, table.std td {
-    border: 1px solid #d1d5db;
-    padding: 6px 8px;
-    text-align: left;
-    vertical-align: top;
+.chart-grid .card { margin:0; }
+.chart-grid .wide { grid-column:1 / -1; }
+.scroll {
+  overflow:auto;
+  max-height:680px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
 }
-table.std th {
-    background: #f3f4f6;
+table.data-table {
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:.88rem;
+  min-width:720px;
 }
-.small {
-    font-size: 12px;
-    color: #4b5563;
+.data-table th,.data-table td {
+  padding:9px 10px;
+  border-bottom:1px solid var(--line);
+  border-right:1px solid #edf1f6;
+  text-align:left;
+  vertical-align:top;
+  white-space:nowrap;
 }
-.badge-green {
-    display: inline-block;
-    background: #dcfce7;
-    color: #166534;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
+.data-table th {
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:#eef4f9;
+  color:#334155;
+  font-weight:800;
 }
-.badge-red {
-    display: inline-block;
-    background: #fee2e2;
-    color: #991b1b;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
+.data-table tr:nth-child(even) td { background:#fbfdff; }
+.data-table tr:last-child td { border-bottom:0; }
+.downloads {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
 }
-.code {
-    font-family: Consolas, Monaco, monospace;
-    background: #f3f4f6;
-    padding: 1px 4px;
-    border-radius: 4px;
+.download-link {
+  display:block;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  background:#f8fafc;
+  text-decoration:none;
+  font-size:.88rem;
+  overflow-wrap:anywhere;
+}
+.download-link:hover { background:#eef6fc; border-color:#b8d8eb; }
+.footer-meta {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:.82rem;
+}
+.floating-menu {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:10;
+}
+.floating-menu a {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:72px;
+  min-height:42px;
+  padding:8px 13px;
+  border-radius:999px;
+  background:#0f172a;
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(15,23,42,.24);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+@media (max-width:1050px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .downloads { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:720px) {
+  .container { width:min(100% - 20px,1440px); padding-top:10px; }
+  .hero { border-radius:18px; padding:23px 20px; }
+  .grid,.chart-grid,.downloads { grid-template-columns:1fr; }
+  .chart-grid .wide { grid-column:auto; }
+  .card { padding:17px 15px; border-radius:16px; }
+  .section-head { display:block; }
 }
 </style>
+  <link rel="stylesheet" href="assets/css/metro.css">
 </head>
-<body>
-<h1>Tygodniowy przegląd kandydatów r(h)</h1>
+<body class="accent-blue has-floating">
+<main class="container tight">
+  <div class="floating-menu"><a href="index.html" title="Powrót do menu">MENU</a></div>
 
-<div class="card note">
-<p><strong>Status strony:</strong> wersja robocza do strojenia krzywej <span class="code">r(h)</span>. To nie jest jeszcze finalny raport tygodniowy.</p>
-<p>Skrypt bierze wyłącznie formalnych kandydatów z <span class="code">r_clear_candidate_flag = true</span>, dzieli ich na zbiór zielony i czerwony, zapisuje CSV diagnostyczne, przygotowuje definicje rysunków dla <span class="code">90_10_pic_drawer</span> i buduje roboczą stronę HTML.</p>
-<p>Na tym etapie celem nie jest automatyczna korekta krzywej, lecz obserwacja, czy krzywa chce rosnąć, maleć albo przesuwać maksimum godzinowe.</p>
-</div>
+  <section class="hero">
+    <div class="kicker">PV · krzywa referencyjna instalacji</div>
+    <h1>Przegląd empirycznej krzywej r(h)</h1>
+    <p>Tydzień 2026-W28: 2026-07-06 – 2026-07-12</p>
+    <p class="meta">Wygenerowano: 11.07.2026 20:01 · skrypt: v0.1.28-web-layout-audited · layout: pv-r-metro-dashboard-v3</p>
+  </section>
 
-<div class="card">
-<h2>Podsumowanie</h2>
-<table class="std"><thead><tr><th>Pole</th><th>Wartość</th></tr></thead><tbody><tr><td>Tydzień</td><td>2026-W22</td></tr><tr><td>Zakres tygodnia</td><td>2026-05-25 — 2026-05-31</td></tr><tr><td>Formalni kandydaci</td><td>31</td></tr><tr><td>Zbiór zielony</td><td>8</td></tr><tr><td>Zbiór czerwony</td><td>23</td></tr><tr><td>Czerwone powyżej progu</td><td>10</td></tr><tr><td>Czerwone poniżej progu</td><td>13</td></tr><tr><td>Zachowane wcześniejsze decyzje</td><td>23</td></tr><tr><td>Próg górny</td><td>+20%</td></tr><tr><td>Próg dolny</td><td>-10%</td></tr></tbody></table>
-</div>
+  <section class="grid" aria-label="Podsumowanie tygodnia">
+    <article class="card kpi-card"><p class="kpi">Formalni kandydaci</p><p class="value">10</p></article>
+    <article class="card kpi-card"><p class="kpi">Punkty green</p><p class="value ok">0</p></article>
+    <article class="card kpi-card"><p class="kpi">Punkty red</p><p class="value bad">10</p></article>
+    <article class="card kpi-card"><p class="kpi">Cały rejestr r</p><p class="value">246</p></article>
+  </section>
 
-<div class="card">
-<h2>Wykres główny: aktualna krzywa + punkty green/red</h2>
-<p><span class="badge-green">GREEN</span> punkty mieszczące się w progach względem aktualnej krzywej. <span class="badge-red">RED</span> formalni kandydaci, którzy zbyt mocno odstają.</p>
-<img class='chart' src='assets/img/20_40_12_pv_r_week_review_current__main.png' alt='Main chart'>
-</div>
+  <section class="card note">
+    <div class="section-head">
+      <div><h2>Co pokazuje raport</h2><p>Skrypt oblicza <code>r = actual_pv_Wh / radiation</code>, zachowuje obserwacje dla klas zachmurzenia 0/5/10 i porównuje formalnych kandydatów z aktywną krzywą referencyjną.</p></div>
+    </div>
+    <div class="status-strip">
+      <span class="badge badge-green">GREEN: w dopuszczalnym zakresie</span>
+      <span class="badge badge-red">RED: poza progami</span>
+      <span class="badge badge-blue">Progi: -10.0% / +20.0%</span>
+      <span class="badge badge-blue">Godziny: 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20</span>
+    </div>
+  </section>
 
-<div class="card">
-<h2>Wykres trackingowy: reference r(h) vs green average</h2>
-<p>To jest warstwa diagnostyczna pokazująca, czy tygodniowy zbiór zielony jest powyżej, poniżej czy blisko aktualnego odniesienia.</p>
-<img class='chart' src='assets/img/20_40_12_pv_r_week_review_current__tracking.png' alt='Tracking chart'>
-</div>
+  <section class="grid" aria-label="Rejestr obserwacji według zachmurzenia">
+    <article class="card kpi-card"><p class="kpi">Klasa zachmurzenia 0%</p><p class="value">171</p></article>
+    <article class="card kpi-card"><p class="kpi">Klasa (0,5]%</p><p class="value">44</p></article>
+    <article class="card kpi-card"><p class="kpi">Klasa (5,10]%</p><p class="value">31</p></article>
+    <article class="card kpi-card"><p class="kpi">Zachowane decyzje</p><p class="value">10</p></article>
+  </section>
 
-<div class="card">
-<h2>Tracking godzinowy</h2>
-<table class="std"><thead><tr><th>Godzina</th><th>Reference r</th><th>Green avg</th><th>Red avg</th><th>Delta green vs ref [%]</th><th>Green</th><th>Red</th><th>Movement hint</th></tr></thead><tbody><tr><td>07</td><td>0.2000</td><td></td><td>1.6878</td><td></td><td>0</td><td>4</td><td>no_green_points</td></tr><tr><td>08</td><td>0.7000</td><td></td><td>1.2190</td><td></td><td>0</td><td>4</td><td>no_green_points</td></tr><tr><td>09</td><td>1.5000</td><td>1.5105</td><td></td><td>0.7</td><td>3</td><td>0</td><td>near_reference</td></tr><tr><td>10</td><td>2.8000</td><td>2.5335</td><td>2.4768</td><td>-9.5</td><td>1</td><td>2</td><td>weekly_green_below_reference</td></tr><tr><td>11</td><td>4.1000</td><td></td><td>3.1983</td><td></td><td>0</td><td>3</td><td>no_green_points</td></tr><tr><td>12</td><td>5.2000</td><td></td><td>4.0069</td><td></td><td>0</td><td>3</td><td>no_green_points</td></tr><tr><td>13</td><td>6.0000</td><td></td><td>4.3360</td><td></td><td>0</td><td>3</td><td>no_green_points</td></tr><tr><td>14</td><td>6.6000</td><td>5.9859</td><td></td><td>-9.3</td><td>1</td><td>0</td><td>weekly_green_below_reference</td></tr><tr><td>15</td><td>6.9000</td><td>6.3776</td><td>6.1776</td><td>-7.6</td><td>1</td><td>1</td><td>weekly_green_below_reference</td></tr><tr><td>16</td><td>6.7000</td><td>6.1103</td><td>5.9084</td><td>-8.8</td><td>1</td><td>1</td><td>weekly_green_below_reference</td></tr><tr><td>17</td><td>6.0000</td><td>5.7301</td><td></td><td>-4.5</td><td>1</td><td>0</td><td>near_reference</td></tr><tr><td>18</td><td>5.0000</td><td></td><td>8.6486</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>19</td><td>3.6000</td><td></td><td>7.2340</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>20</td><td>2.0000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr></tbody></table>
-</div>
+  <div class="chart-grid">
+    <section class="card chart-card wide">
+  <div class="chart-copy"><h2>Wszystkie obserwacje r na tle krzywej</h2><p class="muted">Cała historia rejestru dla godzin produkcyjnych, rozdzielona według klas prognozowanego zachmurzenia.</p></div>
+  <img class="chart" src="assets/img/20_40_12_pv_r_week_review_current__all_observations.png" alt="Wszystkie obserwacje r na tle krzywej">
+</section>
+    <section class="card chart-card">
+  <div class="chart-copy"><h2>Bieżący tydzień: krzywa i punkty green/red</h2><p class="muted">Formalni kandydaci aktualnego tygodnia na tle aktywnej krzywej referencyjnej.</p></div>
+  <img class="chart" src="assets/img/20_40_12_pv_r_week_review_current__main.png" alt="Bieżący tydzień: krzywa i punkty green/red">
+</section>
+    <section class="card chart-card">
+  <div class="chart-copy"><h2>Tracking godzinowy</h2><p class="muted">Porównanie aktywnej krzywej z godzinową średnią punktów green i red.</p></div>
+  <img class="chart" src="assets/img/20_40_12_pv_r_week_review_current__tracking.png" alt="Tracking godzinowy">
+</section>
+  </div>
 
-<div class="card">
-<h2>Matryca tygodniowa</h2>
-<p class="small">Godziny w wierszach. Dla każdego dnia pokazana jest wartość <span class="code">r</span> oraz zbiór <span class="code">green/red</span>.</p>
-<table class="std"><thead><tr><th>Godz.</th><th>Reference r</th><th>2026-05-25 r</th><th>2026-05-25 set</th><th>2026-05-26 r</th><th>2026-05-26 set</th><th>2026-05-27 r</th><th>2026-05-27 set</th><th>2026-05-28 r</th><th>2026-05-28 set</th><th>2026-05-29 r</th><th>2026-05-29 set</th><th>2026-05-30 r</th><th>2026-05-30 set</th><th>2026-05-31 r</th><th>2026-05-31 set</th></tr></thead><tbody><tr><td>07</td><td>0.2000</td><td>1.5789</td><td>red</td><td>2.1390</td><td>red</td><td>1.5625</td><td>red</td><td>1.4706</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>08</td><td>0.7000</td><td>1.4493</td><td>red</td><td>0.8798</td><td>red</td><td>1.4451</td><td>red</td><td>1.1019</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>09</td><td>1.5000</td><td></td><td></td><td>1.4113</td><td>green</td><td>1.5936</td><td>green</td><td>1.5267</td><td>green</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>10</td><td>2.8000</td><td></td><td></td><td>2.4615</td><td>red</td><td>2.4922</td><td>red</td><td>2.5335</td><td>green</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>11</td><td>4.1000</td><td></td><td></td><td>3.5202</td><td>red</td><td>2.6525</td><td>red</td><td>3.4221</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>12</td><td>5.2000</td><td>4.4205</td><td>red</td><td>4.3891</td><td>red</td><td></td><td></td><td>3.2110</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>13</td><td>6.0000</td><td></td><td></td><td>5.0575</td><td>red</td><td></td><td></td><td>2.6696</td><td>red</td><td>5.2809</td><td>red</td><td></td><td></td><td></td><td></td></tr><tr><td>14</td><td>6.6000</td><td></td><td></td><td>5.9859</td><td>green</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>15</td><td>6.9000</td><td>6.1776</td><td>red</td><td>6.3776</td><td>green</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>16</td><td>6.7000</td><td>6.1103</td><td>green</td><td>5.9084</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>17</td><td>6.0000</td><td></td><td></td><td>5.7301</td><td>green</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>18</td><td>5.0000</td><td></td><td></td><td></td><td></td><td>8.6486</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>19</td><td>3.6000</td><td></td><td></td><td></td><td></td><td>7.2340</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>20</td><td>2.0000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
-</div>
+  <section class="card">
+    <div class="section-head"><div><h2>Tracking godzinowy</h2><p class="muted">Czy średnia punktów green wskazuje stabilność, wzrost lub spadek krzywej.</p></div></div>
+    <div class="scroll"><table class="data-table"><thead><tr><th>Godzina</th><th>Reference r</th><th>Green avg</th><th>Red avg</th><th>Delta green vs ref [%]</th><th>Green</th><th>Red</th><th>Movement hint</th></tr></thead><tbody><tr><td>07</td><td>1.0000</td><td></td><td>2.8571</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>08</td><td>1.8000</td><td></td><td>2.3599</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>09</td><td>2.7000</td><td></td><td>3.7037</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>10</td><td>3.7000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>11</td><td>4.5000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>12</td><td>5.2000</td><td></td><td>2.3866</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>13</td><td>5.9000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>14</td><td>6.5000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>15</td><td>6.9000</td><td></td><td>4.4660</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>16</td><td>7.0000</td><td></td><td>3.6178</td><td></td><td>0</td><td>2</td><td>no_green_points</td></tr><tr><td>17</td><td>6.7000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>18</td><td>5.8000</td><td></td><td></td><td></td><td>0</td><td>0</td><td>no_green_points</td></tr><tr><td>19</td><td>4.4000</td><td></td><td>12.9944</td><td></td><td>0</td><td>1</td><td>no_green_points</td></tr><tr><td>20</td><td>2.6000</td><td></td><td>1.7663</td><td></td><td>0</td><td>2</td><td>no_green_points</td></tr></tbody></table></div>
+  </section>
 
-<div class="card">
-<h2>Punkty czerwone</h2>
-<p class="small">Lista formalnych kandydatów, które nie weszły do zbioru zielonego.</p>
-<table class="std"><thead><tr><th>Data</th><th>Godzina</th><th>r</th><th>Reference r</th><th>Deviation [%]</th><th>Reason</th></tr></thead><tbody><tr><td>2026-05-25</td><td>07</td><td>1.5789</td><td>0.2000</td><td>689.4</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-25</td><td>08</td><td>1.4493</td><td>0.7000</td><td>107.0</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-25</td><td>12</td><td>4.4205</td><td>5.2000</td><td>-15.0</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-25</td><td>15</td><td>6.1776</td><td>6.9000</td><td>-10.5</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-26</td><td>07</td><td>2.1390</td><td>0.2000</td><td>969.5</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-26</td><td>08</td><td>0.8798</td><td>0.7000</td><td>25.7</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-26</td><td>10</td><td>2.4615</td><td>2.8000</td><td>-12.1</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-26</td><td>11</td><td>3.5202</td><td>4.1000</td><td>-14.1</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-26</td><td>12</td><td>4.3891</td><td>5.2000</td><td>-15.6</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-26</td><td>13</td><td>5.0575</td><td>6.0000</td><td>-15.7</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-26</td><td>16</td><td>5.9084</td><td>6.7000</td><td>-11.8</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-27</td><td>07</td><td>1.5625</td><td>0.2000</td><td>681.2</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-27</td><td>08</td><td>1.4451</td><td>0.7000</td><td>106.4</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-27</td><td>10</td><td>2.4922</td><td>2.8000</td><td>-11.0</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-27</td><td>11</td><td>2.6525</td><td>4.1000</td><td>-35.3</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-27</td><td>18</td><td>8.6486</td><td>5.0000</td><td>73.0</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-27</td><td>19</td><td>7.2340</td><td>3.6000</td><td>100.9</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-28</td><td>07</td><td>1.4706</td><td>0.2000</td><td>635.3</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-28</td><td>08</td><td>1.1019</td><td>0.7000</td><td>57.4</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-05-28</td><td>11</td><td>3.4221</td><td>4.1000</td><td>-16.5</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-28</td><td>12</td><td>3.2110</td><td>5.2000</td><td>-38.3</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-28</td><td>13</td><td>2.6696</td><td>6.0000</td><td>-55.5</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-05-29</td><td>13</td><td>5.2809</td><td>6.0000</td><td>-12.0</td><td>below_reference_minus_10_pct</td></tr></tbody></table>
-</div>
+  <section class="card">
+    <div class="section-head"><div><h2>Matryca tygodniowa</h2><p class="muted">Godziny w wierszach, a wartości i klasyfikacja każdego dnia w kolejnych kolumnach.</p></div></div>
+    <div class="scroll"><table class="data-table"><thead><tr><th>Godz.</th><th>Reference r</th><th>2026-07-06 r</th><th>2026-07-06 set</th><th>2026-07-07 r</th><th>2026-07-07 set</th><th>2026-07-08 r</th><th>2026-07-08 set</th><th>2026-07-09 r</th><th>2026-07-09 set</th><th>2026-07-10 r</th><th>2026-07-10 set</th><th>2026-07-11 r</th><th>2026-07-11 set</th><th>2026-07-12 r</th><th>2026-07-12 set</th></tr></thead><tbody><tr><td>07</td><td>1.0000</td><td></td><td></td><td></td><td></td><td>2.8571</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>08</td><td>1.8000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>2.3599</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>09</td><td>2.7000</td><td></td><td></td><td></td><td></td><td>3.7037</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>10</td><td>3.7000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>11</td><td>4.5000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>12</td><td>5.2000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>2.3866</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>13</td><td>5.9000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>14</td><td>6.5000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>15</td><td>6.9000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4.4660</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>16</td><td>7.0000</td><td></td><td></td><td></td><td></td><td></td><td></td><td>2.3132</td><td>red</td><td></td><td></td><td>4.9223</td><td>red</td><td></td><td></td></tr><tr><td>17</td><td>6.7000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>18</td><td>5.8000</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>19</td><td>4.4000</td><td></td><td></td><td></td><td></td><td>12.9944</td><td>red</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>20</td><td>2.6000</td><td></td><td></td><td></td><td></td><td>1.6807</td><td>red</td><td></td><td></td><td>1.8519</td><td>red</td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+  </section>
 
-<div class="card note small">
-<p><strong>Pliki robocze:</strong></p>
-<ul>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_candidates_long_current.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_points_green_current.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_points_red_current.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_hourly_tracking_current.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_matrix_current.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_reference_curves.csv</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_review_main.pic_def</li>
-<li>/work/20_analysis/20_40_meteo_forecast/20_40_12_pv_r_week_review/20_40_12_pv_r_week_review_tracking.pic_def</li>
-</ul>
-<p>Wygenerowano: 30.05.2026 19:22</p>
-</div>
+  <section class="card">
+    <div class="section-head"><div><h2>Punkty czerwone</h2><p class="muted">Formalni kandydaci odrzuceni automatycznie lub przez zachowaną wcześniejszą decyzję.</p></div></div>
+    <div class="scroll"><table class="data-table"><thead><tr><th>Data</th><th>Godzina</th><th>r</th><th>Reference r</th><th>Deviation [%]</th><th>Reason</th></tr></thead><tbody><tr><td>2026-07-08</td><td>07</td><td>2.8571</td><td>1.0000</td><td>185.7</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-07-08</td><td>09</td><td>3.7037</td><td>2.7000</td><td>37.2</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-07-08</td><td>19</td><td>12.9944</td><td>4.4000</td><td>195.3</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-07-08</td><td>20</td><td>1.6807</td><td>2.6000</td><td>-35.4</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-07-09</td><td>08</td><td>2.3599</td><td>1.8000</td><td>31.1</td><td>above_reference_plus_20_pct</td></tr><tr><td>2026-07-09</td><td>12</td><td>2.3866</td><td>5.2000</td><td>-54.1</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-07-09</td><td>15</td><td>4.4660</td><td>6.9000</td><td>-35.3</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-07-09</td><td>16</td><td>2.3132</td><td>7.0000</td><td>-67.0</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-07-10</td><td>20</td><td>1.8519</td><td>2.6000</td><td>-28.8</td><td>below_reference_minus_10_pct</td></tr><tr><td>2026-07-11</td><td>16</td><td>4.9223</td><td>7.0000</td><td>-29.7</td><td>below_reference_minus_10_pct</td></tr></tbody></table></div>
+  </section>
 
+  <section class="card">
+    <div class="section-head"><div><h2>Dane raportu</h2><p class="muted">Pliki są umieszczone w paczce strony i otwierają się przez ścieżki względne.</p></div></div>
+    <div class="downloads"><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__r_observations.csv">Rejestr wszystkich obserwacji r</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__candidates_long.csv">Kandydaci bieżącego tygodnia</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__matrix.csv">Matryca tygodniowa</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__green_points.csv">Punkty green</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__red_points.csv">Punkty red</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__hourly_tracking.csv">Tracking godzinowy</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__summary.csv">Podsumowanie</a><a class="download-link" href="assets/data/20_40_12_pv_r_week_review_current__all_observations_plot.csv">Dane wykresu historii</a></div>
+  </section>
+
+  <section class="card">
+    <div class="footer-meta"><span>Moduł: 20_40_12_pv_r_week_review</span><span>Layout: pv-r-metro-dashboard-v3</span><span>Wersja: v0.1.28-web-layout-audited</span></div>
+  </section>
+</main>
 </body>
 </html>
