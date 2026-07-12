@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Schoborn 2025</title>
+<meta content="#0ea5e9" name="theme-color"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<link href="assets/img/icon-192.png" rel="apple-touch-icon"/>
+<link href="assets/css/metro.css" rel="stylesheet"/>
+<style>
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    .floating-start {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 1000;
+    }
+
+    .floating-start a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 98px;
+      min-height: 48px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      outline: 3px solid #ffd21f;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.42), 0 0 0 7px rgba(255, 210, 31, 0.18);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+
+    .floating-start a:hover,
+    .floating-start a:focus {
+      color: #ffffff;
+      text-decoration: none;
+      filter: brightness(1.05);
+    }
+
+    .floating-start a:active,
+    .floating-start a.menu-pop {
+      transform: translateY(-2px) scale(1.06);
+      filter: brightness(1.08);
+      box-shadow: 0 22px 46px rgba(15, 23, 42, 0.46), 0 0 0 7px rgba(255, 210, 31, 0.22);
+      animation: menuTapShake 180ms ease-out both;
+    }
+
+    @keyframes menuTapShake {
+      0% { transform: translateY(0) scale(1); }
+      25% { transform: translateY(-2px) translateX(-2px) scale(1.06); }
+      50% { transform: translateY(-2px) translateX(2px) scale(1.06); }
+      75% { transform: translateY(-2px) translateX(-1px) scale(1.06); }
+      100% { transform: translateY(-2px) translateX(0) scale(1.06); }
+    }
+
+    @media (max-width: 640px) {
+      .floating-start {
+        top: 9px;
+        right: 9px;
+      }
+
+      .floating-start a {
+        min-width: 92px;
+        min-height: 46px;
+        padding: 8px 13px;
+      }
+    }
+
+    .grid {
+      gap: 14px;
+    }
+
+    .tile {
+      min-height: 108px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .tile-content {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .tile h3 {
+      margin: 0 0 6px 0;
+      line-height: 1.2;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .tile p {
+      margin: 0;
+      line-height: 1.25;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .tile .icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      line-height: 1;
+      min-width: 52px;
+    }
+
+
+    .tile-blue {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #ffffff;
+    }
+
+    .tile-manual {
+      background: linear-gradient(135deg, #facc15, #eab308);
+      color: #ffffff;
+    }
+
+    .framebox {
+      margin-top: 18px;
+    }
+  
+    .tile {
+      position: relative;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transform-origin: center center;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      text-decoration: none;
+    }
+
+    .tile:active {
+      transform: translateY(-3px) scale(1.06) !important;
+      filter: brightness(1.08) !important;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.36) !important;
+      z-index: 2;
+    }
+
+    .tile.tile-pop {
+      transform: translateY(-3px) scale(1.075) !important;
+      filter: brightness(1.10) !important;
+      box-shadow: 0 22px 46px rgba(15, 23, 42, 0.42) !important;
+      z-index: 3;
+      animation: tileTapShake 180ms ease-out both;
+    }
+
+    @keyframes tileTapShake {
+      0% { transform: translateY(0) scale(1); }
+      25% { transform: translateY(-3px) translateX(-2px) scale(1.075); }
+      50% { transform: translateY(-3px) translateX(2px) scale(1.075); }
+      75% { transform: translateY(-3px) translateX(-1px) scale(1.075); }
+      100% { transform: translateY(-3px) translateX(0) scale(1.075); }
+    }
+
+    .tile:focus-visible {
+      outline: 4px solid rgba(14, 165, 233, 0.45);
+      outline-offset: 4px;
+    }
+
+    .tile:visited {
+      color: inherit;
+    }
+
+    /* Compact one-line tiles â€” 2026-06-25 */
+    .grid {
+      gap: 8px;
+    }
+
+    .tile {
+      min-height: 58px;
+      padding: 9px 14px;
+      gap: 12px;
+      border-radius: 14px;
+    }
+
+    .tile-content {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .tile h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tile .icon {
+      min-width: 38px;
+      font-size: 1.45rem;
+    }
+
+    .framebox {
+      margin-top: 14px;
+    }
+
+    /* Rainbow compact tiles â€” full previous grid width, no icons */
+    .grid {
+      gap: 8px;
+    }
+
+    .tile {
+      width: 100%;
+      min-height: 58px;
+      padding: 10px 16px;
+      gap: 0;
+      border-radius: 14px;
+      color: #ffffff !important;
+      box-sizing: border-box;
+    }
+
+    .tile-content {
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .tile h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: inherit;
+    }
+
+    .tile .icon {
+      display: none !important;
+    }
+
+    .grid > .tile:nth-child(10n + 1) {
+      background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 2) {
+      background: linear-gradient(135deg, #ea580c, #f97316) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 3) {
+      background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 4) {
+      background: linear-gradient(135deg, #65a30d, #84cc16) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 5) {
+      background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 6) {
+      background: linear-gradient(135deg, #0d9488, #14b8a6) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 7) {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 8) {
+      background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    }
+
+    .grid > .tile:nth-child(10n + 9) {
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6) !important;
+    }
+
+    .grid > .tile:nth-child(10n) {
+      background: linear-gradient(135deg, #c026d3, #ec4899) !important;
+    }
+
+    .tile:visited,
+    .tile:hover,
+    .tile:focus,
+    .tile:active {
+      color: #ffffff !important;
+    }
+
+    .tile.is-muted {
+      display: none;
+    }
+
+    /* Mobile rainbow order â€” visible operational tiles first */
+    .grid > .tile[data-href="00_statusy.html"] {
+      order: 1;
+      background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+    }
+
+    .grid > .tile[data-href="80_10_05_solax_profile_executor_audit.html"] {
+      order: 2;
+      background: linear-gradient(135deg, #ea580c, #f97316) !important;
+    }
+
+    .grid > .tile[data-href="20_10_02_cost_benefit.html"] {
+      order: 3;
+      background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+    }
+
+    .grid > .tile[data-href="20_16_energy_balance_current.html"] {
+      order: 4;
+      background: linear-gradient(135deg, #65a30d, #84cc16) !important;
+    }
+
+    .grid > .tile[data-href="40_20_15_energy_use.html"] {
+      order: 5;
+      background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+    }
+
+    .grid > .tile[data-href="40_30_buy_sell_pse.html"] {
+      order: 6;
+      background: linear-gradient(135deg, #0d9488, #14b8a6) !important;
+    }
+
+    .grid > .tile[data-href="40_31_pv_forecast_actual.html"] {
+      order: 7;
+      background: linear-gradient(135deg, #0284c7, #0ea5e9) !important;
+    }
+
+    .grid > .tile[data-href="20_40_x_forecast_modified_prototype.html"] {
+      order: 8;
+      background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    }
+
+    .grid > .tile[data-href="20_50_pv_use_prices_forecast.html"] {
+      order: 8;
+      background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+    }
+
+    .grid > .tile[data-href="05_00_01_pse_tariffs_importer.html"] {
+      order: 9;
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6) !important;
+    }
+
+    .grid > .tile[data-href="05_01_03_g13_buy.html"] {
+      order: 10;
+      background: linear-gradient(135deg, #c026d3, #ec4899) !important;
+    }
+
+    .grid > .tile.is-muted {
+      order: 99;
+    }
+</style>
+</head>
+<body class="">
+<div class="floating-start">
+<a href="index.html" title="PowrĂłt do startu">START</a>
+</div>
+<main class="container tight">
+<section aria-label="Kafelki nawigacyjne" class="grid">
+<a class="tile" data-href="00_statusy.html" href="00_statusy.html">
+<div class="tile-content">
+<h3>Statusy</h3>
+</div>
+</a>
+<a class="tile" data-href="20_10_02_cost_benefit.html" href="20_10_02_cost_benefit.html">
+<div class="tile-content">
+<h3>Bilans</h3>
+</div>
+</a>
+<a class="tile" data-href="20_16_energy_balance_current.html" href="20_16_energy_balance_current.html">
+<div class="tile-content">
+<h3>Bilans energii</h3>
+</div>
+</a>
+<a class="tile" data-href="40_20_15_energy_use.html" href="40_20_15_energy_use.html">
+<div class="tile-content">
+<h3>Profil zuĹĽycia energii</h3>
+</div>
+</a>
+<a class="tile is-muted" data-href="40_20_30_02_cash_balance_analysis.html" href="40_20_30_02_cash_balance_analysis.html">
+<div class="tile-content">
+<h3>Bilans sprzedaĹĽy/kupna</h3>
+</div>
+</a>
+<a class="tile is-muted" data-href="40_01_energy_cash_balance_report_energy_today.html" href="40_01_energy_cash_balance_report_energy_today.html">
+<div class="tile-content">
+<h3>Energia â€” raport</h3>
+</div>
+</a>
+<a class="tile is-muted" data-href="40_01_energy_cash_balance_report_economy_today.html" href="40_01_energy_cash_balance_report_economy_today.html">
+<div class="tile-content">
+<h3>Koszty i korzyĹ›ci</h3>
+</div>
+</a>
+<a class="tile is-muted" data-href="html_02_raport_ze_stanu_teraz.html" href="html_02_raport_ze_stanu_teraz.html">
+<div class="tile-content">
+<h3>Aktualny stan systemu</h3>
+</div>
+</a>
+<a class="tile" data-href="80_10_05_solax_profile_executor_audit.html" href="80_10_05_solax_profile_executor_audit.html">
+<div class="tile-content">
+<h3>Executor SolaX</h3>
+</div>
+</a>
+<a class="tile" data-href="40_30_buy_sell_pse.html" href="40_30_buy_sell_pse.html">
+<div class="tile-content">
+<h3>Wykres sprzedaĹĽ/kupno</h3>
+</div>
+</a>
+<a class="tile" data-href="40_31_pv_forecast_actual.html" href="40_31_pv_forecast_actual.html"><div class="tile-content"><h3>Prognoza produkcji</h3></div></a><a class="tile" data-href="20_40_x_forecast_modified_prototype.html" href="20_40_x_forecast_modified_prototype.html"><div class="tile-content"><h3>PV forecast prototype</h3></div></a><a class="tile" data-href="20_50_pv_use_prices_forecast.html" href="20_50_pv_use_prices_forecast.html"><div class="tile-content"><h3>Walidacja prognozy prod.</h3></div></a><a class="tile" data-href="05_00_01_pse_tariffs_importer.html" href="05_00_01_pse_tariffs_importer.html"><div class="tile-content"><h3>Ceny PSE</h3></div></a><a class="tile" data-href="05_01_03_g13_buy.html" href="05_01_03_g13_buy.html"><div class="tile-content"><h3>Taryfa G13</h3></div></a><a class="tile" data-href="opis_user/index.html" href="opis_user/index.html"><div class="tile-content"><h3>Opis systemu</h3></div></a></section>
+<section aria-label="Osadzona strona" class="framebox">
+<div class="framebox-header">
+<span>Word of the Day (Merriam-Webster)</span>
+<a class="btn" href="https://www.merriam-webster.com/word-of-the-day" rel="noopener" target="_blank">OtwĂłrz w nowej karcie</a>
+</div>
+<iframe loading="lazy" referrerpolicy="no-referrer" src="https://www.merriam-webster.com/word-of-the-day"></iframe>
+</section>
+</main>
+<script src="assets/js/metro.js"></script> last_modified: 2026-06-25 23:00 <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js')
+        .then(function (reg) {
+          console.log('Service worker registered', reg.scope);
+        })
+        .catch(function (err) {
+          console.log('Service worker registration failed', err);
+        });
+    });
+  }
+
+  (function () {
+    var audioCtx = null;
+    var lastPulseAt = 0;
+
+    function clickSound() {
+      try {
+        var AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        audioCtx = audioCtx || new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(760, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(520, audioCtx.currentTime + 0.055);
+        gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.055, audioCtx.currentTime + 0.006);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.075);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.08);
+      } catch (err) {
+        // DĹşwiÄ™k jest dodatkiem; na czÄ™Ĺ›ci telefonĂłw przeglÄ…darka moĹĽe go zablokowaÄ‡.
+      }
+    }
+
+    function pulse(tile) {
+      if (!tile) return;
+      var now = Date.now();
+      if (now - lastPulseAt < 80) return;
+      lastPulseAt = now;
+      tile.classList.remove('tile-pop');
+      void tile.offsetWidth;
+      tile.classList.add('tile-pop');
+      window.setTimeout(function () {
+        tile.classList.remove('tile-pop');
+      }, 220);
+      if (navigator.vibrate) navigator.vibrate([28, 18, 28]);
+      clickSound();
+    }
+
+    document.querySelectorAll('.tile').forEach(function (tile) {
+      tile.addEventListener('pointerdown', function () {
+        pulse(tile);
+      }, { passive: true });
+      tile.addEventListener('touchstart', function () {
+        pulse(tile);
+      }, { passive: true });
+      tile.addEventListener('mousedown', function () {
+        pulse(tile);
+      }, { passive: true });
+      tile.addEventListener('click', function (event) {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button) return;
+        var href = tile.getAttribute('href');
+        if (!href || tile.getAttribute('target') === '_blank') return;
+        event.preventDefault();
+        pulse(tile);
+        window.setTimeout(function () {
+          window.location.href = href;
+        }, 180);
+      });
+    });
+
+    document.querySelectorAll('.floating-start a').forEach(function (link) {
+      link.addEventListener('pointerdown', function () {
+        link.classList.remove('menu-pop');
+        void link.offsetWidth;
+        link.classList.add('menu-pop');
+        window.setTimeout(function () {
+          link.classList.remove('menu-pop');
+        }, 220);
+        if (navigator.vibrate) navigator.vibrate([28, 18, 28]);
+        clickSound();
+      }, { passive: true });
+    });
+  })();
+</script>
+</body>
+</html>

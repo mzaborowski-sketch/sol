@@ -24,7 +24,7 @@
 
   <section class="hero">
     <h1>Bilans energii domu, PV i magazynu</h1>
-    <p class="generated-at">Wygenerowano: 2026-07-11 20:30:44</p>
+    <p class="generated-at">Wygenerowano: 2026-07-12 17:30:43</p>
   </section>
 
   <section class="read-summary" aria-label="Pomoc raportu">
@@ -74,7 +74,7 @@
 
   <section class="period-nav grid" aria-label="Przejście do okresu">
     <a class="card nav-card" href="#today">
-      <p class="kpi">okres: 2026-07-11</p>
+      <p class="kpi">okres: 2026-07-12</p>
       <p class="value">Dziś</p>
     </a>
     <a class="card nav-card" href="#week">
@@ -95,7 +95,7 @@
   <section class="card report-card" id="today">
     <div class="figure-title">
       <h2>Dziś</h2>
-      <span class="figure-note">okres: 2026-07-11</span>
+      <span class="figure-note">okres: 2026-07-12</span>
     </div>
     <div class="chart-frame">
       <img src="assets/img/20_16_energy_balance_current__today.png" alt="Dziś">
@@ -104,7 +104,7 @@
 
     <div class="balance-arithmetic">
       <strong>Arytmetyka bilansu:</strong><br>
-      <code>26,0 PV + 1,9 import = 5,3 dom + 4,7 EV + 4,4 eksport + 9,2 przyrost energii w baterii + 4,3 straty systemu (15,33%) kWh</code>
+      <code>7,3 PV + 0,1 import + 7,1 energia oddana z zapasu baterii = 7,3 dom + 0,0 EV + 2,9 eksport + 4,3 straty systemu (29,66%) kWh</code>
     </div>
 
   </section>
@@ -122,7 +122,7 @@
 
     <div class="balance-arithmetic">
       <strong>Arytmetyka bilansu:</strong><br>
-      <code>140,1 PV + 14,0 import = 30,6 dom + 21,7 EV + 63,2 eksport + 8,9 przyrost energii w baterii + 29,7 straty systemu (19,27%) kWh</code>
+      <code>147,4 PV + 14,1 import = 38,0 dom + 21,7 EV + 66,1 eksport + 1,1 przyrost energii w baterii + 34,6 straty systemu (21,45%) kWh</code>
     </div>
 
   </section>
@@ -140,7 +140,7 @@
 
     <div class="balance-arithmetic">
       <strong>Arytmetyka bilansu:</strong><br>
-      <code>271,3 PV + 38,5 import = 61,3 dom + 58,7 EV + 128,3 eksport + 9,3 przyrost energii w baterii + 52,2 straty systemu (16,84%) kWh</code>
+      <code>278,6 PV + 38,6 import = 68,7 dom + 58,7 EV + 131,2 eksport + 1,5 przyrost energii w baterii + 57,1 straty systemu (18,01%) kWh</code>
     </div>
 
   </section>
@@ -158,7 +158,7 @@
 
     <div class="balance-arithmetic">
       <strong>Szacowana arytmetyka bilansu:</strong><br>
-      <code>3192,0 PV + 3701,2 import = 3456,1 dom + 2037,5 EV + 1085,2 eksport + 6,6 przyrost energii w baterii + 307,8 straty systemu (4,47%) kWh</code><br><small>Dla wartości total liczniki energii są liczone od zera, natomiast początkowy SOC pochodzi z pierwszego dostępnego pomiaru.</small>
+      <code>3199,3 PV + 3701,3 import + 1,3 energia oddana z zapasu baterii = 3463,5 dom + 2037,5 EV + 1088,1 eksport + 312,8 straty systemu (4,53%) kWh</code><br><small>Dla wartości total liczniki energii są liczone od zera, natomiast początkowy SOC pochodzi z pierwszego dostępnego pomiaru.</small>
     </div>
 
   </section>
@@ -167,11 +167,11 @@
 
   <section class="card text-card">
     <div class="section-title"><span class="icon">ⓘ</span><span>Informacja o sprawności</span></div>
-    <p><strong>Sprawność systemu użyta w sekcji sprawności:</strong> 89,54%.</p>
+    <p><strong>Sprawność systemu użyta w sekcji sprawności:</strong> 89,94%.</p>
     <p>Obliczenie jest proste i jawne:</p>
     <p><code>sprawność_systemu = 100 × battery_discharge_counter_delta_kWh / battery_charge_counter_delta_kWh</code></p>
     <p>Dzień, tydzień i miesiąc są liczone jako różnica liczników na końcu i początku okresu. <strong>Total</strong> jest liczony od zera licznika do ostatniej dostępnej wartości total counter. Sloty 5/15-minutowe służą tylko do diagnostyki szczegółowej.</p>
-    <p>Współczynnik sprawności: <strong>0,8954</strong>. Flagi jakości: <code>total_origin_zero,period_has_gaps,system_losses_total_uses_first_available_soc</code>.</p>
+    <p>Współczynnik sprawności: <strong>0,8994</strong>. Flagi jakości: <code>total_origin_zero,period_has_gaps,system_losses_total_uses_first_available_soc</code>.</p>
 
     <table class="factor-table">
       <thead>
@@ -180,19 +180,19 @@
       <tbody>
         <tr>
           <td>Wyjście na 0% bez amortyzacji</td>
-          <td>1,117× ceny zakupu</td>
+          <td>1,112× ceny zakupu</td>
         </tr>
         <tr>
           <td>5% zysku bez amortyzacji</td>
-          <td>1,173× ceny zakupu</td>
+          <td>1,167× ceny zakupu</td>
         </tr>
         <tr>
           <td>Przykład: zakup 1,000 PLN/kWh, amortyzacja 0,100 PLN/kWh, próg 0%</td>
-          <td>1,229 PLN/kWh</td>
+          <td>1,223 PLN/kWh</td>
         </tr>
         <tr>
           <td>Przykład: zakup 1,000 PLN/kWh, amortyzacja 0,100 PLN/kWh, próg 5%</td>
-          <td>1,290 PLN/kWh</td>
+          <td>1,284 PLN/kWh</td>
         </tr>
       </tbody>
     </table>

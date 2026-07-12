@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opis systemu energii - uzytkownik</title>
+  <meta name="description" content="Opis dzialania domowego systemu zarzadzania energia PV, bateria, taryfami i ladowaniem auta.">
+  <meta name="theme-color" content="#114b5f">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#start" aria-label="Poczatek strony">
+      <span class="brand-mark">NIA</span>
+      <span class="brand-text">opis_user</span>
+    </a>
+    <nav class="topnav" aria-label="Nawigacja strony">
+      <a href="#mapa">Mapa</a>
+      <a href="#taryfy">Taryfy</a>
+      <a href="#prognozy">Prognozy</a>
+      <a href="#sterowanie">Sterowanie</a>
+      <a href="#porownanie">Rynek</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main id="start">
+    <section class="hero">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Domowy system zarzadzania energia</p>
+        <h1>System, ktory prognozuje produkcje PV, ceny i zuzycie, a potem steruje bateria, falownikiem i ladowaniem auta.</h1>
+        <p class="lead">
+          W praktyce system odpowiada na bardzo konkretne pytanie: co zrobic z energia w najblizszych godzinach,
+          zeby dom, bateria i samochod dzialaly taniej oraz rozsadniej. Pobiera taryfy i ceny, czyta dane z instalacji,
+          robi lokalna prognoze PV, uklada decyzje i wysyla polecenia do warstwy wykonawczej.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#mapa">Zobacz przeplyw</a>
+          <a class="button secondary" href="../index2.html">Otworz panel index2</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quick-answer" aria-labelledby="quick-title">
+      <p class="eyebrow">Co to robi, bez skrotow myslowych</p>
+      <h2 id="quick-title">To nie jest tylko dashboard. To lokalny system decyzyjny dla energii.</h2>
+      <div class="quick-grid">
+        <article>
+          <strong>1</strong>
+          <h3>Pobiera ceny i taryfy</h3>
+          <p>Rozumie G13, ceny zakupu, ceny sprzedazy i sloty godzinowe, w ktorych energia ma rozna wartosc.</p>
+        </article>
+        <article>
+          <strong>2</strong>
+          <h3>Czyta instalacje</h3>
+          <p>Zbiera dane z falownika, PV, baterii i EV, zeby wiedziec, co naprawde dzieje sie w domu.</p>
+        </article>
+        <article>
+          <strong>3</strong>
+          <h3>Prognozuje PV</h3>
+          <p>Przelicza pogode na produkcje konkretnej instalacji, zamiast slepo wierzyc ogolnej prognozie.</p>
+        </article>
+        <article>
+          <strong>4</strong>
+          <h3>Liczy decyzje</h3>
+          <p>Laczy PV, zuzycie, ceny i SOC baterii, zeby wybrac sensowny plan na kolejne godziny.</p>
+        </article>
+        <article>
+          <strong>5</strong>
+          <h3>Steruje urzadzeniami</h3>
+          <p>Przeklada decyzje na profil falownika, prace baterii i ladowanie samochodu.</p>
+        </article>
+        <article>
+          <strong>6</strong>
+          <h3>Raportuje i uczy sie</h3>
+          <p>Zapisuje historie, porownuje prognozy z rzeczywistoscia i pomaga poprawiac model.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section intro-grid" aria-labelledby="intro-title">
+      <div>
+        <p class="eyebrow">Najkrotsza definicja</p>
+        <h2 id="intro-title">To lokalny EMS zbudowany wokol konkretnego domu, ale z architektura do przeniesienia.</h2>
+        <p>
+          EMS, czyli Home Energy Management System, to system, ktory laczy produkcje PV, zuzycie domu, baterie,
+          ceny energii i odbiorniki elastyczne, takie jak samochod. W gotowych produktach czesto widzimy tylko
+          fragment: aplikacje falownika, dashboard energii albo ladowanie auta. Tutaj chodzi o polaczenie tych warstw.
+        </p>
+        <p>
+          System jest mocno dopasowany do jednego domu: jego taryfy, falownika, baterii, samochodu, danych i sposobu
+          rozliczania energii. To nie jest wada, tylko zrodlo skutecznosci. Jednoczesnie sama metoda moze byc po
+          adaptacji zastosowana gdzie indziej: trzeba podmienic zrodla danych, taryfy, parametry instalacji i warstwe
+          wykonawcza.
+        </p>
+        <p>
+          Najwazniejsza idea jest prosta: decyzja energetyczna jest dobra dopiero wtedy, gdy zna cene, pogode,
+          stan baterii, przewidywane zuzycie i cel uzytkownika. System nie reaguje tylko na stan obecny. On probuje
+          patrzec kilka, kilkanascie i kilkadziesiat godzin do przodu.
+        </p>
+      </div>
+      <aside class="snapshot">
+        <h3>Co system probuje optymalizowac?</h3>
+        <ul>
+          <li>wieksze wykorzystanie wlasnej produkcji PV,</li>
+          <li>lepsze decyzje kupna i sprzedazy energii,</li>
+          <li>rozsadne uzywanie baterii, nie tylko jej pelne ladowanie,</li>
+          <li>ladowanie auta z PV albo z taniej taryfy,</li>
+          <li>mozliwosc audytu: dlaczego system podjal dana decyzje.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section audience-strip" aria-label="Rodzaje opisow">
+      <article>
+        <strong>opis_user</strong>
+        <span>Ta strona: co robi system, po co istnieje i jakie daje korzysci.</span>
+      </article>
+      <article class="muted">
+        <strong><a href="../opis_owner/index.html">opis_owner</a></strong>
+        <span>Nastepny etap: jak wdrozyc podobny system u siebie i co trzeba miec.</span>
+      </article>
+      <article class="muted">
+        <strong><a href="../opis_developer/index.html">opis_developer</a></strong>
+        <span>Pozniej: jak wejsc w kod, modele, dane, testy i ulepszanie systemu.</span>
+      </article>
+    </section>
+
+    <section id="mapa" class="section section-dark">
+      <p class="eyebrow">Mapa przeplywu</p>
+      <h2>Od danych do decyzji: siedem warstw, ktore musza ze soba rozmawiac.</h2>
+      <div class="flow">
+        <div class="flow-buttons" role="tablist" aria-label="Warstwy systemu">
+          <button class="flow-button is-active" data-step="tariffs" type="button">1. Taryfy</button>
+          <button class="flow-button" data-step="inverter" type="button">2. Dane</button>
+          <button class="flow-button" data-step="weather" type="button">3. Pogoda</button>
+          <button class="flow-button" data-step="pv" type="button">4. PV</button>
+          <button class="flow-button" data-step="decision" type="button">5. Decyzja</button>
+          <button class="flow-button" data-step="control" type="button">6. Sterowanie</button>
+          <button class="flow-button" data-step="audit" type="button">7. Audyt</button>
+        </div>
+        <div class="flow-detail" aria-live="polite">
+          <h3 id="flow-title">Taryfy zmieniaja zwykly pomiar energii w decyzje ekonomiczna.</h3>
+          <p id="flow-body">
+            System najpierw musi wiedziec, ile kosztuje energia i kiedy. Sama informacja, ze mamy produkcje PV,
+            nie wystarcza. Inaczej zachowujemy baterie, gdy prad jest tani, inaczej gdy zbliza sie droga godzina,
+            a jeszcze inaczej gdy prognoza pokazuje mocne PV za kilka godzin.
+          </p>
+          <div class="flow-cards">
+            <article>
+              <strong>Wejscie</strong>
+              <p id="flow-input">Tabele G13, ceny PSE/RCE, dni robocze, weekendy i swieta.</p>
+            </article>
+            <article>
+              <strong>Przetwarzanie</strong>
+              <p id="flow-process">System zamienia skomplikowane reguly taryfowe na godziny z konkretna cena i znaczeniem.</p>
+            </article>
+            <article>
+              <strong>Wynik</strong>
+              <p id="flow-output">Prosty sygnal dla kolejnych modulow: tanio, drogo, warto sprzedac, warto zachowac.</p>
+            </article>
+            <article>
+              <strong>Korzysc</strong>
+              <p id="flow-benefit">Automatyka podejmuje decyzje finansowe, a nie tylko techniczne.</p>
+            </article>
+          </div>
+          <div class="flow-proof">
+            <span id="flow-source">Przyklad: G13 + PSE/RCE</span>
+            <a id="flow-link" href="../05_01_03_g13_buy.html">Otworz raport</a>
+          </div>
+        </div>
+      </div>
+      <div class="mini-pipeline" aria-label="Przeplyw danych">
+        <span>Taryfy</span>
+        <span>Inwerter</span>
+        <span>Pogoda</span>
+        <span>Prognoza PV</span>
+        <span>Zuzycie</span>
+        <span>Logika</span>
+        <span>Falownik + auto</span>
+      </div>
+    </section>
+
+    <section id="taryfy" class="section two-column">
+      <div>
+        <p class="eyebrow">05 - taryfy i ceny</p>
+        <h2>Cena energii nie jest jedna liczba.</h2>
+        <p>
+          Jednym z mniej widocznych, ale najwazniejszych elementow systemu jest przetwarzanie taryf. Dla czlowieka
+          taryfa bywa tabelka w PDF albo arkuszu. Dla automatyki musi stac sie precyzyjna seria godzinowa:
+          teraz, za godzine, jutro rano, jutro wieczorem. System musi rozumiec dni robocze, weekendy, swieta,
+          strefy G13, cene zakupu oraz cene sprzedazy energii.
+        </p>
+        <p>
+          To wcale nie jest banalne. Jesli system pomyli tania i droga godzine, moze naladowac auto w zlym momencie
+          albo sprzedac energie wtedy, gdy lepiej byloby ja zachowac. Dlatego modul taryfowy tlumaczy zrodla cenowe
+          na proste dane operacyjne: kiedy kupowac, kiedy oszczedzac, kiedy sprzedaz ma sens.
+        </p>
+        <div class="benefit-list">
+          <div><strong>Korzyść</strong><span>Decyzje sa ekonomiczne, nie tylko techniczne.</span></div>
+          <div><strong>Ryzyko bez tego</strong><span>Bateria i auto dzialaja poprawnie fizycznie, ale nieoptymalnie finansowo.</span></div>
+          <div><strong>Co dalej</strong><span>Dodawanie kolejnych taryf powinno byc osobnym opisem w przyszlym opis_owner.</span></div>
+        </div>
+      </div>
+      <div class="visual-stack">
+        <figure class="figure">
+          <img src="assets/img/g13_today.png" alt="Wykres taryfy G13 na dzis">
+          <figcaption>Taryfa G13 przeliczona na godziny, gotowa dla automatyki.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="assets/img/pse_today.png" alt="Wykres cen PSE na dzis">
+          <figcaption>Ceny rynkowe pomagaja ocenic, kiedy sprzedaz energii ma sens.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="dane" class="section two-column reverse">
+      <div>
+        <p class="eyebrow">10 - dane rzeczywiste</p>
+        <h2>System musi widziec dom, a nie tylko wierzyc prognozie.</h2>
+        <p>
+          Druga warstwa to dane z instalacji: falownik, PV, bateria, energia pobrana i oddana, stan ladowania,
+          czesc EV. To jest warstwa faktow. Bez niej nie da sie sprawdzic, czy prognoza byla dobra ani czy decyzja
+          automatyki przyniosla oczekiwany efekt.
+        </p>
+        <p>
+          W idealnym swiecie falownik udostepnialby stabilne, lokalne API. W praktyce czesto trzeba obchodzic
+          ograniczenia producenta: pobierac dane z panelu, parsowac je, zapisywac do wlasnych plikow i pilnowac
+          synchronizacji. To mniej efektowne niz jedno oficjalne API, ale daje niezaleznosc i historie.
+        </p>
+        <p>
+          Ta warstwa jest dobrym przykladem praktycznego inzynierskiego kompromisu: nie czekamy na idealny interfejs,
+          tylko budujemy wiarygodny strumien danych, ktory da sie audytowac.
+        </p>
+        <div class="link-row">
+          <a href="../00_statusy.html">Statusy systemu</a>
+          <a href="../20_16_energy_balance_current.html">Bilans energii</a>
+        </div>
+      </div>
+      <figure class="figure wide">
+        <img src="assets/img/energy_balance_today.png" alt="Wykres bilansu energii na dzis">
+        <figcaption>Rzeczywiste dane z instalacji sa podstawa bilansow, walidacji i pozniejszych decyzji.</figcaption>
+      </figure>
+    </section>
+
+    <section id="prognozy" class="section">
+      <p class="eyebrow">20 - pogoda, PV i kalibracja</p>
+      <h2>Prognoza PV to nie pogoda. To pogoda przetlumaczona na konkretna instalacje.</h2>
+      <div class="text-columns">
+        <p>
+          Zwykla prognoza pogody odpowiada na pytanie, czy bedzie slonce, chmury, deszcz i jaka bedzie temperatura.
+          System energetyczny pyta inaczej: ile energii wyprodukuje moja instalacja PV o 9:00, 12:00 i 16:00?
+          Dlatego dane pogodowe sa dopiero surowcem.
+        </p>
+        <p>
+          System korzysta z Open-Meteo i danych takich jak promieniowanie, zachmurzenie calkowite oraz chmury niskie,
+          srednie i wysokie. Nastepnie laczy je z lokalnymi krzywymi produkcji, wspolczynnikami `r`, korektami chmur
+          i historia rzeczywistej produkcji.
+        </p>
+        <p>
+          Najciekawsze jest to, ze model nie musi byc raz na zawsze ustalony. Moze byc kalibrowany na podstawie
+          roznicy miedzy prognoza a rzeczywistoscia. Jesli systematycznie zaniza produkcje przy okreslonym typie
+          zachmurzenia, mozna to wykryc i poprawic.
+        </p>
+      </div>
+
+      <div class="gallery-controls" aria-label="Wybierz wykres prognozy">
+        <button class="gallery-button is-active" data-gallery="r" type="button">Krzywa r</button>
+        <button class="gallery-button" data-gallery="tracking" type="button">Tracking</button>
+        <button class="gallery-button" data-gallery="forecast" type="button">Prognoza vs real</button>
+        <button class="gallery-button" data-gallery="prototype" type="button">Chmury low/mid/high</button>
+      </div>
+
+      <div class="gallery">
+        <figure class="figure gallery-item is-active" data-gallery-panel="r">
+          <img src="assets/img/pv_r_main.png" alt="Glowny wykres krzywej r PV">
+          <figcaption>Krzywa `r` pokazuje, jak instalacja zachowuje sie wzgledem promieniowania i pory dnia.</figcaption>
+        </figure>
+        <figure class="figure gallery-item" data-gallery-panel="tracking">
+          <img src="assets/img/pv_r_tracking.png" alt="Tracking krzywej r PV">
+          <figcaption>Tracking pozwala sprawdzac, czy model nie odjezdza od rzeczywistej produkcji.</figcaption>
+        </figure>
+        <figure class="figure gallery-item" data-gallery-panel="forecast">
+          <img src="assets/img/pv_forecast_actual.svg" alt="Porownanie prognozy PV z produkcja rzeczywista">
+          <figcaption>Walidacja prognozy pokazuje, gdzie model jest dobry, a gdzie wymaga korekty.</figcaption>
+        </figure>
+        <figure class="figure gallery-item" data-gallery-panel="prototype">
+          <img src="assets/img/energy_balance_week.png" alt="Przykladowy wykres tygodniowy jako kontekst prognozy">
+          <figcaption>Nowy prototyp sprawdza, czy chmury niskie, srednie i wysokie powinny miec rozny wplyw na PV.</figcaption>
+        </figure>
+      </div>
+
+      <div class="link-row">
+        <a href="../20_40_x_forecast_modified_prototype.html">Prototyp prognozy PV</a>
+        <a href="../40_31_pv_forecast_actual.html">Prognoza vs produkcja</a>
+        <a href="../20_50_pv_use_prices_forecast.html">PV + zuzycie + ceny</a>
+      </div>
+    </section>
+
+    <section id="decyzje" class="section section-soft">
+      <p class="eyebrow">Prognoza prowadzi do decyzji</p>
+      <h2>Ten sam stan baterii moze oznaczac trzy rozne decyzje.</h2>
+      <p class="section-lead">
+        Bateria na poziomie 60% nie mowi jeszcze, co robic. Trzeba wiedziec, czy jutro bedzie slonce, czy wieczorem
+        cena bedzie wysoka, czy auto potrzebuje energii i czy w ciagu dnia pojawi sie nadwyzka PV.
+      </p>
+
+      <div class="scenario">
+        <div class="scenario-tabs" role="tablist" aria-label="Scenariusze decyzji">
+          <button class="scenario-button is-active" data-scenario="sunny" type="button">Duzo PV jutro</button>
+          <button class="scenario-button" data-scenario="cloudy" type="button">Pochmurny dzien</button>
+          <button class="scenario-button" data-scenario="price" type="button">Drogi wieczor</button>
+        </div>
+        <div class="scenario-body">
+          <div>
+            <h3 id="scenario-title">Zrob miejsce w baterii i nie blokuj PV.</h3>
+            <p id="scenario-text">
+              Jesli prognoza pokazuje mocna produkcje w kolejnych godzinach, pelna bateria moze byc problemem.
+              System moze sprzedac energie wczesniej albo inaczej ustawic profil falownika, zeby przyjac dzienna produkcje.
+            </p>
+          </div>
+          <svg class="scenario-chart" viewBox="0 0 420 180" role="img" aria-labelledby="scenario-chart-title">
+            <title id="scenario-chart-title">Schematyczny wykres decyzji energetycznej</title>
+            <line x1="28" y1="146" x2="392" y2="146"></line>
+            <line x1="28" y1="26" x2="28" y2="146"></line>
+            <polyline id="scenario-pv" points="40,132 96,112 152,64 208,38 264,58 320,110 376,132"></polyline>
+            <polyline id="scenario-price" points="40,116 96,116 152,116 208,116 264,102 320,70 376,52"></polyline>
+            <polyline id="scenario-battery" points="40,70 96,78 152,94 208,116 264,98 320,80 376,74"></polyline>
+            <text x="40" y="169">rano</text>
+            <text x="183" y="169">poludnie</text>
+            <text x="330" y="169">wieczor</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="raporty" class="section two-column">
+      <div>
+        <p class="eyebrow">40 - raporty i dowody</p>
+        <h2>Raporty nie sa ozdoba. Sa sposobem odzyskania zaufania do automatyki.</h2>
+        <p>
+          Automatyka bez raportow szybko staje sie czarna skrzynka. Raporty odpowiadaja na pytania: co system widzial,
+          co przewidzial, jaka byla cena, jaka byla produkcja, czy rekomendacja miala sens i czy decyzja byla dobra
+          po fakcie.
+        </p>
+        <p>
+          Dobrze zaprojektowany raport pozwala cofnac sie do konkretnego dnia. To szczegolnie wazne przy PV:
+          jezeli prognoza zle ocenia dni pochmurne, powinno byc to widac w historii bledow, a nie tylko w intuicji.
+        </p>
+        <div class="link-row">
+          <a href="../40_30_buy_sell_pse.html">Kup/sprzedaj PSE</a>
+          <a href="../40_20_15_energy_use.html">Zuzycie energii</a>
+          <a href="../40_31_pv_forecast_actual.html">PV forecast actual</a>
+        </div>
+      </div>
+      <div class="visual-stack">
+        <figure class="figure">
+          <img src="assets/img/energy_use_cumulative.png" alt="Wykres skumulowanego zuzycia energii">
+          <figcaption>Profil zuzycia jest potrzebny, zeby PV i bateria byly sterowane wobec realnego domu.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="assets/img/buy_sell_pse.svg" alt="Wykres kup sprzedaj PSE">
+          <figcaption>Raport cenowy pozwala zobaczyc najlepsze sloty ekonomiczne, nie tylko energetyczne.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="sterowanie" class="section section-dark">
+      <p class="eyebrow">80 - automatyka wykonawcza</p>
+      <h2>Na koncu system musi zrobic cos fizycznego: ustawic falownik, baterie albo ladowanie auta.</h2>
+      <div class="control-grid">
+        <article>
+          <h3>Falownik i bateria</h3>
+          <p>
+            System przeklada prognozy i ceny na profile pracy falownika. Moze przygotowac strategie sprzedazy,
+            zachowania energii w baterii albo zrobienia miejsca na nadchodzaca produkcje PV.
+          </p>
+          <p>
+            Najwazniejsze: bateria nie jest traktowana jak prosta beczka energii. Jest zasobem, ktorego wartosc
+            zalezy od pory dnia, ceny i prognozy.
+          </p>
+        </article>
+        <article>
+          <h3>Samochod elektryczny</h3>
+          <p>
+            Auto jest duzym, elastycznym odbiornikiem. System moze ladowac je z nadwyzki PV albo z taniej taryfy,
+            a jednoczesnie nie powinien bezmyslnie konkurowac z bateria domu.
+          </p>
+          <p>
+            Istnieja tez tryby reczne: zadana liczba kilometrow, moc, okno czasowe i soft stop.
+          </p>
+        </article>
+        <article>
+          <h3>Bezpieczenstwo operacyjne</h3>
+          <p>
+            Im blizej fizycznego sterowania, tym wazniejsze sa logi, historia, blokady i aktualny stan. Kazda decyzja
+            powinna byc mozliwa do odtworzenia: kiedy, dlaczego i z jakim skutkiem.
+          </p>
+          <p>
+            Dlatego obok samego sterowania istnieje audyt profili i statusow.
+          </p>
+        </article>
+      </div>
+      <div class="link-row inverted">
+        <a href="../80_10_05_solax_profile_executor_audit.html">Audyt profilu SolaX</a>
+        <a href="../car_dashboard.html">Panel auta</a>
+      </div>
+    </section>
+
+    <section id="porownanie" class="section">
+      <p class="eyebrow">Na tle rynku</p>
+      <h2>Ten system nie konkuruje z jednym produktem. On skleja kilka klas rozwiazan.</h2>
+      <div class="compare-table" role="table" aria-label="Porownanie systemu z alternatywami">
+        <div role="row" class="compare-head">
+          <span role="columnheader">Podejscie</span>
+          <span role="columnheader">Co robi dobrze</span>
+          <span role="columnheader">Gdzie jest luka</span>
+          <span role="columnheader">Jak wypada ten system</span>
+        </div>
+        <div role="row">
+          <span role="cell">Aplikacja producenta falownika</span>
+          <span role="cell">Pokazuje stan urzadzenia i podstawowe przeplywy.</span>
+          <span role="cell">Czesto jest zamknieta, slabo laczy taryfy, auto i lokalna logike.</span>
+          <span role="cell">System buduje niezalezna warstwe danych i decyzji.</span>
+        </div>
+        <div role="row">
+          <span role="cell">Home Assistant</span>
+          <span role="cell">Bardzo dobry dashboard i integracje wielu urzadzen.</span>
+          <span role="cell">Zaawansowana ekonomiczna logika zwykle wymaga duzo wlasnej pracy.</span>
+          <span role="cell">Mozna go traktowac jako inspiracje lub warstwe integracyjna.</span>
+        </div>
+        <div role="row">
+          <span role="cell">evcc</span>
+          <span role="cell">Swietne ladowanie EV z PV, taryf i planow.</span>
+          <span role="cell">Nie jest pelna lokalna logika baterii, sprzedazy i prognozy dla tego domu.</span>
+          <span role="cell">Twoj system integruje auto z decyzjami PV, bateria i taryfa G13.</span>
+        </div>
+        <div role="row">
+          <span role="cell">Solcast / Forecast.Solar</span>
+          <span role="cell">Daja gotowe prognozy PV.</span>
+          <span role="cell">Sa zewnetrznym modelem, nie zawsze dopasowanym do lokalnych bledow instalacji.</span>
+          <span role="cell">System idzie w strone lokalnej kalibracji na podstawie historii.</span>
+        </div>
+        <div role="row">
+          <span role="cell">pvlib</span>
+          <span role="cell">Daje solidne modele fizyczne PV.</span>
+          <span role="cell">Wymaga poprawnej konfiguracji i nie rozwiazuje calej automatyki domu.</span>
+          <span role="cell">Moze byc przyszlym elementem wzmocnienia modelu PV.</span>
+        </div>
+      </div>
+      <div class="external-links">
+        <a href="https://www.home-assistant.io/docs/energy/" target="_blank" rel="noopener">Home Assistant Energy</a>
+        <a href="https://docs.evcc.io/en/" target="_blank" rel="noopener">evcc</a>
+        <a href="https://forecast.solar/" target="_blank" rel="noopener">Forecast.Solar</a>
+        <a href="https://pvlib-python.readthedocs.io/en/stable/" target="_blank" rel="noopener">pvlib</a>
+        <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener">Open-Meteo</a>
+      </div>
+    </section>
+
+    <section id="skutecznosc" class="section section-soft">
+      <p class="eyebrow">Skutecznosc i ograniczenia</p>
+      <h2>Najwieksza wartosc systemu jest w integracji. Najwieksze ryzyko jest w jakosci danych i prognoz.</h2>
+      <div class="notes-grid">
+        <article>
+          <h3>Co juz wyglada mocno</h3>
+          <p>
+            System ma dane rzeczywiste, taryfy, prognoze PV, raporty, automatyke wykonawcza, statusy i audyt.
+            To oznacza, ze nie jest tylko zbiorem wykresow, ale pelnym lancuchem od danych do dzialania.
+          </p>
+        </article>
+        <article>
+          <h3>Co trzeba stale mierzyc</h3>
+          <p>
+            Najwazniejsze sa bledy prognozy PV, szczegolnie przy zachmurzeniu, oraz zgodnosc decyzji z efektem:
+            czy sprzedaz, ladowanie baterii i ladowanie auta rzeczywiscie byly korzystne.
+          </p>
+        </article>
+        <article>
+          <h3>Co moze byc innowacyjne</h3>
+          <p>
+            Lokalna kalibracja prognozy PV, uwzglednienie chmur low/mid/high i polaczenie auta z logika baterii
+            i taryfy G13 to elementy bardziej dopasowane niz typowe gotowe aplikacje.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="dalej" class="section closing">
+      <p class="eyebrow">Co dalej</p>
+      <h2>Ta strona jest pierwsza z trzech.</h2>
+      <p>
+        `opis_user` tlumaczy sens i korzysci. `opis_owner` powinien pozniej opisac, jak ktos moglby wdrozyc podobny
+        system u siebie: wymagane dane, urzadzenia, taryfy, bezpieczenstwo, konfiguracja i typowe decyzje. `opis_developer`
+        powinien byc dla osoby, ktora chce wejsc w kod, poprawiac modele, dopisac nowe taryfy albo rozwijac modul PV.
+      </p>
+      <div class="link-row">
+        <a href="../opis_owner/index.html">Przejdz do opis_owner</a>
+        <a href="../opis_developer/index.html">Przejdz do opis_developer</a>
+        <a href="../index2.html">Wroc do index2</a>
+        <a href="../00_statusy.html">Sprawdz status systemu</a>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wroc na gore">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

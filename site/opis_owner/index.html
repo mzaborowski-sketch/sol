@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opis systemu energii - owner</title>
+  <meta name="description" content="Praktyczny opis wdrozenia lokalnego systemu zarzadzania energia PV, bateria, taryfami i ladowaniem EV.">
+  <meta name="theme-color" content="#1f4f46">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#start" aria-label="Poczatek strony">
+      <span class="brand-mark">NIA</span>
+      <span class="brand-text">opis_owner</span>
+    </a>
+    <nav class="topnav" aria-label="Nawigacja strony">
+      <a href="../opis_user/index.html">Opis user</a>
+      <a href="../opis_developer/index.html">Opis developer</a>
+      <a href="#etapy">Etapy</a>
+      <a href="#wymagania">Wymagania</a>
+      <a href="#adaptery">Adaptery</a>
+      <a href="#serwer">Serwer</a>
+      <a href="#czas">Pracochlonnosc</a>
+      <a href="#ryzyka">Problemy</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main id="start">
+    <section class="owner-hero">
+      <div class="owner-hero-content">
+        <p class="eyebrow">Dla wlasciciela instalacji</p>
+        <h1>Jak podejsc do wdrozenia takiego systemu u siebie?</h1>
+        <p class="lead">
+          Ta strona nie opisuje kodu. Opisuje decyzje wlasciciela: co trzeba miec, co trzeba sprawdzic,
+          jakie sa etapy pracy, gdzie zwykle pojawiaja sie problemy i kiedy system jest gotowy do sterowania
+          prawdziwym falownikiem, bateria albo samochodem.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#gotowosc">Sprawdz gotowosc</a>
+          <a class="button secondary" href="../opis_user/index.html">Najpierw opis ogolny</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section owner-intro">
+      <div>
+        <p class="eyebrow">Najwazniejsza prawda</p>
+        <h2>To nie jest aplikacja do zainstalowania jednym kliknieciem. To wdrozenie energetyczne.</h2>
+        <p>
+          System moze byc przeniesiony do innego domu, ale po adaptacji. Najlatwiejsze do przeniesienia sa zasady:
+          pobierz dane, uporzadkuj ceny, zbuduj prognoze PV, porownuj z rzeczywistoscia, podejmuj decyzje i dopiero
+          na koncu steruj urzadzeniami. Najtrudniejsze do przeniesienia sa konkretne integracje: falownik, taryfa,
+          licznik, ladowarka, API, formaty plikow i lokalne ograniczenia.
+        </p>
+        <p>
+          Obecna instalacja ma gotowa sciezke przede wszystkim dla SolaX oraz taryf Tauron/G13. To znaczy, ze przy
+          innym falowniku, innym operatorze, innej taryfie albo innym sposobie dostepu do danych trzeba przygotowac
+          nowy adapter. Adapter to maly modul posredniczacy: wie, jak pobrac dane z danego zrodla i jak zapisac je
+          w formacie zrozumialym dla reszty systemu.
+        </p>
+        <p>
+          Dlatego dobre wdrozenie zaczyna sie od trybu obserwacji. Najpierw system powinien tylko czytac dane i
+          generowac raporty. Dopiero gdy raporty sa wiarygodne, prognoza ma sens, a decyzje w trybie suchym wygladaja
+          dobrze, mozna wlaczyc sterowanie wykonawcze.
+        </p>
+      </div>
+      <aside class="owner-card strong-card">
+        <h3>Minimalny cel wdrozenia</h3>
+        <p>
+          Po pierwszym etapie wlasciciel powinien codziennie widziec: produkcje PV, zuzycie, ceny, prognoze PV,
+          koszt/korzysc oraz proponowane decyzje. Sterowanie fizyczne moze poczekac.
+        </p>
+      </aside>
+    </section>
+
+    <section id="gotowosc" class="section section-soft">
+      <p class="eyebrow">Szybka kwalifikacja</p>
+      <h2>Czy Twoj dom nadaje sie do takiego systemu?</h2>
+      <p class="section-lead">
+        Zaznacz elementy, ktore juz masz. Wynik nie jest wyrokiem, ale dobrze pokazuje, czy projekt zaczac od
+        automatyki, czy od porzadkowania danych.
+      </p>
+      <div class="readiness">
+        <div class="checklist" aria-label="Lista gotowosci">
+          <label><input type="checkbox" data-score="2"> Instalacja PV z dostepem do danych produkcji</label>
+          <label><input type="checkbox" data-score="2"> Falownik lub licznik z historia poboru i oddania do sieci</label>
+          <label><input type="checkbox" data-score="2"> Magazyn energii albo mozliwosc sterowania profilem falownika</label>
+          <label><input type="checkbox" data-score="1"> Samochod elektryczny lub ladowarka z mozliwoscia sterowania</label>
+          <label><input type="checkbox" data-score="2"> Taryfa zmienna w czasie, np. G13 albo dynamiczna</label>
+          <label><input type="checkbox" data-score="1"> Komputer/NAS/Raspberry Pi dzialajacy 24/7</label>
+          <label><input type="checkbox" data-score="1"> Znam sposob dostepu do falownika: lokalnie, przez chmure, VPN albo publiczny adres IP</label>
+          <label><input type="checkbox" data-score="1"> Znam lokalizacje, ustawienie paneli i podstawowe parametry instalacji PV</label>
+          <label><input type="checkbox" data-score="1"> Gotowosc na kilka tygodni kalibracji prognoz</label>
+          <label><input type="checkbox" data-score="1"> Mozliwosc bezpiecznego cofniecia automatyki do trybu recznego</label>
+        </div>
+        <div class="score-card">
+          <span class="score" id="score">0</span>
+          <strong id="score-title">Start od inwentaryzacji</strong>
+          <p id="score-text">
+            Najpierw trzeba sprawdzic, skad beda dane, jak wyglada taryfa i czy urzadzenia da sie czytac bezpiecznie.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="etapy" class="section">
+      <p class="eyebrow">Etapy pracy</p>
+      <h2>Najbezpieczniejsza droga: od obserwacji do automatyki.</h2>
+      <div class="stage-timeline">
+        <article>
+          <span>0</span>
+          <h3>Audyt domu i celow</h3>
+          <p>Spisujemy urzadzenia, taryfe, rozliczenia, moc PV, pojemnosc baterii, ladowarke, typ falownika i oczekiwania wlasciciela.</p>
+        </article>
+        <article>
+          <span>1</span>
+          <h3>Adaptery danych</h3>
+          <p>Przygotowujemy sterowniki/pliki dla konkretnego zrodla: SolaX, inny falownik, licznik, EV, chmura lub lokalny protokol.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Warstwa danych</h3>
+          <p>Ustalamy, skad czytac produkcje, pobor, oddanie, SOC i EV. To etap, ktory najczesciej decyduje o powodzeniu.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Taryfy i ceny</h3>
+          <p>Zamieniamy regulamin, PDF albo arkusz taryfy na dane godzinowe. To trudniejsze niz wyglada, bo licza sie swieta i strefy.</p>
+        </article>
+        <article>
+          <span>4</span>
+          <h3>Prognoza pogody i PV</h3>
+          <p>Ustawiamy lokalizacje, strefe czasu, moc instalacji i parametry paneli. Najpierw wystarczy model podstawowy, potem kalibracja.</p>
+        </article>
+        <article>
+          <span>5</span>
+          <h3>Raporty i tryb suchy</h3>
+          <p>System codziennie pokazuje, co by zrobil, ale jeszcze niczego nie steruje. Tu lapie sie wiekszosc bledow.</p>
+        </article>
+        <article>
+          <span>6</span>
+          <h3>Sterowanie kontrolowane</h3>
+          <p>Najpierw pojedyncze akcje, z limitem ryzyka i latwym powrotem do trybu recznego. Dopiero pozniej pelna automatyka.</p>
+        </article>
+        <article>
+          <span>7</span>
+          <h3>Monitoring i utrzymanie</h3>
+          <p>Statusy, logi, kopie, alerty i okresowy przeglad decyzji. System energetyczny trzeba obserwowac jak male narzedzie produkcyjne.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="wymagania" class="section two-column">
+      <div>
+        <p class="eyebrow">Wymagania techniczne na dzisiaj</p>
+        <h2>Potrzebny jest stabilny komputer, dane z urzadzen i rozsadna sciezka sterowania.</h2>
+        <p>
+          Najwygodniej uruchamiac taki system na czyms, co dziala 24/7: NAS, mini-PC, Raspberry Pi, serwer domowy
+          albo maszyna wirtualna. Home Assistant oficjalnie wspiera m.in. gotowe urzadzenie Green, Raspberry Pi,
+          x86-64, kontener lub VM. evcc rowniez zaklada pewna znajomosc terminala i plikow konfiguracyjnych oraz
+          wspiera Linux/Raspberry Pi, macOS, Docker i instalacje manualne.
+        </p>
+        <p>
+          Ten system obecnie jest praktycznie swiatem Python + pliki CSV/HTML + harmonogram uruchomien + lokalny web.
+          To jest zaleta przy prototypowaniu, bo wszystko jest jawne i latwe do audytu. Przy wdrozeniu u kogos trzeba
+          jednak ustandaryzowac konfiguracje, sekrety, sciezki plikow i sposob publikacji.
+        </p>
+        <p>
+          Wymagania sprzetowe mocno zaleza od sposobu dostepu do urzadzen. Jesli falownik i licznik wymagaja lokalnego
+          odczytu w sieci domowej, najlepiej miec maly komputer w domu. Jesli dane i sterowanie sa dostepne przez
+          chmure producenta, VPN albo bezpiecznie wystawiony adres IP, system moze dzialac rowniez na zewnetrznym
+          serwerze, a lokalne wymagania spadaja praktycznie do stabilnego internetu i urzadzen.
+        </p>
+      </div>
+      <div class="requirement-list">
+        <article><strong>Sprzet</strong><span>PV, falownik, najlepiej smart meter, opcjonalnie bateria i EV.</span></article>
+        <article><strong>Komputer 24/7</strong><span>NAS, mini-PC, Raspberry Pi, Linux/Windows/VM lub kontener.</span></article>
+        <article><strong>Dane</strong><span>Produkcja, pobor, oddanie, SOC, ceny, taryfy, pogoda, historia.</span></article>
+        <article><strong>Dostep</strong><span>API, Modbus, eksport, chmura producenta albo inny stabilny sposob odczytu.</span></article>
+        <article><strong>Lokalizacja</strong><span>Szerokosc i dlugosc geograficzna, strefa czasu, orientacja i nachylenie paneli.</span></article>
+        <article><strong>Bezpieczenstwo</strong><span>Manual override, backup ustawien, ograniczenia mocy i kontrola bledow.</span></article>
+      </div>
+    </section>
+
+    <section id="adaptery" class="section">
+      <p class="eyebrow">Adaptery, sterowniki i pliki wdrozeniowe</p>
+      <h2>Kazdy dom potrzebuje warstwy tlumaczacej jego urzadzenia na wspolny jezyk systemu.</h2>
+      <p class="section-lead">
+        To jest brakujacy, ale krytyczny etap. System nie powinien zakladac, ze kazdy ma SolaX, Tauron G13 i taki sam
+        sposob publikacji danych. Dla nowego wdrozenia trzeba przygotowac zestaw adapterow: po jednym dla danych,
+        taryf, pogody, sterowania i publikacji.
+      </p>
+      <div class="adapter-grid">
+        <article>
+          <h3>Falownik i bateria</h3>
+          <p><strong>Obecnie:</strong> SolaX.</p>
+          <p><strong>Do adaptacji:</strong> inny falownik wymaga nowego odczytu danych i osobnego sposobu sterowania.</p>
+          <p><strong>Wynik:</strong> produkcja, pobor, oddanie, SOC, statusy i ewentualne komendy.</p>
+        </article>
+        <article>
+          <h3>Licznik energii</h3>
+          <p><strong>Obecnie:</strong> dane sa wyprowadzane z aktualnej instalacji.</p>
+          <p><strong>Do adaptacji:</strong> Modbus, smart meter, eksport CSV, API operatora albo dane z falownika.</p>
+          <p><strong>Wynik:</strong> wiarygodny bilans domu i sieci.</p>
+        </article>
+        <article>
+          <h3>Taryfa zakupu</h3>
+          <p><strong>Obecnie:</strong> Tauron/G13.</p>
+          <p><strong>Do adaptacji:</strong> inny operator, G11/G12/G12w/G13/dynamiczna taryfa wymaga osobnego kalendarza i cennika.</p>
+          <p><strong>Wynik:</strong> cena zakupu energii dla kazdej godziny.</p>
+        </article>
+        <article>
+          <h3>Cena sprzedazy</h3>
+          <p><strong>Obecnie:</strong> PSE/RCE i raport kup/sprzedaj.</p>
+          <p><strong>Do adaptacji:</strong> sposob rozliczania prosumenta i aktualne reguly sprzedazy.</p>
+          <p><strong>Wynik:</strong> wskazanie najlepszych godzin sprzedazy.</p>
+        </article>
+        <article>
+          <h3>Pogoda i lokalizacja</h3>
+          <p><strong>Obecnie:</strong> Open-Meteo.</p>
+          <p><strong>Do adaptacji:</strong> lokalizacja, strefa czasu, moc PV, nachylenie i azymut paneli.</p>
+          <p><strong>Wynik:</strong> prognoza pogody nadajaca sie do prognozy produkcji PV.</p>
+        </article>
+        <article>
+          <h3>EV i ladowarka</h3>
+          <p><strong>Obecnie:</strong> logika auta jest zintegrowana z PV i taryfami.</p>
+          <p><strong>Do adaptacji:</strong> konkretna ladowarka, samochod, API, minimalna moc i ograniczenia uzytkownika.</p>
+          <p><strong>Wynik:</strong> ladowanie z PV, taniej taryfy albo recznego celu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="serwer" class="section section-soft">
+      <p class="eyebrow">Lokalnie czy na zewnetrznym serwerze?</p>
+      <h2>Jesli dane sa dostepne przez chmure albo bezpieczny adres IP, serwer moze byc bardzo lekki.</h2>
+      <div class="server-grid">
+        <article>
+          <h3>Wariant lokalny</h3>
+          <p>Najlepszy, gdy trzeba czytac urzadzenia w sieci domowej, uzywac lokalnego Modbus/API albo sterowac bezposrednio.</p>
+          <ul>
+            <li>NAS, mini-PC albo Raspberry Pi.</li>
+            <li>Dzialanie 24/7 w tej samej sieci co falownik.</li>
+            <li>Mniej problemow z dostepem do lokalnych urzadzen.</li>
+            <li>Wiecej odpowiedzialnosci za sprzet, zasilanie i backup.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Wariant zewnetrzny/VPS</h3>
+          <p>Dobry, gdy dane i sterowanie sa dostepne przez chmure producenta, VPN, tunel albo bezpiecznie wystawiony adres IP.</p>
+          <ul>
+            <li>Minimum: 1 vCPU, 1 GB RAM, 10 GB dysku.</li>
+            <li>Rekomendowane: 2 vCPU, 2-4 GB RAM, 20-40 GB dysku.</li>
+            <li>Linux, Python 3.11+, cron/systemd/timer, HTTPS albo VPN.</li>
+            <li>Lokalnie zostaje tylko stabilny internet i urzadzenia.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Wariant hybrydowy</h3>
+          <p>Najbardziej odporny: maly lokalny agent zbiera dane, a serwer zewnetrzny liczy raporty, archiwizuje i publikuje strony.</p>
+          <ul>
+            <li>Agent domowy ma male wymagania.</li>
+            <li>Serwer zewnetrzny robi raporty, kopie i dashboardy.</li>
+            <li>Awaria internetu nie musi blokowac lokalnego bezpieczenstwa.</li>
+            <li>To najlepszy kierunek dla wersji bardziej open source.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="czas" class="section section-dark">
+      <p class="eyebrow">Pracochlonnosc</p>
+      <h2>Najwiecej czasu nie zajmuje kod, tylko integracja z rzeczywistoscia.</h2>
+      <div class="effort-table" role="table" aria-label="Szacunkowa pracochlonnosc wdrozenia">
+        <div class="effort-head" role="row">
+          <span>Etap</span><span>Typowy czas</span><span>Co moze wydluzyc</span><span>Efekt</span>
+        </div>
+        <div role="row"><span>Audyt instalacji</span><span>0.5-1 dzien</span><span>Brak dokumentacji, niejasne rozliczenie</span><span>Lista danych i celow</span></div>
+        <div role="row"><span>Serwer i srodowisko</span><span>0.5-2 dni</span><span>NAS, uprawnienia, siec, kontenery</span><span>System dziala 24/7</span></div>
+        <div role="row"><span>Adapter falownika/licznika</span><span>1-10 dni</span><span>Inny producent niz SolaX, brak API, tylko aplikacja mobilna</span><span>Stabilny odczyt danych</span></div>
+        <div role="row"><span>Odczyt falownika</span><span>2-7 dni</span><span>Brak API, chmura, zmienne formaty</span><span>Historia produkcji i SOC</span></div>
+        <div role="row"><span>Taryfy i ceny</span><span>1-5 dni</span><span>Inny operator niz Tauron, swieta, strefy, rozne cenniki</span><span>Ceny godzinowe</span></div>
+        <div role="row"><span>Lokalizacja i PV</span><span>0.5-2 dni</span><span>Brak danych o panelach, kilka polaci, zacienienie</span><span>Parametry prognozy PV</span></div>
+        <div role="row"><span>Prognoza PV</span><span>2-5 dni start</span><span>Zachmurzenie, brak historii, ustawienie paneli</span><span>Prognoza na kolejne godziny</span></div>
+        <div role="row"><span>Kalibracja</span><span>2-4 tygodnie obserwacji</span><span>Malo slonca, nietypowe dni, braki danych</span><span>Lepszy model lokalny</span></div>
+        <div role="row"><span>Tryb suchy decyzji</span><span>3-7 dni</span><span>Sprzeczne cele, zle progi, brak raportow</span><span>Decyzje bez ryzyka</span></div>
+        <div role="row"><span>Sterowanie fizyczne</span><span>2-10 dni</span><span>Niejasne komendy, gwarancja, bezpieczenstwo</span><span>Automatyka wykonawcza</span></div>
+      </div>
+    </section>
+
+    <section id="ryzyka" class="section">
+      <p class="eyebrow">Glowne problemy</p>
+      <h2>Najtrudniejsze sa granice: dane z urzadzen, taryfy i bezpieczne sterowanie.</h2>
+      <div class="risk-grid">
+        <article>
+          <h3>Falownik nie ma wygodnego API</h3>
+          <p>Wiele urzadzen nie daje prostego lokalnego dostepu. Czasem trzeba korzystac z eksportow, chmury, Modbus albo obejsc panel webowy.</p>
+        </article>
+        <article>
+          <h3>Czas i strefy potrafia zepsuc wyniki</h3>
+          <p>Godziny letnie, polnoc, rozne formaty dat i opoznienia danych moga rozjechac prognoze z rzeczywistoscia.</p>
+        </article>
+        <article>
+          <h3>Taryfa jest bardziej zlozona niz wyglada</h3>
+          <p>Dla automatyki nie wystarczy wiedziec, ze jest G13. Trzeba znac konkretna cene w konkretnej godzinie.</p>
+        </article>
+        <article>
+          <h3>Prognoza PV wymaga pokory</h3>
+          <p>Slonce jest latwiejsze, chmury sa trudne. Model musi miec historie bledow i mozliwosc korekty.</p>
+        </article>
+        <article>
+          <h3>Sterowanie wymaga trybu awaryjnego</h3>
+          <p>Wlasciciel musi zawsze moc wrocic do recznego sterowania albo bezpiecznego profilu producenta.</p>
+        </article>
+        <article>
+          <h3>Nie wszystko warto automatyzowac od razu</h3>
+          <p>Najpierw raporty i tryb suchy. Automatyka bez zaufania do danych jest szybka, ale niekoniecznie madra.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="warianty" class="section section-soft">
+      <p class="eyebrow">Trzy warianty wdrozenia</p>
+      <h2>Nie kazdy potrzebuje od razu pelnego sterowania.</h2>
+      <div class="variant-grid">
+        <article>
+          <h3>Read-only</h3>
+          <p>System tylko czyta dane, liczy prognozy i tworzy raporty. Najbezpieczniejszy start i najlepszy etap dla walidacji.</p>
+          <strong>Najlepsze dla:</strong>
+          <span>pierwszego wdrozenia, audytu rachunkow, sprawdzania PV.</span>
+        </article>
+        <article>
+          <h3>Rekomendacje</h3>
+          <p>System mowi, co by zrobil: kiedy ladowac, sprzedac, zachowac baterie lub uzyc taniej taryfy.</p>
+          <strong>Najlepsze dla:</strong>
+          <span>wlasciciela, ktory chce miec kontrole, ale juz korzystac z analizy.</span>
+        </article>
+        <article>
+          <h3>Pelna automatyka</h3>
+          <p>System wysyla polecenia do falownika, baterii i auta. Wymaga monitoringu, blokad i zaufania do danych.</p>
+          <strong>Najlepsze dla:</strong>
+          <span>instalacji z dobra historia, jasnym API i procedura awaryjna.</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="relacje" class="section closing">
+      <p class="eyebrow">Pozostale opisy</p>
+      <h2>Ta strona jest druga w serii.</h2>
+      <p>
+        `opis_user` wyjasnia, co system robi i dlaczego jest przydatny. `opis_owner` pomaga ocenic wdrozenie u siebie.
+        `opis_developer` jest dla osoby, ktora chce wejsc w kod, poprawiac modele, dopisywac integracje albo
+        przygotowac wersje bardziej open source.
+      </p>
+      <div class="link-row">
+        <a href="../opis_user/index.html">Wroc do opis_user</a>
+        <a href="../opis_developer/index.html">Przejdz do opis_developer</a>
+        <a href="../index2.html">Panel index2</a>
+      </div>
+      <div class="sources">
+        <p>
+          Punkty odniesienia: Home Assistant opisuje instalacje na wlasnym sprzecie, Raspberry Pi, x86-64, kontenerach
+          i VM; evcc deklaruje instalacje na Linux/Raspberry Pi, macOS, Docker i manualnie; Open-Meteo udostepnia
+          m.in. prognozy godzinowe, chmury low/mid/high oraz zmienne promieniowania slonecznego.
+        </p>
+        <a href="https://www.home-assistant.io/installation/" target="_blank" rel="noopener">Home Assistant installation</a>
+        <a href="https://docs.evcc.io/en/docs/installation/" target="_blank" rel="noopener">evcc installation</a>
+        <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener">Open-Meteo docs</a>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wroc na gore">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

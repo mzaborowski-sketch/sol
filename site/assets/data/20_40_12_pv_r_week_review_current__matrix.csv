@@ -11,5 +11,5 @@ hour;reference_r;2026-07-06_r;2026-07-06_dev_pct;2026-07-06_set;2026-07-06_inclu
 16;7.0000;;;;;;;;;;;;;;;;2.3132;-67.0;red;n;below_reference_minus_10_pct;;;;;;4.9223;-29.7;red;n;below_reference_minus_10_pct;;;;;
 17;6.7000;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 18;5.8000;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-19;4.4000;;;;;;;;;;;12.9944;195.3;red;n;above_reference_plus_20_pct;;;;;;;;;;;;;;;;;;;;
+19;4.4000;;;;;;;;;;;12.9944;195.3;red;n;above_reference_plus_20_pct;;;;;;;;;;;8.5526;94.4;red;n;above_reference_plus_20_pct;;;;;
 20;2.6000;;;;;;;;;;;1.6807;-35.4;red;n;below_reference_minus_10_pct;;;;;;1.8519;-28.8;red;n;below_reference_minus_10_pct;;;;;;;;;;

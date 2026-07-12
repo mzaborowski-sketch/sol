@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opis systemu energii - developer</title>
+  <meta name="description" content="Dokumentacja developerska systemu zarzadzania energia PV, bateria, taryfami, prognozami i automatyka.">
+  <meta name="theme-color" content="#16324f">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#start" aria-label="Poczatek strony">
+      <span class="brand-mark">NIA</span>
+      <span class="brand-text">opis_developer</span>
+    </a>
+    <nav class="topnav" aria-label="Nawigacja strony">
+      <a href="../opis_user/index.html">User</a>
+      <a href="../opis_owner/index.html">Owner</a>
+      <a href="#architektura">Architektura</a>
+      <a href="#kontrakty">Kontrakty</a>
+      <a href="#zadania">Zadania</a>
+      <a href="#testy">Testy</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main id="start">
+    <section class="developer-hero">
+      <div class="developer-hero-content">
+        <p class="eyebrow">Dla osoby rozwijajacej kod</p>
+        <h1>Jak wejsc w system, nie zgubic sensu i bezpiecznie dopisywac nowe elementy.</h1>
+        <p class="lead">
+          To jest przewodnik dla developera, integratora albo zaawansowanego ownera. Pokazuje, jak myslec o kodzie,
+          danych, adapterach, prognozach, raportach, orchestratorach i automatyce wykonawczej. Celem nie jest opis
+          kazdej funkcji, tylko zasady, dzieki ktorym system da sie rozwijac bez zamieniania go w niekontrolowany zbior skryptow.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#architektura">Wejdz w architekture</a>
+          <a class="button secondary" href="../opis_owner/index.html">Wroc do wdrozenia</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dev-warning">
+      <div>
+        <p class="eyebrow">Zanim dotkniesz kodu</p>
+        <h2>Ten system steruje energia, wiec blad nie jest tylko bledem w raporcie.</h2>
+        <p>
+          Rozwijanie tego systemu wymaga innego odruchu niz zwykly refactor strony WWW. Czesci raportowe mozna poprawiac
+          dosc swobodnie, ale elementy automatyki moga zmienic prace falownika, baterii albo ladowania auta. Dlatego kazda
+          zmiana powinna miec tryb suchy, log, status, mozliwosc powrotu i jasny zakres danych, ktorych dotyka.
+        </p>
+        <p>
+          Najlepsza zasada: najpierw czytaj i raportuj, potem rekomenduj, dopiero na koncu steruj. Jesli nowy modul nie
+          potrafi pokazac, co zrobil i na jakich danych, nie powinien miec prawa wysylac komend do urzadzen.
+        </p>
+      </div>
+      <aside class="dev-card danger">
+        <h3>Developer prime directive</h3>
+        <p>
+          Nie zaczynaj od ulepszania algorytmu. Zacznij od zrozumienia kontraktu danych, statusu, harmonogramu i miejsca,
+          w ktorym wynik danego modulu jest konsumowany przez kolejny modul.
+        </p>
+      </aside>
+    </section>
+
+    <section class="section audience-strip" aria-label="Seria opisow">
+      <article>
+        <strong><a href="../opis_user/index.html">opis_user</a></strong>
+        <span>Co system robi, jakie daje korzysci i jak go czytac jako uzytkownik.</span>
+      </article>
+      <article>
+        <strong><a href="../opis_owner/index.html">opis_owner</a></strong>
+        <span>Jak ocenic wdrozenie u siebie, jakie sa wymagania i etapy prac.</span>
+      </article>
+      <article>
+        <strong>opis_developer</strong>
+        <span>Ta strona: jak rozwijac kod, adaptery, modele, raporty i automatyke.</span>
+      </article>
+    </section>
+
+    <section id="architektura" class="section section-dark">
+      <p class="eyebrow">Mentalny model systemu</p>
+      <h2>To jest pipeline danych i decyzji, nie jedna aplikacja.</h2>
+      <p class="section-lead light">
+        System sklada sie z modulow, ktore komunikuja sie glownie przez pliki: CSV, INI, HTML, JSON, logi i statusy.
+        To jest proste, jawne i latwe do audytu, ale wymaga dyscypliny: kazdy modul musi jasno mowic, co czyta,
+        co zapisuje, kiedy dziala i kto korzysta z jego wyniku.
+      </p>
+
+      <div class="architecture-line" aria-label="Glowne przejscie danych">
+        <span>Zrodla</span>
+        <span>Adaptery</span>
+        <span>Normalizacja</span>
+        <span>Modele</span>
+        <span>Raporty</span>
+        <span>Decyzje</span>
+        <span>Sterowanie</span>
+        <span>Audyt</span>
+      </div>
+
+      <div class="module-map">
+        <article><strong>00</strong><h3>NIA system</h3><p>Statusy, opisy skryptow, instrukcje AI, standardy, centralna dokumentacja.</p></article>
+        <article><strong>05</strong><h3>Taryfy</h3><p>Adaptery cen zakupu i sprzedazy: Tauron/G13, PSE/RCE, pliki godzinowe.</p></article>
+        <article><strong>10</strong><h3>Dane z instalacji</h3><p>Odczyt SolaX, parsery, CSV rzeczywiste, diagnostyka synchronizacji.</p></article>
+        <article><strong>20</strong><h3>Analizy</h3><p>Bilanse, prognozy pogody, PV, zuzycie, ceny, rekomendacje i logika decyzji.</p></article>
+        <article><strong>40</strong><h3>Raporty</h3><p>Warstwa dla czlowieka: zuzycie, kup/sprzedaj, prognoza vs rzeczywistosc.</p></article>
+        <article><strong>80</strong><h3>Automatyka</h3><p>Profile falownika, wysylka komend, EV, surplus charging, tania taryfa.</p></article>
+        <article><strong>84</strong><h3>WWW</h3><p>Dashboardy, publikacja, index2, strony statyczne.</p></article>
+        <article><strong>85</strong><h3>Orchestrator</h3><p>Glowny harmonogram: metronome, starts, args, locki, logi, kontrola uruchomien.</p></article>
+        <article><strong>90</strong><h3>Utilities</h3><p>Publikacja HTML, backup kluczowych plikow, git, porzadkowanie BOM i uprawnien.</p></article>
+        <article><strong>95</strong><h3>Errors</h3><p>Miejsce na centralna warstwe bledow i alarmow.</p></article>
+      </div>
+    </section>
+
+    <section id="kontrakty" class="section">
+      <p class="eyebrow">Kontrakty developerskie</p>
+      <h2>Najwazniejsze nie jest to, jak modul liczy. Najwazniejsze, co obiecuje innym modulom.</h2>
+      <div class="contract-grid">
+        <article>
+          <h3>Kontrakt modulu</h3>
+          <p>Kazdy modul powinien miec przewidywalny zestaw: skrypt `.py`, konfiguracje `.ini`, log, pliki wynikowe i status.</p>
+          <ul>
+            <li>nazwa zgodna z numeracja systemu,</li>
+            <li>jawne wejscia i wyjscia,</li>
+            <li>blad widoczny w logu i statusie,</li>
+            <li>brak ukrytej zaleznosci od katalogu roboczego.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Kontrakt danych</h3>
+          <p>CSV powinien byc stabilny, czytelny i odporny na kolejne uruchomienia. Historia nie powinna znikac przy zwyklym rerunie.</p>
+          <ul>
+            <li>timestamp z jednoznaczna strefa czasu albo lokalnym standardem,</li>
+            <li>kolumny nie zmieniaja znaczenia,</li>
+            <li>nowe kolumny sa dodawane kompatybilnie,</li>
+            <li>braki danych sa jawne, a nie cicho zerowane.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Kontrakt konfiguracji</h3>
+          <p>INI powinien przenosic roznice lokalne: sciezki, lokalizacje, taryfy, parametry PV, tryby pracy i progi.</p>
+          <ul>
+            <li>sekrety nie powinny byc mieszane z kodem,</li>
+            <li>BOM/encoding musi byc obslugiwany,</li>
+            <li>domyslne wartosci powinny byc bezpieczne,</li>
+            <li>tryb testowy powinien nie sterowac urzadzeniami.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Kontrakt raportu</h3>
+          <p>Raport nie jest ozdoba. To dowod, ze modul dziala i ze wynik mozna zrozumiec po czasie.</p>
+          <ul>
+            <li>aktualny HTML dla uzytkownika,</li>
+            <li>archiwum dzienne tam, gdzie decyzje trzeba odtworzyc,</li>
+            <li>tabele bledow i dane zrodlowe,</li>
+            <li>linki z index2 lub strony opisowej.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="dane" class="section section-soft">
+      <p class="eyebrow">Warstwa danych</p>
+      <h2>Adapter to granica miedzy chaosem urzadzenia a porzadkiem systemu.</h2>
+      <div class="text-columns">
+        <p>
+          W obecnej instalacji najwazniejszy adapter dotyczy SolaX. To nie znaczy, ze system jest z definicji tylko
+          dla SolaX. Oznacza to, ze dla innego falownika trzeba napisac analogiczna warstwe: pobierz surowe dane,
+          sparsuj je, przelicz jednostki, zapisz aktualny stan i historie w formacie, ktory rozumie reszta systemu.
+        </p>
+        <p>
+          Adapter powinien miec dwie osobne odpowiedzialnosci: `fetch raw` i `parse normalized`. Raw jest dowodem,
+          co przyszlo ze zrodla. Normalized jest kontraktem dla systemu. Nie mieszamy tych warstw, bo wtedy nie wiadomo,
+          czy blad pochodzi ze zrodla, parsera, czy modelu.
+        </p>
+        <p>
+          Najgorszy adapter to taki, ktory dziala tylko wtedy, gdy wszystko jest idealnie: internet, chmura, format,
+          logowanie i godzina. Dobry adapter potrafi zapisac blad, nie nadpisac dobrych danych pustymi, oraz pokazac,
+          kiedy ostatni raz mial wiarygodny odczyt.
+        </p>
+      </div>
+      <div class="data-contract">
+        <div><strong>Raw</strong><span>Surowe odpowiedzi, zrzuty, JSON, tekst, HTML, screenshoty, log pobrania.</span></div>
+        <div><strong>Parse</strong><span>Mapowanie nazw, jednostek, timestampow, statusow i wartosci liczbowych.</span></div>
+        <div><strong>Current</strong><span>Najnowszy stan, latwy do uzycia przez raporty i logike.</span></div>
+        <div><strong>History</strong><span>Append-only lub kontrolowana historia do walidacji, kalibracji i audytu.</span></div>
+        <div><strong>Status</strong><span>OK/WARN/ERROR, czas ostatniego sukcesu, liczba rekordow, opis bledow.</span></div>
+      </div>
+    </section>
+
+    <section id="prognozy" class="section">
+      <p class="eyebrow">Modele i prognozy</p>
+      <h2>Model PV powinien byc lokalny, mierzalny i falsyfikowalny.</h2>
+      <div class="model-grid">
+        <article>
+          <h3>Pogoda</h3>
+          <p>Open-Meteo daje prognoze godzinowa: promieniowanie, temperature, opad, cloud cover oraz cloud low/mid/high. To wejscie, nie gotowa decyzja.</p>
+        </article>
+        <article>
+          <h3>Krzywa r</h3>
+          <p>Krzywa `r` tlumaczy, jak instalacja zachowuje sie wzgledem promieniowania i godziny. To lokalny podpis instalacji.</p>
+        </article>
+        <article>
+          <h3>Chmury</h3>
+          <p>Cloud cover calkowity bywa za ubogi. Rozdzielenie chmur niskich, srednich i wysokich daje przestrzen do lepszej kalibracji.</p>
+        </article>
+        <article>
+          <h3>Walidacja</h3>
+          <p>Prognoza bez porownania z rzeczywistoscia jest opinia. Potrzebne sa bledy godzinowe, dzienne i remaining-day.</p>
+        </article>
+        <article>
+          <h3>Optymalizacja</h3>
+          <p>Wspolczynniki powinny byc dopasowywane na historii, ale z ograniczeniami, zeby model nie uczyl sie szumu.</p>
+        </article>
+        <article>
+          <h3>Diagnostyka AI</h3>
+          <p>Na koniec dnia warto generowac pakiet: dane, metryki, pytania audytowe i instrukcje, czego szukac w bledach.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="automatyka" class="section section-dark">
+      <p class="eyebrow">Automatyka wykonawcza</p>
+      <h2>Pipeline decyzji musi byc bardziej konserwatywny niz pipeline raportow.</h2>
+      <div class="automation-flow">
+        <div><strong>Forecast</strong><span>PV, zuzycie, ceny, SOC</span></div>
+        <div><strong>Recommendation</strong><span>co ma sens energetycznie</span></div>
+        <div><strong>Logic</strong><span>reguly, progi, priorytety</span></div>
+        <div><strong>Command</strong><span>profil falownika lub EV</span></div>
+        <div><strong>Sender</strong><span>wysylka do urzadzenia</span></div>
+        <div><strong>Audit</strong><span>historia, status, efekt</span></div>
+      </div>
+      <div class="safety-grid">
+        <article>
+          <h3>Tryb suchy</h3>
+          <p>Kazda nowa decyzja powinna najpierw dzialac jako rekomendacja. Raport pokazuje, co system by zrobil, ale nie wysyla komendy.</p>
+        </article>
+        <article>
+          <h3>Idempotencja</h3>
+          <p>Rerun nie powinien przypadkowo wyslac dwoch sprzecznych komend. Komendy musza miec stan, historie i okno waznosci.</p>
+        </article>
+        <article>
+          <h3>Manual override</h3>
+          <p>Owner musi moc zatrzymac automat i wrocic do profilu recznego albo fabrycznego bez dotykania kodu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="zadania" class="section">
+      <p class="eyebrow">Typowe zadania developerskie</p>
+      <h2>Kliknij scenariusz i zobacz, jak go robic bezpiecznie.</h2>
+      <div class="task-tabs" role="tablist" aria-label="Typowe zadania">
+        <button class="task-button is-active" data-task="inverter" type="button">Nowy falownik</button>
+        <button class="task-button" data-task="tariff" type="button">Nowa taryfa</button>
+        <button class="task-button" data-task="forecast" type="button">Model PV</button>
+        <button class="task-button" data-task="report" type="button">Nowy raport</button>
+        <button class="task-button" data-task="automation" type="button">Regula automatyki</button>
+      </div>
+      <div class="task-panel">
+        <h3 id="task-title">Nowy falownik: najpierw adapter, potem sterowanie.</h3>
+        <p id="task-text">
+          Nie zaczynaj od wysylania komend. Najpierw zbuduj read-only adapter, ktory stabilnie pobiera dane i zapisuje
+          current/history. Dopiero po walidacji danych wolno myslec o senderze.
+        </p>
+        <div class="task-columns">
+          <article>
+            <strong>Kroki</strong>
+            <ol id="task-steps">
+              <li>Ustal dostep: lokalny, chmura, VPN, IP, Modbus, eksport.</li>
+              <li>Zapisz raw data bez interpretacji.</li>
+              <li>Napisz parser do wspolnego formatu.</li>
+              <li>Dodaj status, log i test na puste dane.</li>
+              <li>Porownaj z aplikacja producenta przez kilka dni.</li>
+            </ol>
+          </article>
+          <article>
+            <strong>Definition of done</strong>
+            <ul id="task-dod">
+              <li>current i history sa aktualne,</li>
+              <li>braki danych nie kasuja historii,</li>
+              <li>status pokazuje ostatni sukces,</li>
+              <li>raport porownawczy ma sens.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testy" class="section section-soft">
+      <p class="eyebrow">Testowanie i audyt</p>
+      <h2>Tu testy sa mieszanka techniki, danych i zdrowego rozsadku.</h2>
+      <div class="test-grid">
+        <article>
+          <h3>Test skladni</h3>
+          <p>`python -m py_compile` dla zmienionych skryptow. To minimum, nie dowod poprawnosci.</p>
+        </article>
+        <article>
+          <h3>Test danych</h3>
+          <p>Sprawdz kolumny, timestampy, liczbe rekordow, puste wartosci i czy historia nie zostala przypadkiem ucieta.</p>
+        </article>
+        <article>
+          <h3>Test raportu</h3>
+          <p>HTML istnieje, assety istnieja, linki wzgledne dzialaja, a wykres pokazuje realne dane, nie puste osie.</p>
+        </article>
+        <article>
+          <h3>Test decyzji</h3>
+          <p>Porownaj rekomendacje z oczekiwaniem czlowieka. Dla nietypowych przypadkow zapisuj test case.</p>
+        </article>
+        <article>
+          <h3>Test orchestratora</h3>
+          <p>Sprawdz, czy zadanie ma wlasciwy metronome/starts/args i czy nie uruchamia sie za czesto.</p>
+        </article>
+        <article>
+          <h3>Test bezpieczenstwa</h3>
+          <p>Upewnij sie, ze blad prognozy albo brak danych nie powoduje agresywnej komendy do urzadzenia.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="orchestrator" class="section">
+      <p class="eyebrow">85 orchestrator</p>
+      <h2>Harmonogram jest czescia architektury, nie dodatkiem.</h2>
+      <p>
+        Orchestrator powinien byc traktowany jak centralny rejestr tego, co zyje. Modul moze byc poprawny sam w sobie,
+        ale jesli uruchamia sie w zlym rytmie, zlymi argumentami albo po danych, ktore jeszcze nie sa gotowe, caly wynik
+        bedzie mylacy.
+      </p>
+      <div class="orchestrator-rules">
+        <article><strong>metronome</strong><span>Do zadan cyklicznych: co kilka minut, godzin, dni.</span></article>
+        <article><strong>starts</strong><span>Do zadan o konkretnej godzinie, np. archiwum na koniec dnia.</span></article>
+        <article><strong>args</strong><span>Do trybow typu `--mode current` albo `--mode daily_archive`.</span></article>
+        <article><strong>lock</strong><span>Ochrona przed nakladaniem uruchomien.</span></article>
+        <article><strong>log</strong><span>Dowod wykonania i pierwsze miejsce szukania bledu.</span></article>
+      </div>
+    </section>
+
+    <section id="opensource" class="section section-dark">
+      <p class="eyebrow">Droga do open source</p>
+      <h2>Najpierw trzeba oddzielic metode od prywatnej instalacji.</h2>
+      <div class="opensource-grid">
+        <article>
+          <h3>Do wydzielenia</h3>
+          <p>Silnik modulow, standard statusow, adapter interface, publisher HTML, walidatory CSV, orchestrator, model PV.</p>
+        </article>
+        <article>
+          <h3>Do ukrycia</h3>
+          <p>Sekrety, adresy IP, lokalne sciezki NAS, prywatne dane zuzycia, tokeny, konta producentow.</p>
+        </article>
+        <article>
+          <h3>Do opisania</h3>
+          <p>Jak dodac nowy falownik, nowa taryfe, nowy raport, nowy sender i jak przejsc od read-only do automatyki.</p>
+        </article>
+        <article>
+          <h3>Do przetestowania</h3>
+          <p>Przykladowe dane demo, regresja modeli, dry-run automatyki, symulacja brakow danych i bledow prognozy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section closing">
+      <p class="eyebrow">Plan wejscia dla developera</p>
+      <h2>Najlepsze pierwsze trzy dni pracy.</h2>
+      <div class="day-grid">
+        <article>
+          <h3>Dzien 1: czytanie systemu</h3>
+          <p>Przejdz `index2`, statusy, raporty, log orchestratora i przeplyw danych od 05/10 do 20/40/80. Nie zmieniaj jeszcze kodu.</p>
+        </article>
+        <article>
+          <h3>Dzien 2: maly raport</h3>
+          <p>Dodaj albo popraw element raportowy bez wplywu na sterowanie. Naucz sie publikacji HTML, linkow i statusu.</p>
+        </article>
+        <article>
+          <h3>Dzien 3: adapter lub walidacja</h3>
+          <p>Dotknij danych: walidator CSV, diagnostyka brakow, porownanie forecast vs actual albo read-only adapter.</p>
+        </article>
+      </div>
+      <div class="link-row">
+        <a href="../opis_user/index.html">Opis user</a>
+        <a href="../opis_owner/index.html">Opis owner</a>
+        <a href="../index2.html">Panel index2</a>
+        <a href="../00_statusy.html">Statusy systemu</a>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wroc na gore">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>
