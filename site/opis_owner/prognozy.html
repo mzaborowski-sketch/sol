@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prognozy PV - opis owner</title>
+  <meta name="description" content="Opis prognozy PV, danych Open-Meteo, krzywej r, zachmurzenia i walidacji prognoz produkcji.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="zuzycie.html">Zużycie</a>
+      <a href="sterowanie.html">Sterowanie</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero forecast">
+      <div>
+        <p class="eyebrow">04 · Prognozy</p>
+        <h1>Prognoza PV to pogoda przetłumaczona na konkretny dach.</h1>
+        <p class="lead">
+          System nie pyta tylko, czy będzie słońce. Pyta, ile energii może powstać w kolejnych godzinach, czy ta prognoza
+          jest wiarygodna i jak zmienić decyzje o baterii, aucie oraz sprzedaży energii.
+        </p>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Dlaczego nie wystarczy zwykła prognoza pogody?</h2>
+        <p>
+          Zwykła prognoza pogody jest opisana językiem człowieka: zachmurzenie, temperatura, opady, wiatr. Automatyka
+          energetyczna potrzebuje języka instalacji: ile kWh powstanie od 9:00 do 10:00, ile w południe, czy produkcja
+          przekroczy zużycie domu, czy bateria będzie miała gdzie przyjąć nadwyżkę. Ta sama pogoda może dać inne wyniki
+          na dwóch dachach, bo liczą się azymut, kąt paneli, moc falownika, zacienienie, temperatura i lokalne warunki.
+        </p>
+        <p>
+          Dlatego system pobiera dane pogodowe, ale nie traktuje ich jako gotowej prognozy produkcji. Dane z Open-Meteo
+          są wejściem do lokalnego modelu. Model przelicza promieniowanie i zachmurzenie na przewidywaną produkcję tej
+          konkretnej instalacji, a potem porównuje prognozę z rzeczywistą produkcją.
+        </p>
+
+        <h2>Co bierzemy z Open-Meteo?</h2>
+        <p>
+          Najważniejsze są zmienne opisujące dostępność światła: promieniowanie, położenie słońca pośrednio widoczne
+          w godzinie dnia, temperatura oraz zachmurzenie. Ostatnio szczególnie interesujące stały się poziomy chmur:
+          niskie, średnie i wysokie. To ważne, bo 80% chmur wysokich nie oznacza tego samego co 80% chmur niskich.
+          Niskie chmury potrafią mocno zgasić produkcję, wysokie mogą tylko rozproszyć światło, a średnie bywają gdzieś
+          pomiędzy.
+        </p>
+
+        <table class="owner-table">
+          <thead>
+            <tr><th>Zmienna</th><th>Znaczenie</th><th>Ryzyko błędu</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Promieniowanie</td><td>Podstawowe wejście do przewidywania mocy PV.</td><td>Błąd lokalny lub modelowy może przesunąć całą krzywą.</td></tr>
+            <tr><td>Cloud cover</td><td>Ogólne zachmurzenie.</td><td>Za mało mówi o typie chmur.</td></tr>
+            <tr><td>Cloud low</td><td>Chmury niskie, zwykle najbardziej bolesne dla PV.</td><td>Może tłumaczyć duże niedoszacowania lub przeszacowania.</td></tr>
+            <tr><td>Cloud mid</td><td>Chmury średnie.</td><td>Wpływ bywa zmienny i wymaga kalibracji lokalnej.</td></tr>
+            <tr><td>Cloud high</td><td>Chmury wysokie.</td><td>Duży procent nie zawsze oznacza dramatyczny spadek produkcji.</td></tr>
+            <tr><td>Temperatura</td><td>Wpływa na sprawność paneli.</td><td>Przy wysokiej temperaturze PV może dawać mniej niż sugeruje słońce.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Krzywa r i współczynnik cloud</h2>
+        <p>
+          Krzywa <code>r</code> jest lokalnym podpisem instalacji. W uproszczeniu opisuje, jak instalacja zachowuje się
+          w różnych porach dnia przy dobrych warunkach. Jest potrzebna, bo dach ma własną geometrię: rano może produkować
+          inaczej niż po południu, a południe nie zawsze jest idealnym maksimum. <code>r</code> pomaga przeliczyć warunki
+          pogodowe na realistyczny kształt dziennej krzywej.
+        </p>
+        <p>
+          Współczynnik cloud koryguje tę krzywą o zachmurzenie. To prawdopodobnie największe źródło błędów, bo chmury są
+          trudne lokalnie. Dwie prognozy z takim samym procentem zachmurzenia mogą dać inną produkcję, jeżeli różnią się
+          typem chmur, ich grubością, godziną przejścia albo błędem położenia frontu. Dlatego obecny kierunek rozwoju jest
+          sensowny: rozdzielić chmury na low/mid/high i sprawdzić, czy model typu <code>a*low + b*mid + c*high</code>
+          lepiej tłumaczy błędy niż jeden wspólny cloud cover.
+        </p>
+
+        <h2>Kalibracja i walidacja</h2>
+        <p>
+          Sama prognoza nie wystarczy. Każdego dnia trzeba porównać prognozowaną produkcję z rzeczywistą. Najpierw dziennie:
+          ile kWh przewidywaliśmy, ile wyszło, jaki był błąd procentowy. Potem godzinowo: w których godzinach model się
+          mylił i czy błąd był związany z chmurami, promieniowaniem, temperaturą albo nietypowym zachowaniem falownika.
+        </p>
+        <p>
+          Dla sterowania kluczowa jest prognoza poranna na kilkanaście godzin, bo wtedy system planuje SOC baterii i
+          strategię dla auta. Ale w ciągu dnia prognoza powinna być aktualizowana: 11 godzin do przodu, 10, 9 i tak dalej.
+          Nie chodzi o to, żeby codziennie przebudowywać całą strategię od zera, tylko żeby korygować decyzje, gdy pogoda
+          zaczyna odbiegać od porannego planu.
+        </p>
+
+        <h2>Co to daje właścicielowi?</h2>
+        <p>
+          Dobra prognoza PV zmniejsza liczbę decyzji „na wszelki wypadek”. System nie musi trzymać zbyt dużo energii w
+          baterii, jeżeli wie, że za chwilę będzie nadwyżka. Nie musi też zbyt agresywnie sprzedawać energii rano, jeżeli
+          popołudniu ma przyjść zachmurzenie i dom będzie potrzebował baterii. To nie jest tylko ładny wykres. To wejście
+          do realnej oszczędności i stabilniejszego działania automatyki.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Zobacz prognozy</h3>
+          <a href="../20_40_x_forecast_modified_prototype.html">Prototyp chmur low/mid/high</a>
+          <a href="../40_31_pv_forecast_actual.html">Prognoza vs produkcja</a>
+          <a href="../20_50_pv_use_prices_forecast.html">PV + zużycie + ceny</a>
+        </div>
+        <figure class="side-figure">
+          <img src="../opis_user/assets/img/pv_r_main.png" alt="Krzywa r PV">
+          <figcaption>Krzywa r pokazuje lokalny charakter instalacji PV, a zachmurzenie koryguje jej chwilowy poziom.</figcaption>
+        </figure>
+        <div class="side-card accent-forecast">
+          <h3>Najważniejszy test</h3>
+          <p>
+            Właściciel powinien widzieć prostą odpowiedź: ile system przewidział rano, ile wyszło naprawdę i czy błąd
+            pochodził głównie z chmur, promieniowania czy danych produkcji.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

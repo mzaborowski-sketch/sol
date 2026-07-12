@@ -1,10 +1,10 @@
 ﻿metric_idx;metric_y;metric_label;metric_value_kWh;metric_value_text
-1;9;Zużycie domu;7.300;7,3 kWh
+1;9;Zużycie domu;7.400;7,4 kWh
 2;8;EV;0.000;0 kWh
-3;7;Zużycie łączne;7.300;7 kWh
-4;6;PV;7.300;7 kWh
+3;7;Zużycie łączne;7.400;7 kWh
+4;6;PV;8.100;8 kWh
 5;5;Import;0.100;0 kWh
 6;4;Eksport;2.900;3 kWh
-7;3;Ładowanie magazynu;2.900;3 kWh
-8;2;Rozładowanie magazynu;10.100;10 kWh
-9;1;Straty systemu (29,66%);4.302;4,3 kWh
+7;3;Ładowanie magazynu;3.400;3 kWh
+8;2;Rozładowanie magazynu;10.300;10 kWh
+9;1;Straty systemu (30,27%);4.472;4,5 kWh

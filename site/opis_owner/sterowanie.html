@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sterowanie energią - opis owner</title>
+  <meta name="description" content="Opis sterowania falownikiem, bateria i autem na podstawie cen, prognoz PV i zuzycia.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="ceny.html">Ceny</a>
+      <a href="prognozy.html">Prognozy</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero control">
+      <div>
+        <p class="eyebrow">05 · Sterowanie</p>
+        <h1>Na końcu system musi podjąć decyzję i przełożyć ją na urządzenia.</h1>
+        <p class="lead">
+          Sterowanie jest ostatnim etapem: po cenach, danych, zużyciu, prognozie i trybie suchym. Dopiero wtedy można
+          bezpiecznie ruszać falownik, baterię albo auto.
+        </p>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Co właściwie znaczy „sterowanie”?</h2>
+        <p>
+          Sterowanie nie oznacza, że system zawsze robi jedną prostą rzecz: „ładuj, gdy jest słońce”. W praktyce system
+          musi rozstrzygać konflikty. Energia może być potrzebna domowi wieczorem, samochód może wymagać ładowania przed
+          wyjazdem, ceny sprzedaży mogą być wysokie w konkretnym slocie, a prognoza PV może mówić, że jutro będzie słabo.
+          Sterowanie jest więc decyzją w czasie: co zrobić teraz, żeby za kilka godzin nie żałować.
+        </p>
+        <p>
+          Dlatego dobra automatyka łączy kilka warstw: ceny zakupu, ceny sprzedaży, prognozę PV, przewidywane zużycie domu,
+          stan baterii, ograniczenia falownika, stan auta i ręczne priorytety właściciela. Dopiero z tego powstaje komenda:
+          ładuj baterię, rozładuj, ogranicz eksport, sprzedaj w wybranym slocie, ładuj auto z PV albo poczekaj na tanią taryfę.
+        </p>
+
+        <h2>Bateria jako zasób ekonomiczny</h2>
+        <p>
+          Bateria nie jest tylko magazynem, który trzeba zawsze ładować, gdy świeci słońce. Jej wartość zależy od przyszłości.
+          Jeżeli za godzinę będzie dużo PV, pełna bateria może przeszkadzać, bo nie przyjmie nadwyżki. Jeżeli wieczorem
+          energia jest droga, bateria jest cenna. Jeżeli jutro będzie pochmurno, zbyt mocne rozładowanie dzisiaj może
+          wymusić drogi zakup energii rano.
+        </p>
+        <p>
+          Właśnie dlatego system potrzebuje prognozy 12-godzinnej rano i aktualizacji w ciągu dnia. Nie chodzi o idealne
+          przewidzenie przyszłości. Chodzi o to, żeby bateria nie pracowała przypadkowo. SOC powinien być wynikiem planu:
+          ile energii trzeba zostawić dla domu, ile można sprzedać, ile miejsca zostawić na PV i czy warto kupić energię
+          w taniej taryfie.
+        </p>
+
+        <table class="owner-table">
+          <thead>
+            <tr><th>Decyzja</th><th>Co system sprawdza</th><th>Przykład działania</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ładowanie baterii</td><td>Cena zakupu, prognoza PV, SOC, potrzeby wieczorne.</td><td>Kupuje tanio w nocy, jeśli rano ma być pochmurno.</td></tr>
+            <tr><td>Sprzedaż energii</td><td>RCE/PSE, depozyt, przewidywana nadwyżka, cena wieczorna.</td><td>Eksportuje w lepszym slocie zamiast od razu w południe.</td></tr>
+            <tr><td>Zachowanie energii</td><td>Prognoza zużycia domu i brak PV później.</td><td>Nie rozładowuje baterii do zera przed drogim wieczorem.</td></tr>
+            <tr><td>Ładowanie EV</td><td>Ręczny cel, dostępność auta, PV, taryfa, bateria.</td><td>Ładuje auto z nadwyżki albo w taniej strefie.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Falownik i profile pracy</h2>
+        <p>
+          Obecny system jest mocno powiązany z SolaX. To oznacza, że zna sposób przygotowania profili pracy, audytowania
+          komend i sprawdzania, czy urządzenie przyjęło ustawienia. Przy innym falowniku potrzebny będzie osobny sender:
+          mały moduł, który zamienia decyzję systemu na komendę zrozumiałą dla urządzenia.
+        </p>
+        <p>
+          Sender musi być traktowany ostrożnie. Powinien mieć tryb suchy, limity, logi, potwierdzenie wykonania i możliwość
+          szybkiego wyłączenia. Dla właściciela ważne jest, żeby w każdej chwili dało się odpowiedzieć na pytanie: jaka
+          decyzja została podjęta, na podstawie jakich danych i czy została wysłana do urządzenia.
+        </p>
+
+        <h2>Auto jako elastyczny odbiornik</h2>
+        <p>
+          Samochód elektryczny jest jednym z najważniejszych elementów systemu, bo może przesunąć duże zużycie w czasie.
+          Jeżeli auto musi być gotowe rano, priorytetem jest realizacja celu właściciela. Jeżeli stoi pod domem przez kilka
+          godzin, może być ładowane w najlepszym momencie: z nadwyżki PV, z taniej taryfy albo wtedy, gdy nie przeszkadza
+          baterii.
+        </p>
+        <p>
+          Ważne jest rozdzielenie trybów. Tryb automatyczny optymalizuje koszt i wykorzystanie PV. Tryb manualny pozwala
+          wpisać cel: do której godziny, ile kilometrów albo ile energii. System powinien umieć pogodzić oba światy:
+          szanować polecenie użytkownika, ale nadal wybierać najrozsądniejsze sloty ładowania.
+        </p>
+
+        <h2>Bezpieczeństwo i kontrola</h2>
+        <p>
+          Automatyka energetyczna musi być konserwatywna. Brak danych powinien prowadzić do zachowania bezpiecznego, a nie
+          do agresywnej komendy. Jeżeli prognoza jest stara, status falownika niepewny albo cena nie została pobrana, system
+          powinien wstrzymać sterowanie albo przejść w prosty tryb awaryjny.
+        </p>
+        <p>
+          Dobra ścieżka wdrożenia to: raporty read-only, potem rekomendacje, potem pojedyncze akcje z audytem, a dopiero
+          później pełniejsza automatyka. Właściciel powinien mieć możliwość ręcznego zatrzymania sterowania i zobaczenia
+          historii decyzji. To buduje zaufanie dużo lepiej niż obietnica, że algorytm „sam wie najlepiej”.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Strony wykonawcze</h3>
+          <a href="../80_10_05_solax_profile_executor_audit.html">Audyt profilu SolaX</a>
+          <a href="../car_dashboard.html">Panel auta</a>
+          <a href="../00_statusy.html">Statusy systemu</a>
+        </div>
+        <div class="side-card accent-control">
+          <h3>Zasada wdrożenia</h3>
+          <p>
+            Najpierw read-only, potem rekomendacje, potem pojedyncze sterowanie, dopiero na końcu pełna automatyka z audytem
+            i ręcznym wyłącznikiem.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

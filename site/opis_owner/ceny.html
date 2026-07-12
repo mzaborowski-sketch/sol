@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ceny i taryfy - opis owner</title>
+  <meta name="description" content="Wyjaśnienie mechanizmu tworzenia ceny zakupu i sprzedaży energii w systemie owner.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="zuzycie.html">Zużycie</a>
+      <a href="wdrozenie.html">Wdrożenie</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero price">
+      <div>
+        <p class="eyebrow">01 · Ceny i taryfy</p>
+        <h1>System najpierw musi wiedzieć, kiedy energia jest tania, droga albo warta sprzedaży.</h1>
+        <p class="lead">
+          Cena energii nie jest jedną liczbą. Dla automatyki trzeba osobno rozumieć koszt zakupu, wartość sprzedaży,
+          strefy taryfowe, dni świąteczne, ceny PSE/RCE, dystrybucję i zasady net-billingu.
+        </p>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Dlaczego to jest trudniejsze niż rachunek za prąd?</h2>
+        <p>
+          Człowiek widzi rachunek jako sumę pieniędzy za miesiąc. System sterujący baterią i samochodem potrzebuje
+          czegoś zupełnie innego: ceny dla każdej godziny albo każdego kwadransa. Dopiero wtedy może odpowiedzieć
+          na pytania: czy teraz opłaca się ładować auto, czy lepiej poczekać, czy warto zachować energię w baterii,
+          czy sprzedaż PV ma sens właśnie w tym slocie.
+        </p>
+        <p>
+          W obecnej instalacji najważniejsze są dwa kierunki: koszt zakupu energii w taryfie Tauron G13 oraz wartość
+          energii oddawanej do sieci według danych PSE/RCE i zasad net-billingu. Te dwie wartości nie są symetryczne.
+          Zakup energii to koszt dla domu. Sprzedaż energii tworzy depozyt prosumencki, który nie jest tym samym co
+          natychmiastowa wypłata gotówki.
+        </p>
+
+        <h2>Jak powstaje cena zakupu w G13?</h2>
+        <p>
+          Taryfa G13 jest taryfą strefową. To znaczy, że doba jest dzielona na okresy, w których obowiązują różne
+          ceny. System nie może więc zapisać „cena zakupu = 0,80 zł/kWh” i uznać sprawy za zakończoną. Musi ustalić,
+          jaki jest dzień, czy jest weekend albo święto, jaki jest sezon i do której strefy należy konkretna godzina.
+        </p>
+
+        <table class="owner-table">
+          <thead>
+            <tr><th>Element</th><th>Co oznacza</th><th>Po co systemowi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Strefa G13</td><td>Przedpołudnie, popołudnie albo pozostałe godziny.</td><td>Określa cenę energii czynnej i dystrybucji.</td></tr>
+            <tr><td>Kalendarz</td><td>Dzień roboczy, weekend, święto, sezon letni albo zimowy.</td><td>Zmienia przypisanie godzin do stref.</td></tr>
+            <tr><td>Cena energii</td><td>Część za samą energię czynną.</td><td>Pokazuje koszt zakupu od sprzedawcy.</td></tr>
+            <tr><td>Dystrybucja</td><td>Zmienny koszt dostarczenia energii.</td><td>Dopełnia praktyczny koszt 1 kWh.</td></tr>
+            <tr><td>Suma</td><td>Energia + dystrybucja dla slotu.</td><td>Jest najwygodniejszą liczbą dla automatyki.</td></tr>
+          </tbody>
+        </table>
+
+        <p>
+          W praktycznym raporcie G13 system rozbija dzień na sloty 15-minutowe. Dla każdego slotu zapisuje strefę,
+          cenę energii, cenę dystrybucji i sumę. Przykładowo dla dnia roboczego w raporcie mogą pojawiać się wartości
+          rzędu 0,630 zł/kWh w tańszej strefie, 0,910 zł/kWh w strefie pośredniej i 1,500 zł/kWh w drogiej strefie
+          wieczornej. W weekendzie wszystkie godziny mogą wyglądać inaczej, bo taryfa traktuje dzień wolny inaczej
+          niż dzień roboczy.
+        </p>
+
+        <h2>Jak powstaje wartość sprzedaży energii?</h2>
+        <p>
+          Druga strona medalu to energia oddawana do sieci. W net-billingu punktem wyjścia jest RCE, czyli Rynkowa Cena
+          Energii publikowana przez PSE dla okresów 15-minutowych. System pobiera oficjalne dane PSE, przelicza je
+          z PLN/MWh na PLN/kWh i używa ich do oceny, kiedy eksport energii może mieć większą wartość.
+        </p>
+        <div class="formula-card">
+          <strong>Przeliczenie bazowe</strong>
+          <span>RCE [PLN/kWh] = RCE [PLN/MWh] ÷ 1000</span>
+        </div>
+        <div class="formula-card">
+          <strong>Wartość depozytowa</strong>
+          <span>max(RCE, 0) × 1,23</span>
+        </div>
+        <p>
+          Ten współczynnik nie oznacza, że energia jest po prostu „sprzedawana drożej”. Wartość trafia do depozytu
+          prosumenckiego, który służy przede wszystkim do rozliczania zakupu energii. Dla decyzji systemu jest jednak
+          ważne, że poszczególne kwadranse mają różną wartość. Jeżeli trzeba sprzedać energię, lepiej robić to wtedy,
+          gdy wartość slotu jest wysoka.
+        </p>
+
+        <h2>Co trzeba dostosować u innego właściciela?</h2>
+        <p>
+          Obecna ścieżka jest przygotowana dla Tauron/G13 oraz danych PSE/RCE. W innym domu trzeba sprawdzić operatora,
+          taryfę, sposób rozliczenia sprzedaży i dostępność danych. G11, G12, G12w, G13, taryfa dynamiczna i taryfa
+          z dynamiczną dystrybucją to różne modele. Nie wolno ich sprowadzać do jednego progu „tanie/drogie”.
+        </p>
+        <p>
+          Dla wdrożenia u kogoś innego potrzebny jest adapter taryfy. Jego zadaniem jest zamienić dokumenty i tabele
+          operatora na prosty, godzinowy albo kwadransowy plik: czas od, czas do, strefa, cena energii, cena dystrybucji,
+          suma oraz status danych. Dopiero taki plik może być bezpiecznie użyty przez rekomendacje i automatykę.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Zobacz działające raporty</h3>
+          <a href="../05_01_03_g13_buy.html">Zakup energii Tauron G13</a>
+          <a href="../05_01_taryfy_g13_g14dynamic.html">Taryfy G13 i G14dynamic</a>
+          <a href="../05_00_01_pse_tariffs_importer.html">Ceny PSE i dystrybucji</a>
+          <a href="../05_00_cena_sprzedazy_energii_net_billing.html">Net-billing i cena sprzedaży</a>
+        </div>
+        <div class="side-card accent-price">
+          <h3>Definicja gotowości</h3>
+          <p>Moduł cen jest gotowy, gdy dla dziś i jutra ma komplet slotów, poprawne strefy, jawne źródło danych i status błędu.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

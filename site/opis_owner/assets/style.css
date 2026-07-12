@@ -1,5 +1,9 @@
 @import url("../../opis_user/assets/style.css");
 
+body {
+  font-family: "Segoe UI", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+}
+
 .owner-hero {
   min-height: 620px;
   display: grid;
@@ -239,14 +243,384 @@
   font-weight: 800;
 }
 
+.owner-map-section {
+  padding-top: 42px;
+}
+
+.owner-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.owner-topic {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: 286px;
+  padding: 22px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+.owner-topic:hover,
+.owner-topic:focus {
+  transform: translateY(-3px);
+  filter: saturate(1.08);
+}
+
+.owner-topic .topic-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 22px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.owner-topic h3 {
+  max-width: 340px;
+  margin-bottom: 12px;
+  font-size: 1.42rem;
+}
+
+.owner-topic p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.owner-topic strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  margin-top: 18px;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.price {
+  background: #9a4d0f;
+}
+
+.data {
+  background: #1c6b64;
+}
+
+.usage {
+  background: #6f3f8f;
+}
+
+.forecast {
+  background: #2f6b3f;
+}
+
+.control {
+  background: #9b2f2f;
+}
+
+.deploy {
+  background: #315d89;
+}
+
+.owner-flow-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.owner-flow-strip div {
+  min-height: 138px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-top: 7px solid var(--green);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.owner-flow-strip div:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.owner-flow-strip div:nth-child(3) {
+  border-top-color: #7c3aed;
+}
+
+.owner-flow-strip div:nth-child(4) {
+  border-top-color: #2f855a;
+}
+
+.owner-flow-strip div:nth-child(5) {
+  border-top-color: var(--red);
+}
+
+.owner-flow-strip div:nth-child(6) {
+  border-top-color: var(--yellow);
+}
+
+.owner-flow-strip strong,
+.owner-flow-strip span {
+  display: block;
+}
+
+.owner-flow-strip strong {
+  margin-bottom: 8px;
+  color: var(--teal);
+}
+
+.owner-flow-strip span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.sub-hero {
+  min-height: 500px;
+  display: grid;
+  align-items: end;
+  padding: 116px max(18px, calc((100% - 1180px) / 2)) 58px;
+  color: #ffffff;
+}
+
+.sub-hero > div {
+  width: min(980px, 100%);
+}
+
+.sub-hero .eyebrow {
+  color: var(--yellow);
+}
+
+.sub-hero.price {
+  background:
+    linear-gradient(90deg, rgba(77, 38, 6, 0.94), rgba(154, 77, 15, 0.72)),
+    url("../../opis_user/assets/img/g13_today.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sub-hero.data {
+  background:
+    linear-gradient(90deg, rgba(9, 45, 45, 0.94), rgba(28, 107, 100, 0.74)),
+    url("../../opis_user/assets/img/energy_balance_today.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sub-hero.usage {
+  background:
+    linear-gradient(90deg, rgba(58, 31, 87, 0.94), rgba(111, 63, 143, 0.72)),
+    url("../../opis_user/assets/img/energy_use_cumulative.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sub-hero.forecast {
+  background:
+    linear-gradient(90deg, rgba(26, 71, 38, 0.94), rgba(47, 107, 63, 0.72)),
+    url("../../opis_user/assets/img/pv_r_main.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sub-hero.control {
+  background:
+    linear-gradient(90deg, rgba(94, 24, 24, 0.94), rgba(155, 47, 47, 0.72)),
+    url("../../opis_user/assets/img/energy_balance_week.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sub-hero.deploy {
+  background:
+    linear-gradient(90deg, rgba(18, 45, 74, 0.94), rgba(49, 93, 137, 0.72)),
+    url("../../opis_user/assets/img/pv_r_tracking.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 34px;
+  align-items: start;
+}
+
+.article-main {
+  min-width: 0;
+}
+
+.article-main h2 {
+  margin-top: 34px;
+}
+
+.article-main h2:first-child {
+  margin-top: 0;
+}
+
+.article-main p {
+  font-size: 1.04rem;
+}
+
+.article-side {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 16px;
+}
+
+.side-card,
+.formula-card,
+.side-figure {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.side-card {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+.side-card a {
+  display: block;
+  padding: 10px 12px;
+  color: var(--teal);
+  text-decoration: none;
+  background: #edf4f2;
+  border: 1px solid rgba(17, 75, 95, 0.16);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.side-card a:hover,
+.side-card a:focus {
+  filter: brightness(0.98);
+}
+
+.side-card[class*="accent-"] {
+  border-top-width: 7px;
+}
+
+.accent-price {
+  border-top-color: #c86d1f;
+}
+
+.accent-data {
+  border-top-color: #1c6b64;
+}
+
+.accent-usage {
+  border-top-color: #7c3aed;
+}
+
+.accent-forecast {
+  border-top-color: #2f855a;
+}
+
+.accent-control {
+  border-top-color: #c53030;
+}
+
+.accent-deploy {
+  border-top-color: #315d89;
+}
+
+.side-figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.side-figure img {
+  width: 100%;
+  min-height: 220px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.side-figure figcaption {
+  padding: 12px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 0.94rem;
+}
+
+.formula-card {
+  display: grid;
+  gap: 6px;
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-left: 7px solid var(--yellow);
+}
+
+.formula-card strong {
+  color: var(--teal);
+}
+
+.formula-card span {
+  font-weight: 850;
+}
+
+.owner-table {
+  width: 100%;
+  margin: 24px 0;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.owner-table th,
+.owner-table td {
+  padding: 13px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.owner-table th {
+  background: var(--teal);
+  color: #ffffff;
+}
+
+.owner-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.stage-timeline.readable {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stage-timeline.readable article {
+  min-height: 220px;
+}
+
 @media (max-width: 1050px) {
   .stage-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .owner-topic-grid,
+  .owner-flow-strip,
+  .stage-timeline.readable {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 900px) {
   .owner-intro,
+  .article-layout,
   .readiness,
   .risk-grid,
   .variant-grid,
@@ -273,6 +647,10 @@
   .effort-head {
     display: none !important;
   }
+
+  .article-side {
+    position: static;
+  }
 }
 
 @media (max-width: 560px) {
@@ -283,7 +661,40 @@
   }
 
   .stage-timeline,
-  .requirement-list article {
+  .stage-timeline.readable,
+  .requirement-list article,
+  .owner-topic-grid,
+  .owner-flow-strip {
     grid-template-columns: 1fr;
+  }
+
+  .owner-topic {
+    min-height: 242px;
+  }
+
+  .sub-hero {
+    min-height: 520px;
+    padding-top: 98px;
+  }
+
+  .owner-table,
+  .owner-table thead,
+  .owner-table tbody,
+  .owner-table tr,
+  .owner-table th,
+  .owner-table td {
+    display: block;
+  }
+
+  .owner-table thead {
+    display: none;
+  }
+
+  .owner-table tr {
+    border-bottom: 4px solid #e7efed;
+  }
+
+  .owner-table tr:last-child {
+    border-bottom: 0;
   }
 }

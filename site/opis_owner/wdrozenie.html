@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan wdrożenia - opis owner</title>
+  <meta name="description" content="Etapy wdrozenia systemu energii u nowego wlasciciela: audyt, adaptery, taryfy, prognozy, serwer i sterowanie.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="dane.html">Dane</a>
+      <a href="sterowanie.html">Sterowanie</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero deploy">
+      <div>
+        <p class="eyebrow">06 · Wdrożenie</p>
+        <h1>Wdrożenie trzeba prowadzić etapami, bo system dotyka realnych urządzeń.</h1>
+        <p class="lead">
+          Najbezpieczniejsza droga prowadzi od obserwacji, przez raporty i rekomendacje, do kontrolowanej automatyki.
+          Najwięcej pracy zwykle nie leży w samym kodzie, tylko w dopasowaniu go do konkretnego domu.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="eyebrow">Etapy pracy</p>
+      <h2>Od audytu domu do automatyki</h2>
+      <p class="section-lead">
+        Poniższy plan zakłada, że system ma być użyteczny, ale nie ma od pierwszego dnia przejmować sterowania nad domem.
+        Najpierw musi nauczyć się domu: taryfy, urządzeń, profilu zużycia, PV, baterii i auta.
+      </p>
+      <div class="stage-timeline readable">
+        <article><span>0</span><h3>Audyt domu</h3><p>Spis urządzeń, taryfy, rozliczeń, PV, baterii, auta, sposobu dostępu do danych, celów właściciela i ograniczeń bezpieczeństwa.</p></article>
+        <article><span>1</span><h3>Adaptery danych</h3><p>Przygotowanie pobierania danych: SolaX albo inny falownik, licznik, EV, taryfy, pogoda, publikacja i statusy błędów.</p></article>
+        <article><span>2</span><h3>Raporty read-only</h3><p>System tylko czyta dane i pokazuje wyniki. To etap sprawdzania kompletności, opóźnień, jednostek i zgodności z aplikacjami producentów.</p></article>
+        <article><span>3</span><h3>Prognozy i kalibracja</h3><p>PV, zużycie i ceny są porównywane z rzeczywistością przez co najmniej kilka tygodni, zanim zaczną wpływać na sterowanie.</p></article>
+        <article><span>4</span><h3>Rekomendacje</h3><p>System mówi, co by zrobił: kiedy ładować, sprzedawać, zachować baterię albo przesunąć ładowanie auta.</p></article>
+        <article><span>5</span><h3>Sterowanie</h3><p>Pojedyncze akcje, ograniczenia, ręczne zatrzymanie, historia decyzji i pełny audyt komend wysyłanych do urządzeń.</p></article>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Co trzeba przygotować przed instalacją?</h2>
+        <p>
+          Potrzebna jest lista urządzeń i źródeł danych: falownik, licznik energii, bateria, ładowarka EV, samochód, taryfa,
+          operator, rozliczenie prosumenckie, lokalizacja instalacji i sposób publikacji raportów. W obecnym systemie mamy
+          dobrze rozpoznany wariant SolaX oraz taryfy Tauron/G13. Inne falowniki i inni operatorzy wymagają przygotowania
+          nowych adapterów albo przynajmniej sprawdzenia, czy da się z nich pobrać porównywalne dane.
+        </p>
+        <p>
+          Właśnie tego brakowało w prostym opisie: zanim system zacznie prognozować i sterować, trzeba przygotować pliki,
+          skrypty albo sterowniki, które zbiorą dane. Dla SolaX mamy działającą ścieżkę. Dla innych producentów trzeba
+          sprawdzić API lokalne, Modbus, chmurę producenta, eksport CSV, Home Assistanta albo inny pośrednik. Bez tej warstwy
+          reszta systemu nie ma paliwa.
+        </p>
+
+        <h2>Taryfa i lokalizacja</h2>
+        <p>
+          Taryfa nie jest detalem kosmetycznym. Obecny system jest dostosowany do Tauron/G13 i net-billingu z cenami PSE/RCE.
+          U nowego właściciela trzeba ustalić operatora, sprzedawcę, grupę taryfową, sposób naliczania dystrybucji, kalendarz
+          świąt i model sprzedaży energii. Jeżeli ktoś ma G12w, taryfę dynamiczną albo inną dystrybucję, trzeba przygotować
+          osobny adapter cen.
+        </p>
+        <p>
+          Lokalizacja jest równie ważna dla prognozy PV. Model musi znać miejsce instalacji, strefę czasową, orientację dachu,
+          moc instalacji, typ falownika i ewentualne zacienienie. Bez tego prognoza pogody nie stanie się prognozą produkcji.
+        </p>
+
+        <h2>Wymagania serwerowe</h2>
+        <p>
+          Jeżeli system musi czytać urządzenia w sieci domowej, najprostszy jest serwer lokalny: NAS, mini-PC albo Raspberry Pi
+          działający 24/7. Jeżeli dane są dostępne przez chmurę, VPN albo bezpiecznie udostępniony adres IP, wymagania lokalne
+          są mniejsze i system może pracować na zewnętrznym VPS. To bywa wygodne, bo łatwiej robić kopie, aktualizacje i
+          publikację stron.
+        </p>
+        <p>
+          Minimalny zewnętrzny serwer dla samego pobierania danych i generowania raportów może być lekki: 1 vCPU, 1 GB RAM
+          i około 10 GB dysku. Wygodniejszy wariant to 2 vCPU, 2-4 GB RAM i 20-40 GB dysku, szczególnie jeżeli historia,
+          wykresy i eksporty mają rosnąć przez dłuższy czas. Dla pełnego sterowania ważniejsza od mocy obliczeniowej jest
+          niezawodność, monitoring i bezpieczny dostęp do urządzeń.
+        </p>
+
+        <table class="owner-table">
+          <thead>
+            <tr><th>Wariant</th><th>Kiedy ma sens</th><th>Najważniejsze ryzyko</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Lokalny serwer</td><td>Gdy trzeba czytać urządzenia w sieci domowej albo sterować lokalnie.</td><td>Awaria zasilania, lokalne kopie, utrzymanie sprzętu.</td></tr>
+            <tr><td>VPS / serwer zewnętrzny</td><td>Gdy dane są dostępne przez chmurę, VPN lub bezpieczny adres IP.</td><td>Bezpieczeństwo tokenów i zależność od internetu.</td></tr>
+            <tr><td>Hybryda</td><td>Gdy mały agent lokalny zbiera dane, a serwer robi raporty i kopie.</td><td>Trzeba utrzymać synchronizację i status komunikacji.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Pracochłonność</h2>
+        <p>
+          Najwięcej czasu zajmuje integracja z rzeczywistym domem. Jeżeli falownik jest znany, taryfa podobna, a właściciel
+          ma historię produkcji i zużycia, pierwsze raporty można uruchomić szybko. Jeżeli trzeba rozpoznać nowy falownik,
+          nową taryfę i nowy samochód, praca jest bardziej badawcza.
+        </p>
+        <table class="owner-table">
+          <thead>
+            <tr><th>Obszar</th><th>Typowy czas</th><th>Co wydłuża</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Audyt instalacji</td><td>0,5-1 dzień</td><td>Brak dokumentacji urządzeń i niejasne rozliczenie energii.</td></tr>
+            <tr><td>Adapter falownika/licznika</td><td>1-10 dni</td><td>Brak API, tylko aplikacja mobilna albo zmienny panel producenta.</td></tr>
+            <tr><td>Taryfy</td><td>1-5 dni</td><td>Inny operator, święta, dynamiczne strefy, osobna dystrybucja.</td></tr>
+            <tr><td>Prognoza PV</td><td>2-5 dni start + kalibracja</td><td>Zacienienie, kilka połaci, brak historii, nietypowy falownik.</td></tr>
+            <tr><td>Sterowanie</td><td>2-10 dni</td><td>Niejasne komendy, brak potwierdzenia wykonania, brak trybu awaryjnego.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Największe problemy praktyczne</h2>
+        <p>
+          Najczęściej problemem nie jest algorytm, tylko brak stabilnego źródła danych. Drugi problem to kalendarze i taryfy:
+          święta, weekendy, sezony i różne modele rozliczeń. Trzeci to bezpieczeństwo sterowania. System, który tylko pokazuje
+          raporty, może być uruchomiony szybciej. System, który wysyła komendy do falownika, baterii albo auta, wymaga jasnych
+          ograniczeń i odpowiedzialnego wdrożenia.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Przejdź do obszarów</h3>
+          <a href="ceny.html">Ceny i taryfy</a>
+          <a href="dane.html">Dane i adaptery</a>
+          <a href="prognozy.html">Prognozy PV</a>
+          <a href="sterowanie.html">Sterowanie</a>
+        </div>
+        <div class="side-card accent-deploy">
+          <h3>Minimalny start</h3>
+          <p>
+            Najrozsądniej zacząć od adapterów, historii i raportów. Dopiero po walidacji danych warto przechodzić do
+            rekomendacji i sterowania.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

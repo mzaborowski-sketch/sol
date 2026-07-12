@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dane i adaptery - opis owner</title>
+  <meta name="description" content="Opis warstwy danych, adapterow urzadzen, SolaX, historii i statusow potrzebnych do wdrozenia systemu energii.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="ceny.html">Ceny</a>
+      <a href="wdrozenie.html">Wdrożenie</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sub-hero data">
+      <div>
+        <p class="eyebrow">02 · Dane i adaptery</p>
+        <h1>Każdy dom potrzebuje tłumacza między urządzeniami a systemem.</h1>
+        <p class="lead">
+          Obecny system działa wokół konkretnej instalacji, w której kluczowym źródłem jest SolaX. Przy innym falowniku,
+          liczniku albo ładowarce nie wystarczy zmienić nazwy pliku. Trzeba przygotować adapter, który zbierze dane,
+          sprawdzi ich jakość i zapisze je w języku rozumianym przez raporty oraz automatykę.
+        </p>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Dlaczego warstwa danych jest pierwsza?</h2>
+        <p>
+          Automatyka energetyczna jest tak dobra, jak dane, na których pracuje. Jeżeli system nie wie, ile dom aktualnie
+          pobiera z sieci, ile oddaje, jaki jest SOC baterii i czy auto jest podłączone, to każda decyzja o ładowaniu,
+          sprzedaży albo zachowaniu energii jest zgadywaniem. Dlatego wdrożenie powinno zaczynać się od trybu read-only:
+          system niczego jeszcze nie steruje, tylko przez pewien czas czyta instalację i pokazuje, czy rozumie ją poprawnie.
+        </p>
+        <p>
+          W tej instalacji dane z falownika są pobierane w specyficzny sposób, bo typowe domowe falowniki często nie dają
+          wygodnego, publicznego API dla wszystkich potrzebnych informacji. Czasem istnieje API lokalne, czasem Modbus,
+          czasem tylko chmura producenta, a czasem panel webowy lub aplikacja mobilna. Dla właściciela najważniejsze jest
+          nie to, którą technikę wybieramy, ale czy wynik jest powtarzalny, audytowalny i odporny na chwilowe braki danych.
+        </p>
+
+        <h2>Co robi adapter?</h2>
+        <p>
+          Adapter jest małym tłumaczem. Zna konkretne źródło danych: SolaX, licznik, ładowarkę, samochód, taryfy albo
+          pogodę. Wie, jak pobrać odpowiedź, jak rozpoznać jednostki, jak przeliczyć wartości, co zrobić z pustą odpowiedzią
+          i jak zapisać wynik. Reszta systemu nie powinna znać szczegółów panelu producenta. Powinna widzieć wspólny model:
+          czas, produkcja PV, pobór z sieci, oddanie do sieci, zużycie domu, SOC baterii, stan EV, status danych i źródło.
+        </p>
+        <p>
+          To rozdzielenie jest ważne przy przenoszeniu systemu. Jeżeli u innego właściciela pojawi się Fronius, Huawei,
+          Sofar, Victron, GoodWe albo osobny licznik energii, nie trzeba przepisywać całego systemu. Trzeba napisać adapter,
+          który dostarczy te same kolumny i statusy. To jest główny koszt techniczny wdrożenia w nowym domu.
+        </p>
+
+        <table class="owner-table">
+          <thead>
+            <tr><th>Warstwa</th><th>Co przechowuje</th><th>Dlaczego jest potrzebna</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>raw</td><td>Surową odpowiedź z urządzenia, chmury albo panelu.</td><td>Umożliwia diagnozę, gdy producent zmieni format danych.</td></tr>
+            <tr><td>parsed</td><td>Liczby po przeliczeniu jednostek i nazw pól.</td><td>Pokazuje, czy parser dobrze rozumie źródło.</td></tr>
+            <tr><td>current</td><td>Ostatni znany, aktualny stan instalacji.</td><td>Jest szybkim wejściem dla dashboardów i decyzji.</td></tr>
+            <tr><td>history</td><td>Szereg czasowy produkcji, poboru, eksportu, baterii i EV.</td><td>Jest podstawą walidacji, kalibracji i wykrywania zmian zachowania domu.</td></tr>
+            <tr><td>status</td><td>Czas ostatniego sukcesu, błąd, kompletność, źródło.</td><td>Chroni przed sterowaniem na pustych albo starych danych.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Current i historia to nie to samo</h2>
+        <p>
+          Plik typu current odpowiada na pytanie: „co system wie teraz?”. Jest użyteczny dla statusów, bieżącego SOC,
+          krótkiego dashboardu i szybkich rekomendacji. Nie wystarczy jednak do oceny jakości systemu. Do tego potrzebna
+          jest historia, czyli zapis krok po kroku: co było o 8:00, 8:15, 8:30 i dalej. Historia pozwala sprawdzić, czy
+          prognoza PV była trafna, czy auto ładowało się w dobrych godzinach, czy licznik nie gubi danych i czy zmienił się
+          profil zużycia domu.
+        </p>
+        <p>
+          Dobra praktyka jest taka, że błąd pobrania danych nie niszczy historii. Jeżeli falownik przez chwilę nie odpowiada,
+          system powinien zapisać status błędu, zachować ostatni znany stan i oznaczyć niepewność. Najgorszy wariant to
+          ciche podstawienie zera, bo wtedy raport wygląda poprawnie, ale model uczy się fałszywego świata.
+        </p>
+
+        <h2>Lokalnie, przez chmurę albo z serwera zewnętrznego</h2>
+        <p>
+          Jeżeli urządzenie daje lokalny dostęp, najprostszy jest mały komputer w domu: NAS, mini-PC albo Raspberry Pi.
+          Ma dostęp do sieci lokalnej, może czytać falownik bez wystawiania go na internet i działa nawet wtedy, gdy część
+          usług zewnętrznych ma przerwę. Taki wariant jest dobry dla sterowania, bo skraca drogę między decyzją a urządzeniem.
+        </p>
+        <p>
+          Jeżeli dane są dostępne przez chmurę producenta, VPN albo bezpiecznie wystawiony adres IP, system może działać
+          na zewnętrznym serwerze. Wtedy wymagania sprzętowe w domu są dużo mniejsze: lokalnie wystarczy stabilny internet
+          i urządzenia publikujące dane. Rosną natomiast wymagania bezpieczeństwa: tokeny, hasła, ograniczenia IP, kopie
+          konfiguracji i jasny sposób wyłączenia dostępu.
+        </p>
+
+        <h2>Co trzeba przygotować u nowego właściciela?</h2>
+        <p>
+          Najpierw trzeba zrobić listę źródeł danych: falownik, licznik energii, bateria, ładowarka EV, samochód, taryfa,
+          pogoda i ewentualne dodatkowe czujniki. Następnie dla każdego źródła trzeba odpowiedzieć na cztery pytania:
+          jak pobrać dane, jak często, w jakich jednostkach i jak poznać, że dane są nieaktualne. Dopiero potem ma sens
+          mówić o prognozie, optymalizacji albo sterowaniu.
+        </p>
+        <p>
+          W praktyce największe ryzyka są prozaiczne: hasło do chmury wygasa, panel producenta zmienia HTML, licznik ma
+          inną strefę czasową, dane z falownika są opóźnione, a samochód raz raportuje energię, raz tylko procent baterii.
+          Dlatego każda integracja powinna mieć mały raport diagnostyczny i widoczny status w index2.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Raporty i statusy</h3>
+          <a href="../00_statusy.html">Statusy systemu</a>
+          <a href="../20_16_energy_balance_current.html">Bilans energii</a>
+          <a href="../80_10_05_solax_profile_executor_audit.html">Audyt SolaX</a>
+        </div>
+        <figure class="side-figure">
+          <img src="../opis_user/assets/img/energy_balance_today.png" alt="Przykład bieżącego bilansu energii">
+          <figcaption>Bieżący bilans jest wygodny dopiero wtedy, gdy adaptery dostarczają kompletne i oznaczone dane.</figcaption>
+        </figure>
+        <div class="side-card accent-data">
+          <h3>Definicja gotowości</h3>
+          <p>
+            Adapter jest gotowy, gdy ma historię, current, status ostatniego sukcesu, jawne źródło danych i da się porównać
+            jego wynik z aplikacją producenta albo licznikiem.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>

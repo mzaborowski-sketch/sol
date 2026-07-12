@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analiza zużycia - opis owner</title>
+  <meta name="description" content="Wyjaśnienie analizy zużycia domu z autem i bez auta w systemie energii.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">NIA</span><span class="brand-text">opis_owner</span></a>
+    <nav class="topnav">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="ceny.html">Ceny</a>
+      <a href="prognozy.html">Prognozy</a>
+      <a href="../index2.html">Index2</a>
+    </nav>
+  </header>
+  <main>
+    <section class="sub-hero usage">
+      <div>
+        <p class="eyebrow">03 · Analiza zużycia</p>
+        <h1>System musi odróżnić normalne zużycie domu od ładowania samochodu.</h1>
+        <p class="lead">
+          Prognoza produkcji PV to tylko połowa decyzji. Druga połowa to pytanie, ile energii dom prawdopodobnie zużyje
+          i czy w tym zużyciu mieści się auto, które może być ładowane elastycznie.
+        </p>
+      </div>
+    </section>
+
+    <section class="section article-layout">
+      <article class="article-main">
+        <h2>Dlaczego zużycie trzeba rozdzielać?</h2>
+        <p>
+          Dom bez samochodu ma zwykle pewien rytm: lodówka, pompy, gotowanie, urządzenia biurowe, wieczorne obciążenie.
+          Samochód elektryczny jest czymś innym. Potrafi w krótkim czasie zużyć tyle energii, ile dom zużywa przez wiele
+          godzin. Jeżeli wrzucimy EV do zwykłego profilu zużycia bez oznaczenia, system może uznać ładowanie auta za
+          naturalne zużycie domu i zacząć źle prognozować zapotrzebowanie.
+        </p>
+        <p>
+          Dlatego analiza zużycia powinna mieć co najmniej dwa widoki: profil domu bez EV oraz profil z EV. Pierwszy
+          mówi, ile energii jest potrzebne do normalnego życia domu. Drugi mówi, jaki był całkowity pobór, czyli realny
+          wpływ auta na rachunek, sieć i pracę baterii.
+        </p>
+
+        <h2>Profil bez auta</h2>
+        <p>
+          Profil bez auta jest najważniejszy dla codziennej automatyki baterii. Pokazuje, ile energii dom zużyje
+          niezależnie od decyzji o ładowaniu EV. Jeżeli system przewiduje, że wieczorem dom zużyje 3 kWh, a produkcja
+          PV będzie słaba, może zachować część energii w baterii. Jeśli pomyli ten profil z ładowaniem auta, może
+          niepotrzebnie blokować baterię albo kupować energię w złym momencie.
+        </p>
+
+        <h2>Profil z autem</h2>
+        <p>
+          Profil z autem jest potrzebny do oceny całkowitego kosztu energii i obciążenia instalacji. To tutaj widać,
+          czy samochód był ładowany w drogich godzinach, czy wykorzystał nadwyżkę PV, czy wszedł w konflikt z baterią
+          albo czy spowodował pobór z sieci, którego można było uniknąć.
+        </p>
+        <p>
+          W dobrym systemie EV nie jest tylko odbiornikiem. Jest odbiornikiem elastycznym. To znaczy, że system może
+          zdecydować: ładujemy teraz z nadwyżki PV, ładujemy w taniej taryfie, czekamy na lepszy slot albo realizujemy
+          ręczny cel użytkownika, np. określoną liczbę kilometrów.
+        </p>
+
+        <table class="owner-table">
+          <thead><tr><th>Widok</th><th>Do czego służy</th><th>Ryzyko, jeśli go brakuje</th></tr></thead>
+          <tbody>
+            <tr><td>Bez EV</td><td>Prognoza bazowego zużycia domu.</td><td>System myli ładowanie auta z normalnym rytmem domu.</td></tr>
+            <tr><td>Z EV</td><td>Pełny koszt i obciążenie instalacji.</td><td>Nie widać realnego wpływu auta na bilans energii.</td></tr>
+            <tr><td>EV aktywne</td><td>Analiza tylko okresów ładowania.</td><td>Nie wiadomo, czy auto ładowało się w dobrych godzinach.</td></tr>
+            <tr><td>Ostatnie 7 dni</td><td>Wykrywanie zmiany zachowań domowników.</td><td>Model opiera się na starej historii.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Jak to wpływa na sterowanie?</h2>
+        <p>
+          Analiza zużycia jest wejściem do decyzji o SOC baterii, zakupie energii i ładowaniu auta. Jeżeli jutro rano
+          auto musi mieć energię, system może skorzystać z taniej taryfy nocnej. Jeżeli w południe będzie duża produkcja
+          PV, może przesunąć ładowanie na nadwyżkę. Jeżeli wieczorem cena sprzedaży jest wysoka, system może uznać, że
+          lepiej sprzedać energię albo zachować ją dla domu, a auto ładować później.
+        </p>
+      </article>
+
+      <aside class="article-side">
+        <div class="side-card">
+          <h3>Zobacz raporty</h3>
+          <a href="../40_20_15_energy_use.html">Raport zużycia energii</a>
+          <a href="../20_16_energy_balance_current.html">Bilans energii</a>
+          <a href="../car_dashboard.html">Panel auta</a>
+        </div>
+        <figure class="side-figure">
+          <img src="../opis_user/assets/img/energy_use_cumulative.png" alt="Przykład wykresu zużycia energii">
+          <figcaption>Zużycie trzeba czytać jako rytm domu oraz osobno jako wpływ EV.</figcaption>
+        </figure>
+      </aside>
+    </section>
+  </main>
+  <button class="back-top" type="button" aria-label="Wróć na górę">↑</button>
+  <script src="assets/app.js"></script>
+</body>
+</html>
